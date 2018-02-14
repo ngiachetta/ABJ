@@ -1,0 +1,49 @@
+---
+title: "TRF-1"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+library(httr)
+library(dplyr)
+```
+
+
+# Obtendo os dados do TRF-1
+
+O link para fazer a consulta no TRF-1 é:
+
+Obs: o site tem bloqueio
+
+```{r}
+url <- "http://www.cjf.jus.br/juris/trf1/RespostaTipoTRF1"
+```
+
+```{r}
+session <- html_session(url)
+
+form <- session %>% 
+  html_form() %>% 
+  first()
+
+set_values(form,
+           'pesquisaAS' = "A", # "A" indica Pesquisa Avancada
+           'livreAvancada' = "", # Query de Pesquisa Livre
+           'proc' ="", # Numero do processo
+           'clas' = 2, # Classe (select)
+           'rel' = "", # Relator
+           'td_tipo_rel' = "", # Tipo de Relator (select)
+           'orga' = "", # Orgao Julgador
+           'data1' = "", # Data de Inicio
+           'data2' = "", # Data final
+           'tipo_data' = "" #, # Tipo de Data (select)
+           #'emen' = "", # Ementa
+           )
+```
+
+```{r}
+x <- httr::GET(url)
+x$cookies$value
+```
+

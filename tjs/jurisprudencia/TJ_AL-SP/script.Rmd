@@ -28,9 +28,9 @@ classes_cjsg <- esaj::cjsg_table(type = "classes", tj = "tjsp")
 class_inq <- classes_cjsg %>% 
   filter(name0 == "PROCESSO CRIMINAL" & name1 == "Procedimentos Investigatórios" & str_detect(name5, "Inquérito"))
 
-# Download dos processos de acordo com a classes desejada (Coleta: 10:10)
+# Download dos processos de acordo com a classes desejada (Coleta: 16:26 dia 14 de Fevereiro)
 esaj::download_cjsg(query = "",classes = class_inq$id5, 
-                    path = "InqPolicial_AL-SP/data_raw_SP/cjsg_SP/", 
+                    path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cjsg_SP/", 
                     max_page = Inf, tj = "TJSP")
 
 # Mensagem apresentada ao realizar o Download
@@ -38,16 +38,16 @@ esaj::download_cjsg(query = "",classes = class_inq$id5,
 ## This should take around 26.5 seconds
 
 # Parseando os documentos baixados
-files <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/InqPolicial_AL-SP/data_raw_SP/cjsg_SP/", full.names = TRUE, pattern = "page")
+files <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cjsg_SP/", full.names = TRUE, pattern = "page")
 d_cjsg <- parse_cjsg(files)
 
 # Consulta Processual (Coleta: 10:29)
 processos <- unique(d_cjsg$id_lawsuit) %>%
   na.omit() # Foi preciso retirar NA para que a função download_cposg fosse executada
 
-esaj::download_cposg(processos, "/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/cposg_SP/")
+esaj::download_cposg(processos, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cposg_SP")
 
-files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/cposg_SP", full.names = TRUE)
+files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cposg_SP", full.names = TRUE)
 
 # Parseando CPOSG
 parser <- esaj::make_parser() %>% 
@@ -57,15 +57,19 @@ parser <- esaj::make_parser() %>%
   esaj:::parse_decisions()
 
 d_cposg <- esaj::run_parser(file = files_cposg, parser = parser, 
-                             path = "/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/cposg_rds_SP/")
+                             path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cposg_rds_SP/")
 
-rds_files <- dir("/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/cposg_rds_SP", full.names = TRUE)
+rds_files <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cposg_rds_SP/", full.names = TRUE)
 d_cposg <- purrr::map_dfr(rds_files, readRDS)
 
 # Download das decisoes
 acordaos <- d_cjsg$id_decision %>% 
   na.omit()
-esaj::download_decision(acordaos, path = "/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/decision_SP")
+esaj::download_decision(acordaos, path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/decision_SP")
+
+readr::write_rds(d_cjsg, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/data_rds/d_cjsg.rds")
+
+readr::write_rds(d_cposg, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/data_rds/d_cposg.rds")
 ```
 Alguns documentos em São Paulo tiveram erros ao parsear. Sendo assim, trataremos destes casos manualmente.
 
