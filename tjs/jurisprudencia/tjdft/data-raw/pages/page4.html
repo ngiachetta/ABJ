@@ -1,0 +1,1128 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="pt">
+
+
+
+	
+
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+	<title>SISTJWEB</title>
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="GOOGLEBOT" content="NOINDEX, NOFOLLOW, NOARCHIVE, NOSNIPPET" />
+	<link href="infra/css/calendario.css" rel="stylesheet" type="text/css" />
+	<link href="infra/css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css"/>
+	<link href="infra/css/estiloComum.css" rel="stylesheet" type="text/css" />
+	<link name="skinCss" href="infra/css/skins/intranet/estilo.css"  rel="stylesheet" type="text/css"  media="screen"/>
+	<link name="CssImpressao" href="infra/css/skins/intranet/estiloimpressao.css"  rel="stylesheet" type="text/css"  media="print"/>
+	<link type="text/css" href="infra/css/teclado.css" rel="stylesheet" />
+    <link rel="stylesheet" href="infra/css/jquery-bubble-popup-v3.css" type="text/css" media="all" />
+    <script src="infra/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="infra/js/jquery-ui-1.8.22.custom.min.js" type="text/javascript"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/Util.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/OrdenacaoDeTabelas.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/funcoes.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/String.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/calendario.js"></script>
+ 	<script language="JavaScript" type="text/javascript" src="infra/js/UtilAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ValidacaoAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/Lista.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ListaAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ConsultaCodigoDescricaoAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/AutoCompletarAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/AssinaturaDigital.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/VisibilidadeDeCampos.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/dhtmlgoodies_calendar.js"></script>
+	<script type="text/javascript" src="infra/js/menu.js"></script>
+	<script type="text/javascript" src="infra/js/teclado.js"></script>
+	<script type="text/javascript" src="infra/js/highcharts.js"></script>
+	<script type="text/javascript" src="infra/js/jquery-bubble-popup-v3.min.js"></script>
+	
+    	<link rel="stylesheet" href="infra/css/aba/redmond/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
+    
+</head>
+
+<body onclick="esconderDiv();">
+<div id="fundoModal" style="display: none;"></div>
+<div id="divAvisos"></div>
+<div id="cabecalhoGeral" class="cabecalhoGeral"
+	style="display:;">
+	<div class="cabecalhoIntranetNovo">
+			<div class="cabecalhoSistemaDescricao">TJDFT</div>
+			<div class="barraSeparador"><hr class="hr" style="margin-top: 12px"></hr></div>
+			<div class="cabecalhoSistemaSigla">SISTJWEB</div>
+			
+			
+				<div class="barraSeparador"><hr class="hr" style="margin-top: 12px"></hr></div>
+				<div class="cabecalhoDescricaoDoAmbiente">Pesquisa Documentos Jurídicos</div>
+			
+			<div class="cabecalhoLinksUteis">				
+				
+						
+				<a href="index.jsp?enderecoDoServlet=sistj">INÍCIO</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				
+				<a href="mailto:jurisprudencia.pesquisa@tjdft.jus.br">CONTATO</a>&nbsp;&nbsp;|
+				
+			</div>
+
+		</div>
+	</div>	
+	<div id="div_conteudoGeral" class="conteudoGeral"> <!-- Início do Conteúdo Geral--> 
+		<div id="div_centro" class="centro">
+			<div id="div_tituloDoCasoDeUso" class="tituloDoCasoDeUso" style="display:;">
+				<div class="labelTituloDoCasoDeUso">
+					
+						Acórdãos
+						
+							&nbsp;::&nbsp;&nbsp;Pesquisa Livre
+						
+					
+	
+				</div>
+					
+			</div>	
+			
+			
+		</div>
+		
+		<!-- Fim do Cabeçalho -->	
+ 
+  
+	<form action="sistj" method="post" >
+		
+
+<input type="hidden" data-cache="never" name="visaoId" id="visaoId" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao" />
+<input type="hidden" data-cache="never" name="controladorId" id="controladorId" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao" />
+<input type="hidden" data-cache="never" name="idDoUsuarioDaSessao" id="idDoUsuarioDaSessao" value="" />
+<input type="hidden" data-cache="never" name="nomeDaPagina" id="nomeDaPagina" value="resultado" />
+<input type="hidden" data-cache="never" name="comando" id="comando" value=" " />
+<input type="hidden" data-cache="never" name="enderecoDoServlet" id="enderecoDoServlet" value="sistj" /><input type="hidden" data-cache="never" name="visaoAnterior" id="visaoAnterior" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao" /><input type="hidden" data-cache="never" name="skin" id="skin" value="" />
+<input type="hidden" data-cache="never" name="tokenDePaginacao" id="tokenDePaginacao" value="1" />
+
+<input type="hidden" name="historicoDePaginas" id="historicoDePaginas0" value="buscaLivre" />
+<input type="hidden" name="historicoDePaginas" id="historicoDePaginas1" value="selecaoTipoResultado" />
+<input type="hidden" data-cache="never" name="argumentoDePesquisa" id="argumentoDePesquisa" value="" />
+<input type="hidden" data-cache="never" name="eqipzd" id="eqipzd" value="" />
+<input type="hidden" data-cache="never" name="numero" id="numero" value="" />
+<input type="hidden" data-cache="never" name="tipoDeNumero" id="tipoDeNumero" value="NumAcordao" />
+<input type="hidden" data-cache="never" name="fzytpd" id="fzytpd" value="" />
+<input type="hidden" data-cache="never" name="desembargador" id="desembargador" value="" />
+<input type="hidden" data-cache="never" name="lwjfpd" id="lwjfpd" value="" />
+<input type="hidden" data-cache="never" name="tipoDeRelator" id="tipoDeRelator" value="" />
+<input type="hidden" data-cache="never" name="orgaoJulgador" id="orgaoJulgador" value="" />
+<input type="hidden" data-cache="never" name="descricaoDaClasse" id="descricaoDaClasse" value="" />
+<input type="hidden" data-cache="never" name="knxqrj" id="knxqrj" value="" />
+<input type="hidden" data-cache="never" name="ementa" id="ementa" value="" />
+<input type="hidden" data-cache="never" name="decisaoLivre" id="decisaoLivre" value="" />
+<input type="hidden" data-cache="never" name="indexacao" id="indexacao" value="" />
+<input type="hidden" data-cache="never" name="zctuzd" id="zctuzd" value="" />
+
+<input type="hidden" data-cache="never" name="comandoFieldSet_resultado" id="comandoFieldSet_resultado" value="" />
+<input type="hidden" data-cache="never" name="selecaoFieldSet_resultado" id="selecaoFieldSet_resultado" value="" /><input type="hidden" data-cache="never" name="selecaoFieldSet_resultado_FIELD_SET_FILHO" id="selecaoFieldSet_resultado_FIELD_SET_FILHO" value="" />
+<input type="hidden" data-cache="never" name="linhaEmEdicaoFieldSet_resultado" id="linhaEmEdicaoFieldSet_resultado" value="" /><input type="hidden" data-cache="never" name="linhaEmExclusaoFieldSet_resultado" id="linhaEmExclusaoFieldSet_resultado" value="" />
+<input type="hidden" data-cache="never" name="resultado" id="resultado" value="descricao,base,valor" />
+<input type="hidden" data-cache="never" name="resultado_qtd" id="resultado_qtd" value="1" /><input type="hidden" data-cache="never" name="resultado_valoresFieldSet" id="resultado_valoresFieldSet" value="78da8d52cd6edb300c7e15d63bb801b6d8d91a276e6c17cecf61a7004b6f4551b012dd0993c5409283f479f7087b81c94dd26de882edc47f7ee4471637fb56c38eac536cca68344ca39baad8a1664bae2a049b463d0589ed96dd4a2a8f3b522190bcf11c1c6bd169cfbf127eb38fadb4325fb1efac3b13a4e1962a494e5825908be4c53e0c501517778b657d5bdfd5e28795dfd901c1ab2a097c675b74604974d6a172f7f701e7589a9c00fe007a444767300ab74503e0fcb3a6320a556cafdfa56996e5f9ccd3de7f9024d8a20f3c5d7746920d8bd0ac470e895b56c6939d45a064196779d3e4e9f42a9b8c452627427e1c4db2a91c67723c9ae0e3748c7895d1a73c0636422bf1ad8c5403979245d792f1c327f22b4dbd3a7ffe2c2fe37eea0d6912011b25c603b828c1745a0fe0ff6b8661df8ea084785e6f560ff562fd6559af1f6ed7cb7a13cf20b018e83440fbc0a6c705b768249f9f491c1242df866dfb1e627702b3f3001d0f02175ef99ecb69fa3a667f42133ec15b94eca2ea6ca848fa7354ffbee84bf0cc49df2efad77ec9f12593d3dbff0485bd14c7" />
+<!-- Campos ocultos adicionais -->
+<input type="hidden" data-cache="never" name="idDaClasse" id="idDaClasse" value="279" />
+<input type="hidden" data-cache="never" name="codigoFeito2Instancia" id="codigoFeito2Instancia" value="INQ" />
+<input type="hidden" data-cache="never" name="tipoDeBusca" id="tipoDeBusca" value="" />
+
+<input type="hidden" name="camposSelecionados" id="camposSelecionados0" value="ESPELHO" />
+
+<input type="hidden" data-cache="never" name="camposDeAgrupamento" id="camposDeAgrupamento" value="" />
+<input type="hidden" data-cache="never" name="numeroDoDocumento" id="numeroDoDocumento" value="112348" />
+<input type="hidden" data-cache="never" name="quantidadeDeRegistros" id="quantidadeDeRegistros" value="20" />
+<input type="hidden" data-cache="never" name="dataInicio" id="dataInicio" value="" />
+<input type="hidden" data-cache="never" name="dataFim" id="dataFim" value="" />
+
+<input type="hidden" name="documentos" id="documentos0" value="156192" />
+<input type="hidden" name="documentos" id="documentos1" value="153909" />
+<input type="hidden" name="documentos" id="documentos2" value="137753" />
+<input type="hidden" name="documentos" id="documentos3" value="123631" />
+<input type="hidden" name="documentos" id="documentos4" value="115383" />
+<input type="hidden" name="documentos" id="documentos5" value="114654" />
+<input type="hidden" name="documentos" id="documentos6" value="112348" />
+<input type="hidden" name="documentos" id="documentos7" value="97776" />
+<input type="hidden" name="documentos" id="documentos8" value="96326" />
+<input type="hidden" name="documentos" id="documentos9" value="95194" />
+<input type="hidden" name="documentos" id="documentos10" value="85991" />
+<input type="hidden" name="documentos" id="documentos11" value="37541" />
+<input type="hidden" name="documentos" id="documentos12" value="26107" />
+<input type="hidden" name="documentos" id="documentos13" value="15332" />
+<input type="hidden" name="documentos" id="documentos14" value="8165" />
+<input type="hidden" name="documentos" id="documentos15" value="4760" />
+<input type="hidden" name="documentos" id="documentos16" value="2112" />
+<input type="hidden" name="documentos" id="documentos17" value="2111" />
+<input type="hidden" name="documentos" id="documentos18" value="2008" />
+<input type="hidden" name="documentos" id="documentos19" value="1997" />
+<input type="hidden" data-cache="never" name="campoDeOrdenacao" id="campoDeOrdenacao" value="" />
+
+<input type="hidden" name="baseDados" id="baseDados0" value="BASE_ACORDAOS" />
+<input type="hidden" name="baseDados" id="baseDados1" value="TURMAS_RECURSAIS" />
+<input type="hidden" name="baseDados" id="baseDados2" value="BASE_ACORDAO_PJE" />
+<input type="hidden" name="baseDados" id="baseDados3" value="BASE_ACORDAOS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados4" value="TURMAS_RECURSAIS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados5" value="BASE_HISTORICA" />
+<input type="hidden" data-cache="never" name="baseSelecionada" id="baseSelecionada" value="BASE_ACORDAO_TODAS" />
+<input type="hidden" data-cache="never" name="mostrarPaginaSelecaoTipoResultado" id="mostrarPaginaSelecaoTipoResultado" value="true" />
+<input type="hidden" data-cache="never" name="totalHits" id="totalHits" value="80" />
+<input type="hidden" data-cache="never" name="tipoDeData" id="tipoDeData" value="" />
+<input type="hidden" data-cache="never" name="jurisprudenciaAdministrativa" id="jurisprudenciaAdministrativa" value="" />
+<input type="hidden" data-cache="never" name="faixaInicial" id="faixaInicial" value="" />
+<input type="hidden" data-cache="never" name="faixaFinal" id="faixaFinal" value="" />
+<input type="hidden" data-cache="never" name="indexados" id="indexados" value="" />
+<input type="hidden" data-cache="never" name="decisao" id="decisao" value="" />
+<input type="hidden" data-cache="never" name="decisaolivre" id="decisaolivre" value="" />
+<input type="hidden" data-cache="never" name="loginDoUsuario" id="loginDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="nomeDoUsuario" id="nomeDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="idClasse" id="idClasse" value="" />
+<input type="hidden" data-cache="never" name="descricaoClasse" id="descricaoClasse" value="" />
+<input type="hidden" data-cache="never" name="idDoAcordao" id="idDoAcordao" value="" />
+<input type="hidden" data-cache="never" name="dicaye" id="dicaye" value="" />
+<input type="hidden" data-cache="never" name="tipoDeData" id="tipoDeData" value="" />
+<input type="hidden" data-cache="never" name="tipoDeBusca" id="tipoDeBusca" value="" />
+
+<input type="hidden" name="camposSelecionados" id="camposSelecionados0" value="ESPELHO" />
+
+<input type="hidden" data-cache="never" name="camposDeAgrupamento" id="camposDeAgrupamento" value="" />
+<input type="hidden" data-cache="never" name="numeroDoDocumento" id="numeroDoDocumento" value="112348" />
+<input type="hidden" data-cache="never" name="quantidadeDeRegistros" id="quantidadeDeRegistros" value="20" />
+<input type="hidden" data-cache="never" name="dataInicio" id="dataInicio" value="" />
+<input type="hidden" data-cache="never" name="dataFim" id="dataFim" value="" />
+
+<input type="hidden" name="documentos" id="documentos0" value="156192" />
+<input type="hidden" name="documentos" id="documentos1" value="153909" />
+<input type="hidden" name="documentos" id="documentos2" value="137753" />
+<input type="hidden" name="documentos" id="documentos3" value="123631" />
+<input type="hidden" name="documentos" id="documentos4" value="115383" />
+<input type="hidden" name="documentos" id="documentos5" value="114654" />
+<input type="hidden" name="documentos" id="documentos6" value="112348" />
+<input type="hidden" name="documentos" id="documentos7" value="97776" />
+<input type="hidden" name="documentos" id="documentos8" value="96326" />
+<input type="hidden" name="documentos" id="documentos9" value="95194" />
+<input type="hidden" name="documentos" id="documentos10" value="85991" />
+<input type="hidden" name="documentos" id="documentos11" value="37541" />
+<input type="hidden" name="documentos" id="documentos12" value="26107" />
+<input type="hidden" name="documentos" id="documentos13" value="15332" />
+<input type="hidden" name="documentos" id="documentos14" value="8165" />
+<input type="hidden" name="documentos" id="documentos15" value="4760" />
+<input type="hidden" name="documentos" id="documentos16" value="2112" />
+<input type="hidden" name="documentos" id="documentos17" value="2111" />
+<input type="hidden" name="documentos" id="documentos18" value="2008" />
+<input type="hidden" name="documentos" id="documentos19" value="1997" />
+<input type="hidden" data-cache="never" name="campoDeOrdenacao" id="campoDeOrdenacao" value="" />
+
+<input type="hidden" name="baseDados" id="baseDados0" value="BASE_ACORDAOS" />
+<input type="hidden" name="baseDados" id="baseDados1" value="TURMAS_RECURSAIS" />
+<input type="hidden" name="baseDados" id="baseDados2" value="BASE_ACORDAO_PJE" />
+<input type="hidden" name="baseDados" id="baseDados3" value="BASE_ACORDAOS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados4" value="TURMAS_RECURSAIS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados5" value="BASE_HISTORICA" />
+<input type="hidden" data-cache="never" name="numeroDaUltimaPagina" id="numeroDaUltimaPagina" value="4" />
+<input type="hidden" data-cache="never" name="idDespacho" id="idDespacho" value="" />
+<input type="hidden" data-cache="never" name="buscaIndexada" id="buscaIndexada" value="0" />
+<input type="hidden" data-cache="never" name="mostrarPaginaSelecaoTipoResultado" id="mostrarPaginaSelecaoTipoResultado" value="true" />
+<input type="hidden" data-cache="never" name="totalHits" id="totalHits" value="80" />
+<input type="hidden" data-cache="never" name="tipoDeDocumento" id="tipoDeDocumento" value="" />
+<input type="hidden" data-cache="never" name="query" id="query" value="{BASE_ACORDAO_TODAS=(basededados:BASE_ACORDAOS OR basededados:TURMAS_RECURSAIS) AND  ( especie:279 OR especie:INQ OR codigoclasseinterposicao:INQ OR siglaclasseinterposicao:INQ OR descricaoclasseinterposicao:INQ ) }" />
+<input type="hidden" data-cache="never" name="buscaPorQuery" id="buscaPorQuery" value="" />
+<input type="hidden" data-cache="never" name="argumentoDePesquisa" id="argumentoDePesquisa" value="" />
+<input type="hidden" data-cache="never" name="jurisprudenciaAdministrativa" id="jurisprudenciaAdministrativa" value="" />
+<input type="hidden" data-cache="never" name="faixaInicial" id="faixaInicial" value="" />
+<input type="hidden" data-cache="never" name="faixaFinal" id="faixaFinal" value="" />
+<input type="hidden" data-cache="never" name="indexados" id="indexados" value="" />
+<input type="hidden" data-cache="never" name="decisao" id="decisao" value="" />
+<input type="hidden" data-cache="never" name="decisaoLivre" id="decisaoLivre" value="" />
+<input type="hidden" data-cache="never" name="loginDoUsuario" id="loginDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="nomeDoUsuario" id="nomeDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="idClasse" id="idClasse" value="" />
+<input type="hidden" data-cache="never" name="descricaoClasse" id="descricaoClasse" value="" />
+<input type="hidden" data-cache="never" name="qtguby" id="qtguby" value="" />
+<input type="hidden" data-cache="never" name="baseSelecionada" id="baseSelecionada" value="BASE_ACORDAO_TODAS" /><input type="hidden" data-cache="never" name="idJanelaAbrirAjax" id="idJanelaAbrirAjax" value="" /><input type="hidden" data-cache="never" name="idJanelaAbrirIsModalAjax" id="idJanelaAbrirIsModalAjax" value="false" />
+<input type="hidden" data-cache="never" name="internet" id="internet" value="1" />	
+			
+	
+		<div class="centro">
+			
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						<div id="qtguby_agrupador" class="agrupador" onclick="agrupamentoOnClick('qtguby');" >
+						  <span class="imagemAgrupadorMais" title="abrir/fechar" id="qtguby_imagem" onclick="return false;"></span>					  
+						  <label class="labelAgrupador">Query</label>
+						</div>
+				  		<div id="qtguby_grupo" class="conteudoAgrupamentoFechado">
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="uyimxh" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_emuyjq">
+									<div class="textoRotulo">
+										Query:
+										
+										
+										  
+										  
+										  
+										  
+											
+											
+											
+											 
+												<span id="uyimxh_imagemErro"  style="display: none;; ">
+													<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" >
+												</span>
+											
+										 
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_emuyjq">
+									
+									  
+									    {BASE_ACORDAO_TODAS=(basededados:BASE_ACORDAOS OR basededados:TURMAS_RECURSAIS) AND  ( especie:279 OR especie:INQ OR codigoclasseinterposicao:INQ OR siglaclasseinterposicao:INQ OR descricaoclasseinterposicao:INQ ) }
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					</div> 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					<div id="nhuzmm" class="separador">
+					  <label class="labelSeparador">Resultado da Consulta</label>
+					</div>
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="lwnulq" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_bkjsbk">
+									<div class="textoRotulo">
+										Termos Pesquisados:
+										
+										
+										  
+										  
+										  
+										  
+											
+											
+											
+											 
+												<span id="lwnulq_imagemErro"  style="display: none;; ">
+													<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" >
+												</span>
+											
+										 
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_bkjsbk">
+									
+									  
+									    <br/><strong>Bases de Consulta:</strong> Acórdãos, Acórdãos - Turmas Recursais, Acórdãos (PJE), Acórdãos - Incidente de Resolução de Demandas Repetitivas (IRDR), Acórdãos de turmas recursais - Incidente de Resolução de Demandas Repetitivas (IRDR), Base Histórica de Acórdãos
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					<script type="text/javascript">
+						$(document).ready(function(){
+	                        var dialogjanelaLinkDiretoDaConsulta = $("#dialog_janelaLinkDiretoDaConsulta").dialog({
+	                               title: "Link para resultado da consulta",
+	                               autoOpen: false,
+	                               height: "auto",
+	                               width: "auto"
+	                        });
+	                  	}); 
+					</script>
+					    <div id="dialog_janelaLinkDiretoDaConsulta">
+					      <div style="min-width: 350px;" class="centro" >
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="linha_7" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_linkDiretoDaConsulta">
+								
+									
+									
+											
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%"><tr><td>
+<textarea name="linkDiretoDaConsulta" id="linkDiretoDaConsulta" style="width:100%" cols="100" rows="5" class="campoeditor">https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao&nomeDaPagina=buscaLivre2&buscaPorQuery=1&baseSelecionada=BASE_ACORDAO_TODAS&ramoJuridico=&baseDados=[BASE_ACORDAOS,%20TURMAS_RECURSAIS,%20BASE_ACORDAO_PJE,%20BASE_ACORDAOS_IDR,%20TURMAS_RECURSAIS_IDR,%20BASE_HISTORICA]&argumentoDePesquisa=&filtroSegredoDeJustica=false&desembargador=&indexacao=&tipoDeNumero=NumAcordao&tipoDeRelator=&camposSelecionados=[ESPELHO]&numero=&tipoDeData=&dataFim=&dataInicio=&ementa=&orgaoJulgador=&filtroAcordaosPublicos=false&legislacao=&numeroDaPaginaAtual=4&quantidadeDeRegistros=20&totalHits=80</textarea></td>
+<td align="left" width="200px"> </td></tr></table>
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						  </div>
+						</div>
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="waswkp" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_ynitvv">
+									<div class="textoRotulo">
+										Ir para a página:
+										
+										
+										  
+										  
+										  
+										  
+											
+											
+											
+											 
+												<span id="waswkp_imagemErro"  style="display: none;; ">
+													<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" >
+												</span>
+											
+										 
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_ynitvv">
+									
+									  
+									    <span style="display: inline-block;vertical-align: middle;" id="divParaRedesenhar_numeroDaPaginaAtual"><input type="text" name="numeroDaPaginaAtual" id="numeroDaPaginaAtual" size="6" value="4"  maxlength="5" onkeydown="var ascii=event.keyCode; if (ascii=='') ascii=event.which; if ( ascii == 13 ) { return executaComando(this.form, 'pesquisar'); } else { return true; }" onblur="" class="campodetexto" /> </span>
+									  
+									    
+<input type="image" onclick="return false;" id="ixrxqg" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#ixrxqg').CreateBubblePopup();
+           $('#ixrxqg').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_ixrxqg" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Informe o número da página desejada e pressione a tecla "ENTER"</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script>
+									  
+									    <b>&nbsp;&nbsp;&nbsp;  Total de páginas: 4.  Total de Documentos Encontrados: 80.&nbsp;&nbsp;&nbsp;<span><input type="hidden" data-cache="never" name="cudrvs" id="cudrvs" value="<?xml version='1.0' encoding='ISO-8859-1'?><comando><camposParaRedesenhar></camposParaRedesenhar><camposParaRecarregar><campo>idJanelaAbrirAjax</campo><campo>idJanelaAbrirIsModalAjax</campo></camposParaRecarregar><campoComMensagem></campoComMensagem><timeoutDeMensagem>0</timeoutDeMensagem><campoComFoco></campoComFoco><comandoDeSaida></comandoDeSaida></comando>" /><a style="color:#006699;text-decoration:underline;cursor:pointer;text-align:right;" id="botao_linkDiretoDaConsulta" title="Link para resultado da consulta" onclick="abrirJanela('janelaLinkDiretoDaConsulta',false , this); document.getElementById('linkDiretoDaConsulta').focus(); document.getElementById('linkDiretoDaConsulta').select(); return false;" onkeydown="if (event.keyCode != 32 &amp;&amp; event.keyCode != 13 &amp;&amp; event.keyCode != 9) return false; "><span>Link para resultado da consulta</span></a></span></b>.&nbsp;&nbsp;&nbsp;<span id="divParaRedesenhar_filtroSegredoDeJustica"><input type="checkbox" name="filtroSegredoDeJusticaTemp" id="filtroSegredoDeJusticaTemp" value="0"  onclick="trocaValorDoCheckbox(this, document.getElementById('filtroSegredoDeJustica'));  return executaComando(this.form, 'pesquisar'); return false; "  style="vertical-align:middle; width: auto !important;" /><input type="hidden" name="filtroSegredoDeJustica" id="filtroSegredoDeJustica" value="0"/></span>Filtrar Acórdãos em Segredo de Justiça.<span id="divParaRedesenhar_filtroAcordaosPublicos"><input type="checkbox" name="filtroAcordaosPublicosTemp" id="filtroAcordaosPublicosTemp" value="0"  onclick="trocaValorDoCheckbox(this, document.getElementById('filtroAcordaosPublicos'));  return executaComando(this.form, 'pesquisar'); return false; "  style="vertical-align:middle; width: auto !important;" /><input type="hidden" name="filtroAcordaosPublicos" id="filtroAcordaosPublicos" value="0"/></span>Filtrar Acórdãos Públicos.
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="zsxzwb" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_zaqsqi">
+								
+									
+									
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado - Bases de Consulta"onclick="return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado - Bases de Consulta</span></button>
+									  
+									    <button id="id_comando_voltar" class="botaoNovoPequeno"  title="Nova Consulta"onclick="return executaComando(document.getElementById('comando').form, 'VoltarParaBuscaLivreInicial');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'VoltarParaBuscaLivreInicial');}" ><span class="botaoNovo botaoConsultar">Nova Consulta</span></button>
+									  
+									    <input type="image"  src="infra/imagens/seta-primeiro-item.png" id="btprimeiraPagina" name="btprimeiraPagina"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('null'); if (campoDestino!=null) campoDestino.value = 'null'; return executaComando(document.getElementById('comando').form, 'primeiraPagina'); return false; " title="Início" style="padding:4px;" />&nbsp;<input type="image"  src="infra/imagens/seta-item-anterior.png" id="btpaginaAnterior" name="btpaginaAnterior"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('null'); if (campoDestino!=null) campoDestino.value = 'null'; return executaComando(document.getElementById('comando').form, 'paginaAnterior'); return false; " title="20 registros anteriores" style="padding:4px;" />
+									  
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="linha_11" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_tabelaResultado">
+								
+									
+									
+											<div id="divParaRedesenhar_tabelaResultado"><table cellspacing="0"  id="tabelaResultado" class="tabela_sercos">
+<thead><tr><th class="td_sercos_center" style="border-top-left-radius: 5px;">Sequencial</th><th class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='d532988351ad2955e88a17bd9c677e140e5e52d4' onclick="if (document.getElementById('campoDeOrdenacao') != null) document.getElementById('campoDeOrdenacao').value = 'NUMACORDAOORDENCAO';  return executaComando(document.getElementById('comando').form, 'pesquisar');" title="Acórdão">Acórdão</span></th><th class="td_sercos_center">Download</th><th class="td_sercos_center">Ementa</th><th class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='d532988351ad2955e88a17bd9c677e140e5e52d4' onclick="if (document.getElementById('campoDeOrdenacao') != null) document.getElementById('campoDeOrdenacao').value = 'DATAJULGAMENTO';  return executaComando(document.getElementById('comando').form, 'pesquisar');" title="Data Julgamento">Data Julgamento</span></th><th class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='d532988351ad2955e88a17bd9c677e140e5e52d4' onclick="if (document.getElementById('campoDeOrdenacao') != null) document.getElementById('campoDeOrdenacao').value = 'DATAPUBLICACAO';  return executaComando(document.getElementById('comando').form, 'pesquisar');" title="Data da Intimação ou da Publicação ">Data da Intimação ou da Publicação </span></th><th class="td_sercos_center" style="border-top-right-radius: 5px;"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='d532988351ad2955e88a17bd9c677e140e5e52d4' onclick="if (document.getElementById('campoDeOrdenacao') != null) document.getElementById('campoDeOrdenacao').value = 'DESCRICAOORGAOJULGADORORORDENACAO';  return executaComando(document.getElementById('comando').form, 'pesquisar');" title="Órgão Julgador">Órgão Julgador</span></th></tr></thead><tr>
+<td  class="td_sercos_center">61</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '156192';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="156192">156192</span></td>
+<td  class="td_sercos_center">
+<input type="image" onclick="return false;" id="oeiflk" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#oeiflk').CreateBubblePopup();
+           $('#oeiflk').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_oeiflk" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Segredo de justiça.</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_left"><FONT COLOR="RED"><B>Segredo de Justiça </B> <BR/></FONT><b>INQ</b><br /><b>Relator(a): LÉCIO RESENDE</b><br /><b>Processo: 20010020075658INQ</b><br/>INQUÉRITO - CRIMES DE CALÚNIA E DIFAMAÇÃO - DENÚNCIA OFERTADA PELO PROCURADOR-GERAL DE JUSTIÇA - REJEIÇÃO - UNÂNIME. Não caracteriza crimes de calúnia e difamação, quando a fundamentação trazida pelo Magistrado, em preliminar da r. sentença, limita-se aos aspectos da lide, determinando-se a perda do objeto da Argüição de Suspeição, pois o afastamento do Promotor foi feito a pedido, pela autoridade competente.</td>
+<td  class="td_sercos_center">07/05/2002</td>
+<td  class="td_sercos_center">14/08/2002</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">62</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '153909';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="153909">153909</span></td>
+<td  class="td_sercos_center">
+<input type="image" onclick="return false;" id="sxvooy" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#sxvooy').CreateBubblePopup();
+           $('#sxvooy').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_sxvooy" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Segredo de justiça.</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_left"><FONT COLOR="RED"><B>Segredo de Justiça </B> <BR/></FONT><b>INQ</b><br /><b>Relator(a): NATANAEL CAETANO</b><br /><b>Processo: 20010020035343INQ</b><br/>DENÚNCIA CONTRA JUIZ - PREVARICAÇÃO - FATO ATÍPICO - REJEIÇÃO DA PEÇA ACUSATÓRIA.
+Inexiste abuso de autoridade no ato de Juiz que exige que o Ministério Público justifique os reiterados pedidos de baixa de um inquérito à delegacia de polícia.
+O fato nesses termos descrito é atípico impondo-se a rejeição da denúncia e o seu conseqüente arquivamento. </td>
+<td  class="td_sercos_center">19/02/2002</td>
+<td  class="td_sercos_center">29/05/2002</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr>
+<td  class="td_sercos_center">63</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '137753';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="137753">137753</span></td>
+<td  class="td_sercos_center"><input type="image"  src="infra/imagens/16x16/pdf_16x16.png" id="btdownloadInteiroTeorPaginaPesquisa" name="btdownloadInteiroTeorPaginaPesquisa"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('idDoAcordao'); if (campoDestino!=null) campoDestino.value = '137753'; return executaComandoTarget(document.getElementById('comando').form, 'downloadInteiroTeorPaginaPesquisa','_blank'); return false; " /></td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator Designado(a): ROMÃO C. OLIVEIRA</b><br /><b>Processo: 19990110539006INQ</b><br/>QUEIXA-CRIME OFERECIDA CONTRA PARLAMENTAR DISTRITAL - PEDIDO DE LICENÇA À RESPECTIVA CÂMARA.
+Distribuída a queixa-crime contra Deputado Distrital, há de ser endereçado o pedido de licença à respectiva Câmara, não podendo o relator propor julgamento no Conselho, ainda que seja para rejeitar a peça de ingresso, eis que, eventualmente seu voto poderá não ser acolhido. E, se acolhido, o Deputado ficaria sujeito aos recursos previstos em lei, restando, assim malferido, o princípio estampado no artigo 53, § 1º, in fine, da Carta Política e artigo 61, § 1º, da Lei Orgânica do Distrito Federal.</td>
+<td  class="td_sercos_center">31/10/2000</td>
+<td  class="td_sercos_center">01/06/2001</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">64</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '123631';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="123631">123631</span></td>
+<td  class="td_sercos_center">
+<input type="image" onclick="return false;" id="defdnf" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#defdnf').CreateBubblePopup();
+           $('#defdnf').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_defdnf" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Segredo de justiça.</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_left"><FONT COLOR="RED"><B>Segredo de Justiça </B> <BR/></FONT><b>INQ</b><br /><b>Relator(a): NÍVIO GERALDO GONÇALVES</b><br /><b>Processo: 19990020031128INQ</b><br/>DENÚNCIA. REQUISITOS. REGULARIDADE FORMAL. VIABILIDADE DA RELAÇÃO PROCESSUAL E DO DIREITO DA AÇÃO. OCORRÊNCIA. ADEQUAÇÃO TÍPICA NELA FEITA, ADEMAIS, QUE É PROVISÓRIA, PODENDO SER ALTERADA NO CURSO DA INSTRUÇÃO CRIMINAL. JUSTA CAUSA PARA A AÇÃO PENAL. DENÚNCIA RECEBIDA.</td>
+<td  class="td_sercos_center">15/02/2000</td>
+<td  class="td_sercos_center">29/06/2000</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr>
+<td  class="td_sercos_center">65</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '115383';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="115383">115383</span></td>
+<td  class="td_sercos_center"><input type="image"  src="infra/imagens/16x16/pdf_16x16.png" id="btdownloadInteiroTeorPaginaPesquisa" name="btdownloadInteiroTeorPaginaPesquisa"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('idDoAcordao'); if (campoDestino!=null) campoDestino.value = '115383'; return executaComandoTarget(document.getElementById('comando').form, 'downloadInteiroTeorPaginaPesquisa','_blank'); return false; " /></td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): ROMÃO C. OLIVEIRA</b><br /><b>Processo: INQ4595</b><br/>QUEIXA-CRIME CONTRA DEPUTADO DISTRITAL. FATO COBERTO PELO MANTO DA IMUNIDADE PARLAMENTAR. ARQUIVAMENTO.
+O PARLAMENTAR NÃO PODE SER RESPONSABILIZADO CRIMINALMENTE POR SUAS OPINIÕES, PALAVRAS E VOTOS, INCLUSIVE RELATÓRIOS QUE ELABORA COMO MEMBRO DE COMISSÃO PARLAMENTAR DE INQUÉRITO. É O QUE SE DEPREENDE DA LEITURA ATENTA DO ART. 53 DA CONSTITUIÇÃO FEDERAL E ART. 61, §§ 1º E 2º, DA LEI ORGÂNICA DO DISTRITO FEDERAL.
+VERIFICANDO-SE QUE OS FATOS NARRADOS NA PEÇA DE INGRESSO ADVIERAM DA ATIVIDADE DOS QUERELADOS COMO PARLAMENTARES E MEMBROS DE CPI, IMPÕE-SE O ARQUIVAMENTO DOS AUTOS, CONFORME A MOLDURA TRAÇADA PELO...
+<input type="image" onclick="return false;" id="uuejdo" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#uuejdo').CreateBubblePopup();
+           $('#uuejdo').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_uuejdo" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>QUEIXA-CRIME CONTRA DEPUTADO DISTRITAL. FATO COBERTO PELO MANTO DA IMUNIDADE PARLAMENTAR. ARQUIVAMENTO.<br />O PARLAMENTAR NÃO PODE SER RESPONSABILIZADO CRIMINALMENTE POR SUAS OPINIÕES, PALAVRAS E VOTOS, INCLUSIVE RELATÓRIOS QUE ELABORA COMO MEMBRO DE COMISSÃO PARLAMENTAR DE INQUÉRITO. É O QUE SE DEPREENDE DA LEITURA ATENTA DO ART. 53 DA CONSTITUIÇÃO FEDERAL E ART. 61, §§ 1º E 2º, DA LEI ORGÂNICA DO DISTRITO FEDERAL.<br />VERIFICANDO-SE QUE OS FATOS NARRADOS NA PEÇA DE INGRESSO ADVIERAM DA ATIVIDADE DOS QUERELADOS COMO PARLAMENTARES E MEMBROS DE CPI, IMPÕE-SE O ARQUIVAMENTO DOS AUTOS, CONFORME A MOLDURA TRAÇADA PELO MINISTÉRIO PÚBLICO (ARTIGO 43, I, DO CÓDIGO DE PROCESSO PENAL).<br /></p></div>',
+                       themeName:  'azure',
+                       width:  '600px',
+                       height:  '400px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_center">03/11/1998</td>
+<td  class="td_sercos_center">18/08/1999</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">66</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '114654';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="114654">114654</span></td>
+<td  class="td_sercos_center"><input type="image"  src="infra/imagens/16x16/pdf_16x16.png" id="btdownloadInteiroTeorPaginaPesquisa" name="btdownloadInteiroTeorPaginaPesquisa"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('idDoAcordao'); if (campoDestino!=null) campoDestino.value = '114654'; return executaComandoTarget(document.getElementById('comando').form, 'downloadInteiroTeorPaginaPesquisa','_blank'); return false; " /></td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): ROMÃO C. OLIVEIRA</b><br /><b>Processo: INQ6197</b><br/>NOTITIA CRIMINIS CONTRA PARLAMENTAR DISTRITAL. TRAMITAÇÃO REGULAR ATÉ SUA POSSE COMO PARLAMENTAR FEDERAL. REMESSA DOS AUTOS AO SUPREMO TRIBUNAL FEDERAL. INOCORRÊNCIA DE QUALQUER VÍCIO A SER EXPURGADO ATRAVÉS DE EMBARGOS DE DECLARAÇÃO.
+SE A PESSOA INDICADA EM NOTÍCIA CRIME FOI ELEITA E EMPOSSOU-SE COMO SENADOR, DESAPARECE A COMPETÊNCIA DO TJDFT PARA PROSSEGUIR COM A INVESTIGAÇÃO E, POR ISTO MESMO, NÃO PODERÁ TRANCAR O PROCEDIMENTO, MÁXIME QUANDO O MINISTÉRIO PÚBLICO JÁ HAVIA REQUERIDO DILIGÊNCIA. SOMENTE O SUPREMO TRIBUNAL FEDERAL PODERÁ PROCLAMAR SE HÁ OU NÃO ELEMENTO A JUSTIFICAR A MEDIDA INQUISITORIAL QU...
+<input type="image" onclick="return false;" id="vfjwia" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#vfjwia').CreateBubblePopup();
+           $('#vfjwia').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_vfjwia" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>NOTITIA CRIMINIS CONTRA PARLAMENTAR DISTRITAL. TRAMITAÇÃO REGULAR ATÉ SUA POSSE COMO PARLAMENTAR FEDERAL. REMESSA DOS AUTOS AO SUPREMO TRIBUNAL FEDERAL. INOCORRÊNCIA DE QUALQUER VÍCIO A SER EXPURGADO ATRAVÉS DE EMBARGOS DE DECLARAÇÃO.<br />SE A PESSOA INDICADA EM NOTÍCIA CRIME FOI ELEITA E EMPOSSOU-SE COMO SENADOR, DESAPARECE A COMPETÊNCIA DO TJDFT PARA PROSSEGUIR COM A INVESTIGAÇÃO E, POR ISTO MESMO, NÃO PODERÁ TRANCAR O PROCEDIMENTO, MÁXIME QUANDO O MINISTÉRIO PÚBLICO JÁ HAVIA REQUERIDO DILIGÊNCIA. SOMENTE O SUPREMO TRIBUNAL FEDERAL PODERÁ PROCLAMAR SE HÁ OU NÃO ELEMENTO A JUSTIFICAR A MEDIDA INQUISITORIAL QUE FORA DESENCADEADA.<br /></p></div>',
+                       themeName:  'azure',
+                       width:  '600px',
+                       height:  '400px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_center">11/05/1999</td>
+<td  class="td_sercos_center">18/08/1999</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr>
+<td  class="td_sercos_center">67</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '112348';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="112348">112348</span></td>
+<td  class="td_sercos_center"><input type="image"  src="infra/imagens/16x16/pdf_16x16.png" id="btdownloadInteiroTeorPaginaPesquisa" name="btdownloadInteiroTeorPaginaPesquisa"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('idDoAcordao'); if (campoDestino!=null) campoDestino.value = '112348'; return executaComandoTarget(document.getElementById('comando').form, 'downloadInteiroTeorPaginaPesquisa','_blank'); return false; " /></td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): ROMÃO C. OLIVEIRA</b><br /><b>Processo: INQ6197</b><br/>CONSTITUCIONAL. COMPETÊNCIA. DEPUTADO DISTRITAL ELEITO SENADOR E EMPOSSADO. INQUÉRITO EM TRAMITAÇÃO NO TJDFT - REMESSA DOS AUTOS AO SUPREMO TRIBUNAL FEDERAL.
+COMPETE AO SUPREMO TRIBUNAL FEDERAL PROCESSAR E JULGAR SENADOR DA REPÚBLICA (ARTS. 53, § 4º, E 102, I, "B", DA CONSTITUIÇÃO FEDERAL). TOMANDO-SE CONHECIMENTO DE QUE OCORREU A POSSE DE JURISDICIONADO DO TJDFT NO CARGO DE SENADOR, IMEDIATAMENTE O CONSELHO ESPECIAL DESTE TRIBUNAL FAZ A REMESSA DOS AUTOS AO PRETÓRIO EXCELSO.
+</td>
+<td  class="td_sercos_center">02/02/1999</td>
+<td  class="td_sercos_center">05/05/1999</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">68</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '97776';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="97776">97776</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): ROMÃO C. OLIVEIRA</b><br /><b>Processo: INQ5897</b><br/>PREFEITO MUNICIPAL. PRERROGATIVA DE FORO. TRIBUNAL DE JUSTIÇA
+ COMPETENTE . A COMPETÊNCIA RATIONE LOCI HÁ DE CEDER DIANTE DA
+ COMPETÊNCIA RACIONE PERSONAE.
+ A competência para julgamento de infração cometida por prefeito
+ municipal é do Tribunal de Justiça do Estado em que estiver encravado
+ o respectivo município, haja vista decorrer da função por ele
+ exercida.</td>
+<td  class="td_sercos_center">26/08/1997</td>
+<td  class="td_sercos_center">24/09/1997</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr>
+<td  class="td_sercos_center">69</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '96326';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="96326">96326</span></td>
+<td  class="td_sercos_center">
+<input type="image" onclick="return false;" id="mkjutq" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#mkjutq').CreateBubblePopup();
+           $('#mkjutq').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_mkjutq" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Segredo de justiça.</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_left"><FONT COLOR="RED"><B>Segredo de Justiça </B> <BR/></FONT><b>INQ</b><br /><b>Relator(a): CAMPOS AMARAL</b><br /><b>Processo: INQ4495</b><br/>Processual Penal e Penal. Queixa-crime de Advogado contra Juiz. 1.
+ Limites do julgamento pelo Conselho Especial: recebimento ou rejeição
+ da queixa, ou a improcedência da acusação, se a decisão não depender
+ de outras provas ou declaração da extinção da punibilidade,
+ precedentemente (Lei n. 8.658, de 26.05.93, artigo primeiro e artigo
+ primeiro a 12 da Lei n. 8.038, de 25.05.90, artigos terceiro da
+ primeira Lei (revocatória do Título III, Livro II, do Código de
+ Processo Penal) e sexto. 2. Expressões utilizadas pelo Querelado em
+ representação à OAB c...
+<input type="image" onclick="return false;" id="yhlwsv" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#yhlwsv').CreateBubblePopup();
+           $('#yhlwsv').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_yhlwsv" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Processual Penal e Penal. Queixa-crime de Advogado contra Juiz. 1.<br /> Limites do julgamento pelo Conselho Especial: recebimento ou rejeição<br /> da queixa, ou a improcedência da acusação, se a decisão não depender<br /> de outras provas ou declaração da extinção da punibilidade,<br /> precedentemente (Lei n. 8.658, de 26.05.93, artigo primeiro e artigo<br /> primeiro a 12 da Lei n. 8.038, de 25.05.90, artigos terceiro da<br /> primeira Lei (revocatória do Título III, Livro II, do Código de<br /> Processo Penal) e sexto. 2. Expressões utilizadas pelo Querelado em<br /> representação à OAB contra o Querelante - Imputação dos crimes de<br /> difamação e injúria (artigos 139 e 140, CP). 3. O crime de injúria<br /> consuma-se com o conhecimento do Querelante por ser o bem lesado a<br /> honra subjetiva. Prescrição afastada. Ausência de animus iniuriam<br /> faciendi. As palavras utilizadas na representação à OAB revestiram-se<br /> do animus narrandi. 4. Crime de difamação. Na representação por falta<br /> disciplinar atribuída a advogado (artigo 34, inciso VI, da Lei n.<br /> 8.906, de 04.07.94), inexistiu o animus diffamandi, ausentes a<br /> intenção de divulgar os fatos narrados e o elemento subjetivo do<br /> dolo. Doutrina e jurisprudência. 5. Queixa rejeitada (artigo 43, I,<br /> do CPC c/c o artigo sexto da Lei n. 8.038, de 28.05.90). Decisão<br /> Unânime.</p></div>',
+                       themeName:  'azure',
+                       width:  '600px',
+                       height:  '400px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_center">11/03/1997</td>
+<td  class="td_sercos_center">14/08/1997</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">70</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '95194';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="95194">95194</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): VAZ DE MELLO</b><br /><b>Processo: INQ3595</b><br/>INQUÉRITO. AÇÃO PENAL ORIGINÁRIA. PREVARICAÇÃO. HABEAS CORPUS.
+ LIMINAR CONCEDIDA. AUTORIDADE COATORA. PRERROGATIVA DE FORO. JUÍZO
+ INCOMPETENTE. DENÚNCIA. REQUISITOS PREENCHIDOS. RECEBIMENTO.
+ MATERIALIDADE. INDÍCIOS DE AUTORIA. COMPROVAÇÃO. Deve ser apurada a
+ imputação de prevaricação contra Magistrado que, acusado de
+ satisfazer interesse ou sentimento pessoal, age contratiamente à
+ disposição de lei, concedendo liminar em habeas corpus preventivo em
+ que figuram, como pacientes, empregados de empresas cujos interesses
+ são patrocinados por seu irmão, advogado. Além disso, a autoridade
+ apontada como coator...
+<input type="image" onclick="return false;" id="haduwd" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#haduwd').CreateBubblePopup();
+           $('#haduwd').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_haduwd" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>INQUÉRITO. AÇÃO PENAL ORIGINÁRIA. PREVARICAÇÃO. HABEAS CORPUS.<br /> LIMINAR CONCEDIDA. AUTORIDADE COATORA. PRERROGATIVA DE FORO. JUÍZO<br /> INCOMPETENTE. DENÚNCIA. REQUISITOS PREENCHIDOS. RECEBIMENTO.<br /> MATERIALIDADE. INDÍCIOS DE AUTORIA. COMPROVAÇÃO. Deve ser apurada a<br /> imputação de prevaricação contra Magistrado que, acusado de<br /> satisfazer interesse ou sentimento pessoal, age contratiamente à<br /> disposição de lei, concedendo liminar em habeas corpus preventivo em<br /> que figuram, como pacientes, empregados de empresas cujos interesses<br /> são patrocinados por seu irmão, advogado. Além disso, a autoridade<br /> apontada como coatora era pessoa que gozava de prerrogativa de foro<br /> especial, ocorrendo manifesta invasão de competência, impossível de<br /> ser desconhecida pelo mesmo. Se há, nos autos do inquérito, prova do<br /> fato e indícios veementes de autoria, merece ser recebida denúncia<br /> que, além de preencher os requisitos do artigo 41, do Código de<br /> Processo Penal, acha-se, inclusive, alicerçada em conclusões de<br /> sindicância instaurada por este E. Tribunal de Justiça. Nesta fase<br /> procedimental, visa-se apenas à formação do juízo de admissibilidade<br /> da acusação, o que se incompatibiliza com a profunda análise sobre o<br /> conjunto probatória, a qual lastreia o próprio mérito da demanda.<br /> DENÚNCIA RECEBIDA. UNÂNIME.</p></div>',
+                       themeName:  'azure',
+                       width:  '600px',
+                       height:  '400px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script></td>
+<td  class="td_sercos_center">14/05/1996</td>
+<td  class="td_sercos_center">09/07/1997</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr>
+<td  class="td_sercos_center">71</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '85991';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="85991">85991</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): JOSE DILERMANDO MEIRELES</b><br /><b>Processo: INQ4795</b><br/>PROCESSO PENAL - INQUÉRITO POLICIAL ENVOLVENDO PARLAMENTAR -
+ ARQUIVAMENTO.
+ 01 - Tratando-se de indicação de arquivamento promovida pelo
+ Procurador-Geral, não cabe ao órgão julgador senão acatar a promoção.
+ 02  -  Arquivamento determinado. Unânime.</td>
+<td  class="td_sercos_center">18/06/1996</td>
+<td  class="td_sercos_center">28/08/1996</td>
+<td  class="td_sercos_center">CONSELHO ESPECIAL</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">72</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '37541';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="37541">37541</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): PAULO GARCIA</b><br /><b>Processo: INQ22</b><br/>INQUÉRIO. ARQUIVAMENTO.
+ HAVENDO O TRIBUNAL CONCEDIDO HABEAS CORPUS AO PACIENTE, DETERMINANDO
+ O TRANCAMENTO DO INQUÉRITO POLICIAL CONTRA ELE INSTAURADO, DEVE DITO
+ INQUÉRITO SER O ARQUIVADO.</td>
+<td  class="td_sercos_center">05/08/1986</td>
+<td  class="td_sercos_center">01/10/1986</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr>
+<td  class="td_sercos_center">73</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '26107';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="26107">26107</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator Designado(a): MELLO MARTINS</b><br /><b>Processo: INQ18</b><br/>RELATOR - COMPETÊNCIA.
+ É DO RELATOR DO INQUÉRITO A COMPETÊNCIA PARA PRONUNCIAR A DECADÊNCIA
+ OU A PRESCRIÇÃO.</td>
+<td  class="td_sercos_center">18/02/1983</td>
+<td  class="td_sercos_center">18/02/1983</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">74</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '15332';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="15332">15332</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): HELLÁDIO MONTEIRO</b><br /><b>Processo: INQ16</b><br/>INQUÉRITO. ARQUIVADA A AÇÃO PENAL, NÃO SE INSTAURA NOVO INQUÉRITO SEM
+ QUE HAJA FATO NOVO.</td>
+<td  class="td_sercos_center">30/05/1978</td>
+<td  class="td_sercos_center">30/05/1978</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr>
+<td  class="td_sercos_center">75</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '8165';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="8165">8165</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): RAIMUNDO FERREIRA MACEDO</b><br /><b>Processo: INQ4580</b><br/>O RELATÓRIO DO JUIZ QUE PRESIDIU AS DILIGÊNCIAS DO INQUÉRITO
+ ADMINISTRATIVO MOSTRA A RESPONSABILIDADE COMPROVADA DOS INDICIADOS.
+ PROPOSTA PELO TRIBUNAL, AO EXCELENTÍSSIMO SENHOR PRESIDENTE DA
+ REPÚBLICA, A APLICAÇÃO DO AI - 5, QUANTO AO ESCRIVÃO CARLOS ALFREDO
+ DIAS DE MELLO, E A DEMISSÃO, A BEM DO SERVIÇO PÚBLICO, QUANTO AO
+ ENTÃO ESCRIVÃO SUBSTITUTO, MÁRCIO CAETANO RIBAS.</td>
+<td  class="td_sercos_center">29/08/1972</td>
+<td  class="td_sercos_center">29/08/1972</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">76</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '4760';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="4760">4760</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): RAIMUNDO FERREIRA MACEDO</b><br /><b>Processo: INQ13</b><br/>ARQUIVA-SE O INQUÉRITO POLICIAL, POR CRIME DA COMPETÊNCIA ORIGINÁRIA
+ DO TRIBUNAL, SE A PROCURADORIA ENTENDE QUE NÃO É CASO DE AÇÃO PENAL.</td>
+<td  class="td_sercos_center">20/10/1970</td>
+<td  class="td_sercos_center">20/10/1970</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr>
+<td  class="td_sercos_center">77</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '2112';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="2112">2112</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): CANDIDO COLOMBO</b><br /><b>Processo: INQ8</b><br/>DELITO PRESCRITO - DEFERE-SE O PEDIDO DE ARQUIVAMENTO DO DR.
+ PROCURADOR-GERAL.</td>
+<td  class="td_sercos_center">04/10/1966</td>
+<td  class="td_sercos_center">04/10/1966</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">78</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '2111';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="2111">2111</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): CANDIDO COLOMBO</b><br /><b>Processo: INQ10</b><br/>PROCESSO MOVIDO CONTRA REPRESENTANTE DO MINISTÉRIO PÚBLICO.
+ ARQUIVAMENTO, CONFORME PEDIDO DO PROCURADOR-GERAL.</td>
+<td  class="td_sercos_center">23/08/1966</td>
+<td  class="td_sercos_center">23/08/1966</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr>
+<td  class="td_sercos_center">79</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '2008';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="2008">2008</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): MARIO BRASIL ARAUJO</b><br /><b>Processo: INQ2</b><br/>O PROCESSO E JULGAMENTO DOS CRIMES PREVISTOS NA LEI-1802/53, PASSAVA
+ MÀ COMPETÊNCIA DA JUSTIÇA MILITAR DE ACÔRDO COM O ATO INSTITUCIONAL
+ Nº 2. CARACTERIZADA, ASSIM, A INCOMPETÊNCIA DO TRIBUNAL DE JUSTIÇA,
+ DEVE SER O PROCESSO REMETIDO AO EGRÉGIO SUPERIOR TRIBUNA MILITAR.</td>
+<td  class="td_sercos_center">12/04/1966</td>
+<td  class="td_sercos_center">12/04/1966</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr><tr class="linhaAlternada">
+<td  class="td_sercos_center">80</td>
+<td  class="td_sercos_center"><span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='id_link_abrir_dados_acordao' onclick="if (document.getElementById('numeroDoDocumento') != null) document.getElementById('numeroDoDocumento').value = '1997';  return executaComando(document.getElementById('comando').form, 'abrirDadosDoAcordao');" title="1997">1997</span></td>
+<td  class="td_sercos_center">Acórdão indisponível</td>
+<td  class="td_sercos_left"><b>INQ</b><br /><b>Relator(a): DARCY RODRIGUES LOPES RIBEIRO</b><br /><b>Processo: INQ5</b><br/>COMPETÊNCIA DA JUSTIÇA MILITAR PARA JULGAR ATIVIDADE SUBVERSIVA,
+ FRENTE AO ART-8, PAR-3, DO ATO INSTITUCIONAL Nº 2.</td>
+<td  class="td_sercos_center">07/12/1965</td>
+<td  class="td_sercos_center">07/12/1965</td>
+<td  class="td_sercos_center">Tribunal Pleno</td></tr></table></div><center></center>
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="fnwlhl" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_wbezkh">
+								
+									
+									
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado - Bases de Consulta"onclick="return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado - Bases de Consulta</span></button>
+									  
+									    <button id="id_comando_voltar" class="botaoNovoPequeno"  title="Nova Consulta"onclick="return executaComando(document.getElementById('comando').form, 'VoltarParaBuscaLivreInicial');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'VoltarParaBuscaLivreInicial');}" ><span class="botaoNovo botaoConsultar">Nova Consulta</span></button>
+									  
+									    <input type="image"  src="infra/imagens/seta-primeiro-item.png" id="btprimeiraPagina" name="btprimeiraPagina"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('null'); if (campoDestino!=null) campoDestino.value = 'null'; return executaComando(document.getElementById('comando').form, 'primeiraPagina'); return false; " title="Início" style="padding:4px;" />&nbsp;<input type="image"  src="infra/imagens/seta-item-anterior.png" id="btpaginaAnterior" name="btpaginaAnterior"  class="botaoTransparente"  onclick="var campoDestino = document.getElementById('null'); if (campoDestino!=null) campoDestino.value = 'null'; return executaComando(document.getElementById('comando').form, 'paginaAnterior'); return false; " title="20 registros anteriores" style="padding:4px;" />
+									  
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+			
+		<!-- Se houver, inclui a parte da mensagem -->
+		
+		
+		</div>
+		<div id="divComandos" class="comandos">
+		
+	</div>
+	</form>
+<script type="text/javascript">
+	function getAno() { 
+
+	var d = new Date();
+	return d.getFullYear();
+	
+}
+</script>
+
+	</div><!-- Fim do Conteúdo Geral -->
+	<!-- Início do Rodapé -->
+    <div id="divRodape" class="rodape">
+        Tribunal de Justi&ccedil;a do Distrito Federal e dos Territ&oacute;rios - <script type="text/javascript">document.write(getAno())</script> 
+    </div>
+	<!-- Fim do Rodapé -->
+
+	
+  		<script type="text/javascript">
+  			var elemento = document.getElementById("linkDiretoDaConsulta");
+  			if(elemento!=null){
+				try {
+					elemento.focus();
+				} catch (e) {
+					// Quando não for possível focar no campo, não faz nada.
+				}
+	  			
+  			}
+  		</script>
+	
+	
+	
+	
+<!-- SCRIPT DE AGRUPADORES -->
+<script type="text/javascript">
+    var valor = document.getElementById('qtguby').value;
+    if ( valor == '' ) { 
+    document.getElementById('qtguby').value='fechado';
+    document.getElementById('qtguby_grupo').className='conteudoAgrupamentoFechado';
+    document.getElementById('qtguby_imagem').src = 'infra/imagens/Mais.gif';
+    }else if ( valor == 'fechado' ){
+      document.getElementById('qtguby_grupo').className='conteudoAgrupamentoFechado';
+      document.getElementById('qtguby_imagem').src = 'infra/imagens/Mais.gif';
+    }else if ( valor == 'aberto' ){
+      document.getElementById('qtguby_grupo').className='conteudoAgrupamentoAberto';
+      document.getElementById('qtguby_imagem').src = 'infra/imagens/Menos.gif';
+    }
+</script>
+<script type="text/javascript">
+var myTabs = {
+   };
+ $(function() {
+ });
+ var myTabsIndex = [];
+ $('body').keyup( function(e) {
+  if(e.shiftKey ) {
+	if (e.keyCode == 33) {atalhoPageUpDaAba();
+	}else if (e.keyCode == 34) {atalhoPageDownDaAba();
+     }
+   }
+ });
+</script>
+<!-- SCRIPT DE JANELAS -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#janelaLinkDiretoDaConsulta").resizable();
+  });
+$(document).ready(function(){
+  $("#janelaLinkDiretoDaConsulta").draggable();
+  });
+</script>
+
+	<script type="text/javascript">
+		processaVisibilidadeDosCampos('tjdf.infra.apresentacao.ajax.VisibilidadeAjax');
+  	</script>
+  	
+  	
+  		</body>
+  	</html>

@@ -1,0 +1,54 @@
+---
+title: "Tarefas_ABJ"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+* TRF para coletar
+
+1 - TRF 1; [link](http://www.cjf.jus.br/juris/trf1/)
+
+2 - TRF 2; [link](http://www10.trf2.jus.br/consultas/?entqr=3&lr=lang_pt&ie=UTF-8&oe=UTF-8&adv=1&ulang=&access=p&entqrm=0&wc=200&wc_mc=0&ud=1&filter=0&getfields=*&q=&client=v2_index&proxystylesheet=v2_index&site=v2_jurisprudencia&sort=date:D:S:d1&base=JP-TRF)
+
+3 - TRF 3; [link](http://web.trf3.jus.br/base-textual)
+
+4 - TRF 5; [link](https://www4.trf5.jus.br/Jurisprudencia/)
+
+* TJ (Todos os estados consulta processual e de jurisprudencia)
+
+TJSP: [consulta processual](https://esaj.tjsp.jus.br/cposg/open.do) e [jurisprudência](https://esaj.tjsp.jus.br/cjsg/consultaCompleta.do)
+
+TJAL: [consulta processual](https://www2.tjal.jus.br/cposg5/open.do) e [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do)
+
+TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx)
+
+TJDFT: [consulta processual](https://www.tjdft.jus.br/consultas) e [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao)
+
+* VARAS (Somente consulta processual)
+
+JFSP: [consulta processual](http://csp.jfsp.jus.br/csp/consulta/consinternet.csp)
+
+JFRJ: [consulta processual](http://procweb.jfrj.jus.br/portal/consulta/cons_procs.asp)
+
+JFAL: [consulta processual](http://www.jfal.jus.br/servicos/processos/eletronicos/creta/consulta)
+
+JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/)
+
+* Diario
+
+# Prioridades 
+
+> Scrappers de Jurisprudência
+
+Os Scrappers de Jurisprudência são:
+
+TJSP: [jurisprudência](https://esaj.tjsp.jus.br/cjsg/consultaCompleta.do)
+
+TJAL: [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do)
+
+TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx)
+
+TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao)

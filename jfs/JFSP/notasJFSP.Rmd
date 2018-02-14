@@ -1,0 +1,315 @@
+---
+title: "Notas sobre JFSP"
+output: html_notebook
+---
+
+# JFSP
+
+A JFSP tem três formas de busca:
+
+1) Consuta rápida: Somente o número do processo e a Cidade (SP ou MS).
+
+2) Consulta avançada: Neste caso o site nos informa que: _"Não é necessário o preenchimento de todos os campos. Para consulta pelo Número do Processo, não é necessário selecionar a Subseção, apenas selecione a Seção Judiciária (SP ou MS)."_
+
+3) Consulta ordem cronológica: Todos os campos devem ser preenchidos. 
+
+Este site não possue CAPTCHA, porém o site tem um tempo máximo de permanência antes que expire e a submissão do formulário traz dificuldades. Uma das opções foi implementar a raspagem com `RSelenium`.
+
+## Obtenção das Classes (apenas forma de busca 2):
+
+```{r}
+library(rvest)
+library(tibble)
+library(httr)
+
+jfsp_classes <- function(){
+  classes_node <- httr::GET("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp") %>% 
+  httr::content() %>% html_nodes(xpath = '//select[@id="seleClasse"]/option')
+
+  classes <- tibble(id = classes_node %>% html_attr("value"),
+       classes = classes_node %>% html_text())
+  
+  return(classes)
+}
+```
+
+## Pensando em soluções
+
+O objetivo a seguir é pensar em _"queries"_ capaz de serem vetorizadas e que acessem os três campos de busca de acordo com o que é especificado.
+
+### BUSCA 1: Consulta rápida
+
+Nesta busca apenas precisamos preencher o __numero do processo__ e a __seção judiciária__. O número do processo é um valor digitado, que pode ser um `processo/id montado` ou não, seguindo as definições da ABJ. O segundo preenchimento é um seletor, isto é, devemos selecionar entre São Paulo ou Mato Grosso do Sul (por padrão, São Paulo já vem selecionado).
+
+Sendo assim, para este caso precisamos de um identificador de PROCESSO e a unidade da federação desejada.
+
+#### Identificador de PROCESSO
+
+No bookdown `R para Jurimetria`[1] temos que os processos apresentam padrões únicos na seguinte forma: `NNNNNNN-DD.AAAA.J.TR.OOOO`. Sendo assim, o objetivo é identificar se o texto passado é ou não um número de processo.
+
+A verificação terá que passar pelos seguintes critérios:
+
+* `NNNNNNN` com 7 dígitos;
+
+* `DD` com 2 dígitos;
+
+* `AAAA` com 4 dígitos;
+
+* `J` com 1 dígito;
+
+* `JR` com 2 dígitos;
+
+* `OOOO` com 4 dígitos.
+
+Sendo assim, para verificarmos se o texto digitado é um processo podemos utilizar as funções do pacote `abjutils`;
+
+[^1]: https://abjur.github.io/r4jurimetrics/pacote-abjutils.html
+
+```{r}
+library(abjutils)
+
+id_montado <- "0000009-15.2015.8.26.0558" # Exemplo
+
+is_processo <- function(num_processo){
+  num_processo %>% 
+    abjutils::clean_id() %>% 
+    abjutils::check_dig()
+}
+```
+
+#### A Unidade da Federação
+
+A unidade da Federação é um checkbox que possui as opções SP e MS, que contém os seguintes valores, 61 e 60, respectivamente. Além disso, se olharmos o formulário de preenchimento do site, verificamos que temos um `<input hidden>` chamado `num_sub` que recebe os valores respectivos das UFs.
+
+```{r}
+session <- rvest::html_session("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp")
+
+form <- session %>% 
+  rvest::html_form() %>% 
+  dplyr::first()
+
+form
+```
+
+#### Tentativa de acesso: Utilizando somente `httr` e `rvest`
+
+Ao acessar `http://csp.jfsp.jus.br/csp/consulta/consinternet.csp` e irmos na opção de inspecionar elemento $\rightarrow$ Network, vimos que o site retorna um documento chamado "%CSP.Broker.cls" que possui como parâmetro:
+
+* `WARGC`: O tipo de busca
+
+* `WEVENT`: onclick 
+
+* `WARG_1`: Número do processo
+
+* `WARG_2`: Unidade da federação (SP[61] ou MS[60])
+
+```{r}
+url <- "http://csp.jfsp.jus.br/csp/consulta/consinternet.csp"
+
+wevent <- httr::POST(url) %>% 
+  xml2::read_html(url) %>% 
+  rvest::html_node(xpath = '//input[@value="Pesquisar"]') %>% 
+  rvest::html_attr("onclick") %>% 
+  stringr::str_extract("' *(.*?)*'") %>% 
+  stringr::str_replace_all("'","")
+
+query_POST <- list(`WARGC` = 2,
+                   `WARG_1`= "0001274-57.1993.403.6100",
+                   `WARG_2`= 61,
+                   `WEVENT`= wevent)
+
+res <- httr::POST("http://csp.jfsp.jus.br/csp/consulta/%CSP.Broker.cls",
+           encode= "form",
+           body = query_POST,httr::config(ssl_verifypeer = F),
+           httr::write_disk(file, TRUE)) 
+```
+
+Ocorre que o conteúdo do objeto `res` é um outro html no seguinte formato:
+
+```{r}
+# 00u000010000HmJpF7GScr0000sXty6s$jwUGq49VYg$Oqgw--
+# #R
+# document.location = 'consinternetpro1a.csp';
+# 
+# #OK
+# 1
+```
+
+O `document.location = 'consinternetpro1a.csp'` provavelmente é o link gerado caso a consulta esteja correta, porém, tive dificuldades de a partir deste resultado avançar para página da descrição do processo.
+
+Sendo assim, tentei ainda utilizar a submissão de formulário com `rvest` e `RSelenium` para acessar a página dos processos.
+
+#### Tentativa de acesso: Submeter formulário com `rvest`
+
+```{r}
+session <- rvest::html_session("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp")
+
+form <- session %>% 
+  rvest::html_form() %>% 
+  dplyr::first()
+
+form
+
+# Adicionando valores ao formulário
+values <- set_values(form, 
+                     "num_processo"= "0001274-57.1993.403.6100",
+                     "num_sub"=61)
+
+submit_form(session, values)
+```
+
+#### Tentativa de acesso: Utilizando `RSelenium`
+
+```{r}
+# Função para parsear a primeira página
+
+info_geral <- function(page1, xpath=NULL){
+  if(is.null(xpath)==T){xpath <- '//table[@width="533"]'}
+  page1 <- page1 %>%
+    rvest::html_nodes(xpath = '//table[@width="533"]') %>%
+    rvest::html_table(fill = T) %>%
+    .[[1]] %>% 
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  X1 = ifelse(X1 == "", NA, X1),
+                  X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2)) %>% 
+    tidyr::drop_na() %>%
+    t()
+  
+  colnames(page1) <- page1[1,]
+  
+  page1 <- as.data.frame(page1)
+  
+  page1 <- page1[-1,] 
+  
+  # page1 <- page1 %>%
+  #   dplyr::mutate(PROCESSO = PROCESSO %>% stringr::str_replace("[^0-9-.]", "") %>%
+  #                   stringr::str_trim())
+  
+  return(page1)
+}
+```
+
+
+```{r}
+jfsp_selenium <- function(query, browser= "phantomjs"){
+  
+  # Acessando a pagina
+  remDR <- RSelenium::rsDriver(browser = browser)
+  remDR$client$navigate("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp")
+  
+  # Acessando o campo "num_processo"
+  webElem <- remDR$client$findElement(using = 'name', value = "num_processo")
+  webElem$highlightElement()
+  webElem$sendKeysToElement(list(query)) # Exemplo: "0001274-57.1993.403.6100"
+  
+  # Cliendo em Pesquisar
+  webElem1 <- remDR$client$findElement(using = "xpath", '//input[@type="button" and @value="Pesquisar"]')
+  webElem1$clickElement()
+  
+  # Pagina após a busca
+
+  Page1 <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  
+  # Todas as Peticoes
+  
+  webElem2 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Petições"]')
+  
+  webElem2$clickElement()
+  
+  TodasPeticoes <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  
+  # Todas as Fases
+  
+  remDR$client$goBack()
+  
+  webElem3 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Fases"]')
+  
+  webElem3$clickElement()
+  
+  TodasFases <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  
+  # Descricao de Todas_Fases
+  
+  ultima_fase <- remDR$client$findElement(using = "xpath",
+                                          '//table[position()=3]//tr[position()=2]//a')$getElementText() %>%
+    unlist()
+  
+  i <- 2
+  l <- 1
+  DetalheFases <- list()
+  
+  while(i != as.numeric(ultima_fase)+2){
+    xpath <- stringr::str_replace('//table[position()=3]//tr[position()=VALOR]//a', "VALOR",
+                                  as.character(i))
+    
+    webElem4 <- remDR$client$findElement(using = "xpath", xpath)
+    
+    webElem4$clickElement()
+    
+    DetalheFases[[l]] <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+    
+    remDR$client$goBack()
+    
+    i = i + 1
+    l = l + 1
+  }
+
+  # Todas as Partes
+  
+  remDR$client$goBack()
+  
+  webElem5 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Partes"]')
+  
+  webElem5$clickElement()
+  
+  TodasPartes <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  
+  # Parsing
+  Page1 <- info_geral(page1 = Page1)
+  
+  TodasPeticoes <- TodasPeticoes %>%
+    html_table(header = T, fill = T) %>% dplyr::last() %>% 
+    mutate(Data = lubridate::dmy(Data),
+           Processo = query) 
+  
+  TodasFases <- TodasFases %>% html_table(header = T, fill = T) %>% dplyr::last() 
+  
+  DetalheFases <- DetalheFases[[1]] %>% 
+    html_table(fill = T, trim = T) %>% 
+    dplyr::last() %>% 
+    select(X2) %>% 
+    dplyr::mutate(X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2)) %>% 
+    tidyr::drop_na() %>% 
+    t() %>% 
+    tibble::as.tibble() %>% 
+    mutate(V1 = str_replace(V1, "Consulta da Movimentação Número : ", "") %>% str_trim()) 
+  
+  TodasPartes <- TodasPartes %>% 
+    html_table( fill = T ) %>% dplyr::last() %>% 
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  X1 = ifelse(X1 == "", NA, X1),
+                  X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2)) %>% 
+    tidyr::drop_na() %>%
+    t()
+  
+  colnames(TodasPartes) <- TodasPartes[1,]
+  
+  TodasPartes <- as.data.frame(TodasPartes)
+  
+  TodasPartes <- TodasPartes[-1,]
+  
+  
+  Sources <- list(Page_1 = Page1,
+                  Todas_Peticoes = TodasPeticoes,
+                  Todas_Fases = TodasFases,
+                  Todas_Partes = TodasPartes,
+                  Detalhes_Fases = DetalheFases)
+  return(Sources)
+}
+```
+
+Utilizando o Selenium, funcionou, porém me veio uma dúvida quanto a praticidade da função.
+

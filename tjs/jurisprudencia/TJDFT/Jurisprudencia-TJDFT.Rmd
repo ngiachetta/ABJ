@@ -1,0 +1,208 @@
+---
+title: "Jurisprudencia-TJDFT"
+output: html_notebook
+---
+
+O código abaixo diz respeito à uma raspagem de dados no site do [TJDFT](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj). O método de requisição utilizado para busca é o `GET`
+
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(stringr)
+```
+
+```{r}
+# Url da busca
+url <- "https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj"
+
+path <- "C:/Users/work_/Documents/ABJ/TJs/Jurisprudencia/TJDFT/data-raw/pages/"
+path_ac <- "C:/Users/work_/Documents/ABJ/TJs/Jurisprudencia/TJDFT/data-raw/acordao_page/"
+```
+
+Os parâmetros da requisição estão listados abaixo. Cabe destacar que a listagem abaixo diz respesito a uma busca realizada para classe "inquérito policial". O objetivo é obter os acordãos com a primeira requisição e posteriormente acessar estes dados utilizando as funções deste [link](https://github.com/courtsbr/tjdf/blob/master/R/inteiro_teor_df.R)
+
+```{r}
+pagina <- 1
+query_get <- list(
+  "visaoId"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao",
+  "controladorId"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao",
+  "visaoAnterior"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao",
+  "nomeDaPagina"="selecaoTipoResultado",
+  "comando"="selecionarBase",
+  "enderecoDoServlet"="sistj",
+  "historicoDePaginas"="buscaLivre",
+  "quantidadeDeRegistros"=20,
+  "baseSelecionada"="BASE_ACORDAO_TODAS",
+  "mostrarPaginaSelecaoTipoResultado"="true",
+  "totalHits"=0,
+  "internet"=1,
+  "idDaClasse"=279, #AQUI
+  "codigoFeito2Instancia"="INQ", #AQUI
+  "descricaoDaClasse"="INQ", #AQUI
+  "codigoFeito2Instancia"="INQ", #AQUI
+  "tipoDeNumero"="NumAcordao",
+  "descricaoDaClasse_comportamentoAtivado"="false",
+  "numeroDoDocumento"=759932,
+  "numeroDaPaginaAtual"=pagina
+)
+
+# A requisicao abaixo é um exemplo da requisicao
+req <- httr::GET("https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj",
+    query = query_get,
+    httr::config(ssl_verifypeer = FALSE),
+    httr::write_disk(str_c(path, "exemplo.html"), TRUE))
+```
+
+O exemplo acima não acessa as próximas páginas, porém com o parâmetro `numeroDaPaginaAtual` é possível acessar as páginas. O código abaixo localiza a última página da busca. 
+
+```{r}
+ultima_pagina <- req %>% content(as = 'parsed') %>% 
+  html_node(xpath = '//*[@id="numeroDaUltimaPagina"]') %>% html_attr("value") %>% as.numeric()
+```
+
+Vamos então obter os html!
+
+```{r}
+for (i in 1:ultima_pagina){
+  pagina <- i
+  query_get$numeroDaPaginaAtual <- pagina
+  GET("https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj",
+    query = query_get,
+    httr::config(ssl_verifypeer = FALSE),
+    httr::write_disk(stringr::str_c(path,"page",as.character(i),".html"), TRUE))
+}
+```
+
+Feito isto, podemos parsear os arquivos html gerados e obter o número dos acordãos.
+
+```{r}
+files <- dir(path, full.names = TRUE, pattern = "page")
+
+obter_acordao <- function(files){
+  acordao <- list()
+  for (i in 1:length(files)){
+    acordao[[i]] <- files[i] %>%
+      xml2::read_html() %>%
+      rvest::html_table() %>%
+      purrr::pluck(2)
+  }
+  acordao <- purrr::map_df(acordao, dplyr::bind_rows)
+  return(acordao)
+}
+
+acordao <- obter_acordao(files)
+```
+
+### Obtendo o html dos acordaos
+
+```{r}
+num_acordao <- acordao$`Acórdão`
+query_get_ac <- list(
+  "visaoId"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao",
+  "controladorId"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao",
+  "visaoAnterior"="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao",
+  "nomeDaPagina"="resultado",
+  "comando"="abrirDadosDoAcordao",
+  "enderecoDoServlet"="sistj",
+  "historicoDePaginas"="buscaLivre",
+  "quantidadeDeRegistros"=20,
+  "baseSelecionada"="BASE_ACORDAO_TODAS",
+  "numeroDaUltimaPagina"=1,
+  "buscaIndexada"=1,
+  "mostrarPaginaSelecaoTipoResultado"="false",
+  "totalHits"=1,
+  "internet"=1,
+  "numeroDoDocumento"=""
+)
+for (i in 1:length(num_acordao)){
+  query_get_ac$numeroDoDocumento <- num_acordao[i]
+  GET("https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj",
+    query = query_get_ac,
+    httr::config(ssl_verifypeer = FALSE),
+    httr::write_disk(stringr::str_c(path_ac,"acordao",as.character(num_acordao[i]),".html"), TRUE))
+}
+```
+
+### Parseando os dados
+
+```{r}
+files_acordao <- dir("data-raw/acordao_page/", full.names = T, pattern = "acordao")
+
+data <- tibble()
+for(i in 1:80){
+  col <- files_acordao[i] %>% read_html() %>% 
+  html_nodes(".textoRotulo") %>% 
+  html_text() %>% 
+  stringr::str_trim()
+  
+  obs <- files_acordao[i] %>% read_html() %>% 
+  html_nodes(".conteudoComRotulo") %>% 
+  html_text() %>% 
+  stringr::str_trim()
+  
+  data <- data %>% bind_rows(tibble(col = col, obs = obs, group = rep(i, length(col))))
+}
+
+data <- data %>% 
+  mutate(col = case_when(stringr::str_detect(col, "Resultado")~"Resultado sem Formatação",
+                         stringr::str_detect(col, "Segredo")~"Segredo de Justiça",
+                         T~col),
+         col = stringr::str_replace(col, ":", ""),
+         col = stringr::str_replace_all(col, ' +', '_'),
+         col = stringr::str_replace_all(col, '(ç)', 'c'),
+         col = stringr::str_replace_all(col, '(ão)', 'ao'),
+         col = stringr::str_replace_all(col, '(ó)|(Ó)', 'o'),
+         col = tolower(abjutils::rm_accent(col))) %>%
+  tidyr::spread(col, obs)
+
+readr::write_rds(data, path = "data-raw/rds_files/data.rds")
+```
+
+
+Agora que já temos uma base de dados com os acordãos, podemos acessá-los com a função [`inteiro_teor_df.R`](https://github.com/courtsbr/tjdf/blob/master/R/inteiro_teor_df.R)
+
+```{r}
+inteiro<-function(acordao){
+
+for(i in seq_along(acordao)){
+  tryCatch({
+    
+u <- "http://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao&controladorId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao&visaoAnterior=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao&nomeDaPagina=resultado&comando=abrirDadosDoAcordao&enderecoDoServlet=sistj&historicoDePaginas=buscaLivre&quantidadeDeRegistros=20&baseSelecionada=BASE_ACORDAO_TODAS&numeroDaUltimaPagina=1&buscaIndexada=1&mostrarPaginaSelecaoTipoResultado=false&totalHits=1&internet=1&numeroDoDocumento="
+url<-paste0(u,acordao[i])
+# usei html session pra economizar codigo de escrever o form inteiro
+s <- rvest::html_session(u)
+form <- rvest::html_form(s)[[1]] %>% 
+  rvest::set_values(`comando` = 'downloadInteiroTeor')
+s <- rvest::submit_form(s, form)
+
+# pulo do gato tá aqui: o download vem de uma GET request com um codigo gerado na pagina da resposta do form
+idd <- s$response %>% 
+  httr::content('text') %>% 
+  stringr::str_extract('idd=[0-9a-zA-Z]+')
+
+# agora é só correr pro abraço
+u_teor <- paste0(
+  "http://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/infra/Download.jsp?",
+  idd
+)
+
+binario<-httr::GET(u_teor)
+
+ifelse(binario$headers$`content-type`=="application/msword",
+       writeBin(binario$content,paste0(acordao[i],".doc")),
+       writeBin(binario$content,paste0(acordao[i],".pdf")))
+  }, error = function(m) {
+    m
+  }, finally = {
+    next
+  })
+}
+}
+```
+
+```{r}
+setwd("C:/Users/work_/Documents/ABJ/TJs/Jurisprudencia/TJDFT/data-raw/inteiro_teor/")
+inteiro(num_acordao) # Nao funcionou
+```
+
