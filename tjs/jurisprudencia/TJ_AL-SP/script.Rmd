@@ -10,6 +10,7 @@ library(rvest)
 library(esaj)
 library(dplyr)
 library(stringr)
+library(httr)
 ```
 
 # Caso 1: São Paulo
@@ -184,7 +185,7 @@ O código a seguir, portanto, faz os download das páginas html do tjal
 
 ```{r}
 # Download 
-path <- "/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data-raw_AL/cjsg_AL/"
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data-raw_al/cjsg_AL/"
 query_post <- list(conversationId = "", 
                        dados.buscaInteiroTeor = "",
                        dados.pesquisarComSinonimos = "S",
@@ -211,8 +212,9 @@ httr::POST("https://www2.tjal.jus.br/cjsg/resultadoCompleta.do", # Primeira muda
   body = query_post, httr::config(ssl_verifypeer = FALSE), 
   httr::write_disk(file, TRUE))
 
-file <- stringr::str_c(path, "/page", page, ".html")
 page <- "1"
+file <- stringr::str_c(path, "/page", page, ".html")
+
 query_get <- list(tipoDeDecisao = "A", pagina = page, 
             conversationId = "")    
 httr::GET("https://www2.tjal.jus.br/cjsg/trocaDePagina.do",  #Segunda mudança
@@ -299,8 +301,37 @@ d_cjsg <- class_base %>% select(-ementa) %>% tidyr::spread("key", "val") %>% pur
 processos <- unique(d_cjsg$id_lawsuit) %>%
   na.omit() # Foi preciso retirar NA para que a função download_cposg fosse executada
 
-esaj::download_cposg(processos, "/home/nathang/Documentos/Scripts and Documents/ABJ/InqPolicial_AL-SP/data_raw_SP/cposg_SP/")
-esaj:::download_cposg_
-esaj:::download_noc_lawsuit
+readr::write_rds(d_cjsg, "data-raw_al/data_rds/d_cjsg.rds")
+```
+
+Consulta processual
+
+```{r}
+processos <- stringr::str_replace_all(processos, "[[:punct:]]", "")
+query <- processos[1]
+
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data-raw_al/"
+session <- html_session("https://www2.tjal.jus.br/cposg5/open.do")
+  
+  # Preenchendo o formulário
+  form <- session %>% 
+    rvest::html_form() %>% 
+    dplyr::first() %>% 
+    rvest::set_values(.,`conversationId`="",
+                      `cbPesquisa`="NUMPROC",
+                      `tipoNuProcesso`="UNIFICADO",
+                      `numeroDigitoAnoUnificado`= query,
+                      `foroNumeroUnificado`="",
+                      `uuidCaptcha`="")
+    submit <- rvest::submit_form(session = session,
+                               form = form)
+  query <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,".html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "\\")
+  PathFile <- stringr::str_c(file, query)
+  
+  submit$url %>% httr::GET(httr::config(ssl_verifypeer = FALSE),write_disk(PathFile, overwrite = T)) #Verificar amanha
 ```
 
