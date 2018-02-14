@@ -41,14 +41,14 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/)
 
 # Prioridades 
 
-> Scrappers de Jurisprudência
+#### Scrappers de Jurisprudência
 
 Os Scrappers de Jurisprudência são:
 
-TJSP: [jurisprudência](https://esaj.tjsp.jus.br/cjsg/consultaCompleta.do)
+TJSP: [jurisprudência](https://esaj.tjsp.jus.br/cjsg/consultaCompleta.do) - Falta de parsear alguns erros
 
-TJAL: [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do)
+TJAL: [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do) - Ok
 
-TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx)
+TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx) - Problemas com a consulta 
 
-TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao)
+TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao) - Ok
