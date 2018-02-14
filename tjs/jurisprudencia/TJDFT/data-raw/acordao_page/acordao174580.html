@@ -1,0 +1,1148 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html lang="pt">
+
+
+
+	
+
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE9" />
+	<title>SISTJWEB</title>
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<meta name="GOOGLEBOT" content="NOINDEX, NOFOLLOW, NOARCHIVE, NOSNIPPET" />
+	<link href="infra/css/calendario.css" rel="stylesheet" type="text/css" />
+	<link href="infra/css/dhtmlgoodies_calendar.css" rel="stylesheet" type="text/css"/>
+	<link href="infra/css/estiloComum.css" rel="stylesheet" type="text/css" />
+	<link name="skinCss" href="infra/css/skins/intranet/estilo.css"  rel="stylesheet" type="text/css"  media="screen"/>
+	<link name="CssImpressao" href="infra/css/skins/intranet/estiloimpressao.css"  rel="stylesheet" type="text/css"  media="print"/>
+	<link type="text/css" href="infra/css/teclado.css" rel="stylesheet" />
+    <link rel="stylesheet" href="infra/css/jquery-bubble-popup-v3.css" type="text/css" media="all" />
+    <script src="infra/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="infra/js/jquery-ui-1.8.22.custom.min.js" type="text/javascript"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/Util.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/OrdenacaoDeTabelas.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/funcoes.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/String.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/calendario.js"></script>
+ 	<script language="JavaScript" type="text/javascript" src="infra/js/UtilAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ValidacaoAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/Lista.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ListaAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/ConsultaCodigoDescricaoAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/AutoCompletarAjax.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/AssinaturaDigital.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/VisibilidadeDeCampos.js"></script>
+	<script language="JavaScript" type="text/javascript" src="infra/js/dhtmlgoodies_calendar.js"></script>
+	<script type="text/javascript" src="infra/js/menu.js"></script>
+	<script type="text/javascript" src="infra/js/teclado.js"></script>
+	<script type="text/javascript" src="infra/js/highcharts.js"></script>
+	<script type="text/javascript" src="infra/js/jquery-bubble-popup-v3.min.js"></script>
+	
+    	<link rel="stylesheet" href="infra/css/aba/redmond/jquery-ui-1.8.21.custom.css" type="text/css" media="all" />
+    
+</head>
+
+<body onclick="esconderDiv();">
+<div id="fundoModal" style="display: none;"></div>
+<div id="divAvisos"></div>
+<div id="cabecalhoGeral" class="cabecalhoGeral"
+	style="display:;">
+	<div class="cabecalhoIntranetNovo">
+			<div class="cabecalhoSistemaDescricao">TJDFT</div>
+			<div class="barraSeparador"><hr class="hr" style="margin-top: 12px"></hr></div>
+			<div class="cabecalhoSistemaSigla">SISTJWEB</div>
+			
+			
+				<div class="barraSeparador"><hr class="hr" style="margin-top: 12px"></hr></div>
+				<div class="cabecalhoDescricaoDoAmbiente">Pesquisa Documentos Jurídicos</div>
+			
+			<div class="cabecalhoLinksUteis">				
+				
+						
+				<a href="index.jsp?enderecoDoServlet=sistj">INÍCIO</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+				
+				<a href="mailto:jurisprudencia.pesquisa@tjdft.jus.br">CONTATO</a>&nbsp;&nbsp;|
+				
+			</div>
+
+		</div>
+	</div>	
+	<div id="div_conteudoGeral" class="conteudoGeral"> <!-- Início do Conteúdo Geral--> 
+		<div id="div_centro" class="centro">
+			<div id="div_tituloDoCasoDeUso" class="tituloDoCasoDeUso" style="display:;">
+				<div class="labelTituloDoCasoDeUso">
+					
+						Acórdãos
+						
+							&nbsp;::&nbsp;&nbsp;Pesquisa Livre
+						
+					
+	
+				</div>
+					
+			</div>	
+			
+			
+		</div>
+		
+		<!-- Fim do Cabeçalho -->	
+ 
+  
+	<form action="sistj" method="post" >
+		
+
+<input type="hidden" data-cache="never" name="visaoId" id="visaoId" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao" />
+<input type="hidden" data-cache="never" name="controladorId" id="controladorId" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao" />
+<input type="hidden" data-cache="never" name="idDoUsuarioDaSessao" id="idDoUsuarioDaSessao" value="" />
+<input type="hidden" data-cache="never" name="nomeDaPagina" id="nomeDaPagina" value="dadosDoAcordao" />
+<input type="hidden" data-cache="never" name="comando" id="comando" value=" " />
+<input type="hidden" data-cache="never" name="enderecoDoServlet" id="enderecoDoServlet" value="sistj" /><input type="hidden" data-cache="never" name="visaoAnterior" id="visaoAnterior" value="tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao" /><input type="hidden" data-cache="never" name="skin" id="skin" value="" />
+<input type="hidden" data-cache="never" name="tokenDePaginacao" id="tokenDePaginacao" value="1" />
+
+<input type="hidden" name="historicoDePaginas" id="historicoDePaginas0" value="buscaLivre" />
+<input type="hidden" name="historicoDePaginas" id="historicoDePaginas1" value="resultado" />
+<input type="hidden" data-cache="never" name="argumentoDePesquisa" id="argumentoDePesquisa" value="" />
+<input type="hidden" data-cache="never" name="bsunpb" id="bsunpb" value="" />
+<input type="hidden" data-cache="never" name="numero" id="numero" value="" />
+<input type="hidden" data-cache="never" name="tipoDeNumero" id="tipoDeNumero" value="" />
+<input type="hidden" data-cache="never" name="dusmco" id="dusmco" value="" />
+<input type="hidden" data-cache="never" name="desembargador" id="desembargador" value="" />
+<input type="hidden" data-cache="never" name="ovhjon" id="ovhjon" value="" />
+<input type="hidden" data-cache="never" name="tipoDeRelator" id="tipoDeRelator" value="" />
+<input type="hidden" data-cache="never" name="orgaoJulgador" id="orgaoJulgador" value="" />
+<input type="hidden" data-cache="never" name="descricaoDaClasse" id="descricaoDaClasse" value="" />
+<input type="hidden" data-cache="never" name="icvvjh" id="icvvjh" value="" />
+<input type="hidden" data-cache="never" name="ementa" id="ementa" value="" />
+<input type="hidden" data-cache="never" name="decisaoLivre" id="decisaoLivre" value="" />
+<input type="hidden" data-cache="never" name="indexacao" id="indexacao" value="" />
+<input type="hidden" data-cache="never" name="zsgylz" id="zsgylz" value="" />
+<!-- Campos ocultos adicionais -->
+<input type="hidden" data-cache="never" name="idDaClasse" id="idDaClasse" value="" />
+<input type="hidden" data-cache="never" name="codigoFeito2Instancia" id="codigoFeito2Instancia" value="" />
+<input type="hidden" data-cache="never" name="tipoDeData" id="tipoDeData" value="" />
+<input type="hidden" data-cache="never" name="tipoDeBusca" id="tipoDeBusca" value="" />
+
+<input type="hidden" name="camposSelecionados" id="camposSelecionados0" value="ESPELHO" />
+
+<input type="hidden" data-cache="never" name="camposDeAgrupamento" id="camposDeAgrupamento" value="" />
+<input type="hidden" data-cache="never" name="numeroDoDocumento" id="numeroDoDocumento" value="174580" />
+<input type="hidden" data-cache="never" name="quantidadeDeRegistros" id="quantidadeDeRegistros" value="20" />
+<input type="hidden" data-cache="never" name="dataInicio" id="dataInicio" value="" />
+<input type="hidden" data-cache="never" name="dataFim" id="dataFim" value="" />
+
+<input type="hidden" data-cache="never" name="campoDeOrdenacao" id="campoDeOrdenacao" value="" />
+
+<input type="hidden" name="baseDados" id="baseDados0" value="BASE_ACORDAOS" />
+<input type="hidden" name="baseDados" id="baseDados1" value="TURMAS_RECURSAIS" />
+<input type="hidden" name="baseDados" id="baseDados2" value="BASE_ACORDAO_PJE" />
+<input type="hidden" name="baseDados" id="baseDados3" value="BASE_ACORDAOS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados4" value="TURMAS_RECURSAIS_IDR" />
+<input type="hidden" name="baseDados" id="baseDados5" value="BASE_HISTORICA" />
+<input type="hidden" data-cache="never" name="numeroDaUltimaPagina" id="numeroDaUltimaPagina" value="1" />
+<input type="hidden" data-cache="never" name="idDespacho" id="idDespacho" value="" />
+<input type="hidden" data-cache="never" name="buscaIndexada" id="buscaIndexada" value="1" />
+<input type="hidden" data-cache="never" name="mostrarPaginaSelecaoTipoResultado" id="mostrarPaginaSelecaoTipoResultado" value="false" />
+<input type="hidden" data-cache="never" name="totalHits" id="totalHits" value="1" />
+<input type="hidden" data-cache="never" name="tipoDeDocumento" id="tipoDeDocumento" value="" />
+<input type="hidden" data-cache="never" name="query" id="query" value="{}" />
+<input type="hidden" data-cache="never" name="buscaPorQuery" id="buscaPorQuery" value="" />
+<input type="hidden" data-cache="never" name="argumentoDePesquisa" id="argumentoDePesquisa" value="" />
+<input type="hidden" data-cache="never" name="jurisprudenciaAdministrativa" id="jurisprudenciaAdministrativa" value="" />
+<input type="hidden" data-cache="never" name="faixaInicial" id="faixaInicial" value="" />
+<input type="hidden" data-cache="never" name="faixaFinal" id="faixaFinal" value="" />
+<input type="hidden" data-cache="never" name="indexados" id="indexados" value="" />
+<input type="hidden" data-cache="never" name="decisao" id="decisao" value="" />
+<input type="hidden" data-cache="never" name="decisaoLivre" id="decisaoLivre" value="" />
+<input type="hidden" data-cache="never" name="loginDoUsuario" id="loginDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="nomeDoUsuario" id="nomeDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="idClasse" id="idClasse" value="" />
+<input type="hidden" data-cache="never" name="descricaoClasse" id="descricaoClasse" value="" />
+<input type="hidden" data-cache="never" name="sliqvw" id="sliqvw" value="" />
+<input type="hidden" data-cache="never" name="indiceAcordaoAtual" id="indiceAcordaoAtual" value="0" />
+<input type="hidden" data-cache="never" name="numeroDoDocumento" id="numeroDoDocumento" value="174580" />
+<input type="hidden" data-cache="never" name="numeroDaPaginaAtual" id="numeroDaPaginaAtual" value="1" />
+<input type="hidden" data-cache="never" name="caminhoDoAcordao" id="caminhoDoAcordao" value="" />
+<input type="hidden" data-cache="never" name="baseSelecionada" id="baseSelecionada" value="BASE_ACORDAO_TODAS" />
+<input type="hidden" data-cache="never" name="quantidadeDeRegistros" id="quantidadeDeRegistros" value="20" />
+<input type="hidden" data-cache="never" name="numeroDaUltimaPagina" id="numeroDaUltimaPagina" value="1" />
+
+<input type="hidden" data-cache="never" name="totalHits" id="totalHits" value="1" />
+
+<input type="hidden" data-cache="never" name="tipoDeDocumento" id="tipoDeDocumento" value="" />
+<input type="hidden" data-cache="never" name="jurisprudenciaAdministrativa" id="jurisprudenciaAdministrativa" value="" />
+<input type="hidden" data-cache="never" name="faixaInicial" id="faixaInicial" value="" />
+<input type="hidden" data-cache="never" name="faixaFinal" id="faixaFinal" value="" />
+<input type="hidden" data-cache="never" name="indexados" id="indexados" value="" />
+<input type="hidden" data-cache="never" name="decisao" id="decisao" value="" />
+<input type="hidden" data-cache="never" name="decisaoLivre" id="decisaoLivre" value="" />
+<input type="hidden" data-cache="never" name="loginDoUsuario" id="loginDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="nomeDoUsuario" id="nomeDoUsuario" value="" />
+<input type="hidden" data-cache="never" name="idClasse" id="idClasse" value="" />
+<input type="hidden" data-cache="never" name="descricaoClasse" id="descricaoClasse" value="" />
+<input type="hidden" data-cache="never" name="idDoAcordao" id="idDoAcordao" value="" />
+<input type="hidden" data-cache="never" name="vuvypt" id="vuvypt" value="" /><input type="hidden" data-cache="never" name="idJanelaAbrirAjax" id="idJanelaAbrirAjax" value="" /><input type="hidden" data-cache="never" name="idJanelaAbrirIsModalAjax" id="idJanelaAbrirIsModalAjax" value="false" />
+<input type="hidden" data-cache="never" name="internet" id="internet" value="1" />	
+			
+	
+		<div class="centro">
+			
+			
+			
+			
+			
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						<div id="vuvypt_agrupador" class="agrupador" onclick="agrupamentoOnClick('vuvypt');" >
+						  <span class="imagemAgrupadorMenos" title="abrir/fechar" id="vuvypt_imagem" onclick="return false;"></span>					  
+						  <label class="labelAgrupador">Dados do acórdão</label>
+						</div>
+				  		<div id="vuvypt_grupo" class="conteudoAgrupamentoAberto">
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="naccfp" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_jcftbf">
+								
+									
+									
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado da Consulta"onclick="return executaComando(document.getElementById('comando').form, 'pesquisar');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'pesquisar');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado da Consulta</span></button>
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado - Bases de Consulta"onclick="return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado - Bases de Consulta</span></button>
+									  
+									    <button id="id_comando_voltar" class="botaoNovoPequeno"  title="Nova Consulta"onclick="return executaComando(document.getElementById('comando').form, '@buscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, '@buscaLivre');}" ><span class="botaoNovo botaoConsultar">Nova Consulta</span></button>
+									  
+									    <button id="id_comando_imprimir" class="botaoNovoPequeno"  title="Imprimir Espelho"onclick="return executaComando(document.getElementById('comando').form, 'imprimeEspelho');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'imprimeEspelho');}" ><span class="botaoNovo botaoImprimir">Imprimir Espelho</span></button>
+									  
+									    
+									  
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_3" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_ppggey">
+									<div class="textoRotulo">
+										Classe do Processo:
+										
+										
+												
+												
+												 
+													<span id="ppggey_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_ppggey">
+									
+										19990110539006INQ - (0053900-60.1999.8.07.0001 - Res. 65 CNJ)
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_4" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_tvwjtc">
+									<div class="textoRotulo">
+										Registro do Acórdão Número:
+										
+										
+												
+												
+												 
+													<span id="tvwjtc_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_tvwjtc">
+									
+										174580
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_5" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_hulqop">
+									<div class="textoRotulo">
+										Data de Julgamento: 
+										
+										
+												
+												
+												 
+													<span id="hulqop_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_hulqop">
+									
+										19/11/2002
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_6" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_lvseqb">
+									<div class="textoRotulo">
+										Órgão Julgador:
+										
+										
+												
+												
+												 
+													<span id="lvseqb_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_lvseqb">
+									
+										CONSELHO ESPECIAL
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_7" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_vdveki">
+									<div class="textoRotulo">
+										Relator: 
+										
+										
+												
+												
+												 
+													<span id="vdveki_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_vdveki">
+									
+										EDUARDO DE MORAES OLIVEIRA
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="uymwbk" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_jzsykj">
+									<div class="textoRotulo">
+										Data da Intimação ou da Publicação:
+										
+										
+										  
+										  
+										  
+										  
+											
+											
+											
+											 
+												<span id="uymwbk_imagemErro"  style="display: none;; ">
+													<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" >
+												</span>
+											
+										 
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_jzsykj">
+									
+									  
+									    Publicado no 
+									  
+									    DJU SEÇÃO 3
+									  
+									    : 
+									  
+									    02/07/2003
+									  
+									    . Pág.: 
+									  
+									    24
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_9" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_psyrap">
+									<div class="textoRotulo">
+										Ementa:
+										
+										
+												
+												
+												 
+													<span id="psyrap_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_psyrap">
+									
+										<div style="text-align:justify;padding-right:10px">PENAL - QUEIXA-CRIME - DEPUTADO DISTRITAL - PRONUNCIAMENTO POLÍTICO NO PLENÁRIO DA CÂMARA LEGISLATIVA - INJÚRIA E DIFAMAÇÃO - DELITO - LICENÇA DO PODER LEGISLATIVO PARA O PROCESSO - EMENDA CONSTITUCIONAL Nº 35/2001 - CRIME DE OPINIÃO - QUEIXA REJEITADA - DECISÃO UNÂNIME.<br/>1) A Emenda Constitucional nº 35/2001, na simetria do ordenamento jurídico, em relação, inclusive, aos Estados Federados e ao Distrito Federal, dispensou a licença legislativa para a persecução de crime imputado ao detentor de Mandato Popular.<br/>2) A Queixa poderá ser oferecida por procurador com poderes especiais, di-lo o art. 44, devendo constar o nome do querelante e a menção do  fato criminoso, diz o mesmo texto do Código Penal, contudo, o mandato pode ser considerado apto,  quando descreve no instrumento "en passant" o necessário ao propósito criminal.<br/>3) Nos chamados crimes de opinião, por força da CF/88, quando praticado na tribuna do legislativo, não transcende e nem se corporifica em face de imunidade material prevista na Constituição Política.  4) Aplicabilidade, "in casu", do art. 53 c/c 33, § 3º e art. 27 do CPP, art. 3º, I e art. 141 do RITJDFT.</div>
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_10" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_rnozop">
+									<div class="textoRotulo">
+										Decisão:
+										
+										
+												
+												
+												 
+													<span id="rnozop_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_rnozop">
+									
+										NEGAR O RECEBIMENTO DA QUEIXA, REJEITANDO A PRELIMINAR, À UNANIMIDADE.
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_11" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_qmhwbv">
+									<div class="textoRotulo">
+										Indexação: 
+										
+										
+												
+												
+												 
+													<span id="qmhwbv_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_qmhwbv">
+									
+										REJEIÇÃO, QUEIXA-CRIME, INJÚRIA, DIFAMAÇÃO, DEPUTADO, DISPENSA, CAMARA LEGISLATIVA, LICENÇA, CRIME DE OPINIÃO, IMUNIDADE PARLAMENTAR.
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					
+					
+					<script type="text/javascript">
+						$(document).ready(function(){
+	                        var dialogementaSemFormatacao = $("#dialog_ementaSemFormatacao").dialog({
+	                               title: "Ementa sem Formatação",
+	                               autoOpen: false,
+	                               height: "auto",
+	                               width: "auto"
+	                        });
+	                  	}); 
+					</script>
+					    <div id="dialog_ementaSemFormatacao">
+					      <div style="min-width: 350px;" class="centro" >
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="linha_13" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_resultadoSemFormatacao">
+								
+									
+									
+											
+<table border="0" cellpadding="0" cellspacing="0" style="width:100%"><tr><td>
+<textarea name="resultadoSemFormatacao" id="resultadoSemFormatacao" style="width:100%" cols="120" rows="10" class="campoeditor">PENAL - QUEIXA-CRIME - DEPUTADO DISTRITAL - PRONUNCIAMENTO POLÍTICO NO PLENÁRIO DA CÂMARA LEGISLATIVA - INJÚRIA E DIFAMAÇÃO - DELITO - LICENÇA DO PODER LEGISLATIVO PARA O PROCESSO - EMENDA CONSTITUCIONAL Nº 35/2001 - CRIME DE OPINIÃO - QUEIXA REJEITADA - DECISÃO UNÂNIME.
+1) A Emenda Constitucional nº 35/2001, na simetria do ordenamento jurídico, em relação, inclusive, aos Estados Federados e ao Distrito Federal, dispensou a licença legislativa para a persecução de crime imputado ao detentor de Mandato Popular.
+2) A Queixa poderá ser oferecida por procurador com poderes especiais, di-lo o art. 44, devendo constar o nome do querelante e a menção do  fato criminoso, diz o mesmo texto do Código Penal, contudo, o mandato pode ser considerado apto,  quando descreve no instrumento "en passant" o necessário ao propósito criminal.
+3) Nos chamados crimes de opinião, por força da CF/88, quando praticado na tribuna do legislativo, não transcende e nem se corporifica em face de imunidade material prevista na Constituição Política.  4) Aplicabilidade, "in casu", do art. 53 c/c 33, § 3º e art. 27 do CPP, art. 3º, I e art. 141 do RITJDFT.
+(Acórdão n.174580, 19990110539006INQ, Relator: EDUARDO DE MORAES OLIVEIRA CONSELHO ESPECIAL, Data de Julgamento: 19/11/2002, Publicado no DJU SEÇÃO 3: 02/07/2003. Pág.: 24)</textarea></td>
+<td align="left" width="200px"> </td></tr></table>
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						  </div>
+						</div>
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_15" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_akfvia">
+									<div class="textoRotulo">
+										<span><input type="hidden" data-cache="never" name="chngfb" id="chngfb" value="<?xml version='1.0' encoding='ISO-8859-1'?><comando><camposParaRedesenhar></camposParaRedesenhar><camposParaRecarregar><campo>idJanelaAbrirAjax</campo><campo>idJanelaAbrirIsModalAjax</campo></camposParaRecarregar><campoComMensagem></campoComMensagem><timeoutDeMensagem>0</timeoutDeMensagem><campoComFoco></campoComFoco><comandoDeSaida></comandoDeSaida></comando>" /><a style="color:#006699;text-decoration:underline;cursor:pointer;" id="botao_ementaSemFormatacao" title="Resultado sem Formatação" onclick="abrirJanela('ementaSemFormatacao',false , this); document.getElementById('resultadoSemFormatacao').focus(); document.getElementById('resultadoSemFormatacao').select(); return false;" onkeydown="if (event.keyCode != 32 &amp;&amp; event.keyCode != 13 &amp;&amp; event.keyCode != 9) return false; "><span>Resultado sem Formatação:</span></a></span>
+<input type="image" onclick="return false;" id="atxaug" src="infra/imagens/ajuda.gif" class="botaoAjuda"/>
+<script type="text/javascript">
+ $(document).ready(function(){
+           $('#atxaug').CreateBubblePopup();
+           $('#atxaug').mouseover(function() {
+           $(this).ShowBubblePopup({
+                       innerHtml: ' <div id="conteudoAjuda_atxaug" style="overflow-y:auto;max-height:300px;text-align:justify; font: normal 12px tahoma, arial, helvetica, sans-serif;"><p>Clique no link ao lado para visualizar a informação em formato texto</p></div>',
+                       themeName:  'azure',
+                       width:  '350px',
+                       height:  '100px',
+                       position:  'right',
+                       distance:  '0px',
+                       divStyle:  {'z-index':'20000'},
+                       selectable:  true,
+                       themePath:  'infra/css/ajuda'
+           });
+ });
+ });
+</script>
+										
+										
+												
+												
+												 
+													<span id="akfvia_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_akfvia">
+									
+										<div style="text-align:justify;padding-right:10px">PENAL - QUEIXA-CRIME - DEPUTADO DISTRITAL - PRONUNCIAMENTO POLÍTICO NO PLENÁRIO DA CÂMARA LEGISLATIVA - INJÚRIA E DIFAMAÇÃO - DELITO - LICENÇA DO PODER LEGISLATIVO PARA O PROCESSO - EMENDA CONSTITUCIONAL Nº 35/2001 - CRIME DE OPINIÃO - QUEIXA REJEITADA - DECISÃO UNÂNIME.<br/>1) A Emenda Constitucional nº 35/2001, na simetria do ordenamento jurídico, em relação, inclusive, aos Estados Federados e ao Distrito Federal, dispensou a licença legislativa para a persecução de crime imputado ao detentor de Mandato Popular.<br/>2) A Queixa poderá ser oferecida por procurador com poderes especiais, di-lo o art. 44, devendo constar o nome do querelante e a menção do  fato criminoso, diz o mesmo texto do Código Penal, contudo, o mandato pode ser considerado apto,  quando descreve no instrumento "en passant" o necessário ao propósito criminal.<br/>3) Nos chamados crimes de opinião, por força da CF/88, quando praticado na tribuna do legislativo, não transcende e nem se corporifica em face de imunidade material prevista na Constituição Política.  4) Aplicabilidade, "in casu", do art. 53 c/c 33, § 3º e art. 27 do CPP, art. 3º, I e art. 141 do RITJDFT.<br/>(<a target='_blank'  href="sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao&controladorId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.ControladorBuscaAcordao&visaoAnterior=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao&nomeDaPagina=resultado&comando=abrirDadosDoAcordao&enderecoDoServlet=sistj&historicoDePaginas=buscaLivre&quantidadeDeRegistros=20&baseSelecionada=BASE_ACORDAO_TODAS&numeroDaUltimaPagina=1&buscaIndexada=1&mostrarPaginaSelecaoTipoResultado=false&totalHits=1&internet=1&numeroDoDocumento=174580">Acórdão n.174580</a>, 19990110539006INQ, Relator: EDUARDO DE MORAES OLIVEIRA CONSELHO ESPECIAL, Data de Julgamento: 19/11/2002, Publicado no DJU SEÇÃO 3: 02/07/2003. Pág.: 24)</div>
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="linha_16" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_ophazk">
+									<div class="textoRotulo">
+										Referências:
+										
+										
+												
+												
+												 
+													<span id="ophazk_imagemErro" style="display: none;; ">
+														<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" alt="">
+													</span>
+												
+											
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_ophazk">
+									
+										<b>RAMOS DO DIREITO</b><br>PN<br><b>REFERÊNCIAS LEGISLATIVAS</b><br>CF-88@EC-35/2001#CP-40@ART-44 ART-55 ART=33 PAR-3
+										 
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+					</div> 
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							   
+					   
+						  <div id="oqozcy" class="linha" >
+						  	
+					   
+					   		
+								<div class="rotulo" id="label_edmwpz">
+									<div class="textoRotulo">
+										Inteiro Teor:
+										
+										
+										  
+										  
+										  
+										  
+											
+											
+											
+											 
+												<span id="oqozcy_imagemErro"  style="display: none;; ">
+													<img class="imagemSinalizadorDeErro" src="infra/imagens/16x16/erro_campo.png" >
+												</span>
+											
+										 
+											 
+									</div>
+								</div>
+							
+								<div class="conteudoComRotulo" id="campo_edmwpz">
+									
+									  
+									    <span  style="color:#006699;text-decoration:underline;cursor:pointer;" id='6a790a00a9c9115e0535c2d8779c84bf4485fa19' onclick=" return executaComando(document.getElementById('comando').form, 'downloadInteiroTeor');" title="Download Inteiro Teor">Download Inteiro Teor</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									  
+									    
+									  
+									    
+									  
+									    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									  
+									
+								</div>
+
+						</div>
+						
+						
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+						
+						
+						
+							<div id="fkbjga" class="linha" >
+						
+								<div class="conteudoSemRotulo" id="campo_xthpaf">
+								
+									
+									
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado da Consulta"onclick="return executaComando(document.getElementById('comando').form, 'pesquisar');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'pesquisar');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado da Consulta</span></button>
+									  
+									    <button id="id_comando_voltar_supra" class="botaoNovoPequeno"  title="Voltar para o Resultado - Bases de Consulta"onclick="return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'voltarParaBuscaLivre');}" ><span class="botaoNovo botaoVoltar">Voltar para o Resultado - Bases de Consulta</span></button>
+									  
+									    <button id="id_comando_voltar" class="botaoNovoPequeno"  title="Nova Consulta"onclick="return executaComando(document.getElementById('comando').form, '@buscaLivre');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, '@buscaLivre');}" ><span class="botaoNovo botaoConsultar">Nova Consulta</span></button>
+									  
+									    <button id="id_comando_imprimir" class="botaoNovoPequeno"  title="Imprimir Espelho"onclick="return executaComando(document.getElementById('comando').form, 'imprimeEspelho');" onkeydown="if (event.keyCode != 32 && event.keyCode != 13 && event.keyCode != 9) return false; if (event.keyCode !=9){ return executaComando(document.getElementById('comando').form, 'imprimeEspelho');}" ><span class="botaoNovo botaoImprimir">Imprimir Espelho</span></button>
+									  
+									    
+									  
+											
+									
+								</div>
+							</div>
+						 
+				
+			
+			
+		<!-- Se houver, inclui a parte da mensagem -->
+		
+		
+		</div>
+		<div id="divComandos" class="comandos">
+		
+	</div>
+	</form>
+<script type="text/javascript">
+	function getAno() { 
+
+	var d = new Date();
+	return d.getFullYear();
+	
+}
+</script>
+
+	</div><!-- Fim do Conteúdo Geral -->
+	<!-- Início do Rodapé -->
+    <div id="divRodape" class="rodape">
+        Tribunal de Justi&ccedil;a do Distrito Federal e dos Territ&oacute;rios - <script type="text/javascript">document.write(getAno())</script> 
+    </div>
+	<!-- Fim do Rodapé -->
+
+	
+  		<script type="text/javascript">
+  			var elemento = document.getElementById("resultadoSemFormatacao");
+  			if(elemento!=null){
+				try {
+					elemento.focus();
+				} catch (e) {
+					// Quando não for possível focar no campo, não faz nada.
+				}
+	  			
+  			}
+  		</script>
+	
+	
+	
+	
+<!-- SCRIPT DE AGRUPADORES -->
+<script type="text/javascript">
+    var valor = document.getElementById('vuvypt').value;
+    if ( valor == '' ) { 
+    document.getElementById('vuvypt').value='aberto';
+    document.getElementById('vuvypt_grupo').className='conteudoAgrupamentoAberto';
+    document.getElementById('vuvypt_imagem').src = 'infra/imagens/Menos.gif';
+    }else if ( valor == 'fechado' ){
+      document.getElementById('vuvypt_grupo').className='conteudoAgrupamentoFechado';
+      document.getElementById('vuvypt_imagem').src = 'infra/imagens/Mais.gif';
+    }else if ( valor == 'aberto' ){
+      document.getElementById('vuvypt_grupo').className='conteudoAgrupamentoAberto';
+      document.getElementById('vuvypt_imagem').src = 'infra/imagens/Menos.gif';
+    }
+</script>
+<script type="text/javascript">
+var myTabs = {
+   };
+ $(function() {
+ });
+ var myTabsIndex = [];
+ $('body').keyup( function(e) {
+  if(e.shiftKey ) {
+	if (e.keyCode == 33) {atalhoPageUpDaAba();
+	}else if (e.keyCode == 34) {atalhoPageDownDaAba();
+     }
+   }
+ });
+</script>
+<!-- SCRIPT DE JANELAS -->
+<script type="text/javascript">
+$(document).ready(function(){
+  $("#ementaSemFormatacao").resizable();
+  });
+$(document).ready(function(){
+  $("#ementaSemFormatacao").draggable();
+  });
+</script>
+
+	<script type="text/javascript">
+		processaVisibilidadeDosCampos('tjdf.infra.apresentacao.ajax.VisibilidadeAjax');
+  	</script>
+  	
+  	
+  		</body>
+  	</html>
