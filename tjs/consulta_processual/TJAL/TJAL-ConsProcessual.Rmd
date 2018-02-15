@@ -1,0 +1,54 @@
+---
+title: "TJAL-ConsProcessual"
+author: "Nathan Giachetta"
+output: html_document
+---
+
+# TJAL: Consulta Processual
+
+```{r}
+library(rvest)
+library(esaj)
+library(dplyr)
+library(stringr)
+library(httr)
+```
+
+```{r}
+d_cjsg <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJAL/data-raw_al/data_rds/d_cjsg.rds")
+
+processos <- unique(d_cjsg$id_lawsuit) %>%
+  na.omit() 
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/d_cposg/"
+
+obter_proc <-function(query, path){
+  url <- "https://www2.tjal.jus.br/cposg5/search.do"
+  
+  # Preenchendo o formulário
+  query_GET <- list(`conversationId`="",
+                    `cbPesquisa`="NUMPROC",
+                    `tipoNuProcesso`="UNIFICADO",
+                    `dePesquisaNuUnificado` = query,
+                    `uuidCaptcha`="",
+                    `chNmCompleto`="true",
+                    `pbEnviar`="Pesquisar")
+
+  proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,".html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url, query = query_GET,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+purrr::map(processos , ~obter_proc(.x, path))
+
+files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/d_cposg/", full.names = TRUE)
+
+# Parseando CPOSG
+
+```
+

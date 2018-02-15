@@ -1,0 +1,51 @@
+---
+title: "TJSP-ConsProcessual"
+author: "Nathan Giachetta"
+output: html_document
+---
+
+# TJSP: Consulta Processual
+
+```{r}
+library(rvest)
+library(esaj)
+library(dplyr)
+library(stringr)
+library(httr)
+```
+
+Objetivo: A partir dos dados coletados em `TJSP-ConsProcessual.Rmd` coletar informações sobre os processos.
+
+```{r}
+# Consulta Processual
+d_cjsg <- readr::read_rds(path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJSP/data_raw_sp/data_rds/d_cjsg.rds")
+
+processos <- unique(d_cjsg$id_lawsuit) %>%
+  na.omit() # Foi preciso retirar NA para que a função download_cposg fosse executada
+
+esaj::download_cposg(processos, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/cposg_SP")
+
+files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/cposg_SP", full.names = TRUE)
+
+# Parseando CPOSG
+parser <- esaj::make_parser() %>% 
+  esaj:::parse_data() %>% 
+  #esaj:::parse_parts() %>% 
+  esaj:::parse_movs() %>% 
+  esaj:::parse_decisions()
+
+d_cposg <- esaj::run_parser(file = files_cposg, parser = parser, 
+                             path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/cposg_rds_SP/")
+
+rds_files <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cposg_rds_SP/", full.names = TRUE)
+d_cposg <- purrr::map_dfr(rds_files, readRDS)
+
+# Download das decisoes
+acordaos <- d_cjsg$id_decision %>% 
+  na.omit()
+esaj::download_decision(acordaos, path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/decision_SP/")
+
+readr::write_rds(d_cposg, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
+
+```
+

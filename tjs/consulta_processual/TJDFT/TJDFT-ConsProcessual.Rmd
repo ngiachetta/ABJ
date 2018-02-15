@@ -1,0 +1,59 @@
+---
+title: "TJDFT-ConsProcessual"
+author: "Nathan Giachetta"
+output: html_document
+---
+
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(stringr)
+library(tidyr)
+```
+
+
+```{r}
+d_cjsg <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
+
+processos <- d_cjsg %>% 
+  tidyr::separate(col = "classe_do_processo", c("classe_inquerito", "processo"), 
+                  sep = " - \\(", remove = F) %>% 
+  tidyr::separate(col = "processo", c("processo", "res_cnj", "segredo_justica"), sep = "- ") %>% 
+  select(processo) %>% 
+  sjmisc::remove_empty_rows() %>% 
+  purrr::pluck(1) %>% 
+  stringr::str_trim()
+```
+
+```{r}
+obter_proc <- function(query, path){
+  url <- "https://cache-internet.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=plhtml01&MGWLPN=SERVIDOR1&submit=ok&SELECAO=1&CHAVE=&ORIGEM=INTER"
+
+  query_GET <-list(
+    "NXTPGM" = "plhtml02",
+    "MGWLPN" = "SERVIDOR1",
+    "SELECAO" = "1",
+    "ORIGEM" = "INTER",
+    "COMAND" = "Pesquisar",
+    "CHAVE" = query
+    )
+  
+  proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+  stringr::str_c(.,".html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url, query = query_GET,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJDFT/data-raw/d_cposg"
+
+purrr::map(processos , ~obter_proc(.x, path))
+
+files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJDFT/data-raw/d_cposg/", full.names = TRUE)
+```
+

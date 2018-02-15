@@ -1,0 +1,42 @@
+---
+title: "TJSP-Jurisprudencia"
+author: "Nathan Giachetta"
+output: html_document
+---
+
+# TJSP: Consulta de Jurisprudencia
+
+```{r}
+library(rvest)
+library(esaj)
+library(dplyr)
+library(stringr)
+library(httr)
+```
+
+Objetivo: Obter os processos na segunda instância de classe "inquérito policial", na Unidade Federativa de São Paulo.
+
+```{r}
+# Obtendo a tabela com as classes do TJSP
+classes_cjsg <- esaj::cjsg_table(type = "classes", tj = "tjsp")
+
+# Filtrando inquérito policial
+class_inq <- classes_cjsg %>% 
+  filter(name0 == "PROCESSO CRIMINAL" & name1 == "Procedimentos Investigatórios" & str_detect(name5, "Inquérito"))
+
+# Download dos processos de acordo com a classes desejada (Coleta: 16:26 dia 14 de Fevereiro)
+esaj::download_cjsg(query = "",classes = class_inq$id5, 
+                    path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJ_AL-SP/data_raw_sp/cjsg_SP/", 
+                    max_page = Inf, tj = "TJSP")
+
+# Mensagem apresentada ao realizar o Download
+## There are 52 pages to download
+## This should take around 26.5 seconds
+
+# Parseando os documentos baixados
+files <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJSP/data_raw_sp/cjsg_SP/", full.names = TRUE, pattern = "page")
+d_cjsg <- parse_cjsg(files)
+
+readr::write_rds(d_cjsg, "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJSP/data_raw_sp/data_rds/d_cjsg.rds")
+```
+
