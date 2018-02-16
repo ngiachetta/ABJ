@@ -1,0 +1,35 @@
+---
+title: "JFDF-ConsProcessual"
+author: "Nathan Giachetta"
+output: html_document
+---
+
+# JFDF
+
+```{r}
+library(rvest)
+library(httr)
+library(dplyr)
+library(stringr)
+library(purrr)
+```
+
+#### Acessando a pagina de busca por numero do processo no JFDF
+
+```{r}
+url <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+
+query <- "36535-45.2000.4.01.3400"
+query_GET <- list(
+  "secao"="DF", # Selecionando JFDF
+  "enviar"="Pesquisar",
+  "pg"=1,
+  "proc"= query
+)
+
+url_jfdf <- httr::POST(url, query = query_GET, ) %>% 
+  pluck(1)
+```
+
+
+

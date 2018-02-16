@@ -114,5 +114,20 @@ arruma_tab <- function(files_cposg){
 
 mov_tab <- map(files_cposg, arruma_tab) %>% 
   dplyr::bind_rows()
+
+readr::write_rds(mov_tab, "data-raw/movimentacao/mov_tab.rds")
+```
+
+```{r}
+# Parseando informaçoes gerais
+
+node <- xml2::read_html(files_cposg[20])
+
+node %>% html_table(fill = T) %>% dplyr::first() %>% 
+  mutate(X1 = stringr::str_replace_all(X1,":","") %>% 
+           abjutils::rm_accent()) %>% 
+  magrittr::set_names(c("key", "val"))
+
+# Continuar daqui
 ```
 
