@@ -52,3 +52,9 @@ TJAL: [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do) - Ok
 TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx) - Problemas com a consulta 
 
 TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao) - Ok
+
+#### Parsear
+
+- TJDFT (consulta processual)
+
+- TJAL (consulta processual)

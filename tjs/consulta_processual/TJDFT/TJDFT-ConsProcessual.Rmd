@@ -10,6 +10,7 @@ library(rvest)
 library(dplyr)
 library(stringr)
 library(tidyr)
+library(purrr)
 ```
 
 
@@ -55,5 +56,63 @@ path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/cons
 purrr::map(processos , ~obter_proc(.x, path))
 
 files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJDFT/data-raw/d_cposg/", full.names = TRUE)
+```
+
+## Parseando os dados
+
+```{r}
+# Parsando a tabela de movimentacao
+
+# Existem alguns html que nao possuem formatacao padrao
+# Esta funcao verifica se a tabela de movimentacao exite ou nao.
+# Caso nao exista eh preciso clicar no link correto para acessa-la
+tab_vazia <- function(node){
+  teste <- node %>% html_node(xpath = '//table[@cellspacing="0"]')
+  is_empty(teste)
+}
+
+arruma_tab <- function(files_cposg){
+  # Lendo html
+  node <- xml2::read_html(files_cposg)
+  # Verifica se a pagina html tem o padrao esperado
+  if (tab_vazia(node) == TRUE){
+    link <- node %>% html_nodes(xpath = '//li/a') %>% html_attr('href')
+    inq_detect <- stringr::str_detect(link ,"CDNUPROC=INQ|CDNUPROC=[0-9]+INQ")
+    inq <- link[inq_detect]
+    node <- read_html(inq)
+  }
+  
+  # Obtendo a ultima tabela
+  movimentacao <- node %>% 
+    rvest::html_table(fill=T, header = T) %>% 
+    dplyr::last()
+  # Retirando espacos desnecessarios
+  movimentacao[,1] <- map_chr(movimentacao[1:nrow(movimentacao),1], stringr::str_trim)
+  movimentacao[,2] <- map_chr(movimentacao[1:nrow(movimentacao),2], stringr::str_trim)
+  # Preenchendo celulas vazias
+  for(i in 1:nrow(movimentacao)){
+    if(nchar(movimentacao[i,1]) == 0 & nchar(movimentacao[i,2])== 0){
+      movimentacao[i,1] <- NA
+      movimentacao[i,2] <- NA
+    } else if (nchar(movimentacao[i,1]) == 0){
+      movimentacao[i,1] <- movimentacao[i-1,1]
+    }
+  }
+  # Transformando o data.frame de movimentacao em nest e depois as datas em nest
+  movimentacao <- movimentacao %>% 
+    tidyr::drop_na() %>% 
+    magrittr::set_names(c("data", "mov")) %>%
+    group_by(data) %>% 
+    tidyr::nest(.key = "mov") %>% 
+    mutate(file = files_cposg) %>% 
+    ungroup() %>% 
+    group_by(file) %>% 
+    tidyr::nest(.key = "data")
+  
+  return(movimentacao)
+}
+
+mov_tab <- map(files_cposg, arruma_tab) %>% 
+  dplyr::bind_rows()
 ```
 
