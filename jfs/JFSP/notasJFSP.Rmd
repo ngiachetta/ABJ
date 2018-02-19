@@ -21,6 +21,8 @@ Este site não possue CAPTCHA, porém o site tem um tempo máximo de permanênci
 library(rvest)
 library(tibble)
 library(httr)
+library(dplyr)
+library(stringr)
 
 jfsp_classes <- function(){
   classes_node <- httr::GET("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp") %>% 
@@ -192,10 +194,10 @@ info_geral <- function(page1, xpath=NULL){
 
 
 ```{r}
-jfsp_selenium <- function(query, browser= "phantomjs"){
+jfsp_selenium <- function(query){
   
   # Acessando a pagina
-  remDR <- RSelenium::rsDriver(browser = browser)
+  remDR <- RSelenium::rsDriver()
   remDR$client$navigate("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp")
   
   # Acessando o campo "num_processo"
@@ -227,7 +229,7 @@ jfsp_selenium <- function(query, browser= "phantomjs"){
   
   webElem3$clickElement()
   
-  TodasFases <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  TodasFases <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
   
   # Descricao de Todas_Fases
   
@@ -247,12 +249,13 @@ jfsp_selenium <- function(query, browser= "phantomjs"){
     
     webElem4$clickElement()
     
-    DetalheFases[[l]] <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+    DetalheFases[[l]] <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
     
     remDR$client$goBack()
     
     i = i + 1
     l = l + 1
+    Sys.sleep(1)
   }
 
   # Todas as Partes
@@ -263,45 +266,44 @@ jfsp_selenium <- function(query, browser= "phantomjs"){
   
   webElem5$clickElement()
   
-  TodasPartes <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
+  TodasPartes <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
   
-  # Parsing
+  #Parsing
   Page1 <- info_geral(page1 = Page1)
-  
+
   TodasPeticoes <- TodasPeticoes %>%
-    html_table(header = T, fill = T) %>% dplyr::last() %>% 
+    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
     mutate(Data = lubridate::dmy(Data),
-           Processo = query) 
-  
-  TodasFases <- TodasFases %>% html_table(header = T, fill = T) %>% dplyr::last() 
-  
-  DetalheFases <- DetalheFases[[1]] %>% 
-    html_table(fill = T, trim = T) %>% 
-    dplyr::last() %>% 
-    select(X2) %>% 
+           Processo = query)
+
+  TodasFases <- TodasFases %>% rvest::html_table(header = T, fill = T) %>% dplyr::last()
+
+  DetalheFases <- DetalheFases[[1]] %>%
+    rvest::html_table(fill = T, trim = T, header = T) %>%
+    dplyr::last() %>%
     dplyr::mutate(X2 = stringr::str_trim(X2),
-                  X2 = ifelse(X2 == "", NA, X2)) %>% 
-    tidyr::drop_na() %>% 
-    t() %>% 
-    tibble::as.tibble() %>% 
-    mutate(V1 = str_replace(V1, "Consulta da Movimentação Número : ", "") %>% str_trim()) 
-  
-  TodasPartes <- TodasPartes %>% 
-    html_table( fill = T ) %>% dplyr::last() %>% 
+                  X2 = ifelse(X2 == "", NA, X2)) %>%
+    tidyr::drop_na() %>%
+    t() %>%
+    tibble::as.tibble() %>%
+    mutate(X1 = stringr::str_replace(X1, "Consulta da Movimentação Número : ", "") %>% stringr::str_trim())
+
+  TodasPartes <- TodasPartes %>%
+    rvest::html_table( fill = T ) %>% dplyr::last() %>%
     dplyr::mutate(X1 = stringr::str_trim(X1),
                   X1 = ifelse(X1 == "", NA, X1),
                   X2 = stringr::str_trim(X2),
-                  X2 = ifelse(X2 == "", NA, X2)) %>% 
+                  X2 = ifelse(X2 == "", NA, X2)) %>%
     tidyr::drop_na() %>%
     t()
-  
+
   colnames(TodasPartes) <- TodasPartes[1,]
-  
+
   TodasPartes <- as.data.frame(TodasPartes)
-  
+
   TodasPartes <- TodasPartes[-1,]
-  
-  
+
+
   Sources <- list(Page_1 = Page1,
                   Todas_Peticoes = TodasPeticoes,
                   Todas_Fases = TodasFases,
@@ -312,4 +314,50 @@ jfsp_selenium <- function(query, browser= "phantomjs"){
 ```
 
 Utilizando o Selenium, funcionou, porém me veio uma dúvida quanto a praticidade da função.
+
+```{r}
+query <- "0001274-57.1993.403.6100"
+infos <- jfsp_selenium(query)
+```
+
+```{r}
+Parsing
+ Page1 <- info_geral(page1 = infos$Page_1)
+  # 
+  TodasPeticoes <- infos$Todas_Peticoes %>%
+    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
+    mutate(Data = lubridate::dmy(Data),
+           Processo = query)
+
+  TodasFases <- infos$Todas_Fases %>% rvest::html_table(header = T, fill = T) %>% dplyr::last()
+  # 
+  DetalheFases <- infos$Todas_Fases %>%
+    rvest::html_table(fill = T, trim = T, header = T) %>%
+    dplyr::last() %>%
+    magrittr::set_names(c("X1", "X2")) %>%
+    dplyr::select(X2) %>%
+    dplyr::mutate(X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2)) %>%
+    tidyr::drop_na() %>%
+    t() %>%
+    tibble::as.tibble() %>%
+    mutate(X1 = stringr::str_replace(X1, "Consulta da Movimentação Número : ", "") %>% stringr::str_trim())
+
+  # TodasPartes <- TodasPartes %>% 
+  #   rvest::html_table( fill = T ) %>% dplyr::last() %>% 
+  #   dplyr::mutate(X1 = stringr::str_trim(X1),
+  #                 X1 = ifelse(X1 == "", NA, X1),
+  #                 X2 = stringr::str_trim(X2),
+  #                 X2 = ifelse(X2 == "", NA, X2)) %>% 
+  #   tidyr::drop_na() %>%
+  #   t()
+  # 
+  # colnames(TodasPartes) <- TodasPartes[1,]
+  # 
+  # TodasPartes <- as.data.frame(TodasPartes)
+  # 
+  # TodasPartes <- TodasPartes[-1,]
+  # 
+  # 
+```
 
