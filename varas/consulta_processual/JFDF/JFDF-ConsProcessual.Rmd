@@ -12,14 +12,26 @@ library(httr)
 library(dplyr)
 library(stringr)
 library(purrr)
+library(magrittr)
+library(RSelenium)
 ```
 
 #### Acessando a pagina de busca por numero do processo no JFDF
 
 ```{r}
+# Obtendo os arquivos htmls
+query <- "36535-45.2000.4.01.3400"
+query <- "90.00.00082-3"
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/varas/consulta_processual/JFDF/data-raw/"
+proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+stringr::str_c(.,".html")
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- stringr::str_c(file, proc)
+
 url <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
 
-query <- "36535-45.2000.4.01.3400"
 query_GET <- list(
   "secao"="DF", # Selecionando JFDF
   "enviar"="Pesquisar",
@@ -27,8 +39,62 @@ query_GET <- list(
   "proc"= query
 )
 
-url_jfdf <- httr::POST(url, query = query_GET, ) %>% 
-  pluck(1)
+url_jfdf <- httr::POST(url, query = query_GET,
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(PathFile, overwrite = T))
+
+# Parseando html 
+files <- dir(path, full.names = TRUE, pattern = "9000000823.html")
+
+node <- xml2::read_html(files, enconding = "UTF-8")
+
+node %<>% rvest::html_nodes(xpath = '//div[contains(@id,"aba-")]')
+
+# aba-processo
+parse_aba_processo <- function(node){
+  node %>%
+    rvest::html_node(xpath = '//*[@id="aba-processo"]//table') %>%
+    rvest::html_table() %>% 
+    pluck(1) %>%
+    magrittr::set_names(c("key", "val")) %>% 
+    mutate(key = stringr::str_replace_all(key, ":", "") %>%
+             stringr::str_to_lower() %>%
+             abjutils::rm_accent() %>%
+             stringr::str_replace_all(' +', '_')) %>%
+    tidyr::spread(key, val)
+}
+
+# aba-movimentacao
+parse_aba_movimentacao <- function(node){
+  node %>%
+    rvest::html_node(xpath = '//*[@id="aba-movimentacao"]//table') %>%
+    rvest::html_table() %>% 
+    pluck(1) %>% 
+    mutate(file = files) %>% 
+    tidyr::separate(col = "Data", into = c("Data", "Hora"), sep = " ") %>% 
+    group_by(file) %>% 
+    tidyr::nest(.key = Movimentacao)  
+}
+
+## Como é possivel observar em node, não tem como acessar as partes, sendo assim utilizarei RSelenium para obter
+parse_aba_partes <- function(url){
+  remDr <- RSelenium::rsDriver()
+  remDr$client$navigate(url)
+  webElem <- remDr$client$findElement(using = "xpath", value = '//*[@href="#aba-partes"]')
+  webElem$clickElement()
+  parte_tab <- remDr$client$getPageSource()
+  remDr$client$closeall()
+
+  parte_tab %>% 
+    unlist() %>%
+    xml2::read_html() %>%
+    html_node(xpath = '//*[@id="aba-partes"]//table') %>%
+    html_table() %>% 
+    mutate(file = files) %>% 
+    group_by(file) %>% 
+    tidyr::nest(.key = Parte)   
+}
+
 ```
 
 
