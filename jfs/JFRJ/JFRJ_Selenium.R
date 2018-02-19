@@ -95,5 +95,5 @@ busca <- function(query){
 }
 
 
-# EM ANDAMENTO
+# Parseando
 infos <- busca(query)
