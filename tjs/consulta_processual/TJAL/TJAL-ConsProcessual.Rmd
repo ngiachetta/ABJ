@@ -8,10 +8,10 @@ output: html_document
 
 ```{r}
 library(rvest)
-library(esaj)
 library(dplyr)
 library(stringr)
 library(httr)
+library(purrr)
 ```
 
 ```{r}
@@ -45,10 +45,37 @@ obter_proc <-function(query, path){
 }
 
 purrr::map(processos , ~obter_proc(.x, path))
+```
 
+```{r}
+# Parseando CPOSG
 files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/d_cposg/", full.names = TRUE)
 
-# Parseando CPOSG
+node <- xml2::read_html(files_cposg[1], enconding = "UTF-8")
 
+# MOVIMENTACAO
+parse_mov <- function(node){
+ mov <- node %>% rvest::html_nodes('#tabelaTodasMovimentacoes')
+
+ mov <- mov %>% 
+   html_nodes(xpath = '//tr[@class="fundoClaro"]|//tr[@class="fundoEscuro"]') %>%
+   html_text() %>%
+   stringr::str_trim() %>%
+   stringr::str_replace("\\n", "quebralinhaaqui") %>%
+   as_tibble()  %>%
+   tidyr::separate(value, into= c("data", "movimento"), sep = "(quebralinhaaqui)") %>%
+   tidyr::drop_na()
+ 
+  mov <- mov[stringr::str_detect(mov$data, "[0-9]"),]  
+}
+
+# DADOS DO PROCESSO
+
+# prc <- node %>% rvest::html_nodes('.labelClass') %>% html_text()
+
+prc <- node %>%
+  rvest::html_nodes('.secaoFormBody') %>%
+  rvest::html_table(fill = T) %>% 
+  dplyr::last()
 ```
 
