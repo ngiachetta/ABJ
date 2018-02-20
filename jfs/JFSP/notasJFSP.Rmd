@@ -197,7 +197,7 @@ info_geral <- function(page1, xpath=NULL){
 jfsp_selenium <- function(query){
   
   # Acessando a pagina
-  remDR <- RSelenium::rsDriver()
+  remDR <- suppressMessages(RSelenium::rsDriver())
   remDR$client$navigate("http://csp.jfsp.jus.br/csp/consulta/consinternet.csp")
   
   # Acessando o campo "num_processo"
@@ -209,30 +209,21 @@ jfsp_selenium <- function(query){
   webElem1 <- remDR$client$findElement(using = "xpath", '//input[@type="button" and @value="Pesquisar"]')
   webElem1$clickElement()
   
-  # Pagina após a busca
-
+  # Pagina após a busca (dados descritivos)
   Page1 <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
   
   # Todas as Peticoes
-  
   webElem2 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Petições"]')
-  
   webElem2$clickElement()
-  
   TodasPeticoes <- remDR$client$getPageSource() %>%  unlist()%>% read_html()
   
   # Todas as Fases
-  
   remDR$client$goBack()
-  
   webElem3 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Fases"]')
-  
   webElem3$clickElement()
-  
   TodasFases <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
   
   # Descricao de Todas_Fases
-  
   ultima_fase <- remDR$client$findElement(using = "xpath",
                                           '//table[position()=3]//tr[position()=2]//a')$getElementText() %>%
     unlist()
@@ -244,120 +235,127 @@ jfsp_selenium <- function(query){
   while(i != as.numeric(ultima_fase)+2){
     xpath <- stringr::str_replace('//table[position()=3]//tr[position()=VALOR]//a', "VALOR",
                                   as.character(i))
-    
     webElem4 <- remDR$client$findElement(using = "xpath", xpath)
-    
     webElem4$clickElement()
-    
     DetalheFases[[l]] <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
-    
     remDR$client$goBack()
-    
     i = i + 1
     l = l + 1
     Sys.sleep(1)
   }
 
   # Todas as Partes
-  
   remDR$client$goBack()
-  
   webElem5 <- remDR$client$findElement(using = "xpath", '//input[@value="Todas Partes"]')
-  
   webElem5$clickElement()
-  
   TodasPartes <- remDR$client$getPageSource() %>%  unlist()%>% xml2::read_html()
   
-  #Parsing
-  Page1 <- info_geral(page1 = Page1)
-
-  TodasPeticoes <- TodasPeticoes %>%
-    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
-    mutate(Data = lubridate::dmy(Data),
-           Processo = query)
-
-  TodasFases <- TodasFases %>% rvest::html_table(header = T, fill = T) %>% dplyr::last()
-
-  DetalheFases <- DetalheFases[[1]] %>%
-    rvest::html_table(fill = T, trim = T, header = T) %>%
-    dplyr::last() %>%
-    dplyr::mutate(X2 = stringr::str_trim(X2),
-                  X2 = ifelse(X2 == "", NA, X2)) %>%
-    tidyr::drop_na() %>%
-    t() %>%
-    tibble::as.tibble() %>%
-    mutate(X1 = stringr::str_replace(X1, "Consulta da Movimentação Número : ", "") %>% stringr::str_trim())
-
-  TodasPartes <- TodasPartes %>%
-    rvest::html_table( fill = T ) %>% dplyr::last() %>%
-    dplyr::mutate(X1 = stringr::str_trim(X1),
-                  X1 = ifelse(X1 == "", NA, X1),
-                  X2 = stringr::str_trim(X2),
-                  X2 = ifelse(X2 == "", NA, X2)) %>%
-    tidyr::drop_na() %>%
-    t()
-
-  colnames(TodasPartes) <- TodasPartes[1,]
-
-  TodasPartes <- as.data.frame(TodasPartes)
-
-  TodasPartes <- TodasPartes[-1,]
-
+  remDR$client$closeall()
 
   Sources <- list(Page_1 = Page1,
                   Todas_Peticoes = TodasPeticoes,
                   Todas_Fases = TodasFases,
                   Todas_Partes = TodasPartes,
-                  Detalhes_Fases = DetalheFases)
+                  Detalhes_Fases = DetalheFases,
+                  num_processo = query)
   return(Sources)
 }
 ```
 
-Utilizando o Selenium, funcionou, porém me veio uma dúvida quanto a praticidade da função.
+A função portanto retorna uma lista com as informações gerais do processo.
 
 ```{r}
 query <- "0001274-57.1993.403.6100"
 infos <- jfsp_selenium(query)
 ```
 
+#### Parseando os dados
+
 ```{r}
-Parsing
- Page1 <- info_geral(page1 = infos$Page_1)
-  # 
-  TodasPeticoes <- infos$Todas_Peticoes %>%
-    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
-    mutate(Data = lubridate::dmy(Data),
-           Processo = query)
-
-  TodasFases <- infos$Todas_Fases %>% rvest::html_table(header = T, fill = T) %>% dplyr::last()
-  # 
-  DetalheFases <- infos$Todas_Fases %>%
-    rvest::html_table(fill = T, trim = T, header = T) %>%
-    dplyr::last() %>%
-    magrittr::set_names(c("X1", "X2")) %>%
-    dplyr::select(X2) %>%
-    dplyr::mutate(X2 = stringr::str_trim(X2),
-                  X2 = ifelse(X2 == "", NA, X2)) %>%
+# Parsing
+parse_descricao <- function(page1, xpath = NULL){
+  if(is.null(xpath)==T){xpath <- '//table[@width="533"]'}
+  page1 <- infos$Page_1 %>%
+    rvest::html_nodes(xpath = '//table[@width="533"]') %>%
+    rvest::html_table(fill = T) %>%
+    dplyr::first() %>% 
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  X1 = ifelse(X1 == "", NA, X1),
+                  X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2)) %>% 
     tidyr::drop_na() %>%
-    t() %>%
-    tibble::as.tibble() %>%
-    mutate(X1 = stringr::str_replace(X1, "Consulta da Movimentação Número : ", "") %>% stringr::str_trim())
+    t()
+  
+  colnames(page1) <- page1[1,]
+  
+  page1 <- as.data.frame(page1)
+  
+  page1 <- page1[-1,] 
+  
+  return(page1)
+}
 
-  # TodasPartes <- TodasPartes %>% 
-  #   rvest::html_table( fill = T ) %>% dplyr::last() %>% 
-  #   dplyr::mutate(X1 = stringr::str_trim(X1),
-  #                 X1 = ifelse(X1 == "", NA, X1),
-  #                 X2 = stringr::str_trim(X2),
-  #                 X2 = ifelse(X2 == "", NA, X2)) %>% 
-  #   tidyr::drop_na() %>%
-  #   t()
-  # 
-  # colnames(TodasPartes) <- TodasPartes[1,]
-  # 
-  # TodasPartes <- as.data.frame(TodasPartes)
-  # 
-  # TodasPartes <- TodasPartes[-1,]
-  # 
-  # 
+parse_peticoes <- function(TodasPeticoes){
+  TodasPeticoes <- TodasPeticoes %>%
+    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
+    dplyr::mutate(Data = lubridate::dmy(Data),
+           Processo = query) %>% 
+    dplyr::group_by(Processo) %>% 
+    tidyr::nest(.key = peticoes)
+  
+  return(TodasPeticoes)
+}
+
+parse_fases <- function(TodasFases, num_processo){
+  TodasFases <- TodasFases %>%
+    rvest::html_table(header = T, fill = T) %>%
+    dplyr::last() %>% 
+    dplyr::mutate(Processo = num_processo) %>% 
+    dplyr::group_by(Processo) %>% 
+    tidyr::nest(.key = fases)
+  
+  return(TodasFases)
+}
+  
+parse_partes <- function(TodasFases){
+    TodasPartes <- TodasFases %>%
+    rvest::html_table( fill = T ) %>% dplyr::last() %>%
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  X1 = ifelse(X1 == "", NA, X1),
+                  X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2),
+                  X1 = stringr::str_to_lower(X1),
+                  X2 = stringr::str_to_lower(X2)) %>%
+    tidyr::drop_na() %>%
+    magrittr::set_names(c("key", "val")) %>% 
+    tidyr::spread(key, val)
+    
+    return(TodasPartes)
+}
+
+# parse_detfases <- function(Detalhes_Fases){}  
+#     
+# 
+#   DetalheFases <- infos$Detalhes_Fases[[34]] %>%
+#     rvest::html_table(fill = T, trim = T, header = F) %>%
+#     dplyr::first() %>% 
+#     dplyr::select(X1, X2) %>%
+#     magrittr::set_names(c("key", "val")) %>% 
+#     dplyr::mutate(val = stringr::str_trim(val),
+#                   val = ifelse(val == "", NA, val)) %>%
+#     tidyr::drop_na() %>%
+#     tidyr::spread(key, val) %>%
+#     magrittr::set_names(c("seq","descricao", "processo")) %>% 
+#     mutate(seq = stringr::str_replace(seq, "Consulta da Movimentação Número : ", "") %>% stringr::str_trim())
+```
+
+```{r}
+page1 <- parse_descricao(infos$Page_1)
+
+fases <- parse_fases(TodasFases = infos$Todas_Fases, num_processo = infos$num_processo)
+
+partes <- parse_partes(infos$Todas_Partes)
+
+peticoes <- parse_peticoes(infos$Todas_Peticoes)
 ```
 
