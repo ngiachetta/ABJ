@@ -1,0 +1,46 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+library(httr)
+library(purrr)
+library(dplyr)
+```
+
+```{r}
+url <- "http://www.cjf.jus.br/juris/unificada/Resposta"
+```
+
+O Link acima reuni em um único site a busca de jurisprudência por TRF
+
+```{r}
+query_GET <- list(
+  "pesquisaAS" = "A",
+  "clas" = "INQ",
+  "tipo_data" = "DTJP",
+  "TRF2" = "TRF2"
+)
+
+file <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/teste.html"
+
+primeira <- httr::GET(url, query = query_post,httr::config(ssl_verifypeer = FALSE),
+httr::write_disk(file, TRUE))
+
+query_GET_2 <- list(
+  "query" = primeira$url %>% html_session() %>% html_node(xpath = '//*[@name="query"]') %>% html_attr('value'),
+  "pg" = 2,
+  "pesquisaAS" = "A",
+  "clas" = "INQ",
+  "tipo_data" = "DTJP",
+  "TRF2" = "TRF2"
+)
+
+
+
+httr::GET(primeira$url, query = query_GET_2,httr::config(ssl_verifypeer = FALSE),
+httr::write_disk(file, TRUE))
+```
+
