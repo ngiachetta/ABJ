@@ -51,9 +51,10 @@ purrr::map(processos , ~obter_proc(.x, path))
 # Parseando CPOSG
 files_cposg <- dir("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/d_cposg/", full.names = TRUE)
 
-node <- xml2::read_html(files_cposg[1], enconding = "UTF-8")
+node <- xml2::read_html(files_cposg[3], enconding = "UTF-8")
 
 # MOVIMENTACAO
+
 parse_mov <- function(node){
  mov <- node %>% rvest::html_nodes('#tabelaTodasMovimentacoes')
 
@@ -67,6 +68,8 @@ parse_mov <- function(node){
    tidyr::drop_na()
  
   mov <- mov[stringr::str_detect(mov$data, "[0-9]"),] 
+  
+  mov <- mov %>% tidyr::nest(.key = movimentacao)
   
   return(mov)
 }
@@ -87,13 +90,16 @@ parse_data_prc <- function(node){
          key = stringr::str_replace_all(key, " +", "_"),
          key = stringr::str_to_lower(key),
          key = abjutils::rm_accent(key)) %>% 
-  tidyr::spread(key, val) %>% 
-  tidyr::unite(ultima_carga, V1, ultima_carga, sep = " \n")  
+  tidyr::spread(key, val) #%>% 
+  #tidyr::unite(ultima_carga, V1, ultima_carga, sep = " \n")
+  
+  prc <- prc %>% tidyr::nest(.key = dados_processo)
   
   return(prc)
 }
 
 # PARTES
+
 parse_partes <- function(node){
   
   partes <- node %>% 
@@ -105,13 +111,16 @@ parse_partes <- function(node){
          key = stringr::str_replace_all(key, " +", "_"),
          key = stringr::str_to_lower(key),
          key = abjutils::rm_accent(key)) %>% 
-  tidyr::spread(key, val) %>% 
-  tidyr::separate(reu, c("reu", "advogado"), sep = "(Advogado)")  
+  tidyr::spread(key, val) #%>% 
+  #tidyr::separate(reu, c("reu", "advogado"), sep = "(Advogado)")
+  
+  partes <- partes %>% tidyr::nest(.key = partes)
   
   return(partes)
 }
 
 # JULGAMENTO
+
 parse_julgamento <- function(node){
   
   julgamento <- node %>% rvest::html_nodes(xpath ='(//td[@class="esajCelulaConteudoServico"]//table)[last()-1]') %>%
@@ -119,7 +128,29 @@ parse_julgamento <- function(node){
     dplyr::bind_rows() %>% 
     magrittr::set_names(c("data", "situacao_julgamento", "decisao")) 
   
+  julgamento <- julgamento %>% tidyr::nest(.key = julgamento)
+  
   return(julgamento)
 }
+```
+
+```{r}
+node <- xml2::read_html(files_cposg[1], enconding = "UTF-8")
+
+data <- tibble()
+for (i in 1:length(files_cposg)){
+  node <- xml2::read_html(files_cposg[i], enconding = "UTF-8")
+  
+  proc <- parse_data_prc(node)
+  partes <- parse_partes(node)
+  movimentacao <- parse_mov(node)
+  julgamento <- parse_julgamento(node)
+  
+  data <- dplyr::bind_cols(as_tibble(files_cposg[i]), proc, partes, movimentacao, julgamento) %>% 
+    dplyr::bind_rows(data)
+  
+}
+
+readr::write_rds(data, path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
 ```
 
