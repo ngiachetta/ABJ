@@ -29,13 +29,13 @@ TJDFT: [consulta processual](https://www.tjdft.jus.br/consultas) e [jurisprudên
 
 * VARAS (Somente consulta processual)
 
-JFSP: [consulta processual](http://csp.jfsp.jus.br/csp/consulta/consinternet.csp)
+JFSP: [consulta processual](http://csp.jfsp.jus.br/csp/consulta/consinternet.csp) e jurisprudência
 
-JFRJ: [consulta processual](http://procweb.jfrj.jus.br/portal/consulta/cons_procs.asp)
+JFRJ: [consulta processual](http://procweb.jfrj.jus.br/portal/consulta/cons_procs.asp) e jurisprudência
 
-JFAL: [consulta processual](http://www.jfal.jus.br/servicos/processos/eletronicos/creta/consulta)
+JFAL: [consulta processual](http://www.jfal.jus.br/servicos/processos/eletronicos/creta/consulta) e jurisprudência
 
-JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/)
+JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) e jurisprudência
 
 * Diario
 

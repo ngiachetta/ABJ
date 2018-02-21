@@ -71,7 +71,7 @@ tab_vazia <- function(node){
   is_empty(teste)
 }
 
-arruma_tab <- function(files_cposg){
+parse_mov <- function(files_cposg){
   # Lendo html
   node <- xml2::read_html(files_cposg)
   # Verifica se a pagina html tem o padrao esperado
@@ -81,7 +81,6 @@ arruma_tab <- function(files_cposg){
     inq <- link[inq_detect]
     node <- read_html(inq)
   }
-  
   # Obtendo a ultima tabela
   movimentacao <- node %>% 
     rvest::html_table(fill=T, header = T) %>% 
@@ -112,7 +111,7 @@ arruma_tab <- function(files_cposg){
   return(movimentacao)
 }
 
-mov_tab <- map(files_cposg, arruma_tab) %>% 
+mov_tab <- map(files_cposg, parse_mov) %>% 
   dplyr::bind_rows()
 
 readr::write_rds(mov_tab, "data-raw/movimentacao/mov_tab.rds")
@@ -121,13 +120,46 @@ readr::write_rds(mov_tab, "data-raw/movimentacao/mov_tab.rds")
 ```{r}
 # Parseando informaçoes gerais
 
-node <- xml2::read_html(files_cposg[20])
+parse_dados_proc <- function(files_cposg){
+  node <- xml2::read_html(files_cposg)
+  
+  if (tab_vazia(node) == TRUE){
+    link <- node %>% html_nodes(xpath = '//li/a') %>% html_attr('href')
+    inq_detect <- stringr::str_detect(link ,"CDNUPROC=INQ|CDNUPROC=[0-9]+INQ")
+    inq <- link[inq_detect]
+    node <- read_html(inq)
+  }
+  
+  dados_proc <- node %>% 
+    html_table(fill = T) %>% 
+    dplyr::first() %>% 
+    magrittr::set_names(c("key", "val")) %>% 
+    mutate(key = stringr::str_replace_all(key,":","") %>% 
+             abjutils::rm_accent(),
+           key = stringr::str_trim(key),
+           key = stringr::str_replace_all(key, " +", "_"),
+           key = stringr::str_to_lower(key),
+           val = stringr::str_trim(val),
+           val = ifelse(stringr::str_length(val) == 0, yes = NA, no = val)) %>% 
+    tidyr::drop_na(val) %>%
+        t()
+  
+  colnames(dados_proc) <- dados_proc[1,]
+  
+  dados_proc <- as.data.frame(dados_proc)
+  
+  dados_proc <- dados_proc[-1,] 
+  
+  dados_proc <- dados_proc %>% 
+    #select(-contains("decisao"), -contains("notas_taq"), - contains("andamento")) %>% 
+    tidyr::nest(.key = "dados_processo") %>% 
+    mutate(file = files_cposg[1])
+  
+  return(dados_proc)
+}
 
-node %>% html_table(fill = T) %>% dplyr::first() %>% 
-  mutate(X1 = stringr::str_replace_all(X1,":","") %>% 
-           abjutils::rm_accent()) %>% 
-  magrittr::set_names(c("key", "val"))
+dados_proc_tab <- map(files_cposg, parse_dados_proc) %>%  dplyr::bind_rows()
 
-# Continuar daqui
+readr::write_rds(dados_proc_tab, "data-raw/dados_proc/dados_proc_tab.rds")
 ```
 
