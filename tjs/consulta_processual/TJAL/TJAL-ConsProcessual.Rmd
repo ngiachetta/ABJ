@@ -66,16 +66,60 @@ parse_mov <- function(node){
    tidyr::separate(value, into= c("data", "movimento"), sep = "(quebralinhaaqui)") %>%
    tidyr::drop_na()
  
-  mov <- mov[stringr::str_detect(mov$data, "[0-9]"),]  
+  mov <- mov[stringr::str_detect(mov$data, "[0-9]"),] 
+  
+  return(mov)
 }
 
 # DADOS DO PROCESSO
 
-# prc <- node %>% rvest::html_nodes('.labelClass') %>% html_text()
-
-prc <- node %>%
+parse_data_prc <- function(node){
+  
+  prc <- node %>%
   rvest::html_nodes('.secaoFormBody') %>%
   rvest::html_table(fill = T) %>% 
-  dplyr::last()
+  dplyr::last() %>% 
+  magrittr::set_names(c("key", "val", "delete")) %>% 
+  tidyr::drop_na(val) %>% 
+  select(-delete) %>% 
+  mutate(key = stringr::str_trim(key),
+         key = stringr::str_replace_all(key, "[[:punct:]]", ""),
+         key = stringr::str_replace_all(key, " +", "_"),
+         key = stringr::str_to_lower(key),
+         key = abjutils::rm_accent(key)) %>% 
+  tidyr::spread(key, val) %>% 
+  tidyr::unite(ultima_carga, V1, ultima_carga, sep = " \n")  
+  
+  return(prc)
+}
+
+# PARTES
+parse_partes <- function(node){
+  
+  partes <- node %>% 
+  rvest::html_node('#tablePartesPrincipais') %>%
+  rvest::html_table() %>% 
+  magrittr::set_names(c("key", "val")) %>% 
+  mutate(key = stringr::str_trim(key),
+         key = stringr::str_replace_all(key, "[[:punct:]]", ""),
+         key = stringr::str_replace_all(key, " +", "_"),
+         key = stringr::str_to_lower(key),
+         key = abjutils::rm_accent(key)) %>% 
+  tidyr::spread(key, val) %>% 
+  tidyr::separate(reu, c("reu", "advogado"), sep = "(Advogado)")  
+  
+  return(partes)
+}
+
+# JULGAMENTO
+parse_julgamento <- function(node){
+  
+  julgamento <- node %>% rvest::html_nodes(xpath ='(//td[@class="esajCelulaConteudoServico"]//table)[last()-1]') %>%
+    rvest::html_table(fill = T) %>% 
+    dplyr::bind_rows() %>% 
+    magrittr::set_names(c("data", "situacao_julgamento", "decisao")) 
+  
+  return(julgamento)
+}
 ```
 
