@@ -98,7 +98,6 @@ busca_TRF <- function(TRF, class = "INQ", path){
                      httr::write_disk(file, TRUE))
   
   purrr::map(pages_doc(page1$url), ~busca_TRF_pag(url_list = page1, page = .x,  class, TRF, path))
-  
 }
 ```
 
