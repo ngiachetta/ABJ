@@ -1,0 +1,5811 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Jurisprudência</title>
+<link href="/juris/css/internet.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+	<link href="/juris/css/internet_ie7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/juris/js/wz_tooltip.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/JavaScriptUtil.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/Parsers.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/InputMask.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/internet.js"></script>
+<script type="text/javascript" src="/juris/js/jquery-1.12.0.min.js"></script>
+
+
+<head>
+<script language="javascript" type="text/javascript">
+var tribunais = ['STF','STJ','TRF1','TRF2','TRF3','TRF4','TRF5','TNU','TRU1','TRU2','TRU3','TRU4','TRU5','TR1','TR2','TR3','TR4','TR5'];
+var trus = ['TRU1','TRU2','TRU3','TRU4','TRU5'];
+var trs = ['TR1','TR2','TR3','TR4','TR5'];
+
+window.onresize = function(e) {posicionaPopup();}
+window.onscroll = function(e) {posicionaPopup();}
+var popup = null;
+function submetePaginacao(pg) {
+	getElementoPorId('pg').value=pg;
+}
+function submeteNovaPesquisa() {
+	var form = getElementoPorId('form');
+	form.action='index.jsp';
+	form.submit();
+}
+function submeteOrgao(orgao) {
+	var possuiTR = false, possuiTRU = false;
+	var valorAnterior;
+	var valores = new Array();
+	for(i=0; i<tribunais.length; i++) {
+		if (tribunais[i] != orgao) {
+			var hidden = getElementoPorNome(tribunais[i]);
+			valores[i] = hidden.value;
+			hidden.value = '';
+		} else {
+			valores[i] = '';
+		}
+	}
+	for(i=0; i<trus.length; i++) {
+		if (trus[i] == orgao) {
+			possuiTRU = true;
+		}
+	}
+	for(i=0; i<trs.length; i++) {
+		if (trs[i] == orgao) {
+			possuiTR = true;
+		}
+	}
+	if (!possuiTRU) {
+		valorAnterior = getElementoPorNome('TRU').value;
+		getElementoPorNome('TRU').value = '';
+	} else {
+		valorAnterior = getElementoPorNome('TR').value;
+		getElementoPorNome('TR').value = '';
+	}
+	
+	getElementoPorNome('query').value = '';
+	getElementoPorNome('pg').value = '1';
+	var form = getElementoPorId('form');
+	form.submit();
+	for(i=0; i<tribunais.length; i++) {
+		if (tribunais[i] != orgao) {
+			var hidden = getElementoPorNome(tribunais[i]);
+			hidden.value = valores[i];
+		}
+	}
+	if (possuiTRU) {
+		getElementoPorNome('TR').value = valorAnterior;
+	} else {
+		getElementoPorNome('TRU').value = valorAnterior;
+	}
+}
+</script>
+</head>
+
+<body>
+<noscript>Scripts do Sistema</noscript>
+	<form name="form" id="form" method="post" action="Resposta">
+		<!-- Hiddens de paginação -->
+		<input type="hidden" name="query" value="%28TRF5%29+%5BTRF5%5D+%28INQ%29+%5BTRF5%2Cclas%5D+NAO+%22Turma+Recursal%22.orga.+NAO+%22Primeira+Turma+Recursal%22.orga.+NAO+%22Segunda+Turma+Recursal%22.orga.+NAO+%22Terceira+Turma+Recursal%22.orga.+NAO+%22Turma+Nacional+de+Uniformizacao%22.orga.++NAO+%22Turma+Regional+de+Uniformizacao%22.orga.++" />
+		<input type="hidden" id="pg" name="pg" value="29" />
+		<!-- Hiddens dos parâmetros de pesquisa -->
+
+		<input type="hidden" value=" " name="livreAvancada" />
+		<input type="hidden" value=" " name="classe" />
+		<input type="hidden" value="INQ" name="clas" />
+		<input type="hidden" value=" " name="proc" />
+		<input type="hidden" value=" " name="rel" />
+		<input type="hidden" value=" " name="data1" />
+		<input type="hidden" value=" " name="data2" />
+		<input type="hidden" value="DTJP" name="tipo_data" />
+		<input type="hidden" value=" " name="orga" />
+		<input type="hidden" value=" " name="emen" />
+		<input type="hidden" value=" " name="deci" />
+		<input type="hidden" value=" " name="refl" />
+		<input type="hidden" value=" " name="cata" />
+		<input type="hidden" value=" " name="obpr" />
+		<input type="hidden" value=" " name="inte" />
+		<input type="hidden" value=" " name="STF" />
+		<input type="hidden" value=" " name="STJ" />
+		<input type="hidden" value=" " name="TRF1" />
+		<input type="hidden" value=" " name="TRF2" />
+		<input type="hidden" value=" " name="TRF3" />
+		<input type="hidden" value=" " name="TRF4" />
+		<input type="hidden" value="TRF5" name="TRF5" />
+		<input type="hidden" value=" " name="TNU" />
+		<input type="hidden" value=" " name="TR" />
+		<input type="hidden" value=" " name="TR1" />
+		<input type="hidden" value=" " name="TR2" />
+		<input type="hidden" value=" " name="TR3" />
+		<input type="hidden" value=" " name="TR4" />
+		<input type="hidden" value=" " name="TR5" />
+		<input type="hidden" value=" " name="TRU" />
+		<input type="hidden" value=" " name="TRU1" />
+		<input type="hidden" value=" " name="TRU2" />
+		<input type="hidden" value=" " name="TRU3" />
+		<input type="hidden" value=" " name="TRU4" />
+		<input type="hidden" value=" " name="TRU5" />
+		<input type="hidden" value=" " name="RESUMIDA" />
+		<input type="hidden" value="A" name="pesquisaAS" />
+
+		<div id="fundo">
+		</div>
+		<div id="formulario">
+		<div id="topo">
+			<div id="portal_header">
+				<div id="portal_topo">
+					<a href="http://www.jf.jus.br" style="border:0px"><img  style="border:0px" src="/juris/imagens/logo.jpg" /></a>
+				</div>
+				<div id="migalha">
+					<p>Brasília, 22 de fevereiro de 2018</p>
+				</div>
+			</div>
+		</div>
+		<div id="link_migalha">
+			<a href="javascript:submeteNovaPesquisa()">Nova pesquisa</a>
+			<img src="/juris/imagens/bullet.gif" class="tab_link" alt="Nova pesquisa"/>
+		</div>	
+		
+			<div id="topo_conteudo">
+				<div id="left"></div>
+				<div id="right"></div>
+			</div>
+			<div id="conteudo">
+				<h1>Jurisprudência Unificada</h1>
+				<table class="informacoes_pesquisa" summary="Informações da pesquisa">
+					<tbody>
+						<tr>
+							<td class="td_right">
+								<span class="label">Critério de pesquisa</span>
+							</td>
+							<td>
+								<span> </span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_right">
+								<span class="label">Documentos encontrados</span>
+							</td>
+							<td>
+								<span>857</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_right">
+								<span class="label">Nesta página</span>
+							</td>
+							<td>
+								<span>841-857</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao_topo">
+										<input type="image" src="/juris/imagens/nav_ult.png" onkeypress=" " onclick="submetePaginacao(1)" 
+						alt="Primeira Página" title="Primeira Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_ant.png" onkeypress=" " onclick="submetePaginacao(28)" 
+						alt="Página Anterior" title="Página Anterior" value=" " />
+					<input type="image" src="/juris/imagens/nav_prox.png" onkeypress=" " onclick="submetePaginacao(30)" disabled class="botao_desabilitado"
+						alt="Próxima Página" title="Próxima Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_pri.png" onkeypress=" " onclick="submetePaginacao(29)" disabled class="botao_desabilitado"
+						alt="Última Página" title="Última Página" value=" " />
+				</div>
+				<br clear="all"/>
+				
+				<table class="table_pesquisa_lista" width="100%" align="center">
+						<tr>
+							<th colspan="3" style="text-align: center; border-bottom: 1px solid rgb(0, 102, 153); color:rgb(0, 102, 153);"><b>FILTRO DE RESULTADOS</b></th>
+						</tr>
+						<tr>
+							<td style="color:rgb(0, 102, 153); font-weight: bold; width: 15%;" >Tribunais</td>
+							<td style="color:rgb(0, 102, 153); font-weight: bold; width: 15%;">Total</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="3" width="100%">
+								<div style="overflow-y: auto; max-height: 100px; direction: rtl;">
+									<table width="100%" style="direction: ltr">
+								 
+								         <tr><td style="padding-bottom: 0px; width: 16%;">
+								         
+								        	 <a href="#" onclick="submeteOrgao('TRF5');">TRF5</a>
+								         
+									        </td>
+									         <td style="padding-bottom: 0px; width: 15%;">857</td>
+									         <td></td>
+									     </tr>
+								  
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>				
+				
+				
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc1">Documento 1 - TRF5 - <font 9405059190</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												
+												<a href="#_doc2"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_1');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_1');imprimir();fechar('popup_1');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9405059190<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 84<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Francisco Falcão</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::02/06/1995 - Página::34304</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  COMPETENCIA ORIGINARIA DO TRF. DENUNCIA CONTRA EX-PREFEITO.
+INCORRETA  DEFINIÇÃO  JURIDICA  DO  FATO  DESCRITO.  PRESCRIÇÃO  DA
+PRETENSÃO  PUNITIVA.  OFERECIMENTO  DA  DENUNCIA  APÓS O DECURSO DO
+PRAZO PRESCRICIONAL.
+PRECEDENTES DO TRF QUINTA REGIÃO.
+REJEIÇÃO DA DENUNCIA(ART. 34,II,CPP).</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO, PRELIMINAR, INCOMPETENCIA, TRIBUNAL, MOTIVO, PREVALENCIA,
+COMPETENCIA,  (TRF), PROCESSAMENTO, JULGAMENTO, PROCESSO, OPOSIÇÃO,
+AUTARQUIA FEDERAL.
+REJEIÇÃO,   DENUNCIA,   OPOSIÇÃO,  EX  PREFEITO,  CRIME,  FALSIDADE
+IDEOLOGICA,   CERTIDÃO,   MOTIVO,  OCORRENCIA,  DECURSO  DE  PRAZO,
+RESULTADO, EXTINÇÃO DA PUNIBILIDADE.
+                                                              LNM</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>03/05/1995</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>02/06/1995</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-8658 ANO-1993
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1993 ART-4 ART-6
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 ART-301 ART-109 INC-5
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-34 INC-2 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-MUN OFI-67 ANO-1993 (PREFEITURA DE INDEPENDENCIA)</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_1" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_1" class="titulo_popup"><font 9405059190</label>
+										<input type="image" onclick="javascript: fechar('popup_1');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_1"
+											value="Processo 9405059190" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9405059190<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 84<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Francisco Falcão</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::02/06/1995 - Página::34304</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  COMPETENCIA ORIGINARIA DO TRF. DENUNCIA CONTRA EX-PREFEITO.
+INCORRETA  DEFINIÇÃO  JURIDICA  DO  FATO  DESCRITO.  PRESCRIÇÃO  DA
+PRETENSÃO  PUNITIVA.  OFERECIMENTO  DA  DENUNCIA  APÓS O DECURSO DO
+PRAZO PRESCRICIONAL.
+PRECEDENTES DO TRF QUINTA REGIÃO.
+REJEIÇÃO DA DENUNCIA(ART. 34,II,CPP).</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO, PRELIMINAR, INCOMPETENCIA, TRIBUNAL, MOTIVO, PREVALENCIA,
+COMPETENCIA,  (TRF), PROCESSAMENTO, JULGAMENTO, PROCESSO, OPOSIÇÃO,
+AUTARQUIA FEDERAL.
+REJEIÇÃO,   DENUNCIA,   OPOSIÇÃO,  EX  PREFEITO,  CRIME,  FALSIDADE
+IDEOLOGICA,   CERTIDÃO,   MOTIVO,  OCORRENCIA,  DECURSO  DE  PRAZO,
+RESULTADO, EXTINÇÃO DA PUNIBILIDADE.
+                                                              LNM</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>03/05/1995</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>02/06/1995</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-8658 ANO-1993
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1993 ART-4 ART-6
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 ART-301 ART-109 INC-5
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-34 INC-2 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-MUN OFI-67 ANO-1993 (PREFEITURA DE INDEPENDENCIA)</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_1" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_1" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_1');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_1"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL.  COMPETENCIA ORIGINARIA DO TRF. DENUNCIA CONTRA EX-PREFEITO.
+INCORRETA  DEFINIÇÃO  JURIDICA  DO  FATO  DESCRITO.  PRESCRIÇÃO  DA
+PRETENSÃO  PUNITIVA.  OFERECIMENTO  DA  DENUNCIA  APÓS O DECURSO DO
+PRAZO PRESCRICIONAL.
+PRECEDENTES DO TRF QUINTA REGIÃO.
+REJEIÇÃO DA DENUNCIA(ART. 34,II,CPP).<br />(<font 9405059190, Desembargador Federal Francisco Falcão, TRF5 - Pleno, DJ - Data::02/06/1995 - Página::34304.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc2">Documento 2 - TRF5 - <font 9305156940</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc1"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc3"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_2');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_2');imprimir();fechar('popup_2');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9305156940<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 75<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::02/12/1994 - Página::70497</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  AÇÃO  PENAL ORIGINARIA. ESTELIONATO E FALSIDADE
+IDEOLOGICA. CRIMES PRATICADOS EM CO-AUTORIA POR PREFEITO MUNICIPAL.
+DENUNCIA RECEBIDA.
+MESMO  CESSADO  O  MANDATO  DO  PREFEITO,  PERMANECE  A COMPETENCIA
+ORIGINARIA  DA  INSTANCIA  AD  QUEM  PARA  O  JULGAMENTO DOS CRIMES
+COMETIDOS DURANTE O EXERCICIO FUNCIONAL - SUMULA 394 DO STF.
+PROVAS  INDICIARIA,  DOCUMENTAL  E  TESTEMUNHAL  ROBUSTAS  QUANTO A
+EXISTENCIA  DE FRAUDE, MATERIALIZANDO, AO MENOS EM TESE, OS DELITOS
+CAPITULADOS NA DENUNCIA.
+INDICIOS DE AUTORIA EVIDENCIADOS PELA PERICIA GRAFOTECNICA.
+RECEBIMENTO  DA  DENUNCIA. REJEIÇÃO QUANTO AO DENUNCIADO FALECIDO -
+CPP, ART. 43, II.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>26/01/1994</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>02/12/1994</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-8658 ANO-1993 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1990 ART-3 PAR-4
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 PAR-UNICO ART-171
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED SUM-394 STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_2" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_2" class="titulo_popup"><font 9305156940</label>
+										<input type="image" onclick="javascript: fechar('popup_2');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_2"
+											value="Processo 9305156940" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9305156940<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 75<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::02/12/1994 - Página::70497</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  AÇÃO  PENAL ORIGINARIA. ESTELIONATO E FALSIDADE
+IDEOLOGICA. CRIMES PRATICADOS EM CO-AUTORIA POR PREFEITO MUNICIPAL.
+DENUNCIA RECEBIDA.
+MESMO  CESSADO  O  MANDATO  DO  PREFEITO,  PERMANECE  A COMPETENCIA
+ORIGINARIA  DA  INSTANCIA  AD  QUEM  PARA  O  JULGAMENTO DOS CRIMES
+COMETIDOS DURANTE O EXERCICIO FUNCIONAL - SUMULA 394 DO STF.
+PROVAS  INDICIARIA,  DOCUMENTAL  E  TESTEMUNHAL  ROBUSTAS  QUANTO A
+EXISTENCIA  DE FRAUDE, MATERIALIZANDO, AO MENOS EM TESE, OS DELITOS
+CAPITULADOS NA DENUNCIA.
+INDICIOS DE AUTORIA EVIDENCIADOS PELA PERICIA GRAFOTECNICA.
+RECEBIMENTO  DA  DENUNCIA. REJEIÇÃO QUANTO AO DENUNCIADO FALECIDO -
+CPP, ART. 43, II.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>26/01/1994</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>02/12/1994</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-8658 ANO-1993 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1990 ART-3 PAR-4
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 PAR-UNICO ART-171
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED SUM-394 STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_2" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_2" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_2');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_2"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL  PENAL.  AÇÃO  PENAL ORIGINARIA. ESTELIONATO E FALSIDADE
+IDEOLOGICA. CRIMES PRATICADOS EM CO-AUTORIA POR PREFEITO MUNICIPAL.
+DENUNCIA RECEBIDA.
+MESMO  CESSADO  O  MANDATO  DO  PREFEITO,  PERMANECE  A COMPETENCIA
+ORIGINARIA  DA  INSTANCIA  AD  QUEM  PARA  O  JULGAMENTO DOS CRIMES
+COMETIDOS DURANTE O EXERCICIO FUNCIONAL - SUMULA 394 DO STF.
+PROVAS  INDICIARIA,  DOCUMENTAL  E  TESTEMUNHAL  ROBUSTAS  QUANTO A
+EXISTENCIA  DE FRAUDE, MATERIALIZANDO, AO MENOS EM TESE, OS DELITOS
+CAPITULADOS NA DENUNCIA.
+INDICIOS DE AUTORIA EVIDENCIADOS PELA PERICIA GRAFOTECNICA.
+RECEBIMENTO  DA  DENUNCIA. REJEIÇÃO QUANTO AO DENUNCIADO FALECIDO -
+CPP, ART. 43, II.<br />(<font 9305156940, Desembargador Federal Ridalvo Costa, TRF5 - Pleno, DJ - Data::02/12/1994 - Página::70497.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc3">Documento 3 - TRF5 - <font 9305345158</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc2"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc4"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_3');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_3');imprimir();fechar('popup_3');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9305345158<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 81<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Lazaro Guimarães</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/05/1994 - Página::26144</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.
+I  -  DESACATO. DESCARACTERIZAÇÃO, QUANDO O COMPORTAMENTO DO AGENTE
+TEM   CONOTAÇÃO   ESTRITAMENTE  PESSOAL,  MOTIVADO  POR  DESAVENÇAS
+FAMILIARES.
+II  -  DANO.  AUSENCIA DE DOLO ESPECIFICO E REPARAÇÃO DOS PREJUIZOS
+ANTES DA INSTAURAÇÃO DO PROCESSO. DENUNCIA REJEITADA.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>06/04/1994</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/05/1994</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-331 ART-163 PAR-UNICO INC-3</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_3" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_3" class="titulo_popup"><font 9305345158</label>
+										<input type="image" onclick="javascript: fechar('popup_3');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_3"
+											value="Processo 9305345158" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9305345158<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 81<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Lazaro Guimarães</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/05/1994 - Página::26144</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.
+I  -  DESACATO. DESCARACTERIZAÇÃO, QUANDO O COMPORTAMENTO DO AGENTE
+TEM   CONOTAÇÃO   ESTRITAMENTE  PESSOAL,  MOTIVADO  POR  DESAVENÇAS
+FAMILIARES.
+II  -  DANO.  AUSENCIA DE DOLO ESPECIFICO E REPARAÇÃO DOS PREJUIZOS
+ANTES DA INSTAURAÇÃO DO PROCESSO. DENUNCIA REJEITADA.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>06/04/1994</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/05/1994</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-331 ART-163 PAR-UNICO INC-3</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_3" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_3" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_3');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_3"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL.
+I  -  DESACATO. DESCARACTERIZAÇÃO, QUANDO O COMPORTAMENTO DO AGENTE
+TEM   CONOTAÇÃO   ESTRITAMENTE  PESSOAL,  MOTIVADO  POR  DESAVENÇAS
+FAMILIARES.
+II  -  DANO.  AUSENCIA DE DOLO ESPECIFICO E REPARAÇÃO DOS PREJUIZOS
+ANTES DA INSTAURAÇÃO DO PROCESSO. DENUNCIA REJEITADA.<br />(<font 9305345158, Desembargador Federal Lazaro Guimarães, TRF5 - Pleno, DJ - Data::27/05/1994 - Página::26144.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc4">Documento 4 - TRF5 - <font 9205265640</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc3"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc5"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_4');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_4');imprimir();fechar('popup_4');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205265640<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 72<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::23/07/1993</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>AÇÃO PENAL ORIGINARIA. DENUNCIA CONTRA EX-PREFEITO. REJEIÇÃO.
+REVOGAÇÃO  DO TITULO III, DO LIVRO II, DO CODIGO DE PROCESSO PENAL.
+LEI 8658/93.
+APLICAÇÃO DO RITO PREVISTO NA LEI 8038/90 AOS TRF'S. COMPETENCIA DO
+PLENARIO  PARA  DELIBERAR  SOBRE  O  RECEBIMENTO  OU  NÃO  DA  PEÇA
+ACUSATORIA.
+FORNECIMENTO  DE CERTIDÃO DE TEMPO DE SERVIÇO IDEOLOGICAMENTE FALSA
+POR  PREFEITO  MUNICIPAL.  FINALIDADE DE UTILIZAÇÃO POR SERVIDOR DO
+DNOCS PARA OBTENÇÃO DE ESTABILIDADE FUNCIONAL.
+DENUNCIA  POR  CRIME  DE FALSIDADE IDEOLOGICA - CP, ART. 299. FATOS
+DESCRITOS  QUE SE ENQUADRAM A HIPOTESE PREVISTA NO ART. 301 "CAPUT"
+DO  CODIGO  PENAL  -  CERTIDÃO  OU  ATESTADO IDEOLOGICAMENTE FALSO.
+APLICAÇÃO DO PRINCIPIO DA ESPECIALIDADE.
+DELITO APENADO COM DETENÇÃO DE DOIS MESES A UM ANO.
+TENDO DECORRIDO MAIS DE 04 (QUATRO) ANOS ENTRE A CONSUMAÇÃO DO FATO
+E  A  DATA  DA  DELIBERAÇÃO  PELO  PLENARIO  SOBRE O RECEBIMENTO DA
+DENUNCIA  (PRIMEIRO  EVENTO  INTERRUPTIVO  DO PRAZO PRESCRICIONAL),
+EXTINGUIU-SE A PUNIBILIDADE.
+PRESCRIÇÃO  DA  PRETENSÃO PUNITIVA. REJEIÇÃO DA DENUNCIA. CPP, ART.
+43, II.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO,   DENUNCIA,   CONSUMAÇÃO,  CRIME,  FALSIDADE  IDEOLOGICA,
+OCORRENCIA,    PRESCRIÇÃO,    PRETENSÃO   PUNITIVA,   EXTINÇÃO   DA
+PUNIBILIDADE.
+                                                                 JAF
+CRIME CONTRA A FE PUBLICA, FALSIFICAÇÃO DE DOCUMENTO PUBLICO,
+INTERRUPÇÃO PELA DENUNCIA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>23/06/1993</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>23/07/1993</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR:SYLVIO AMARAL
+OBRA:FALSIDADE DOCUMENTAL
+AUTOR:HELENO CLAUDIO FRAGOSO
+OBRA:LIÇÕES DE DIREITO PENAL
+AUTOR:DAMASIO DE JESUS
+OBRA:DIREITO PENAL</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED SUM-17 (STJ)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-19
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 PAR-UNICO ART-301 PAR-1 ART-297 PAR-1 ART-171 ART-109 INC-6
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1990
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8658 ANO-1993
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-19</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_4" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_4" class="titulo_popup"><font 9205265640</label>
+										<input type="image" onclick="javascript: fechar('popup_4');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_4"
+											value="Processo 9205265640" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205265640<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 72<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::23/07/1993</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>AÇÃO PENAL ORIGINARIA. DENUNCIA CONTRA EX-PREFEITO. REJEIÇÃO.
+REVOGAÇÃO  DO TITULO III, DO LIVRO II, DO CODIGO DE PROCESSO PENAL.
+LEI 8658/93.
+APLICAÇÃO DO RITO PREVISTO NA LEI 8038/90 AOS TRF'S. COMPETENCIA DO
+PLENARIO  PARA  DELIBERAR  SOBRE  O  RECEBIMENTO  OU  NÃO  DA  PEÇA
+ACUSATORIA.
+FORNECIMENTO  DE CERTIDÃO DE TEMPO DE SERVIÇO IDEOLOGICAMENTE FALSA
+POR  PREFEITO  MUNICIPAL.  FINALIDADE DE UTILIZAÇÃO POR SERVIDOR DO
+DNOCS PARA OBTENÇÃO DE ESTABILIDADE FUNCIONAL.
+DENUNCIA  POR  CRIME  DE FALSIDADE IDEOLOGICA - CP, ART. 299. FATOS
+DESCRITOS  QUE SE ENQUADRAM A HIPOTESE PREVISTA NO ART. 301 "CAPUT"
+DO  CODIGO  PENAL  -  CERTIDÃO  OU  ATESTADO IDEOLOGICAMENTE FALSO.
+APLICAÇÃO DO PRINCIPIO DA ESPECIALIDADE.
+DELITO APENADO COM DETENÇÃO DE DOIS MESES A UM ANO.
+TENDO DECORRIDO MAIS DE 04 (QUATRO) ANOS ENTRE A CONSUMAÇÃO DO FATO
+E  A  DATA  DA  DELIBERAÇÃO  PELO  PLENARIO  SOBRE O RECEBIMENTO DA
+DENUNCIA  (PRIMEIRO  EVENTO  INTERRUPTIVO  DO PRAZO PRESCRICIONAL),
+EXTINGUIU-SE A PUNIBILIDADE.
+PRESCRIÇÃO  DA  PRETENSÃO PUNITIVA. REJEIÇÃO DA DENUNCIA. CPP, ART.
+43, II.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO,   DENUNCIA,   CONSUMAÇÃO,  CRIME,  FALSIDADE  IDEOLOGICA,
+OCORRENCIA,    PRESCRIÇÃO,    PRETENSÃO   PUNITIVA,   EXTINÇÃO   DA
+PUNIBILIDADE.
+                                                                 JAF
+CRIME CONTRA A FE PUBLICA, FALSIFICAÇÃO DE DOCUMENTO PUBLICO,
+INTERRUPÇÃO PELA DENUNCIA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>23/06/1993</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>23/07/1993</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR:SYLVIO AMARAL
+OBRA:FALSIDADE DOCUMENTAL
+AUTOR:HELENO CLAUDIO FRAGOSO
+OBRA:LIÇÕES DE DIREITO PENAL
+AUTOR:DAMASIO DE JESUS
+OBRA:DIREITO PENAL</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED SUM-17 (STJ)
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-19
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299 PAR-UNICO ART-301 PAR-1 ART-297 PAR-1 ART-171 ART-109 INC-6
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8038 ANO-1990
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8658 ANO-1993
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-19</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_4" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_4" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_4');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_4"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																AÇÃO PENAL ORIGINARIA. DENUNCIA CONTRA EX-PREFEITO. REJEIÇÃO.
+REVOGAÇÃO  DO TITULO III, DO LIVRO II, DO CODIGO DE PROCESSO PENAL.
+LEI 8658/93.
+APLICAÇÃO DO RITO PREVISTO NA LEI 8038/90 AOS TRF'S. COMPETENCIA DO
+PLENARIO  PARA  DELIBERAR  SOBRE  O  RECEBIMENTO  OU  NÃO  DA  PEÇA
+ACUSATORIA.
+FORNECIMENTO  DE CERTIDÃO DE TEMPO DE SERVIÇO IDEOLOGICAMENTE FALSA
+POR  PREFEITO  MUNICIPAL.  FINALIDADE DE UTILIZAÇÃO POR SERVIDOR DO
+DNOCS PARA OBTENÇÃO DE ESTABILIDADE FUNCIONAL.
+DENUNCIA  POR  CRIME  DE FALSIDADE IDEOLOGICA - CP, ART. 299. FATOS
+DESCRITOS  QUE SE ENQUADRAM A HIPOTESE PREVISTA NO ART. 301 "CAPUT"
+DO  CODIGO  PENAL  -  CERTIDÃO  OU  ATESTADO IDEOLOGICAMENTE FALSO.
+APLICAÇÃO DO PRINCIPIO DA ESPECIALIDADE.
+DELITO APENADO COM DETENÇÃO DE DOIS MESES A UM ANO.
+TENDO DECORRIDO MAIS DE 04 (QUATRO) ANOS ENTRE A CONSUMAÇÃO DO FATO
+E  A  DATA  DA  DELIBERAÇÃO  PELO  PLENARIO  SOBRE O RECEBIMENTO DA
+DENUNCIA  (PRIMEIRO  EVENTO  INTERRUPTIVO  DO PRAZO PRESCRICIONAL),
+EXTINGUIU-SE A PUNIBILIDADE.
+PRESCRIÇÃO  DA  PRETENSÃO PUNITIVA. REJEIÇÃO DA DENUNCIA. CPP, ART.
+43, II.<br />(<font 9205265640, Desembargador Federal Ridalvo Costa, TRF5 - Pleno, DJ - Data::23/07/1993.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc5">Documento 5 - TRF5 - <font 9205007722</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc4"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc6"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_5');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_5');imprimir();fechar('popup_5');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205007722<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 62<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::22/01/1993 - Página::977</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  CRIME  DE  RESPONSABILIDADE  DE  PREFEITO MUNICIPAL E CRIME
+CONTRA A ORDEM TRIBUTARIA - ART. PRIMEIRO DO DL NUMERO 201/67 C/C O
+ART. SEGUNDO, II, E 12, II, DA LEI NUMERO 8137/90.
+INAPLICABILIDADE  DA LEI NUMERO 8137/90. FATOS ANTERIORES AO INICIO
+DE SUA VIGENCIA. PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+SE  O  MUNICIPIO DEIXOU DE EFETUAR O RECOLHIMENTO DAS CONTRIBUIÇÕES
+PREVIDENCIARIAS,  SEM  QUE  O PREFEITO TENHA FICADO COM O DINHEIRO,
+NÃO SE CONFIGURA O CRIME DE APROPRIAÇÃO DE BENS OU RENDAS PUBLICAS.
+PROVA DO PAGAMENTO DO DEBITO.
+MERA IMPONTUALIDADE NO CUMPRIMENTO DE OBRIGAÇÃO PREVIDENCIARIA.
+NÃO RECEBIMENTO DA DENUNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>FATO,  PREFEITURA  MUNICIPAL,  ATRASO,  RECOLHIMENTO,  CONTRIBUIÇÃO
+PREVIDENCIARIA,   AUSENCIA,   CARACTERIZAÇÃO,   CRIME,  APROPRIAÇÃO
+INDEBITA, IMPUTAÇÃO, PREFEITO, MUNICIPIO, (PB).
+                                                              (JAF)</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>16/12/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>22/01/1993</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-57
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEC-83081 ANO-1979 ART-167 PAR-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2 ART-12 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967 ART-1 INC-1</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Relator Acórdão</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_5" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_5" class="titulo_popup"><font 9205007722</label>
+										<input type="image" onclick="javascript: fechar('popup_5');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_5"
+											value="Processo 9205007722" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205007722<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 62<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::22/01/1993 - Página::977</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  CRIME  DE  RESPONSABILIDADE  DE  PREFEITO MUNICIPAL E CRIME
+CONTRA A ORDEM TRIBUTARIA - ART. PRIMEIRO DO DL NUMERO 201/67 C/C O
+ART. SEGUNDO, II, E 12, II, DA LEI NUMERO 8137/90.
+INAPLICABILIDADE  DA LEI NUMERO 8137/90. FATOS ANTERIORES AO INICIO
+DE SUA VIGENCIA. PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+SE  O  MUNICIPIO DEIXOU DE EFETUAR O RECOLHIMENTO DAS CONTRIBUIÇÕES
+PREVIDENCIARIAS,  SEM  QUE  O PREFEITO TENHA FICADO COM O DINHEIRO,
+NÃO SE CONFIGURA O CRIME DE APROPRIAÇÃO DE BENS OU RENDAS PUBLICAS.
+PROVA DO PAGAMENTO DO DEBITO.
+MERA IMPONTUALIDADE NO CUMPRIMENTO DE OBRIGAÇÃO PREVIDENCIARIA.
+NÃO RECEBIMENTO DA DENUNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>FATO,  PREFEITURA  MUNICIPAL,  ATRASO,  RECOLHIMENTO,  CONTRIBUIÇÃO
+PREVIDENCIARIA,   AUSENCIA,   CARACTERIZAÇÃO,   CRIME,  APROPRIAÇÃO
+INDEBITA, IMPUTAÇÃO, PREFEITO, MUNICIPIO, (PB).
+                                                              (JAF)</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>16/12/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>22/01/1993</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-57
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEC-83081 ANO-1979 ART-167 PAR-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2 ART-12 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967 ART-1 INC-1</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Relator Acórdão</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_5" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_5" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_5');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_5"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL.  CRIME  DE  RESPONSABILIDADE  DE  PREFEITO MUNICIPAL E CRIME
+CONTRA A ORDEM TRIBUTARIA - ART. PRIMEIRO DO DL NUMERO 201/67 C/C O
+ART. SEGUNDO, II, E 12, II, DA LEI NUMERO 8137/90.
+INAPLICABILIDADE  DA LEI NUMERO 8137/90. FATOS ANTERIORES AO INICIO
+DE SUA VIGENCIA. PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+SE  O  MUNICIPIO DEIXOU DE EFETUAR O RECOLHIMENTO DAS CONTRIBUIÇÕES
+PREVIDENCIARIAS,  SEM  QUE  O PREFEITO TENHA FICADO COM O DINHEIRO,
+NÃO SE CONFIGURA O CRIME DE APROPRIAÇÃO DE BENS OU RENDAS PUBLICAS.
+PROVA DO PAGAMENTO DO DEBITO.
+MERA IMPONTUALIDADE NO CUMPRIMENTO DE OBRIGAÇÃO PREVIDENCIARIA.
+NÃO RECEBIMENTO DA DENUNCIA.<br />(<font 9205007722, Desembargador Federal Ridalvo Costa, TRF5 - Pleno, DJ - Data::22/01/1993 - Página::977.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc6">Documento 6 - TRF5 - <font 9205101982</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc5"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc7"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_6');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_6');imprimir();fechar('popup_6');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205101982<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 67<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/11/1992 - Página::39840</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  INQUERITO.  INSUFICIENCIA  DE PROVAS PARA O OFERECIMENTO DA
+DENUNCIA. ARQUIVAMENTO QUE SE IMPÕE.
+-  O  OFERECIMENTO  DA  DENUNCIA,  PARA  A  PROMOÇÃO DA AÇÃO PENAL,
+PRESSUPÕE AUTORIA CONHECIDA, FATO TIPICO E PROVAS IDONEAS.
+-  SE  AS  PROVAS  RECOLHIDAS  NO  PROCEDIMENTO  POLICIAL  NÃO  SÃO
+SUFICIENTES  AO  OFERECIMENTO DA DENUNCIA E O PROPRIO REPRESENTANTE
+DO  MINISTERIO   PUBLICO   ENTENDE   QUE   O   FATO   NOTICIADO NÃO
+CONFIGURA ILICITO PENAL, IMPÕE-SE O ARQUIVAMENTO DO INQUERITO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>CABIMENTO, ARQUIVAMENTO, INQUERITO POLICIAL, MOTIVO, INSUFICIENCIA,
+PROVA,   IDONEIDADE,   OBJETIVO,  OFERECIMENTO,  DENUNCIA,  ADIÇÃO,
+MINISTERIO    PUBLICO    FEDERAL,    ENTENDIMENTO,    INEXISTENCIA,
+CARACTERIZAÇÃO, OCORRENCIA, INFRAÇÃO PENAL.
+PROCESSO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/09/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/11/1992</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR:TOURINHO FILHO
+OBRA:PROCESSO PENAL.</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-24</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_6" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_6" class="titulo_popup"><font 9205101982</label>
+										<input type="image" onclick="javascript: fechar('popup_6');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_6"
+											value="Processo 9205101982" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205101982<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 67<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/11/1992 - Página::39840</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL.  INQUERITO.  INSUFICIENCIA  DE PROVAS PARA O OFERECIMENTO DA
+DENUNCIA. ARQUIVAMENTO QUE SE IMPÕE.
+-  O  OFERECIMENTO  DA  DENUNCIA,  PARA  A  PROMOÇÃO DA AÇÃO PENAL,
+PRESSUPÕE AUTORIA CONHECIDA, FATO TIPICO E PROVAS IDONEAS.
+-  SE  AS  PROVAS  RECOLHIDAS  NO  PROCEDIMENTO  POLICIAL  NÃO  SÃO
+SUFICIENTES  AO  OFERECIMENTO DA DENUNCIA E O PROPRIO REPRESENTANTE
+DO  MINISTERIO   PUBLICO   ENTENDE   QUE   O   FATO   NOTICIADO NÃO
+CONFIGURA ILICITO PENAL, IMPÕE-SE O ARQUIVAMENTO DO INQUERITO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>CABIMENTO, ARQUIVAMENTO, INQUERITO POLICIAL, MOTIVO, INSUFICIENCIA,
+PROVA,   IDONEIDADE,   OBJETIVO,  OFERECIMENTO,  DENUNCIA,  ADIÇÃO,
+MINISTERIO    PUBLICO    FEDERAL,    ENTENDIMENTO,    INEXISTENCIA,
+CARACTERIZAÇÃO, OCORRENCIA, INFRAÇÃO PENAL.
+PROCESSO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/09/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/11/1992</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR:TOURINHO FILHO
+OBRA:PROCESSO PENAL.</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-24</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_6" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_6" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_6');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_6"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL.  INQUERITO.  INSUFICIENCIA  DE PROVAS PARA O OFERECIMENTO DA
+DENUNCIA. ARQUIVAMENTO QUE SE IMPÕE.
+-  O  OFERECIMENTO  DA  DENUNCIA,  PARA  A  PROMOÇÃO DA AÇÃO PENAL,
+PRESSUPÕE AUTORIA CONHECIDA, FATO TIPICO E PROVAS IDONEAS.
+-  SE  AS  PROVAS  RECOLHIDAS  NO  PROCEDIMENTO  POLICIAL  NÃO  SÃO
+SUFICIENTES  AO  OFERECIMENTO DA DENUNCIA E O PROPRIO REPRESENTANTE
+DO  MINISTERIO   PUBLICO   ENTENDE   QUE   O   FATO   NOTICIADO NÃO
+CONFIGURA ILICITO PENAL, IMPÕE-SE O ARQUIVAMENTO DO INQUERITO.<br />(<font 9205101982, Desembargador Federal Nereu Santos, TRF5 - Pleno, DJ - Data::27/11/1992 - Página::39840.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc7">Documento 7 - TRF5 - <font 9105008522</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc6"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc8"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_7');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_7');imprimir();fechar('popup_7');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105008522<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 43<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Castro Meira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::25/09/1992 - Página::30053</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS   A  PROCURADOR  DA  REPUBLICA.  PEDIDO  DE  ARQUIVAMENTO
+DEFERIDO.
+-  ACOLHIMENTO  DE  PARECER  DO CHEFE DO MINISTERIO PUBLICO FEDERAL
+OPINANDO PELO ARQUIVAMENTO DO INQUERITO EM RELAÇÃO AO PROCURADOR DA
+REPUBLICA  NO CEARA (ART. 28 DO CPP) E DEVOLUÇÃO DOS MESMOS AUTOS A
+POLICIA  FEDERAL DO CEARA PARA AS PROVIDENCIAS CABIVEIS COM RELAÇÃO
+AO OUTRO INDICIADO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>ACOLHIMENTO,    PARECER,    PROCURADORIA    GERAL   DA   REPUBLICA,
+DETERMINAÇÃO,   ARQUIVAMENTO,  INQUERITO,  RELAÇÃO,  PROCURADOR  DA
+REPUBLICA,    ADIÇÃO,    CONTINUAÇÃO,    ANDAMENTO,   PROCEDIMENTO,
+REFERENCIA, DIVERSIDADE, REU.
+PROCESSO, DENUNCIA, INQUERITO POLICIAL ARQUIVADO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/09/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>25/09/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LCP-40 ART-20 PAR-UNICO
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_7" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_7" class="titulo_popup"><font 9105008522</label>
+										<input type="image" onclick="javascript: fechar('popup_7');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_7"
+											value="Processo 9105008522" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105008522<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 43<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Castro Meira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::25/09/1992 - Página::30053</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS   A  PROCURADOR  DA  REPUBLICA.  PEDIDO  DE  ARQUIVAMENTO
+DEFERIDO.
+-  ACOLHIMENTO  DE  PARECER  DO CHEFE DO MINISTERIO PUBLICO FEDERAL
+OPINANDO PELO ARQUIVAMENTO DO INQUERITO EM RELAÇÃO AO PROCURADOR DA
+REPUBLICA  NO CEARA (ART. 28 DO CPP) E DEVOLUÇÃO DOS MESMOS AUTOS A
+POLICIA  FEDERAL DO CEARA PARA AS PROVIDENCIAS CABIVEIS COM RELAÇÃO
+AO OUTRO INDICIADO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>ACOLHIMENTO,    PARECER,    PROCURADORIA    GERAL   DA   REPUBLICA,
+DETERMINAÇÃO,   ARQUIVAMENTO,  INQUERITO,  RELAÇÃO,  PROCURADOR  DA
+REPUBLICA,    ADIÇÃO,    CONTINUAÇÃO,    ANDAMENTO,   PROCEDIMENTO,
+REFERENCIA, DIVERSIDADE, REU.
+PROCESSO, DENUNCIA, INQUERITO POLICIAL ARQUIVADO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/09/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>25/09/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LCP-40 ART-20 PAR-UNICO
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_7" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_7" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_7');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_7"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS   A  PROCURADOR  DA  REPUBLICA.  PEDIDO  DE  ARQUIVAMENTO
+DEFERIDO.
+-  ACOLHIMENTO  DE  PARECER  DO CHEFE DO MINISTERIO PUBLICO FEDERAL
+OPINANDO PELO ARQUIVAMENTO DO INQUERITO EM RELAÇÃO AO PROCURADOR DA
+REPUBLICA  NO CEARA (ART. 28 DO CPP) E DEVOLUÇÃO DOS MESMOS AUTOS A
+POLICIA  FEDERAL DO CEARA PARA AS PROVIDENCIAS CABIVEIS COM RELAÇÃO
+AO OUTRO INDICIADO.<br />(<font 9105008522, Desembargador Federal Castro Meira, TRF5 - Pleno, DJ - Data::25/09/1992 - Página::30053.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc8">Documento 8 - TRF5 - <font 9205057304</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc7"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc9"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_8');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_8');imprimir();fechar('popup_8');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205057304<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 65<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Lazaro Guimarães</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::18/09/1992 - Página::29033</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. DENUNCIA CONTRA EX-PREFEITO PELA PRATICA DE CRIME
+DE RESPONSABILIDADE. SO O CHEFE DO EXECUTIVO MUNICIPAL EM EXERCICIO
+RESPONDE PELOS TIPOS PREVISTOS NO DECRETO-LEI 201/67.
+PRECEDENTES  DO SUPREMO TRIBUNAL FEDERAL. INEXISTENCIA DE ELEMENTOS
+QUE  INDIQUEM A POSSIBILIDADE DE DELITO COMUM RESIDUAL. REJEIÇÃO DA
+DENUNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO,   DENUNCIA,  OFERECIMENTO,  OPOSIÇÃO,  PREFEITO,  CIDADE,
+INTERIOR,  (PE),  ALEGAÇÕES,  AUSENCIA,  RECOLHIMENTO, CONTRIBUIÇÃO
+PREVIDENCIARIA,    CARACTERIZAÇÃO,   CRIME   DE   RESPONSABILIDADE,
+PREVISÃO,  DECRETO LEI FEDERAL, MOTIVO, OCORRENCIA, AFASTAMENTO, EX
+PREFEITO,   CARATER   PERMANENTE,   EXERCICIO,   MANDATO   ELETIVO,
+FUNDAMENTAÇÃO,    JURISPRUDENCIA    FIRMADA,    (STF),    INCLUSÃO,
+CONSTITUIÇÃO  FEDERAL,  CODIGO  PENAL, RECONHECIMENTO, PRINCIPIO DA
+ANTERIORIDADE,  LEI  PENAL, RESULTADO, DESCABIMENTO, APLICAÇÃO, LEI
+FEDERAL, VIGENCIA, POSTERIORIDADE, FATO, APRECIAÇÃO, AUTOS, EFEITO,
+DETERMINAÇÃO, ARQUIVAMENTO, INQUERITO POLICIAL.
+                                                               (JAF)
+PREFEITURA MUNICIPAL, PROCESSO, INQUERITO POLICIAL ARQUIVADO,
+PREFEITO MUNICIPAL,
+DESVIO OU APLICAÇÃO INDEVIDA DE RENDAS OU VERBAS PUBLICAS</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>10/06/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>18/09/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-383 ART-384
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-5 INC-39</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_8" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_8" class="titulo_popup"><font 9205057304</label>
+										<input type="image" onclick="javascript: fechar('popup_8');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_8"
+											value="Processo 9205057304" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9205057304<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 65<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Lazaro Guimarães</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::18/09/1992 - Página::29033</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. DENUNCIA CONTRA EX-PREFEITO PELA PRATICA DE CRIME
+DE RESPONSABILIDADE. SO O CHEFE DO EXECUTIVO MUNICIPAL EM EXERCICIO
+RESPONDE PELOS TIPOS PREVISTOS NO DECRETO-LEI 201/67.
+PRECEDENTES  DO SUPREMO TRIBUNAL FEDERAL. INEXISTENCIA DE ELEMENTOS
+QUE  INDIQUEM A POSSIBILIDADE DE DELITO COMUM RESIDUAL. REJEIÇÃO DA
+DENUNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>REJEIÇÃO,   DENUNCIA,  OFERECIMENTO,  OPOSIÇÃO,  PREFEITO,  CIDADE,
+INTERIOR,  (PE),  ALEGAÇÕES,  AUSENCIA,  RECOLHIMENTO, CONTRIBUIÇÃO
+PREVIDENCIARIA,    CARACTERIZAÇÃO,   CRIME   DE   RESPONSABILIDADE,
+PREVISÃO,  DECRETO LEI FEDERAL, MOTIVO, OCORRENCIA, AFASTAMENTO, EX
+PREFEITO,   CARATER   PERMANENTE,   EXERCICIO,   MANDATO   ELETIVO,
+FUNDAMENTAÇÃO,    JURISPRUDENCIA    FIRMADA,    (STF),    INCLUSÃO,
+CONSTITUIÇÃO  FEDERAL,  CODIGO  PENAL, RECONHECIMENTO, PRINCIPIO DA
+ANTERIORIDADE,  LEI  PENAL, RESULTADO, DESCABIMENTO, APLICAÇÃO, LEI
+FEDERAL, VIGENCIA, POSTERIORIDADE, FATO, APRECIAÇÃO, AUTOS, EFEITO,
+DETERMINAÇÃO, ARQUIVAMENTO, INQUERITO POLICIAL.
+                                                               (JAF)
+PREFEITURA MUNICIPAL, PROCESSO, INQUERITO POLICIAL ARQUIVADO,
+PREFEITO MUNICIPAL,
+DESVIO OU APLICAÇÃO INDEVIDA DE RENDAS OU VERBAS PUBLICAS</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>10/06/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>18/09/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-383 ART-384
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED DEL-201 ANO-1967 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-5 INC-39</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_8" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_8" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_8');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_8"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL PENAL. DENUNCIA CONTRA EX-PREFEITO PELA PRATICA DE CRIME
+DE RESPONSABILIDADE. SO O CHEFE DO EXECUTIVO MUNICIPAL EM EXERCICIO
+RESPONDE PELOS TIPOS PREVISTOS NO DECRETO-LEI 201/67.
+PRECEDENTES  DO SUPREMO TRIBUNAL FEDERAL. INEXISTENCIA DE ELEMENTOS
+QUE  INDIQUEM A POSSIBILIDADE DE DELITO COMUM RESIDUAL. REJEIÇÃO DA
+DENUNCIA.<br />(<font 9205057304, Desembargador Federal Lazaro Guimarães, TRF5 - Pleno, DJ - Data::18/09/1992 - Página::29033.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc9">Documento 9 - TRF5 - <font 9105065208</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc8"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc10"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_9');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_9');imprimir();fechar('popup_9');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105065208<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 59<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::05/06/1992 - Página::16007</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL. COMPETENCIA ORIGINARIA DO
+TRIBUNAL. PEDIDO DE ARQUIVAMENTO PELO MINISTERIO PUBLICO.
+POSSIBILIDADE DE INDEFERIMENTO DO PEDIDO ACASO ENTENDA O TRIBUNAL
+EXISTIREM ELEMENTOS SUFICIENTES AO OFERECIMENTO DA DENUNCIA. VOTO
+VENCIDO QUE ENTENDIA OBRIGATORIO O SEU DEFERIMENTO. PEDIDO DE
+ARQUIVAMENTO DEFERIDO A MINGUA DE ELEMENTOS DE CONVICÇÃO A ENSEJAR O
+OFERECIMENTO DA DENUNCIA.
+I - VERIFICANDO O TRIBUNAL, NOS PROCESSO DE SUA COMPETENCIA, QUE  O
+INQUERITO POLICIAL TRAZ EM SEU BOJO ELEMENTOS DE CONVICÇÃO TAIS  QUE
+POSSAM ENSEJAR O OFERECIMENTO DA DENUNCIA PELO MINISTERIO PUBLICO,
+PODE A CORTE INDEFERIR O PEDIDO DE ARQUIVAMENTO FORMULADO PELO
+PROCURADOR DA REPUBLICA, DETERMINANDO A REMESSA DOS AUTOS AO
+PROCURADOR GERAL DA REPUBLICA, PARA QUE ESTE INICIE A AÇÃO PENAL,
+SEM QUE TAL MEDIDA IMPLIQUE EM INTERFERENCIA NA INDEPENDENCIA
+FUNCIONAL DAQUELE ORGÃO.
+II - VOTO VENCIDO DO RELATOR QUE ENTENDIA OBRIGATORIO O
+ARQUIVAMENTO, SOB PENA DE QUEBRA DO PRINCIPIO DO 'NE PROCEDAT JUDEX
+EX OFFICIO'.
+II - DE DEFERIR-SE O PEDIDO DE ARQUIVAMENTO DE INQUERITO POLICIAL
+INSTAURADO POR INFRAÇÃO AO ART. 70 DA LEI 4177, DE 27.08.62, SE A
+PROPRIA AUTORIDADE OFICIANTE, COMUNICANDO O DESLACRAMENTO DA
+RETRANSMISSORA, INFORMA DA TRAMITAÇÃO NORMAL DO PEDIDO PARA SUA
+REGULARIZAÇÃO.
+IV - INQUERITO QUE SE ARQUIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>DETERMINAÇÃO,   ARQUIVAMENTO,   INQUERITO  POLICIAL,  REQUERIMENTO,
+MINISTERIO PUBLICO, ARGUIÇÃO, IMPROCEDENCIA, FUNDAMENTAÇÃO, PEDIDO,
+RECONHECIMENTO, IRREGULARIDADE, NATUREZA ADMINISTRATIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>18/03/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>05/06/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-559 ART-24
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-4177 ANO-1962 ART-70
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-29 INC-8 ART-129 INC-1 ART-127 PAR-1</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_9" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_9" class="titulo_popup"><font 9105065208</label>
+										<input type="image" onclick="javascript: fechar('popup_9');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_9"
+											value="Processo 9105065208" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105065208<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 59<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Nereu Santos</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::05/06/1992 - Página::16007</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL. COMPETENCIA ORIGINARIA DO
+TRIBUNAL. PEDIDO DE ARQUIVAMENTO PELO MINISTERIO PUBLICO.
+POSSIBILIDADE DE INDEFERIMENTO DO PEDIDO ACASO ENTENDA O TRIBUNAL
+EXISTIREM ELEMENTOS SUFICIENTES AO OFERECIMENTO DA DENUNCIA. VOTO
+VENCIDO QUE ENTENDIA OBRIGATORIO O SEU DEFERIMENTO. PEDIDO DE
+ARQUIVAMENTO DEFERIDO A MINGUA DE ELEMENTOS DE CONVICÇÃO A ENSEJAR O
+OFERECIMENTO DA DENUNCIA.
+I - VERIFICANDO O TRIBUNAL, NOS PROCESSO DE SUA COMPETENCIA, QUE  O
+INQUERITO POLICIAL TRAZ EM SEU BOJO ELEMENTOS DE CONVICÇÃO TAIS  QUE
+POSSAM ENSEJAR O OFERECIMENTO DA DENUNCIA PELO MINISTERIO PUBLICO,
+PODE A CORTE INDEFERIR O PEDIDO DE ARQUIVAMENTO FORMULADO PELO
+PROCURADOR DA REPUBLICA, DETERMINANDO A REMESSA DOS AUTOS AO
+PROCURADOR GERAL DA REPUBLICA, PARA QUE ESTE INICIE A AÇÃO PENAL,
+SEM QUE TAL MEDIDA IMPLIQUE EM INTERFERENCIA NA INDEPENDENCIA
+FUNCIONAL DAQUELE ORGÃO.
+II - VOTO VENCIDO DO RELATOR QUE ENTENDIA OBRIGATORIO O
+ARQUIVAMENTO, SOB PENA DE QUEBRA DO PRINCIPIO DO 'NE PROCEDAT JUDEX
+EX OFFICIO'.
+II - DE DEFERIR-SE O PEDIDO DE ARQUIVAMENTO DE INQUERITO POLICIAL
+INSTAURADO POR INFRAÇÃO AO ART. 70 DA LEI 4177, DE 27.08.62, SE A
+PROPRIA AUTORIDADE OFICIANTE, COMUNICANDO O DESLACRAMENTO DA
+RETRANSMISSORA, INFORMA DA TRAMITAÇÃO NORMAL DO PEDIDO PARA SUA
+REGULARIZAÇÃO.
+IV - INQUERITO QUE SE ARQUIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>DETERMINAÇÃO,   ARQUIVAMENTO,   INQUERITO  POLICIAL,  REQUERIMENTO,
+MINISTERIO PUBLICO, ARGUIÇÃO, IMPROCEDENCIA, FUNDAMENTAÇÃO, PEDIDO,
+RECONHECIMENTO, IRREGULARIDADE, NATUREZA ADMINISTRATIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>18/03/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>05/06/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-559 ART-24
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-4177 ANO-1962 ART-70
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-29 INC-8 ART-129 INC-1 ART-127 PAR-1</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_9" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_9" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_9');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_9"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL PENAL. INQUERITO POLICIAL. COMPETENCIA ORIGINARIA DO
+TRIBUNAL. PEDIDO DE ARQUIVAMENTO PELO MINISTERIO PUBLICO.
+POSSIBILIDADE DE INDEFERIMENTO DO PEDIDO ACASO ENTENDA O TRIBUNAL
+EXISTIREM ELEMENTOS SUFICIENTES AO OFERECIMENTO DA DENUNCIA. VOTO
+VENCIDO QUE ENTENDIA OBRIGATORIO O SEU DEFERIMENTO. PEDIDO DE
+ARQUIVAMENTO DEFERIDO A MINGUA DE ELEMENTOS DE CONVICÇÃO A ENSEJAR O
+OFERECIMENTO DA DENUNCIA.
+I - VERIFICANDO O TRIBUNAL, NOS PROCESSO DE SUA COMPETENCIA, QUE  O
+INQUERITO POLICIAL TRAZ EM SEU BOJO ELEMENTOS DE CONVICÇÃO TAIS  QUE
+POSSAM ENSEJAR O OFERECIMENTO DA DENUNCIA PELO MINISTERIO PUBLICO,
+PODE A CORTE INDEFERIR O PEDIDO DE ARQUIVAMENTO FORMULADO PELO
+PROCURADOR DA REPUBLICA, DETERMINANDO A REMESSA DOS AUTOS AO
+PROCURADOR GERAL DA REPUBLICA, PARA QUE ESTE INICIE A AÇÃO PENAL,
+SEM QUE TAL MEDIDA IMPLIQUE EM INTERFERENCIA NA INDEPENDENCIA
+FUNCIONAL DAQUELE ORGÃO.
+II - VOTO VENCIDO DO RELATOR QUE ENTENDIA OBRIGATORIO O
+ARQUIVAMENTO, SOB PENA DE QUEBRA DO PRINCIPIO DO 'NE PROCEDAT JUDEX
+EX OFFICIO'.
+II - DE DEFERIR-SE O PEDIDO DE ARQUIVAMENTO DE INQUERITO POLICIAL
+INSTAURADO POR INFRAÇÃO AO ART. 70 DA LEI 4177, DE 27.08.62, SE A
+PROPRIA AUTORIDADE OFICIANTE, COMUNICANDO O DESLACRAMENTO DA
+RETRANSMISSORA, INFORMA DA TRAMITAÇÃO NORMAL DO PEDIDO PARA SUA
+REGULARIZAÇÃO.
+IV - INQUERITO QUE SE ARQUIVA.<br />(<font 9105065208, Desembargador Federal Nereu Santos, TRF5 - Pleno, DJ - Data::05/06/1992 - Página::16007.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc10">Documento 10 - TRF5 - <font 9105027675</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc9"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_10');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_10');imprimir();fechar('popup_10');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105027675<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 49<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/03/1992 - Página::7163</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL. APROPRIAÇÃO INDEBITA E CRIME CONTRA A ORDEM TRIBUTARIA - ART.
+168 DO CP C/C O ART. SEGUNDO, II, DA LEI 8137/90.
+SE   O   MUNICIPIO   DEIXOU   DE   EFETUAR   O   RECOLHIMENTO   DAS
+CONTRIBUIÇÕES  PREVIDENCIARIAS, SEM QUE O PREFEITO TENHA FICADO COM
+O DINHEIRO, NÃO SE CONFIGUROU O CRIME DE APROPRIÇÃO INDEBITA.
+FATO ANTERIOR A VIGENCIA DA LEI 8137, DE 27.12.90.
+PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+DENUNCIA NÃO RECEBIDA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>FATO,  APRECIAÇÃO,  AUTOS, OCORRENCIA, ANTERIORIDADE, VIGENCIA, LEI
+FEDERAL,   DISCIPLINAMENTO,   CRIME   CONTRA  A  ORDEM  TRIBUTARIA,
+RESULTADO,   DESCABIMENTO,  APLICAÇÃO,  NORMA  JURIDICA,  RESPEITO,
+PRINCIPIO DE ANTERIORIDADE, LEI PENAL, CONSTITUIÇÃO FEDERAL.
+DESCARACTERIZAÇÃO,  CRIME,  APROPRIAÇÃO  INDEBITA,  FATO, PREFEITO,
+CIDADE,   INTERIOR,   (PB),  AUSENCIA,  RECOLHIMENTO,  CONTRIBUIÇÃO
+PREVIDENCIARIA, (FPAS), MOTIVO, INEXISTENCIA, COMPROVAÇÃO, VONTADE,
+APROPRIAÇÃO,  ADIÇÃO,  PREFEITURA  MUNICIPAL, PARCELAMENTO, DIVIDA,
+RESULTADO,  NEGAÇÃO,  RECEBIMENTO,  DENUNCIA, EFEITO, ARQUIVAMENTO,
+PROCESSO.
+                                                                 JAF
+CRIME CONTRA O PATRIMÔNIO, APROPRIAÇÃO INDEBITA,</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>11/03/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/03/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-57
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CLPS-84 Consolidação das Leis da Previdencia Social
+LEG-FED DEC-89312 ANO-1984 ART-139 INC-1 LET-A
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-168 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-5 INC-29</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_10" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_10" class="titulo_popup"><font 9105027675</label>
+										<input type="image" onclick="javascript: fechar('popup_10');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_10"
+											value="Processo 9105027675" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105027675<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 49<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Ridalvo Costa</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/03/1992 - Página::7163</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL. APROPRIAÇÃO INDEBITA E CRIME CONTRA A ORDEM TRIBUTARIA - ART.
+168 DO CP C/C O ART. SEGUNDO, II, DA LEI 8137/90.
+SE   O   MUNICIPIO   DEIXOU   DE   EFETUAR   O   RECOLHIMENTO   DAS
+CONTRIBUIÇÕES  PREVIDENCIARIAS, SEM QUE O PREFEITO TENHA FICADO COM
+O DINHEIRO, NÃO SE CONFIGUROU O CRIME DE APROPRIÇÃO INDEBITA.
+FATO ANTERIOR A VIGENCIA DA LEI 8137, DE 27.12.90.
+PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+DENUNCIA NÃO RECEBIDA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>FATO,  APRECIAÇÃO,  AUTOS, OCORRENCIA, ANTERIORIDADE, VIGENCIA, LEI
+FEDERAL,   DISCIPLINAMENTO,   CRIME   CONTRA  A  ORDEM  TRIBUTARIA,
+RESULTADO,   DESCABIMENTO,  APLICAÇÃO,  NORMA  JURIDICA,  RESPEITO,
+PRINCIPIO DE ANTERIORIDADE, LEI PENAL, CONSTITUIÇÃO FEDERAL.
+DESCARACTERIZAÇÃO,  CRIME,  APROPRIAÇÃO  INDEBITA,  FATO, PREFEITO,
+CIDADE,   INTERIOR,   (PB),  AUSENCIA,  RECOLHIMENTO,  CONTRIBUIÇÃO
+PREVIDENCIARIA, (FPAS), MOTIVO, INEXISTENCIA, COMPROVAÇÃO, VONTADE,
+APROPRIAÇÃO,  ADIÇÃO,  PREFEITURA  MUNICIPAL, PARCELAMENTO, DIVIDA,
+RESULTADO,  NEGAÇÃO,  RECEBIMENTO,  DENUNCIA, EFEITO, ARQUIVAMENTO,
+PROCESSO.
+                                                                 JAF
+CRIME CONTRA O PATRIMÔNIO, APROPRIAÇÃO INDEBITA,</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>11/03/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/03/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** ADCT-88 Ato das Disposições Constitucionais Transitorias
+LEG-FED CFD-000000 ANO-1988 ART-57
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CLPS-84 Consolidação das Leis da Previdencia Social
+LEG-FED DEC-89312 ANO-1984 ART-139 INC-1 LET-A
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+LEG-FED LEI-8137 ANO-1990 ART-2 INC-2
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-168 ART-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CF-88 Constituição Federal de 1988
+ART-5 INC-29</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_10" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_10" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_10');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_10"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL. APROPRIAÇÃO INDEBITA E CRIME CONTRA A ORDEM TRIBUTARIA - ART.
+168 DO CP C/C O ART. SEGUNDO, II, DA LEI 8137/90.
+SE   O   MUNICIPIO   DEIXOU   DE   EFETUAR   O   RECOLHIMENTO   DAS
+CONTRIBUIÇÕES  PREVIDENCIARIAS, SEM QUE O PREFEITO TENHA FICADO COM
+O DINHEIRO, NÃO SE CONFIGUROU O CRIME DE APROPRIÇÃO INDEBITA.
+FATO ANTERIOR A VIGENCIA DA LEI 8137, DE 27.12.90.
+PRINCIPIO DA ANTERIORIDADE DA LEI PENAL.
+DENUNCIA NÃO RECEBIDA.<br />(<font 9105027675, Desembargador Federal Ridalvo Costa, TRF5 - Pleno, DJ - Data::27/03/1992 - Página::7163.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc11">Documento 11 - TRF5 - <font 9105012074</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc10"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_11');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_11');imprimir();fechar('popup_11');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105012074<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 46<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Petrucio Ferreira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/03/1992 - Página::7163</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CRIME DE FALSIDADE IDEOLOGICA. INQUERITO. ARQUIVAMENTO. COMPETENCIA.
+1 - NÃO SE VISLUMBRANDO NA CONDUTA DE UNS DOS INDICIADOS, ELEMENTOS
+NECESSARIOS A PERFEIÇÃO DO TIPO PENAL DE QUE CUIDA O ART. 299 DO
+CPB, DE TAL MODO A NÃO SE IDENTIFICAR NA MESMA ILICITO ALGUM,
+ACOLHE-SE EM RELAÇÃO AO REFERIDO INDICIADO O PEDIDO DE ARQUIVAMENTO
+DO INQUERITO DEDUZIDO PELA PROCURADORIA REGIONAL FEDERAL.
+2 - ARQUIVANDO O INQUERITO EM RELAÇÃO A QUEM TEM FORO PERANTE ESTA
+CORTE, BEIXAM OS AUTOS AO JUIZ DO PRIMEIRO GRAU, POR DAR-SE
+CONTINUIDADE AO FEITO, EM RELAÇÃO AOS DEMAIS INDICIADOS.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>05/02/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/03/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_11" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_11" class="titulo_popup"><font 9105012074</label>
+										<input type="image" onclick="javascript: fechar('popup_11');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_11"
+											value="Processo 9105012074" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105012074<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 46<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Petrucio Ferreira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::27/03/1992 - Página::7163</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CRIME DE FALSIDADE IDEOLOGICA. INQUERITO. ARQUIVAMENTO. COMPETENCIA.
+1 - NÃO SE VISLUMBRANDO NA CONDUTA DE UNS DOS INDICIADOS, ELEMENTOS
+NECESSARIOS A PERFEIÇÃO DO TIPO PENAL DE QUE CUIDA O ART. 299 DO
+CPB, DE TAL MODO A NÃO SE IDENTIFICAR NA MESMA ILICITO ALGUM,
+ACOLHE-SE EM RELAÇÃO AO REFERIDO INDICIADO O PEDIDO DE ARQUIVAMENTO
+DO INQUERITO DEDUZIDO PELA PROCURADORIA REGIONAL FEDERAL.
+2 - ARQUIVANDO O INQUERITO EM RELAÇÃO A QUEM TEM FORO PERANTE ESTA
+CORTE, BEIXAM OS AUTOS AO JUIZ DO PRIMEIRO GRAU, POR DAR-SE
+CONTINUIDADE AO FEITO, EM RELAÇÃO AOS DEMAIS INDICIADOS.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>05/02/1992</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>27/03/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-299</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_11" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_11" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_11');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_11"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																CRIME DE FALSIDADE IDEOLOGICA. INQUERITO. ARQUIVAMENTO. COMPETENCIA.
+1 - NÃO SE VISLUMBRANDO NA CONDUTA DE UNS DOS INDICIADOS, ELEMENTOS
+NECESSARIOS A PERFEIÇÃO DO TIPO PENAL DE QUE CUIDA O ART. 299 DO
+CPB, DE TAL MODO A NÃO SE IDENTIFICAR NA MESMA ILICITO ALGUM,
+ACOLHE-SE EM RELAÇÃO AO REFERIDO INDICIADO O PEDIDO DE ARQUIVAMENTO
+DO INQUERITO DEDUZIDO PELA PROCURADORIA REGIONAL FEDERAL.
+2 - ARQUIVANDO O INQUERITO EM RELAÇÃO A QUEM TEM FORO PERANTE ESTA
+CORTE, BEIXAM OS AUTOS AO JUIZ DO PRIMEIRO GRAU, POR DAR-SE
+CONTINUIDADE AO FEITO, EM RELAÇÃO AOS DEMAIS INDICIADOS.<br />(<font 9105012074, Desembargador Federal Petrucio Ferreira, TRF5 - Pleno, DJ - Data::27/03/1992 - Página::7163.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc12">Documento 12 - TRF5 - <font 9105010675</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc11"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_12');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_12');imprimir();fechar('popup_12');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105010675<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 45<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Petrucio Ferreira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::14/02/1992 - Página::2713</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL INSTAURAÇÃO CONTRA PROCURADOR
+DE JUSTIÇA. COMPETENCIA. 'RATIONE MATERIAE'. ARQUIVAMENTO.
+1 - SENDO O CRIME, 'RATIONE MATERIAE' DA COMPETENCIA DA JUSTIÇA
+COMUM FEDERAL E SE TRATANDO DE INDICIADO QUE EM RAZÃO DA FUNÇÃO TEM
+FORO CRIMINAL EM UM JUIZO COLEGIADO (TRIBUNAL DE JUSTIÇA DO ESTADO,
+QUE SE ACHA INSERIDO NA JURISDIÇÃO DESTE TRIBUNAL), E COMPETENTE
+PARA PROCESSA-LO E JULGA-LO ESTA CORTE FEDERAL DE JUSTIÇA.
+2 - NÃO IDENTIFICADA NA CONDUTA DO INDICADO, PERFEIÇÃO DE QUALQUER
+TIPO PENAL, DEFERE-SE O PEDIDO DE ARQUIVAMENTO DEDUZIDO PELA
+PROCURADORIA REGIONAL DA REPUBLICA.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/10/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>14/02/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-171</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_12" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_12" class="titulo_popup"><font 9105010675</label>
+										<input type="image" onclick="javascript: fechar('popup_12');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_12"
+											value="Processo 9105010675" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105010675<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 45<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Petrucio Ferreira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::14/02/1992 - Página::2713</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL INSTAURAÇÃO CONTRA PROCURADOR
+DE JUSTIÇA. COMPETENCIA. 'RATIONE MATERIAE'. ARQUIVAMENTO.
+1 - SENDO O CRIME, 'RATIONE MATERIAE' DA COMPETENCIA DA JUSTIÇA
+COMUM FEDERAL E SE TRATANDO DE INDICIADO QUE EM RAZÃO DA FUNÇÃO TEM
+FORO CRIMINAL EM UM JUIZO COLEGIADO (TRIBUNAL DE JUSTIÇA DO ESTADO,
+QUE SE ACHA INSERIDO NA JURISDIÇÃO DESTE TRIBUNAL), E COMPETENTE
+PARA PROCESSA-LO E JULGA-LO ESTA CORTE FEDERAL DE JUSTIÇA.
+2 - NÃO IDENTIFICADA NA CONDUTA DO INDICADO, PERFEIÇÃO DE QUALQUER
+TIPO PENAL, DEFERE-SE O PEDIDO DE ARQUIVAMENTO DEDUZIDO PELA
+PROCURADORIA REGIONAL DA REPUBLICA.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>09/10/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>14/02/1992</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-43 INC-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-171</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_12" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_12" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_12');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_12"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL PENAL. INQUERITO POLICIAL INSTAURAÇÃO CONTRA PROCURADOR
+DE JUSTIÇA. COMPETENCIA. 'RATIONE MATERIAE'. ARQUIVAMENTO.
+1 - SENDO O CRIME, 'RATIONE MATERIAE' DA COMPETENCIA DA JUSTIÇA
+COMUM FEDERAL E SE TRATANDO DE INDICIADO QUE EM RAZÃO DA FUNÇÃO TEM
+FORO CRIMINAL EM UM JUIZO COLEGIADO (TRIBUNAL DE JUSTIÇA DO ESTADO,
+QUE SE ACHA INSERIDO NA JURISDIÇÃO DESTE TRIBUNAL), E COMPETENTE
+PARA PROCESSA-LO E JULGA-LO ESTA CORTE FEDERAL DE JUSTIÇA.
+2 - NÃO IDENTIFICADA NA CONDUTA DO INDICADO, PERFEIÇÃO DE QUALQUER
+TIPO PENAL, DEFERE-SE O PEDIDO DE ARQUIVAMENTO DEDUZIDO PELA
+PROCURADORIA REGIONAL DA REPUBLICA.<br />(<font 9105010675, Desembargador Federal Petrucio Ferreira, TRF5 - Pleno, DJ - Data::14/02/1992 - Página::2713.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc13">Documento 13 - TRF5 - <font 9105017157</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc12"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_13');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_13');imprimir();fechar('popup_13');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105017157<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 47<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::29/11/1991 - Página::30528</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL, INQUERITO  POLICIAL.  ARQUIVAMENTO.  AUSENCIA DOS
+PRESSUPOSTOS   PROCESSUAIS   ESSENCIAIS   PARA  A  INTERPOSIÇÃO  DA
+DENUNCIA.
+1  -  NÃO SE ENCONTRANDO SUFICIENTEMENTE COMPROVADA A MATERIALIDADE
+DO DELITO E NÃO APRESENTADOS  INDICIOS  RAZOAVEIS DE AUTORIA, NÃO E
+POSSIVEL  O  DESENCADEAMENTO DA AÇÃO PENAL, ATRAVES DO OFERECIMENTO
+DA DENUNCIA.
+2   -  NO CASO VERTENTE, O PREFEITO DA CIDADE  DE  OLINDA, CONFORME
+DEMONSTRADO  ATRAVES  DE  DEPOIMENTOS  DE DIVERSAS TESTEMUNHAS, BEM
+COMO  DA  REINQUIRIÇÃO DO INDICIADO, NÃO DESCUMPRIU  A DETERMINAÇÃO
+JUDICIAL,  CONSISTENTE   NA   PROIBIÇÃO   DE   TRAFEGO  DE VEICULOS
+PESADOS   NA   'CIDADE    ALTA',  REGIÃO  TOMBADA  PELO  PATRIMONIO
+HISTORICO.
+3  -  DEVIDO  AS   PECULIARIDADES   DO   COMANDO  JUDICIAL,  O  SEU
+CUMPRIMENTO  SO E POSSIVEL SE SE ACRESCER AO CONTROLE DA PREFEITURA
+O  COMPROMISSO DA COMUNIDADE,  NÃO  SE ADMITINDO OS SUCESSIVOS ATOS
+DE  PARTICULARES,  QUE  SE  NEGAM,  TERMINANTEMENTE,  A  CUMPRIR  A
+DECISÃO.
+4   -   NÃO   SE   CARACTERIZANDO,   OUTROSSIM,   A  DOLOSIDADE  DE
+DESOBEDECER,  POR   PARTE   DO   PREFEITO,  TENDO ESTE SE ESFORÇADO
+PELO  CUMPRIMENTO   DA  DELIBERAÇÃO   JUDICIAL, HA QUE SE ACOLHER O
+PEDIDO DE ARQUIVAMENTO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>IMPOSSIBILIDADE,  PREFEITO, CIDADE, (OLINDA), CUMPRIMENTO, DECISÃO,
+JUIZ FEDERAL, CONTEUDO, PROIBIÇÃO, TRAFEGO, VEICULOS, AREA, OBJETO,
+TOMBAMENTO,   AUSENCIA,   COMUNIDADE,   ACOLHIMENTO,   COMPROMISSO,
+CONSERVAÇÃO,  PATRIMONIO  HISTORICO,  INCLUSÃO, INEXISTENCIA, DOLO,
+TITULAR,  PREFEITURA  MUNICIPAL,  DESCUMPRIMENTO,  ORDEM  JUDICIAL,
+CARACTERIZAÇÃO,  CRIME  DE  DESOBEDIENCIA,  RESULTADO, AUTORIZAÇÃO,
+ARQUIVAMENTO,    INQUERITO    POLICIAL,   RESULTADO,   AUTORIZAÇÃO,
+ARQUIVAMENTO,    INQUERITO   POLICIAL,   RESSALVA,   POSSIBILIDADE,
+INSTAURAÇÃO,   AÇÃO   PENAL,   HIPOTESE,   APRECIAÇÃO,  FATO  NOVO,
+DETERMINAÇÃO, MATERIALIDADE, INDICIO, AUTORIA.
+CRIME CONTRA A ADMINISTRAÇÃO PUBLICA, DESOBEDIENCIA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>25/09/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/11/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28 ART-330</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_13" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_13" class="titulo_popup"><font 9105017157</label>
+										<input type="image" onclick="javascript: fechar('popup_13');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_13"
+											value="Processo 9105017157" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105017157<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 47<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::29/11/1991 - Página::30528</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL, INQUERITO  POLICIAL.  ARQUIVAMENTO.  AUSENCIA DOS
+PRESSUPOSTOS   PROCESSUAIS   ESSENCIAIS   PARA  A  INTERPOSIÇÃO  DA
+DENUNCIA.
+1  -  NÃO SE ENCONTRANDO SUFICIENTEMENTE COMPROVADA A MATERIALIDADE
+DO DELITO E NÃO APRESENTADOS  INDICIOS  RAZOAVEIS DE AUTORIA, NÃO E
+POSSIVEL  O  DESENCADEAMENTO DA AÇÃO PENAL, ATRAVES DO OFERECIMENTO
+DA DENUNCIA.
+2   -  NO CASO VERTENTE, O PREFEITO DA CIDADE  DE  OLINDA, CONFORME
+DEMONSTRADO  ATRAVES  DE  DEPOIMENTOS  DE DIVERSAS TESTEMUNHAS, BEM
+COMO  DA  REINQUIRIÇÃO DO INDICIADO, NÃO DESCUMPRIU  A DETERMINAÇÃO
+JUDICIAL,  CONSISTENTE   NA   PROIBIÇÃO   DE   TRAFEGO  DE VEICULOS
+PESADOS   NA   'CIDADE    ALTA',  REGIÃO  TOMBADA  PELO  PATRIMONIO
+HISTORICO.
+3  -  DEVIDO  AS   PECULIARIDADES   DO   COMANDO  JUDICIAL,  O  SEU
+CUMPRIMENTO  SO E POSSIVEL SE SE ACRESCER AO CONTROLE DA PREFEITURA
+O  COMPROMISSO DA COMUNIDADE,  NÃO  SE ADMITINDO OS SUCESSIVOS ATOS
+DE  PARTICULARES,  QUE  SE  NEGAM,  TERMINANTEMENTE,  A  CUMPRIR  A
+DECISÃO.
+4   -   NÃO   SE   CARACTERIZANDO,   OUTROSSIM,   A  DOLOSIDADE  DE
+DESOBEDECER,  POR   PARTE   DO   PREFEITO,  TENDO ESTE SE ESFORÇADO
+PELO  CUMPRIMENTO   DA  DELIBERAÇÃO   JUDICIAL, HA QUE SE ACOLHER O
+PEDIDO DE ARQUIVAMENTO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>IMPOSSIBILIDADE,  PREFEITO, CIDADE, (OLINDA), CUMPRIMENTO, DECISÃO,
+JUIZ FEDERAL, CONTEUDO, PROIBIÇÃO, TRAFEGO, VEICULOS, AREA, OBJETO,
+TOMBAMENTO,   AUSENCIA,   COMUNIDADE,   ACOLHIMENTO,   COMPROMISSO,
+CONSERVAÇÃO,  PATRIMONIO  HISTORICO,  INCLUSÃO, INEXISTENCIA, DOLO,
+TITULAR,  PREFEITURA  MUNICIPAL,  DESCUMPRIMENTO,  ORDEM  JUDICIAL,
+CARACTERIZAÇÃO,  CRIME  DE  DESOBEDIENCIA,  RESULTADO, AUTORIZAÇÃO,
+ARQUIVAMENTO,    INQUERITO    POLICIAL,   RESULTADO,   AUTORIZAÇÃO,
+ARQUIVAMENTO,    INQUERITO   POLICIAL,   RESSALVA,   POSSIBILIDADE,
+INSTAURAÇÃO,   AÇÃO   PENAL,   HIPOTESE,   APRECIAÇÃO,  FATO  NOVO,
+DETERMINAÇÃO, MATERIALIDADE, INDICIO, AUTORIA.
+CRIME CONTRA A ADMINISTRAÇÃO PUBLICA, DESOBEDIENCIA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>25/09/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/11/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28 ART-330</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_13" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_13" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_13');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_13"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL PENAL, INQUERITO  POLICIAL.  ARQUIVAMENTO.  AUSENCIA DOS
+PRESSUPOSTOS   PROCESSUAIS   ESSENCIAIS   PARA  A  INTERPOSIÇÃO  DA
+DENUNCIA.
+1  -  NÃO SE ENCONTRANDO SUFICIENTEMENTE COMPROVADA A MATERIALIDADE
+DO DELITO E NÃO APRESENTADOS  INDICIOS  RAZOAVEIS DE AUTORIA, NÃO E
+POSSIVEL  O  DESENCADEAMENTO DA AÇÃO PENAL, ATRAVES DO OFERECIMENTO
+DA DENUNCIA.
+2   -  NO CASO VERTENTE, O PREFEITO DA CIDADE  DE  OLINDA, CONFORME
+DEMONSTRADO  ATRAVES  DE  DEPOIMENTOS  DE DIVERSAS TESTEMUNHAS, BEM
+COMO  DA  REINQUIRIÇÃO DO INDICIADO, NÃO DESCUMPRIU  A DETERMINAÇÃO
+JUDICIAL,  CONSISTENTE   NA   PROIBIÇÃO   DE   TRAFEGO  DE VEICULOS
+PESADOS   NA   'CIDADE    ALTA',  REGIÃO  TOMBADA  PELO  PATRIMONIO
+HISTORICO.
+3  -  DEVIDO  AS   PECULIARIDADES   DO   COMANDO  JUDICIAL,  O  SEU
+CUMPRIMENTO  SO E POSSIVEL SE SE ACRESCER AO CONTROLE DA PREFEITURA
+O  COMPROMISSO DA COMUNIDADE,  NÃO  SE ADMITINDO OS SUCESSIVOS ATOS
+DE  PARTICULARES,  QUE  SE  NEGAM,  TERMINANTEMENTE,  A  CUMPRIR  A
+DECISÃO.
+4   -   NÃO   SE   CARACTERIZANDO,   OUTROSSIM,   A  DOLOSIDADE  DE
+DESOBEDECER,  POR   PARTE   DO   PREFEITO,  TENDO ESTE SE ESFORÇADO
+PELO  CUMPRIMENTO   DA  DELIBERAÇÃO   JUDICIAL, HA QUE SE ACOLHER O
+PEDIDO DE ARQUIVAMENTO.<br />(<font 9105017157, Desembargador Federal Jose Delgado, TRF5 - Pleno, DJ - Data::29/11/1991 - Página::30528.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc14">Documento 14 - TRF5 - <font 8905063527</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc13"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_14');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_14');imprimir();fechar('popup_14');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 8905063527<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 1<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Orlando Rebouças</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::11/10/1991 - Página::25279</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. DENUNCIA CONTRA DEPUTADO ESTADUAL. CRIME DE
+ESTELIONATO. INEXISTENCIA DE CONDIÇÕES EXIGIDAS PARA O EXERCICIO DA
+AÇÃO PENAL. ARQUIVAMENTO.
+-  CASO  EM  QUE A DENUNCIA E VAGA, NÃO SITUANDO A RESPONSABILIDADE
+DOS  ACUSADOS,  NEM  DESCREVENDO  OS  FATOS DELITUOSOS PROPRIAMENTE
+DITOS,IMPUTADOS  AOS  MESMOS.  HA  NOS AUTOS APENAS INDICIOS DE QUE
+TERIA HAVIDO, NA  ESPECIE,  O  COMETIMENTO  DE CRIME ELEITORAL, TAL
+COMO ALICIAMENTO OU  FAVORECIMENTO  COM VISTAS A OBTENÇÃO DE VOTOS,
+DE COMPETENCIA   DA    JUSTIÇA    ELEITORAL.   TRATANDO-SE,   POIS,
+DE CIRCUNSTANCIAS QUE  OBSTAM  O  EXERCICIO  DA  AÇÃO PENAL PERANTE
+A JUSTIÇA  COMUM   E  AUTORIZAM  O  ARQUIVAMENTO  DO  PROCESSO,  HA
+DE APLICAR-SE O  DISPOSTO NO ART. 559 DO CODIGO DE PROCESSO PENAL E
+NO ART. 190 DO REGIMENTO INTERNO DESTE TRIBUNAL.
+- AÇÃO PENAL ARQUIVADA, DECIDINDO-SE PELA REMESSA DE PEÇAS DOS
+AUTOS A PROCURADORIA REGIONAL ELEITORAL DO ESTADO DE ALAGOAS.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>ARQUIVAMENTO, AÇÃO PENAL, AJUIZAMENTO, OPOSIÇÃO, DEPUTADO ESTADUAL,
+FALTA,  COMPETENCIA,  JUSTIÇA FEDERAL, JULGAMENTO, CRIME ELEITORAL,
+ADIÇÃO,    NECESSIDADE,    AUTORIZAÇÃO,   ASSEMBLEIA   LEGISLATIVA.
+PROCESSAMENTO, DEPUTADOS.
+                                                      JAF
+PROCESSO, ARQUIVAMENTO DE PROCESSO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/08/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>11/10/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-171 PAR-3 ART-71 ART-62 INC-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-559 ART-43 INC-3</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_14" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_14" class="titulo_popup"><font 8905063527</label>
+										<input type="image" onclick="javascript: fechar('popup_14');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_14"
+											value="Processo 8905063527" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 8905063527<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 1<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Orlando Rebouças</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::11/10/1991 - Página::25279</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. DENUNCIA CONTRA DEPUTADO ESTADUAL. CRIME DE
+ESTELIONATO. INEXISTENCIA DE CONDIÇÕES EXIGIDAS PARA O EXERCICIO DA
+AÇÃO PENAL. ARQUIVAMENTO.
+-  CASO  EM  QUE A DENUNCIA E VAGA, NÃO SITUANDO A RESPONSABILIDADE
+DOS  ACUSADOS,  NEM  DESCREVENDO  OS  FATOS DELITUOSOS PROPRIAMENTE
+DITOS,IMPUTADOS  AOS  MESMOS.  HA  NOS AUTOS APENAS INDICIOS DE QUE
+TERIA HAVIDO, NA  ESPECIE,  O  COMETIMENTO  DE CRIME ELEITORAL, TAL
+COMO ALICIAMENTO OU  FAVORECIMENTO  COM VISTAS A OBTENÇÃO DE VOTOS,
+DE COMPETENCIA   DA    JUSTIÇA    ELEITORAL.   TRATANDO-SE,   POIS,
+DE CIRCUNSTANCIAS QUE  OBSTAM  O  EXERCICIO  DA  AÇÃO PENAL PERANTE
+A JUSTIÇA  COMUM   E  AUTORIZAM  O  ARQUIVAMENTO  DO  PROCESSO,  HA
+DE APLICAR-SE O  DISPOSTO NO ART. 559 DO CODIGO DE PROCESSO PENAL E
+NO ART. 190 DO REGIMENTO INTERNO DESTE TRIBUNAL.
+- AÇÃO PENAL ARQUIVADA, DECIDINDO-SE PELA REMESSA DE PEÇAS DOS
+AUTOS A PROCURADORIA REGIONAL ELEITORAL DO ESTADO DE ALAGOAS.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>ARQUIVAMENTO, AÇÃO PENAL, AJUIZAMENTO, OPOSIÇÃO, DEPUTADO ESTADUAL,
+FALTA,  COMPETENCIA,  JUSTIÇA FEDERAL, JULGAMENTO, CRIME ELEITORAL,
+ADIÇÃO,    NECESSIDADE,    AUTORIZAÇÃO,   ASSEMBLEIA   LEGISLATIVA.
+PROCESSAMENTO, DEPUTADOS.
+                                                      JAF
+PROCESSO, ARQUIVAMENTO DE PROCESSO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/08/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>11/10/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CP-40 Codigo Penal
+LEG-FED DEL-2848 ANO-1940 ART-171 PAR-3 ART-71 ART-62 INC-1
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-559 ART-43 INC-3</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_14" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_14" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_14');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_14"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSO PENAL. DENUNCIA CONTRA DEPUTADO ESTADUAL. CRIME DE
+ESTELIONATO. INEXISTENCIA DE CONDIÇÕES EXIGIDAS PARA O EXERCICIO DA
+AÇÃO PENAL. ARQUIVAMENTO.
+-  CASO  EM  QUE A DENUNCIA E VAGA, NÃO SITUANDO A RESPONSABILIDADE
+DOS  ACUSADOS,  NEM  DESCREVENDO  OS  FATOS DELITUOSOS PROPRIAMENTE
+DITOS,IMPUTADOS  AOS  MESMOS.  HA  NOS AUTOS APENAS INDICIOS DE QUE
+TERIA HAVIDO, NA  ESPECIE,  O  COMETIMENTO  DE CRIME ELEITORAL, TAL
+COMO ALICIAMENTO OU  FAVORECIMENTO  COM VISTAS A OBTENÇÃO DE VOTOS,
+DE COMPETENCIA   DA    JUSTIÇA    ELEITORAL.   TRATANDO-SE,   POIS,
+DE CIRCUNSTANCIAS QUE  OBSTAM  O  EXERCICIO  DA  AÇÃO PENAL PERANTE
+A JUSTIÇA  COMUM   E  AUTORIZAM  O  ARQUIVAMENTO  DO  PROCESSO,  HA
+DE APLICAR-SE O  DISPOSTO NO ART. 559 DO CODIGO DE PROCESSO PENAL E
+NO ART. 190 DO REGIMENTO INTERNO DESTE TRIBUNAL.
+- AÇÃO PENAL ARQUIVADA, DECIDINDO-SE PELA REMESSA DE PEÇAS DOS
+AUTOS A PROCURADORIA REGIONAL ELEITORAL DO ESTADO DE ALAGOAS.<br />(<font 8905063527, Desembargador Federal Orlando Rebouças, TRF5 - Pleno, DJ - Data::11/10/1991 - Página::25279.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc15">Documento 15 - TRF5 - <font 9105008522</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc14"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_15');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_15');imprimir();fechar('popup_15');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105008522<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 43<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::28/06/1991 - Página::15297</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL CONTRA PROCURADOR DA
+REPUBLICA. PEDIDO DE ARQUIVAMENTO. NÃO CABIMENTO.
+1 - SUBMETIDOS OS AUTOS DO INQUERITO POLICIAL EM QUE FIGURA COMO
+INDICIADO PROCURADOR DA REPUBLICA, EX-DELEGADO DA POLICIA FEDERAL,
+AO REPRESENTANTE DO 'PARQUET', PARA APRECIAÇÃO E 'OPINO DELICTI',
+FOI REQUERIDO O SEU ARQUIVAMENTO.
+2 - SEGUNDO A LEI ORGANICA DO MINISTERIO PUBLICO ( LEI COMPLEMENTAR
+NUMERO 40 ), EM CASOS QUE TAIS, DEVE-SE OBTER A MANIFESTAÇÃO DO
+PROCURADOR GERAL DA REPUBLICA, ACASO INDICIADO PROCURADOR DA
+REPUBLICA OU PROCURADOR GERAL DA JUSTIÇA, ACASO INDICIADO PROMOTOR
+PUBLICO.
+3 - NA HIPOTESE QUE SE EXAMINA, PURA E SIMPLESMENTE, FOI REQUERIDO O
+ARQUIVAMENTO, O QUE VAI DE ENCONTRO AO ART. 20, PARAGRAFO UNICO,
+DA LEI COMPLEMENTAR NUMERO 40.
+4 - PEDIDO DE ARQUIVAMENTO REJEITADO E REMESSA DOS AUTOS AO EXMO.
+SR. PROCURADOR-GERAL DA REPUBLICA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VOTO VENCIDO,ENTENDIMENTO, CABIMENTO, ARQUIVAMENTO, AUTOS, OPOSIÇÃO,
+REPRESENTANTE, MINISTERIO PUBLICO FEDERAL, HIPOTESE, EXECUÇÃO,
+INFRAÇÃO PENAL, PROCURADOR, EXERCICIO, (TRF), QUINTA REGIÃO,
+PRERROGATIVA, AUTONOMIA, EMISSÃO, PARECER, CONCESSÃO, PEDIDO. VOTO
+VENCEDOR, CONTEUDO, RECONHECIMENTO, HIPOTESE, OCORRENCIA, INDICIO,
+REPRESENTANTE, MINISTERIO PUBLICO FEDERAL, EXECUÇÃO, INFRAÇÃO PENAL,
+CABIMENTO, REMESSA, AUTOS, PROCURADORIA GERAL DA REPUBLICA, MOTIVO,
+OBEDIENCIA,DISPOSITIVOS, LEI ORGANICA DO MINISTERIO PUBLICO FEDERAL,
+RESULTADO, DESCABIMENTO, ARQUIVAMENTO, PROCESSO, ENTENDIMENTO,
+MAIORIA, PLENARIO, (TRF), QUINTA REGIÃO.
+INQUERITO POLICIAL, MINISTERIO PUBLICO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>22/05/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>28/06/1991</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_15" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_15" class="titulo_popup"><font 9105008522</label>
+										<input type="image" onclick="javascript: fechar('popup_15');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_15"
+											value="Processo 9105008522" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105008522<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 43<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::28/06/1991 - Página::15297</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL PENAL. INQUERITO POLICIAL CONTRA PROCURADOR DA
+REPUBLICA. PEDIDO DE ARQUIVAMENTO. NÃO CABIMENTO.
+1 - SUBMETIDOS OS AUTOS DO INQUERITO POLICIAL EM QUE FIGURA COMO
+INDICIADO PROCURADOR DA REPUBLICA, EX-DELEGADO DA POLICIA FEDERAL,
+AO REPRESENTANTE DO 'PARQUET', PARA APRECIAÇÃO E 'OPINO DELICTI',
+FOI REQUERIDO O SEU ARQUIVAMENTO.
+2 - SEGUNDO A LEI ORGANICA DO MINISTERIO PUBLICO ( LEI COMPLEMENTAR
+NUMERO 40 ), EM CASOS QUE TAIS, DEVE-SE OBTER A MANIFESTAÇÃO DO
+PROCURADOR GERAL DA REPUBLICA, ACASO INDICIADO PROCURADOR DA
+REPUBLICA OU PROCURADOR GERAL DA JUSTIÇA, ACASO INDICIADO PROMOTOR
+PUBLICO.
+3 - NA HIPOTESE QUE SE EXAMINA, PURA E SIMPLESMENTE, FOI REQUERIDO O
+ARQUIVAMENTO, O QUE VAI DE ENCONTRO AO ART. 20, PARAGRAFO UNICO,
+DA LEI COMPLEMENTAR NUMERO 40.
+4 - PEDIDO DE ARQUIVAMENTO REJEITADO E REMESSA DOS AUTOS AO EXMO.
+SR. PROCURADOR-GERAL DA REPUBLICA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VOTO VENCIDO,ENTENDIMENTO, CABIMENTO, ARQUIVAMENTO, AUTOS, OPOSIÇÃO,
+REPRESENTANTE, MINISTERIO PUBLICO FEDERAL, HIPOTESE, EXECUÇÃO,
+INFRAÇÃO PENAL, PROCURADOR, EXERCICIO, (TRF), QUINTA REGIÃO,
+PRERROGATIVA, AUTONOMIA, EMISSÃO, PARECER, CONCESSÃO, PEDIDO. VOTO
+VENCEDOR, CONTEUDO, RECONHECIMENTO, HIPOTESE, OCORRENCIA, INDICIO,
+REPRESENTANTE, MINISTERIO PUBLICO FEDERAL, EXECUÇÃO, INFRAÇÃO PENAL,
+CABIMENTO, REMESSA, AUTOS, PROCURADORIA GERAL DA REPUBLICA, MOTIVO,
+OBEDIENCIA,DISPOSITIVOS, LEI ORGANICA DO MINISTERIO PUBLICO FEDERAL,
+RESULTADO, DESCABIMENTO, ARQUIVAMENTO, PROCESSO, ENTENDIMENTO,
+MAIORIA, PLENARIO, (TRF), QUINTA REGIÃO.
+INQUERITO POLICIAL, MINISTERIO PUBLICO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>22/05/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>28/06/1991</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_15" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_15" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_15');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_15"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL PENAL. INQUERITO POLICIAL CONTRA PROCURADOR DA
+REPUBLICA. PEDIDO DE ARQUIVAMENTO. NÃO CABIMENTO.
+1 - SUBMETIDOS OS AUTOS DO INQUERITO POLICIAL EM QUE FIGURA COMO
+INDICIADO PROCURADOR DA REPUBLICA, EX-DELEGADO DA POLICIA FEDERAL,
+AO REPRESENTANTE DO 'PARQUET', PARA APRECIAÇÃO E 'OPINO DELICTI',
+FOI REQUERIDO O SEU ARQUIVAMENTO.
+2 - SEGUNDO A LEI ORGANICA DO MINISTERIO PUBLICO ( LEI COMPLEMENTAR
+NUMERO 40 ), EM CASOS QUE TAIS, DEVE-SE OBTER A MANIFESTAÇÃO DO
+PROCURADOR GERAL DA REPUBLICA, ACASO INDICIADO PROCURADOR DA
+REPUBLICA OU PROCURADOR GERAL DA JUSTIÇA, ACASO INDICIADO PROMOTOR
+PUBLICO.
+3 - NA HIPOTESE QUE SE EXAMINA, PURA E SIMPLESMENTE, FOI REQUERIDO O
+ARQUIVAMENTO, O QUE VAI DE ENCONTRO AO ART. 20, PARAGRAFO UNICO,
+DA LEI COMPLEMENTAR NUMERO 40.
+4 - PEDIDO DE ARQUIVAMENTO REJEITADO E REMESSA DOS AUTOS AO EXMO.
+SR. PROCURADOR-GERAL DA REPUBLICA.<br />(<font 9105008522, Desembargador Federal Jose Delgado, TRF5 - Pleno, DJ - Data::28/06/1991 - Página::15297.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc16">Documento 16 - TRF5 - <font 9105001404</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc15"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_16');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_16');imprimir();fechar('popup_16');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105001404<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 42<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::31/05/1991 - Página::12331</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. INQUERITO POLICIAL. ARQUIVAMENTO. PRESENÇA DA
+'NOTITIA CRIMINIS' E DE INDICIOS RAZOAVEIS DE AUTORIA.
+1 - O ARQUIVAMENTO DEVE TER LUGAR QUANDO NÃO FOREM APRESENTADOS,
+ATRAVES DO INQUERITO POLICIAL, INDICIOS RAZOAVEIS DE AUTORIA E
+COMPROVAÇÃO DA MATERIALIDADE DO DELITO.
+2 - A PROMOÇÃO DA DOUTA REPRESENTANTE DO PARQUET NÃO TEM RAZÃO DE
+SER, EM FACE DAS PROVAS COLACIONADAS PELA AUTORIDADE POLICIAL,
+ENRIQUECIDAS POR DEPOIMENTOS E PERICIAS DIVERSAS, PROVENIENTES DE
+FONTES IDONEAS.
+3 - HA, EM TESE, A POSSIBILIDADE DE SER O INDICIADO RESPONSAVEL PELA
+PRATICA DO DELITO, LOGO, JUSTIFICAR-SE-IA A 'PERSECUTIO CRIMINIS'
+SER DESENCADEADA.
+4 - REMESSA DOS AUTOS AO PROCURADOR GERAL DA REPUBLICA PARA OS FINS
+DO ART. 28 DO CODIGO DE PROCESSO PENAL BRASILEIRO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>NEGAÇÃO,  ACOLHIMENTO,  PEDIDO,  ARQUIVAMENTO,  INQUERITO POLICIAL,
+MOTIVO,  EXISTENCIA,  INDICIO,  INFRAÇÃO PENAL, RESULTADO, REMESSA,
+AUTOS, MINISTERIO PUBLICO FEDERAL, APRECIAÇÃO, PROCESSO.
+                                                               JAF
+DENUNCIA, INQUERITO POLICIAL ARQUIVADO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>24/04/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>31/05/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_16" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_16" class="titulo_popup"><font 9105001404</label>
+										<input type="image" onclick="javascript: fechar('popup_16');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_16"
+											value="Processo 9105001404" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 9105001404<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 42<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Jose Delgado</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ - Data::31/05/1991 - Página::12331</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>POR MAIORIA</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. INQUERITO POLICIAL. ARQUIVAMENTO. PRESENÇA DA
+'NOTITIA CRIMINIS' E DE INDICIOS RAZOAVEIS DE AUTORIA.
+1 - O ARQUIVAMENTO DEVE TER LUGAR QUANDO NÃO FOREM APRESENTADOS,
+ATRAVES DO INQUERITO POLICIAL, INDICIOS RAZOAVEIS DE AUTORIA E
+COMPROVAÇÃO DA MATERIALIDADE DO DELITO.
+2 - A PROMOÇÃO DA DOUTA REPRESENTANTE DO PARQUET NÃO TEM RAZÃO DE
+SER, EM FACE DAS PROVAS COLACIONADAS PELA AUTORIDADE POLICIAL,
+ENRIQUECIDAS POR DEPOIMENTOS E PERICIAS DIVERSAS, PROVENIENTES DE
+FONTES IDONEAS.
+3 - HA, EM TESE, A POSSIBILIDADE DE SER O INDICIADO RESPONSAVEL PELA
+PRATICA DO DELITO, LOGO, JUSTIFICAR-SE-IA A 'PERSECUTIO CRIMINIS'
+SER DESENCADEADA.
+4 - REMESSA DOS AUTOS AO PROCURADOR GERAL DA REPUBLICA PARA OS FINS
+DO ART. 28 DO CODIGO DE PROCESSO PENAL BRASILEIRO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>NEGAÇÃO,  ACOLHIMENTO,  PEDIDO,  ARQUIVAMENTO,  INQUERITO POLICIAL,
+MOTIVO,  EXISTENCIA,  INDICIO,  INFRAÇÃO PENAL, RESULTADO, REMESSA,
+AUTOS, MINISTERIO PUBLICO FEDERAL, APRECIAÇÃO, PROCESSO.
+                                                               JAF
+DENUNCIA, INQUERITO POLICIAL ARQUIVADO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>24/04/1991</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>31/05/1991</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>***** CPP-41 Codigo de Processo Penal
+LEG-FED DEL-3689 ANO-1941 ART-28</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_16" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_16" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_16');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_16"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSO PENAL. INQUERITO POLICIAL. ARQUIVAMENTO. PRESENÇA DA
+'NOTITIA CRIMINIS' E DE INDICIOS RAZOAVEIS DE AUTORIA.
+1 - O ARQUIVAMENTO DEVE TER LUGAR QUANDO NÃO FOREM APRESENTADOS,
+ATRAVES DO INQUERITO POLICIAL, INDICIOS RAZOAVEIS DE AUTORIA E
+COMPROVAÇÃO DA MATERIALIDADE DO DELITO.
+2 - A PROMOÇÃO DA DOUTA REPRESENTANTE DO PARQUET NÃO TEM RAZÃO DE
+SER, EM FACE DAS PROVAS COLACIONADAS PELA AUTORIDADE POLICIAL,
+ENRIQUECIDAS POR DEPOIMENTOS E PERICIAS DIVERSAS, PROVENIENTES DE
+FONTES IDONEAS.
+3 - HA, EM TESE, A POSSIBILIDADE DE SER O INDICIADO RESPONSAVEL PELA
+PRATICA DO DELITO, LOGO, JUSTIFICAR-SE-IA A 'PERSECUTIO CRIMINIS'
+SER DESENCADEADA.
+4 - REMESSA DOS AUTOS AO PROCURADOR GERAL DA REPUBLICA PARA OS FINS
+DO ART. 28 DO CODIGO DE PROCESSO PENAL BRASILEIRO.<br />(<font 9105001404, Desembargador Federal Jose Delgado, TRF5 - Pleno, DJ - Data::31/05/1991 - Página::12331.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc17">Documento 17 - TRF5 - <font 8905089968</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc16"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_17');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_17');imprimir();fechar('popup_17');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 8905089968<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 39<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Castro Meira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DOE - Data::08/03/1990</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS  A  MAGISTRADO.  INSUFICIENCIA  DE  INDICIOS.  PEDIDO  DE
+ARQUIVAMENTO DEFERIDO.
+-  NOS  TERMOS  DO  PARAGRAFO UNICO DO ART. 33 DA LC 35/79 (LOMAN),
+"QUANDO,  NO  CURSO  DA  INVESTIGAÇÃO, HOUVER INDICIO DA PRATICA DE
+CRIME  POR  PARTE  DO  MAGISTRADO,  A AUTORIDADE POLICIAL, CIVIL OU
+MILITAR,  REMETERA  OS  RESPECTIVOS  AUTOS  AO  TRIBUNAL  OU  ORGÃO
+ESPECIAL  COMPETENTE  PARA  O  JULGAMENTO, A FIM DE QUE PROSSIGA NA
+INVESTIGAÇÃO."-  A  MINGUA  DE  INDICIOS  SUFICIENTES,  DEFERE-SE O
+PEDIDO DE ARQUIVAMENTO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INSUFICIENCIA,  INDICIO,  OBJETIVO, COMPROVAÇÃO, VEICULO AUTOMOTOR,
+PROPRIEDADE,  JUIZ  DO  TRABALHO,  INOBSERVANCIA, NORMAS, TRANSITO,
+EFEITO, CABIMENTO, ARQUIVAMENTO, AUTOS.
+INQUERITO POLICIAL, IRREGULARIDADES</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>06/12/1989</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>08/03/1990</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LCP-35 ANO-1979 ART-33</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_17" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_17" class="titulo_popup"><font 8905089968</label>
+										<input type="image" onclick="javascript: fechar('popup_17');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_17"
+											value="Processo 8905089968" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 8905089968<br />
+																<font color="blue"><b>INQ</b></font> - Inquerito - 39<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>Desembargador Federal Castro Meira</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF5</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>Pleno</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DOE - Data::08/03/1990</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>UNÂNIME</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS  A  MAGISTRADO.  INSUFICIENCIA  DE  INDICIOS.  PEDIDO  DE
+ARQUIVAMENTO DEFERIDO.
+-  NOS  TERMOS  DO  PARAGRAFO UNICO DO ART. 33 DA LC 35/79 (LOMAN),
+"QUANDO,  NO  CURSO  DA  INVESTIGAÇÃO, HOUVER INDICIO DA PRATICA DE
+CRIME  POR  PARTE  DO  MAGISTRADO,  A AUTORIDADE POLICIAL, CIVIL OU
+MILITAR,  REMETERA  OS  RESPECTIVOS  AUTOS  AO  TRIBUNAL  OU  ORGÃO
+ESPECIAL  COMPETENTE  PARA  O  JULGAMENTO, A FIM DE QUE PROSSIGA NA
+INVESTIGAÇÃO."-  A  MINGUA  DE  INDICIOS  SUFICIENTES,  DEFERE-SE O
+PEDIDO DE ARQUIVAMENTO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INSUFICIENCIA,  INDICIO,  OBJETIVO, COMPROVAÇÃO, VEICULO AUTOMOTOR,
+PROPRIEDADE,  JUIZ  DO  TRABALHO,  INOBSERVANCIA, NORMAS, TRANSITO,
+EFEITO, CABIMENTO, ARQUIVAMENTO, AUTOS.
+INQUERITO POLICIAL, IRREGULARIDADES</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>06/12/1989</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>08/03/1990</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LCP-35 ANO-1979 ART-33</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_17" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_17" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_17');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_17"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSUAL  PENAL.  INQUERITO  POLICIAL  DESTINADO  A  APURAR FATOS
+IMPUTADOS  A  MAGISTRADO.  INSUFICIENCIA  DE  INDICIOS.  PEDIDO  DE
+ARQUIVAMENTO DEFERIDO.
+-  NOS  TERMOS  DO  PARAGRAFO UNICO DO ART. 33 DA LC 35/79 (LOMAN),
+"QUANDO,  NO  CURSO  DA  INVESTIGAÇÃO, HOUVER INDICIO DA PRATICA DE
+CRIME  POR  PARTE  DO  MAGISTRADO,  A AUTORIDADE POLICIAL, CIVIL OU
+MILITAR,  REMETERA  OS  RESPECTIVOS  AUTOS  AO  TRIBUNAL  OU  ORGÃO
+ESPECIAL  COMPETENTE  PARA  O  JULGAMENTO, A FIM DE QUE PROSSIGA NA
+INVESTIGAÇÃO."-  A  MINGUA  DE  INDICIOS  SUFICIENTES,  DEFERE-SE O
+PEDIDO DE ARQUIVAMENTO.<br />(<font 8905089968, Desembargador Federal Castro Meira, TRF5 - Pleno, DOE - Data::08/03/1990.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<div id="paginacao" class="paginacao">
+										<input type="image" src="/juris/imagens/nav_ult.png" onkeypress=" " onclick="submetePaginacao(1)" 
+						alt="Primeira Página" title="Primeira Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_ant.png" onkeypress=" " onclick="submetePaginacao(28)" 
+						alt="Página Anterior" title="Página Anterior" value=" " />
+					<input type="image" src="/juris/imagens/nav_prox.png" onkeypress=" " onclick="submetePaginacao(30)" disabled class="botao_desabilitado"
+						alt="Próxima Página" title="Próxima Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_pri.png" onkeypress=" " onclick="submetePaginacao(29)" disabled class="botao_desabilitado"
+						alt="Última Página" title="Última Página" value=" " />
+				</div>
+			</div>
+	
+		</div>
+			<div id="rodape"><span>SCES - Lote 09 Trecho 3, Polo 08, 2º andar, Salas 210 e 211. - Setor de Clubes - CEP: 70.200-003 - Brasília - DF - 
+	Telefone: (61) 30227300</span></div>
+	</form>
+</body>
+</html>

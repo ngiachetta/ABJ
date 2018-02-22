@@ -1,0 +1,4376 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Jurisprudência</title>
+<link href="/juris/css/internet.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+	<link href="/juris/css/internet_ie7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/juris/js/wz_tooltip.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/JavaScriptUtil.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/Parsers.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/InputMask.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/internet.js"></script>
+<script type="text/javascript" src="/juris/js/jquery-1.12.0.min.js"></script>
+
+
+<head>
+<script language="javascript" type="text/javascript">
+var tribunais = ['STF','STJ','TRF1','TRF2','TRF3','TRF4','TRF5','TNU','TRU1','TRU2','TRU3','TRU4','TRU5','TR1','TR2','TR3','TR4','TR5'];
+var trus = ['TRU1','TRU2','TRU3','TRU4','TRU5'];
+var trs = ['TR1','TR2','TR3','TR4','TR5'];
+
+window.onresize = function(e) {posicionaPopup();}
+window.onscroll = function(e) {posicionaPopup();}
+var popup = null;
+function submetePaginacao(pg) {
+	getElementoPorId('pg').value=pg;
+}
+function submeteNovaPesquisa() {
+	var form = getElementoPorId('form');
+	form.action='index.jsp';
+	form.submit();
+}
+function submeteOrgao(orgao) {
+	var possuiTR = false, possuiTRU = false;
+	var valorAnterior;
+	var valores = new Array();
+	for(i=0; i<tribunais.length; i++) {
+		if (tribunais[i] != orgao) {
+			var hidden = getElementoPorNome(tribunais[i]);
+			valores[i] = hidden.value;
+			hidden.value = '';
+		} else {
+			valores[i] = '';
+		}
+	}
+	for(i=0; i<trus.length; i++) {
+		if (trus[i] == orgao) {
+			possuiTRU = true;
+		}
+	}
+	for(i=0; i<trs.length; i++) {
+		if (trs[i] == orgao) {
+			possuiTR = true;
+		}
+	}
+	if (!possuiTRU) {
+		valorAnterior = getElementoPorNome('TRU').value;
+		getElementoPorNome('TRU').value = '';
+	} else {
+		valorAnterior = getElementoPorNome('TR').value;
+		getElementoPorNome('TR').value = '';
+	}
+	
+	getElementoPorNome('query').value = '';
+	getElementoPorNome('pg').value = '1';
+	var form = getElementoPorId('form');
+	form.submit();
+	for(i=0; i<tribunais.length; i++) {
+		if (tribunais[i] != orgao) {
+			var hidden = getElementoPorNome(tribunais[i]);
+			hidden.value = valores[i];
+		}
+	}
+	if (possuiTRU) {
+		getElementoPorNome('TR').value = valorAnterior;
+	} else {
+		getElementoPorNome('TRU').value = valorAnterior;
+	}
+}
+</script>
+</head>
+
+<body>
+<noscript>Scripts do Sistema</noscript>
+	<form name="form" id="form" method="post" action="Resposta">
+		<!-- Hiddens de paginação -->
+		<input type="hidden" name="query" value="%28TRF3%29+%5BTRF3%5D+%28INQ%29+%5BTRF3%2Cclas%5D+NAO+%22Turma+Recursal%22.orga.+NAO+%22Primeira+Turma+Recursal%22.orga.+NAO+%22Segunda+Turma+Recursal%22.orga.+NAO+%22Terceira+Turma+Recursal%22.orga.+NAO+%22Turma+Nacional+de+Uniformizacao%22.orga.++NAO+%22Turma+Regional+de+Uniformizacao%22.orga.++" />
+		<input type="hidden" id="pg" name="pg" value="1" />
+		<!-- Hiddens dos parâmetros de pesquisa -->
+
+		<input type="hidden" value=" " name="livreAvancada" />
+		<input type="hidden" value=" " name="classe" />
+		<input type="hidden" value="INQ" name="clas" />
+		<input type="hidden" value=" " name="proc" />
+		<input type="hidden" value=" " name="rel" />
+		<input type="hidden" value=" " name="data1" />
+		<input type="hidden" value=" " name="data2" />
+		<input type="hidden" value="DTJP" name="tipo_data" />
+		<input type="hidden" value=" " name="orga" />
+		<input type="hidden" value=" " name="emen" />
+		<input type="hidden" value=" " name="deci" />
+		<input type="hidden" value=" " name="refl" />
+		<input type="hidden" value=" " name="cata" />
+		<input type="hidden" value=" " name="obpr" />
+		<input type="hidden" value=" " name="inte" />
+		<input type="hidden" value=" " name="STF" />
+		<input type="hidden" value=" " name="STJ" />
+		<input type="hidden" value=" " name="TRF1" />
+		<input type="hidden" value=" " name="TRF2" />
+		<input type="hidden" value="TRF3" name="TRF3" />
+		<input type="hidden" value=" " name="TRF4" />
+		<input type="hidden" value=" " name="TRF5" />
+		<input type="hidden" value=" " name="TNU" />
+		<input type="hidden" value=" " name="TR" />
+		<input type="hidden" value=" " name="TR1" />
+		<input type="hidden" value=" " name="TR2" />
+		<input type="hidden" value=" " name="TR3" />
+		<input type="hidden" value=" " name="TR4" />
+		<input type="hidden" value=" " name="TR5" />
+		<input type="hidden" value=" " name="TRU" />
+		<input type="hidden" value=" " name="TRU1" />
+		<input type="hidden" value=" " name="TRU2" />
+		<input type="hidden" value=" " name="TRU3" />
+		<input type="hidden" value=" " name="TRU4" />
+		<input type="hidden" value=" " name="TRU5" />
+		<input type="hidden" value=" " name="RESUMIDA" />
+		<input type="hidden" value="A" name="pesquisaAS" />
+
+		<div id="fundo">
+		</div>
+		<div id="formulario">
+		<div id="topo">
+			<div id="portal_header">
+				<div id="portal_topo">
+					<a href="http://www.jf.jus.br" style="border:0px"><img  style="border:0px" src="/juris/imagens/logo.jpg" /></a>
+				</div>
+				<div id="migalha">
+					<p>Brasília, 22 de fevereiro de 2018</p>
+				</div>
+			</div>
+		</div>
+		<div id="link_migalha">
+			<a href="javascript:submeteNovaPesquisa()">Nova pesquisa</a>
+			<img src="/juris/imagens/bullet.gif" class="tab_link" alt="Nova pesquisa"/>
+		</div>	
+		
+			<div id="topo_conteudo">
+				<div id="left"></div>
+				<div id="right"></div>
+			</div>
+			<div id="conteudo">
+				<h1>Jurisprudência Unificada</h1>
+				<table class="informacoes_pesquisa" summary="Informações da pesquisa">
+					<tbody>
+						<tr>
+							<td class="td_right">
+								<span class="label">Critério de pesquisa</span>
+							</td>
+							<td>
+								<span> </span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_right">
+								<span class="label">Documentos encontrados</span>
+							</td>
+							<td>
+								<span>11</span>
+							</td>
+						</tr>
+						<tr>
+							<td class="td_right">
+								<span class="label">Nesta página</span>
+							</td>
+							<td>
+								<span>1-11</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="paginacao_topo">
+										<input type="image" src="/juris/imagens/nav_ult.png" onkeypress=" " onclick="submetePaginacao(1)" disabled class="botao_desabilitado"
+						alt="Primeira Página" title="Primeira Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_ant.png" onkeypress=" " onclick="submetePaginacao(0)" disabled class="botao_desabilitado"
+						alt="Página Anterior" title="Página Anterior" value=" " />
+					<input type="image" src="/juris/imagens/nav_prox.png" onkeypress=" " onclick="submetePaginacao(2)" disabled class="botao_desabilitado"
+						alt="Próxima Página" title="Próxima Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_pri.png" onkeypress=" " onclick="submetePaginacao(1)" disabled class="botao_desabilitado"
+						alt="Última Página" title="Última Página" value=" " />
+				</div>
+				<br clear="all"/>
+				
+				<table class="table_pesquisa_lista" width="100%" align="center">
+						<tr>
+							<th colspan="3" style="text-align: center; border-bottom: 1px solid rgb(0, 102, 153); color:rgb(0, 102, 153);"><b>FILTRO DE RESULTADOS</b></th>
+						</tr>
+						<tr>
+							<td style="color:rgb(0, 102, 153); font-weight: bold; width: 15%;" >Tribunais</td>
+							<td style="color:rgb(0, 102, 153); font-weight: bold; width: 15%;">Total</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="3" width="100%">
+								<div style="overflow-y: auto; max-height: 100px; direction: rtl;">
+									<table width="100%" style="direction: ltr">
+								 
+								         <tr><td style="padding-bottom: 0px; width: 16%;">
+								         
+								        	 <a href="#" onclick="submeteOrgao('TRF3');">TRF3</a>
+								         
+									        </td>
+									         <td style="padding-bottom: 0px; width: 15%;">11</td>
+									         <td></td>
+									     </tr>
+								  
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>				
+				
+				
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc1">Documento 1 - TRF3 - <font 200103000265277</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												
+												<a href="#_doc2"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_1');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_1');imprimir();fechar('popup_1');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 200103000265277<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 436<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:13/12/2001 PÁGINA: 156</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, discutidos e relatados estes autos em que são partes
+as acima indicadas DECIDE o Órgão Especial deste Tribunal Regional
+Federal da 3ª Região, por unanimidade, determinar o arquivamento do
+inquérito, nos termos do relatório e voto que ficam fazendo parte
+integrante do presente julgado.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>INQUÉRITO - CRIME SUPOSTAMENTE COMETIDO POR PROCURADORA DO TRABALHO
+- AMEAÇA E CONSTRANGIMENTO ILEGAL - AUSÊNCIA DE INDÍCIOS -
+ARQUIVAMENTO.
+1. Os depoimentos de algumas das supostas vítimas, que
+afirmaram textualmente não ter sido ameaçadas pela investigada,
+esvaziam as indícios necessários ao início da ação penal.
+2. Comprovou-se que, no dia e local dos fatos, a investigada,
+no exercício legítimo de suas funções institucionais, apurava a
+existência de fraude à legislação trabalhista.
+3. Inquérito arquivado.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VIDE EMENTA,</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>29/11/2001</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>13/12/2001</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=200103000265277" target="blanck">200103000265277</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_1" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_1" class="titulo_popup"><font 200103000265277</label>
+										<input type="image" onclick="javascript: fechar('popup_1');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_1"
+											value="Processo 200103000265277" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 200103000265277<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 436<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:13/12/2001 PÁGINA: 156</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, discutidos e relatados estes autos em que são partes
+as acima indicadas DECIDE o Órgão Especial deste Tribunal Regional
+Federal da 3ª Região, por unanimidade, determinar o arquivamento do
+inquérito, nos termos do relatório e voto que ficam fazendo parte
+integrante do presente julgado.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>INQUÉRITO - CRIME SUPOSTAMENTE COMETIDO POR PROCURADORA DO TRABALHO
+- AMEAÇA E CONSTRANGIMENTO ILEGAL - AUSÊNCIA DE INDÍCIOS -
+ARQUIVAMENTO.
+1. Os depoimentos de algumas das supostas vítimas, que
+afirmaram textualmente não ter sido ameaçadas pela investigada,
+esvaziam as indícios necessários ao início da ação penal.
+2. Comprovou-se que, no dia e local dos fatos, a investigada,
+no exercício legítimo de suas funções institucionais, apurava a
+existência de fraude à legislação trabalhista.
+3. Inquérito arquivado.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VIDE EMENTA,</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>29/11/2001</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>13/12/2001</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=200103000265277" target="blanck">200103000265277</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_1" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_1" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_1');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_1"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																INQUÉRITO - CRIME SUPOSTAMENTE COMETIDO POR PROCURADORA DO TRABALHO
+- AMEAÇA E CONSTRANGIMENTO ILEGAL - AUSÊNCIA DE INDÍCIOS -
+ARQUIVAMENTO.
+1. Os depoimentos de algumas das supostas vítimas, que
+afirmaram textualmente não ter sido ameaçadas pela investigada,
+esvaziam as indícios necessários ao início da ação penal.
+2. Comprovou-se que, no dia e local dos fatos, a investigada,
+no exercício legítimo de suas funções institucionais, apurava a
+existência de fraude à legislação trabalhista.
+3. Inquérito arquivado.<br />(<font 200103000265277, DESEMBARGADOR FEDERAL OLIVEIRA LIMA, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:13/12/2001 PÁGINA: 156.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc2">Documento 2 - TRF3 - <font 200003000221877</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc1"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc3"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_2');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_2');imprimir();fechar('popup_2');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 200003000221877<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 380<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:06/04/2001 PÁGINA: 510</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, relatados e discutidos estes autos, em que são partes
+as acima indicadas,
+DECIDE o Órgão Especial do Tribunal Regional Federal da
+Terceira Região, por unanimidade, reconhecer a incompetência deste
+Tribunal e enviar os autos à primeira instância, nos termos do
+relatório e voto que ficam fazendo parte integrante do presente
+julgado.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CONSTITUCIONAL. COMPETÊNCIA. PREFEITO MUNICIPAL. TÉRMINO DE
+MANDATO.
+1 - Com o cancelamento da Súmula nº 394 do Supremo Tribunal
+Federal, não mais é da competência dos Tribunais Regionais Federais
+o processamento e o julgamento de ex-prefeitos municipais por
+crimes contra bens e interesses da União Federal.
+2 - Incompetência reconhecida, com o envio dos autos à Justiça
+Federal.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>29/03/2001</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>06/04/2001</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  STF    SÚMULA DO SUPREMO TRIBUNAL FEDERAL
+LEG-FED SUM-394</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=200003000221877" target="blanck">200003000221877</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_2" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_2" class="titulo_popup"><font 200003000221877</label>
+										<input type="image" onclick="javascript: fechar('popup_2');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_2"
+											value="Processo 200003000221877" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 200003000221877<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 380<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:06/04/2001 PÁGINA: 510</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, relatados e discutidos estes autos, em que são partes
+as acima indicadas,
+DECIDE o Órgão Especial do Tribunal Regional Federal da
+Terceira Região, por unanimidade, reconhecer a incompetência deste
+Tribunal e enviar os autos à primeira instância, nos termos do
+relatório e voto que ficam fazendo parte integrante do presente
+julgado.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CONSTITUCIONAL. COMPETÊNCIA. PREFEITO MUNICIPAL. TÉRMINO DE
+MANDATO.
+1 - Com o cancelamento da Súmula nº 394 do Supremo Tribunal
+Federal, não mais é da competência dos Tribunais Regionais Federais
+o processamento e o julgamento de ex-prefeitos municipais por
+crimes contra bens e interesses da União Federal.
+2 - Incompetência reconhecida, com o envio dos autos à Justiça
+Federal.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>29/03/2001</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>06/04/2001</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  STF    SÚMULA DO SUPREMO TRIBUNAL FEDERAL
+LEG-FED SUM-394</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=200003000221877" target="blanck">200003000221877</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_2" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_2" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_2');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_2"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																CONSTITUCIONAL. COMPETÊNCIA. PREFEITO MUNICIPAL. TÉRMINO DE
+MANDATO.
+1 - Com o cancelamento da Súmula nº 394 do Supremo Tribunal
+Federal, não mais é da competência dos Tribunais Regionais Federais
+o processamento e o julgamento de ex-prefeitos municipais por
+crimes contra bens e interesses da União Federal.
+2 - Incompetência reconhecida, com o envio dos autos à Justiça
+Federal.<br />(<font 200003000221877, DESEMBARGADOR FEDERAL OLIVEIRA LIMA, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:06/04/2001 PÁGINA: 510.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc3">Documento 3 - TRF3 - <font 98030514466</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc2"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc4"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_3');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_3');imprimir();fechar('popup_3');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030514466<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 237<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:18/01/2001 PÁGINA: 25
+..FONTE_REPUBLICACAO:
+DJU DATA:26/01/2001 PÁGINA: 22</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, relatados e discutidos estes autos, em que são partes as
+acima indicadas,
+DECIDE o Órgão Especial do Tribunal Regional Federal da 3ª Região,
+por unanimidade de votos, receber a denúncia, nos termos do Senhor
+Juiz Relator.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - PROCESSO PENAL - PREFEITO MUNICIPAL - CRIME DE
+DESOBEDIÊNCIA - DENÚNCIA RECEBIDA.
+1 - Havendo indícios suficientes de autoria e materialidade do
+delito a ensejar dilação probatória, deve ser instaurada a
+competente ação penal.
+2 - Denúncia recebida.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VIDE EMENTA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/10/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>18/01/2001</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030514466" target="blanck">98030514466</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_3" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_3" class="titulo_popup"><font 98030514466</label>
+										<input type="image" onclick="javascript: fechar('popup_3');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_3"
+											value="Processo 98030514466" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030514466<br />
+																<font color="blue"><b>INQ</b></font> - INQUÉRITO - 237<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL OLIVEIRA LIMA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:18/01/2001 PÁGINA: 25
+..FONTE_REPUBLICACAO:
+DJU DATA:26/01/2001 PÁGINA: 22</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>Vistos, relatados e discutidos estes autos, em que são partes as
+acima indicadas,
+DECIDE o Órgão Especial do Tribunal Regional Federal da 3ª Região,
+por unanimidade de votos, receber a denúncia, nos termos do Senhor
+Juiz Relator.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - PROCESSO PENAL - PREFEITO MUNICIPAL - CRIME DE
+DESOBEDIÊNCIA - DENÚNCIA RECEBIDA.
+1 - Havendo indícios suficientes de autoria e materialidade do
+delito a ensejar dilação probatória, deve ser instaurada a
+competente ação penal.
+2 - Denúncia recebida.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>VIDE EMENTA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/10/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>18/01/2001</td>
+</tr>
+
+
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030514466" target="blanck">98030514466</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_3" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_3" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_3');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_3"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL - PROCESSO PENAL - PREFEITO MUNICIPAL - CRIME DE
+DESOBEDIÊNCIA - DENÚNCIA RECEBIDA.
+1 - Havendo indícios suficientes de autoria e materialidade do
+delito a ensejar dilação probatória, deve ser instaurada a
+competente ação penal.
+2 - Denúncia recebida.<br />(<font 98030514466, DESEMBARGADOR FEDERAL OLIVEIRA LIMA, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:18/01/2001 PÁGINA: 25
+..FONTE_REPUBLICACAO:
+DJU DATA:26/01/2001 PÁGINA: 22.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc4">Documento 4 - TRF3 - <font 199903000450000</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc3"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc5"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_4');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_4');imprimir();fechar('popup_4');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 199903000450000<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 360<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL ROBERTO HADDAD</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:30/11/2000 PÁGINA: 107</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ORGÃO ESPECIAL, À UNANIMIDADE, DEU-SE POR INCOMPETENTE PARA
+PROCESSAR E JULGAR O FEITO, DECLARANDO A COMPETENCIA DA JUSTIÇA
+FEDERAL DE 1º GRAU, NOS TERMOS DO VOTO DO SENHOR DESEMBARGADOR
+FEDERAL RELATOR.ACOMPANHARAM O SENHOR DESEMBARGADOR FEDERAL ROBERTO
+HADDAD OS SENHORES DESEMBARGADORES FEDERAIS RAMZA TARTUCE, SALETTE
+NASCIMENTO, NEWTON DE LUCCA, DIVA MALERBI, ARICÊ AMARAL, THEOTONIO
+COSTA, BAPTISTA  PEREIRA, ANDRÉ NABARRETE, MARLI FERREIRA E MÁRCIO
+MORAES. VOTARAM ACOMPANHANDO O RELATOR OS SENHORES DESEMBARGADORES
+FEDERAIS, CONVOCADOS PARA COMPOR QUORUM, CECÍLIA M ARCONDES E NERY
+JUNIOR. A PRESIDÊNCIA DEFERIU O PEDIDO DO ÓRGÃO MINISTERIAL,
+DETERMINANDO A REMESSA DOS  AUTOS PARA QUE SE PROCEDA A RETIFICAÇÃO
+DE SUA MANIFESTAÇÃO. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS
+OLIVEIRA LIMA, JOSÉ KALLÁS,  SUZANA CAMARGO, ANDRADE MARTINS,
+SYLVIA STEINER, JUSTIFICADAMENTE; ANNA MARIA PIMENTEL, POR
+ENCONTRAR-SE EM ATIVIDADE CORREICIONAL; E, SOUZA  PIRES, POR ESTAR
+ATUANDO JUNTO AO TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>SÚMULA 394 STF:
+" COMETIDO O CRIME DURANTE O EXERCÍCIO FUNCIONAL,PREVALECE A
+COMPETÊNCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA QUE O
+INQUÉRITO OU A AÇÃO PENAL SEJAM INICIADOS APÓS A CESSAÇÃO DAQUELE
+EXERCÍCIO"</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - INQUÉRITO-  DELITO  PRATICADO  POR  EX-PREFEITOS
+INCOMPETÊNCIA DO TRIBUNAL REGIONAL FEDERAL- CANCELAMENTO DA SÚMULA
+394 DO STF -   REMESSA DOS AUTOS AO JUÍZO DA PRIMEIRA INSTÂNCIA.
+1-     Com o maisrecente posicionamento do  Supremo Tribunal
+Federal, nos autos dos Inquéritos n.º 687 e 881, firmou-se o
+entendimento de que o preceito  constitucional que estabelece a
+competência para julgar originariamente  o  ocupante  de  cargo  ou
+função  pública  revestido  de prerrogativa de foro especial não
+alcança aqueles que não mais exercem   mandato ou cargo, porque
+caso persistisse entendimento, estaria violando o principio
+constitucional da igualdade.
+2-     A revogação da Súmula 394 do Supremo Tribunal Federal, não
+ocasiona prejuízo para o acusado(ex-prefeito), uma vez que poderá
+contar com mais graus de jurisdição para o reexame da matéria.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>EX-PREFEITO, PERDA, FORO PRIVILEGIADO, COMPETÊNCIA, JUIZ FEDERAL,
+PRIMEIRA INSTÂNCIA, JULGAMENTO, AÇÃO PENAL, INCIDÊNCIA,
+PRINCÍPIO DA IGUALDADE.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>19/10/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>30/11/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED DEL-201 ANO-1967 ART-1 INC-14
+<br></br>
+LEG-FED SUM-394
+STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=199903000450000" target="blanck">199903000450000</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_4" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_4" class="titulo_popup"><font 199903000450000</label>
+										<input type="image" onclick="javascript: fechar('popup_4');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_4"
+											value="Processo 199903000450000" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 199903000450000<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 360<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL ROBERTO HADDAD</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:30/11/2000 PÁGINA: 107</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ORGÃO ESPECIAL, À UNANIMIDADE, DEU-SE POR INCOMPETENTE PARA
+PROCESSAR E JULGAR O FEITO, DECLARANDO A COMPETENCIA DA JUSTIÇA
+FEDERAL DE 1º GRAU, NOS TERMOS DO VOTO DO SENHOR DESEMBARGADOR
+FEDERAL RELATOR.ACOMPANHARAM O SENHOR DESEMBARGADOR FEDERAL ROBERTO
+HADDAD OS SENHORES DESEMBARGADORES FEDERAIS RAMZA TARTUCE, SALETTE
+NASCIMENTO, NEWTON DE LUCCA, DIVA MALERBI, ARICÊ AMARAL, THEOTONIO
+COSTA, BAPTISTA  PEREIRA, ANDRÉ NABARRETE, MARLI FERREIRA E MÁRCIO
+MORAES. VOTARAM ACOMPANHANDO O RELATOR OS SENHORES DESEMBARGADORES
+FEDERAIS, CONVOCADOS PARA COMPOR QUORUM, CECÍLIA M ARCONDES E NERY
+JUNIOR. A PRESIDÊNCIA DEFERIU O PEDIDO DO ÓRGÃO MINISTERIAL,
+DETERMINANDO A REMESSA DOS  AUTOS PARA QUE SE PROCEDA A RETIFICAÇÃO
+DE SUA MANIFESTAÇÃO. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS
+OLIVEIRA LIMA, JOSÉ KALLÁS,  SUZANA CAMARGO, ANDRADE MARTINS,
+SYLVIA STEINER, JUSTIFICADAMENTE; ANNA MARIA PIMENTEL, POR
+ENCONTRAR-SE EM ATIVIDADE CORREICIONAL; E, SOUZA  PIRES, POR ESTAR
+ATUANDO JUNTO AO TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>SÚMULA 394 STF:
+" COMETIDO O CRIME DURANTE O EXERCÍCIO FUNCIONAL,PREVALECE A
+COMPETÊNCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA QUE O
+INQUÉRITO OU A AÇÃO PENAL SEJAM INICIADOS APÓS A CESSAÇÃO DAQUELE
+EXERCÍCIO"</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - INQUÉRITO-  DELITO  PRATICADO  POR  EX-PREFEITOS
+INCOMPETÊNCIA DO TRIBUNAL REGIONAL FEDERAL- CANCELAMENTO DA SÚMULA
+394 DO STF -   REMESSA DOS AUTOS AO JUÍZO DA PRIMEIRA INSTÂNCIA.
+1-     Com o maisrecente posicionamento do  Supremo Tribunal
+Federal, nos autos dos Inquéritos n.º 687 e 881, firmou-se o
+entendimento de que o preceito  constitucional que estabelece a
+competência para julgar originariamente  o  ocupante  de  cargo  ou
+função  pública  revestido  de prerrogativa de foro especial não
+alcança aqueles que não mais exercem   mandato ou cargo, porque
+caso persistisse entendimento, estaria violando o principio
+constitucional da igualdade.
+2-     A revogação da Súmula 394 do Supremo Tribunal Federal, não
+ocasiona prejuízo para o acusado(ex-prefeito), uma vez que poderá
+contar com mais graus de jurisdição para o reexame da matéria.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>EX-PREFEITO, PERDA, FORO PRIVILEGIADO, COMPETÊNCIA, JUIZ FEDERAL,
+PRIMEIRA INSTÂNCIA, JULGAMENTO, AÇÃO PENAL, INCIDÊNCIA,
+PRINCÍPIO DA IGUALDADE.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>19/10/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>30/11/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED DEL-201 ANO-1967 ART-1 INC-14
+<br></br>
+LEG-FED SUM-394
+STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=199903000450000" target="blanck">199903000450000</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_4" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_4" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_4');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_4"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL - INQUÉRITO-  DELITO  PRATICADO  POR  EX-PREFEITOS
+INCOMPETÊNCIA DO TRIBUNAL REGIONAL FEDERAL- CANCELAMENTO DA SÚMULA
+394 DO STF -   REMESSA DOS AUTOS AO JUÍZO DA PRIMEIRA INSTÂNCIA.
+1-     Com o maisrecente posicionamento do  Supremo Tribunal
+Federal, nos autos dos Inquéritos n.º 687 e 881, firmou-se o
+entendimento de que o preceito  constitucional que estabelece a
+competência para julgar originariamente  o  ocupante  de  cargo  ou
+função  pública  revestido  de prerrogativa de foro especial não
+alcança aqueles que não mais exercem   mandato ou cargo, porque
+caso persistisse entendimento, estaria violando o principio
+constitucional da igualdade.
+2-     A revogação da Súmula 394 do Supremo Tribunal Federal, não
+ocasiona prejuízo para o acusado(ex-prefeito), uma vez que poderá
+contar com mais graus de jurisdição para o reexame da matéria.<br />(<font 199903000450000, DESEMBARGADOR FEDERAL ROBERTO HADDAD, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:30/11/2000 PÁGINA: 107.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc5">Documento 5 - TRF3 - <font 98030128191</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc4"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc6"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_5');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_5');imprimir();fechar('popup_5');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030128191<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 221<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SYLVIA STEINER</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:20/09/2000 PÁGINA: 99</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ORGAO ESPECIAL, A UNANIMIDADE, DECLAROU DE OFICIO, EXTINTA A
+PUNIBILIDADE DO CRIME DE DESOBEDIENCIA PELO DECURSO DO LAPSO
+TEMPORAL, NOS TERMOS DO VOTO DA SENHORA DESEMBARGADORA FEDERAL
+RELATORA. ACOMPANHARAM A SENHORA DESEMBARGADORA SYLVIA STEINER OS
+SENHORES DESEMBARGADORES FEDERAIS SALETTE NASCIMENTO, OLIVEIRA
+LIMA, DIVA MALERBI, ARICE AMARAL, THEOTONIO COSTA, BAPTISTA
+PEREIRA, SUZANA CAMARGO, MARLI FERREIRA, ROBERTO HADDAD E RAMZA
+TARTUCE. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS MARCIO
+MORAES, ANDRE NABARRETE, ANDRADE MARTINS E NEWTON DE LUCCA,
+JUSTIFICADAMENTE; ANNA MARIA PIMENTEL, POR ENCONTRAR-SE EM
+ATIVIDADE CORREICIONAL; E, SOUZA PIRES, POR ESTAR ATUANDO JUNTO AO
+TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - CRIME DE DESOBEDIÊNCIA - ART. 330 DO CÓDIGO PENAL -
+PRESCRIÇÃO - EXTINÇÃO DA PUNIBILIDADE DO CRIME QUE SE DECLARA DE
+OFÍCIO.
+1- A PENA MÁXIMA EM ABSTRATO  PREVISTA PARA O CRIME DESCRITO NO
+ART. 330 DO CÓDIGO PENAL É DE SEIS MESES DE DETENÇÃO, ENSEJANDO O
+PRAZO PRESCRICIONAL DE DOIS ANOS, NOS TERMOS DO ART. 109, INC. VI,
+DO CÓDIGO PENAL.
+2- DECORRIDOS MAIS DE DOIS ANOS DA DATA DOS FATOS À DATA DO
+PRESENTE JULGAMENTO, É DE SE JULGADA, DE OFICIO, EXTINTA A
+PUNIBILIDADE DO CRIME PELA PRESCRIÇÃO DA PRETENSÃO PUNITIVA
+ESTATAL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>CRIME, DESOBEDIÊNCIA, RECONHECIMENTO, EX OFFICIO, TRIBUNAL,
+EXTINÇÃO DA PUNIBILIDADE, PRESCRIÇÃO, PRETENSÃO PUNITIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/09/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>20/09/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-330 ART-109 INC-6 ART-107 INC-6</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030128191" target="blanck">98030128191</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_5" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_5" class="titulo_popup"><font 98030128191</label>
+										<input type="image" onclick="javascript: fechar('popup_5');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_5"
+											value="Processo 98030128191" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030128191<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 221<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SYLVIA STEINER</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:20/09/2000 PÁGINA: 99</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ORGAO ESPECIAL, A UNANIMIDADE, DECLAROU DE OFICIO, EXTINTA A
+PUNIBILIDADE DO CRIME DE DESOBEDIENCIA PELO DECURSO DO LAPSO
+TEMPORAL, NOS TERMOS DO VOTO DA SENHORA DESEMBARGADORA FEDERAL
+RELATORA. ACOMPANHARAM A SENHORA DESEMBARGADORA SYLVIA STEINER OS
+SENHORES DESEMBARGADORES FEDERAIS SALETTE NASCIMENTO, OLIVEIRA
+LIMA, DIVA MALERBI, ARICE AMARAL, THEOTONIO COSTA, BAPTISTA
+PEREIRA, SUZANA CAMARGO, MARLI FERREIRA, ROBERTO HADDAD E RAMZA
+TARTUCE. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS MARCIO
+MORAES, ANDRE NABARRETE, ANDRADE MARTINS E NEWTON DE LUCCA,
+JUSTIFICADAMENTE; ANNA MARIA PIMENTEL, POR ENCONTRAR-SE EM
+ATIVIDADE CORREICIONAL; E, SOUZA PIRES, POR ESTAR ATUANDO JUNTO AO
+TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - CRIME DE DESOBEDIÊNCIA - ART. 330 DO CÓDIGO PENAL -
+PRESCRIÇÃO - EXTINÇÃO DA PUNIBILIDADE DO CRIME QUE SE DECLARA DE
+OFÍCIO.
+1- A PENA MÁXIMA EM ABSTRATO  PREVISTA PARA O CRIME DESCRITO NO
+ART. 330 DO CÓDIGO PENAL É DE SEIS MESES DE DETENÇÃO, ENSEJANDO O
+PRAZO PRESCRICIONAL DE DOIS ANOS, NOS TERMOS DO ART. 109, INC. VI,
+DO CÓDIGO PENAL.
+2- DECORRIDOS MAIS DE DOIS ANOS DA DATA DOS FATOS À DATA DO
+PRESENTE JULGAMENTO, É DE SE JULGADA, DE OFICIO, EXTINTA A
+PUNIBILIDADE DO CRIME PELA PRESCRIÇÃO DA PRETENSÃO PUNITIVA
+ESTATAL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>CRIME, DESOBEDIÊNCIA, RECONHECIMENTO, EX OFFICIO, TRIBUNAL,
+EXTINÇÃO DA PUNIBILIDADE, PRESCRIÇÃO, PRETENSÃO PUNITIVA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>14/09/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>20/09/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-330 ART-109 INC-6 ART-107 INC-6</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030128191" target="blanck">98030128191</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_5" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_5" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_5');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_5"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL - CRIME DE DESOBEDIÊNCIA - ART. 330 DO CÓDIGO PENAL -
+PRESCRIÇÃO - EXTINÇÃO DA PUNIBILIDADE DO CRIME QUE SE DECLARA DE
+OFÍCIO.
+1- A PENA MÁXIMA EM ABSTRATO  PREVISTA PARA O CRIME DESCRITO NO
+ART. 330 DO CÓDIGO PENAL É DE SEIS MESES DE DETENÇÃO, ENSEJANDO O
+PRAZO PRESCRICIONAL DE DOIS ANOS, NOS TERMOS DO ART. 109, INC. VI,
+DO CÓDIGO PENAL.
+2- DECORRIDOS MAIS DE DOIS ANOS DA DATA DOS FATOS À DATA DO
+PRESENTE JULGAMENTO, É DE SE JULGADA, DE OFICIO, EXTINTA A
+PUNIBILIDADE DO CRIME PELA PRESCRIÇÃO DA PRETENSÃO PUNITIVA
+ESTATAL.<br />(<font 98030128191, DESEMBARGADORA FEDERAL SYLVIA STEINER, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:20/09/2000 PÁGINA: 99.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc6">Documento 6 - TRF3 - <font 97030781462</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc5"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc7"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_6');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_6');imprimir();fechar('popup_6');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030781462<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 213<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SUZANA CAMARGO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:25/08/2000 PÁGINA: 456</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, A UNANIMIDADE, ACOLHEU A PRELIMINAR DE NULIDADE
+E JULGOU EXTINTA A PUNIBILIDADE EM RELAÇÃO AO INDICIADO, FACE A
+OCORRÊNCIA DA PRESCRIÇÃO PUNITIVA DO ESTADO, DETERMINANDO O
+CONSEQUENTE ARQUIVAMENT O DO FEITO, NOS TERMOS DO VOTO DA SENHORA
+DESEMBARGADORA FEDERAL RELATORA. ACOMPANHARAM A SENHORA
+DESEMBARGADORA FEDERAL SUZANA CAMARGO OS SENHORES DESEMBARGADORES
+FEDERAIS ANDRÉ NABARRETE, MARLI FERREIRA, ANDRADE M ARTINS, ROBERTO
+HADDAD, RAMZA TARTUCE, SYLVIA STEINER, SALETTE NASCIMENTO, NEWTON
+DE LUCCA, OLIVEIRA LIMA, MÁRCIO MORAES, THEOTONIO COSTA E BAPTISTA
+PEREIRA. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS JOSÉ
+KALLÁS, DIVA MALERBI E ARICÊ AMARAL, JUSTIFICADAMENTE; ANNA MARIA
+PIMENTEL, POR ENCONTRAR-SE EM ATIVIDADE CORREICIONAL; E, SOUZA
+PIRES, POR ESTAR ATUANDO JUNTO AO TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>INDEXAÇÃO: VIDE EMENTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>INQUÉRITO POLICIAL. ARTIGO 299 DO CÓDIGO PENAL. INDICIADO
+PROCESSADO E JULGADO PERANTE A JUSTIÇA DE PRIMEIRA INSTÂNCIA.
+PREFEITO MUNICIPAL. REMESSA DOS AUTOS AO TRIBUNAL REGIONAL FEDERAL.
+ART. 29, X, DA CARTA MAGNA. GARANTIA DO JUIZ COMPETENTE. PRINCÍPIO
+DO DEVIDO PROCESSO LEGAL. ARTIGO 5º, INCISOS LII E LIV DA
+CONSTITUIÇÃO FEDERAL. EIVA  DE NULIDADE ABSOLUTA A ATINGIR O
+PROCESSO AB INITIO. PRELIMINAR ACOLHIDA. PRESCRIÇÃO DA PRETENSÃO
+PUNITIVA DO ESTADO. EXTINÇÃO DE PUNIBILlDADE DECRETADA.
+ARQUIVAMENTO DO FEITO.
+l. Tendo o ora indiciado sido processado perante a Justiça Federal
+de Primeiro Grau e, posteriormente, reconhecida &#39;ex officio&#39; a
+incompetência daquela Instância,  dada a notícia de exercer o então
+denunciado mandato eletivo de Prefeito Municipal, reclamando,
+assim, o foro especial por prerrogativa  de função, nos termos do
+artigo 29, inciso X, da Constituição Federal, não há se cogitar no
+aproveitamento de qualquer ato verificado nos autos, vez que
+instaurado e realizado, desde o primeiro momento, perante
+autoridade judicial que, sob o prisma constitucional, não detinha
+competência para apreciar a demanda.
+2. Nulidade de caráter absoluto, visto tratar-se de competência
+delimitada no âmbito da Lei Maior, cujos efeitos estão a afetar
+todo o procedimento efetuado perante o juízo incompetente, posto
+não terem sido observados as garantias e princípios constitucionais
+do juiz natural e do devido processo legal, previstos no artigo 5º,
+incisos LII e LIV, a inquinar, destarte, todo o processo.
+3. Preliminar de nulidade ab initio do processo acolhido.
+4. Tendo decorrido lapso temporal superior a oito anos,
+considerado da data da consumação do suposto delito de falsidade
+ideológica, sem que tenha havido outra causa interruptiva,
+concretizada está a prescrição da pretensão punitiva do Estado,
+face a pena em abstrato cominada ao ilícito penal, em se tratando
+de documento particular, qual seja, três anos de reclusão, nos
+termos dos artigos 109, inciso IV, do Código Penal.
+5. Extinção da punibilidade decretada.  Arquivamento do feito.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>10/08/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>25/08/2000</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR: GRINOVER, DINAMARCO, CINTRA
+TÍTULO: TEORIA GERAL DO PROCESSO,EDITORA: MALHEIROS,ED:
+12,1996,PAG: 242</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-109 INC-4
+<br></br>
+  CPP-41    CODIGO DE PROCESSO PENAL
+LEG-FED DEL-3689 ANO-1941 ART-299
+<br></br>
+  CF-88    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD-0 ANO-1988 ART-29 INC-10 ART-5 INC-52 INC-54</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030781462" target="blanck">97030781462</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_6" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_6" class="titulo_popup"><font 97030781462</label>
+										<input type="image" onclick="javascript: fechar('popup_6');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_6"
+											value="Processo 97030781462" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030781462<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 213<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SUZANA CAMARGO</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:25/08/2000 PÁGINA: 456</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, A UNANIMIDADE, ACOLHEU A PRELIMINAR DE NULIDADE
+E JULGOU EXTINTA A PUNIBILIDADE EM RELAÇÃO AO INDICIADO, FACE A
+OCORRÊNCIA DA PRESCRIÇÃO PUNITIVA DO ESTADO, DETERMINANDO O
+CONSEQUENTE ARQUIVAMENT O DO FEITO, NOS TERMOS DO VOTO DA SENHORA
+DESEMBARGADORA FEDERAL RELATORA. ACOMPANHARAM A SENHORA
+DESEMBARGADORA FEDERAL SUZANA CAMARGO OS SENHORES DESEMBARGADORES
+FEDERAIS ANDRÉ NABARRETE, MARLI FERREIRA, ANDRADE M ARTINS, ROBERTO
+HADDAD, RAMZA TARTUCE, SYLVIA STEINER, SALETTE NASCIMENTO, NEWTON
+DE LUCCA, OLIVEIRA LIMA, MÁRCIO MORAES, THEOTONIO COSTA E BAPTISTA
+PEREIRA. AUSENTES, OS SENHORES DESEMBARGADORES FEDERAIS JOSÉ
+KALLÁS, DIVA MALERBI E ARICÊ AMARAL, JUSTIFICADAMENTE; ANNA MARIA
+PIMENTEL, POR ENCONTRAR-SE EM ATIVIDADE CORREICIONAL; E, SOUZA
+PIRES, POR ESTAR ATUANDO JUNTO AO TRIBUNAL REGIONAL ELEITORAL."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>INDEXAÇÃO: VIDE EMENTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>INQUÉRITO POLICIAL. ARTIGO 299 DO CÓDIGO PENAL. INDICIADO
+PROCESSADO E JULGADO PERANTE A JUSTIÇA DE PRIMEIRA INSTÂNCIA.
+PREFEITO MUNICIPAL. REMESSA DOS AUTOS AO TRIBUNAL REGIONAL FEDERAL.
+ART. 29, X, DA CARTA MAGNA. GARANTIA DO JUIZ COMPETENTE. PRINCÍPIO
+DO DEVIDO PROCESSO LEGAL. ARTIGO 5º, INCISOS LII E LIV DA
+CONSTITUIÇÃO FEDERAL. EIVA  DE NULIDADE ABSOLUTA A ATINGIR O
+PROCESSO AB INITIO. PRELIMINAR ACOLHIDA. PRESCRIÇÃO DA PRETENSÃO
+PUNITIVA DO ESTADO. EXTINÇÃO DE PUNIBILlDADE DECRETADA.
+ARQUIVAMENTO DO FEITO.
+l. Tendo o ora indiciado sido processado perante a Justiça Federal
+de Primeiro Grau e, posteriormente, reconhecida &#39;ex officio&#39; a
+incompetência daquela Instância,  dada a notícia de exercer o então
+denunciado mandato eletivo de Prefeito Municipal, reclamando,
+assim, o foro especial por prerrogativa  de função, nos termos do
+artigo 29, inciso X, da Constituição Federal, não há se cogitar no
+aproveitamento de qualquer ato verificado nos autos, vez que
+instaurado e realizado, desde o primeiro momento, perante
+autoridade judicial que, sob o prisma constitucional, não detinha
+competência para apreciar a demanda.
+2. Nulidade de caráter absoluto, visto tratar-se de competência
+delimitada no âmbito da Lei Maior, cujos efeitos estão a afetar
+todo o procedimento efetuado perante o juízo incompetente, posto
+não terem sido observados as garantias e princípios constitucionais
+do juiz natural e do devido processo legal, previstos no artigo 5º,
+incisos LII e LIV, a inquinar, destarte, todo o processo.
+3. Preliminar de nulidade ab initio do processo acolhido.
+4. Tendo decorrido lapso temporal superior a oito anos,
+considerado da data da consumação do suposto delito de falsidade
+ideológica, sem que tenha havido outra causa interruptiva,
+concretizada está a prescrição da pretensão punitiva do Estado,
+face a pena em abstrato cominada ao ilícito penal, em se tratando
+de documento particular, qual seja, três anos de reclusão, nos
+termos dos artigos 109, inciso IV, do Código Penal.
+5. Extinção da punibilidade decretada.  Arquivamento do feito.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>10/08/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>25/08/2000</td>
+</tr>
+
+
+														<tr>
+<td><span class="label_pontilhada">Doutrina</span></td></tr>
+<tr>
+<td>AUTOR: GRINOVER, DINAMARCO, CINTRA
+TÍTULO: TEORIA GERAL DO PROCESSO,EDITORA: MALHEIROS,ED:
+12,1996,PAG: 242</td>
+</tr>
+
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-109 INC-4
+<br></br>
+  CPP-41    CODIGO DE PROCESSO PENAL
+LEG-FED DEL-3689 ANO-1941 ART-299
+<br></br>
+  CF-88    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD-0 ANO-1988 ART-29 INC-10 ART-5 INC-52 INC-54</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030781462" target="blanck">97030781462</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_6" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_6" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_6');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_6"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																INQUÉRITO POLICIAL. ARTIGO 299 DO CÓDIGO PENAL. INDICIADO
+PROCESSADO E JULGADO PERANTE A JUSTIÇA DE PRIMEIRA INSTÂNCIA.
+PREFEITO MUNICIPAL. REMESSA DOS AUTOS AO TRIBUNAL REGIONAL FEDERAL.
+ART. 29, X, DA CARTA MAGNA. GARANTIA DO JUIZ COMPETENTE. PRINCÍPIO
+DO DEVIDO PROCESSO LEGAL. ARTIGO 5º, INCISOS LII E LIV DA
+CONSTITUIÇÃO FEDERAL. EIVA  DE NULIDADE ABSOLUTA A ATINGIR O
+PROCESSO AB INITIO. PRELIMINAR ACOLHIDA. PRESCRIÇÃO DA PRETENSÃO
+PUNITIVA DO ESTADO. EXTINÇÃO DE PUNIBILlDADE DECRETADA.
+ARQUIVAMENTO DO FEITO.
+l. Tendo o ora indiciado sido processado perante a Justiça Federal
+de Primeiro Grau e, posteriormente, reconhecida &#39;ex officio&#39; a
+incompetência daquela Instância,  dada a notícia de exercer o então
+denunciado mandato eletivo de Prefeito Municipal, reclamando,
+assim, o foro especial por prerrogativa  de função, nos termos do
+artigo 29, inciso X, da Constituição Federal, não há se cogitar no
+aproveitamento de qualquer ato verificado nos autos, vez que
+instaurado e realizado, desde o primeiro momento, perante
+autoridade judicial que, sob o prisma constitucional, não detinha
+competência para apreciar a demanda.
+2. Nulidade de caráter absoluto, visto tratar-se de competência
+delimitada no âmbito da Lei Maior, cujos efeitos estão a afetar
+todo o procedimento efetuado perante o juízo incompetente, posto
+não terem sido observados as garantias e princípios constitucionais
+do juiz natural e do devido processo legal, previstos no artigo 5º,
+incisos LII e LIV, a inquinar, destarte, todo o processo.
+3. Preliminar de nulidade ab initio do processo acolhido.
+4. Tendo decorrido lapso temporal superior a oito anos,
+considerado da data da consumação do suposto delito de falsidade
+ideológica, sem que tenha havido outra causa interruptiva,
+concretizada está a prescrição da pretensão punitiva do Estado,
+face a pena em abstrato cominada ao ilícito penal, em se tratando
+de documento particular, qual seja, três anos de reclusão, nos
+termos dos artigos 109, inciso IV, do Código Penal.
+5. Extinção da punibilidade decretada.  Arquivamento do feito.<br />(<font 97030781462, DESEMBARGADORA FEDERAL SUZANA CAMARGO, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:25/08/2000 PÁGINA: 456.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc7">Documento 7 - TRF3 - <font 97030584934</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc6"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc8"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_7');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_7');imprimir();fechar('popup_7');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030584934<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 204<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL MÁRCIO MORAES</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:08/08/2000 PÁGINA: 144</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"PROSSEGUINDO O JULGAMENTO, O SR. DES. FEDERAL RELATOR ADITOU
+RELATORIO E VOTO PARA RETIFICA-LOS PARCIALMENTE. EM CONSEQUENCIA, O
+ÓRGÃO ESPECIAL, À UNANIMIDADE, DECIDIU ACOMPANHAR O SR. DES.
+FEDERAL MÁRCIO MORAES PARA DECLINAR DA COMPETENCIA DA CORTE PARA
+PROCESSAR E JULGAR O FEITO, DECLARANDO COMPETENTE O JUÍZO FEDERAL
+DE 1º GRAU, TENDO EM VISTA A REVOGAÇÃO DA SÚMULA 394 DO SUPREMO
+TRIBUNAL FEDERAL. PARTICIPARAM DO JULGAMENTO OS SRS. DES. FEDERAIS
+ANNA MARIA PIMENTEL (RETIFICOU O VOTO), SOUZA PIRES, CÉLIO
+BENEVIDES (RETIFICOU O VOTO), ARICE AMARAL (RETIFICOU O VOTO),
+THEOTONIO COSTA (RETIFICOU O VOTO), BAPTISTA PEREIRA (RETIFICOU O
+VOTO), SUZANA CAMARGO, ANDRÉ NABARRETE (RETIFICOU O VOTO), ANDRADE
+MARTINS, ROBERTO HADDAD, RAMZA TARTUCE (RETIFICOU O VOTO), SYLVIA
+STEINER (RETIFICOU O VOTO), SALETTE NASCIMENTO E OLIVEIRA LIMA
+(RETIFICOU O VOTO). AUSENTES, POR ENCONTRAREM-SE EM GOZO DE LICENÇA
+ESPECIAL, AS SRAS. DES. FEDERAIS DIVA MALERBI E MARLI FERREIRA."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CONSTITUCIONAL. PROCESSUAL. SÚMULA 394 DO E. SUPREMO TRIBUNAL
+FEDERAL. CANCELAMENTO.  COMPETÊNCIA. INQUÉRITO . PREFEITO.
+APURAÇÃO DE CRIME POR DESVIO DE VERBA PÚBLICA. INCOMPETÊNCIA
+SUSCITADA PELA JUSTIÇA ESTADUAL. INDICIADO. EX-TITULAR DE MANDATO
+ELETIVO. FORO PRIVATIVO. INEXISTÊNCIA. TRF. INCOMPETÊNCIA
+DECLARADA.
+I- INQUÉRITO RECEBIDO DO TRIBUNAL DE JUSTIÇA DE MATO GROSSO DO SUL,
+QUE DECLINOU DE SUA COMPETÊNCIA. APURAÇÃO DE CRIME POR DESVIO DE
+VERBA PÚBLICA. PREFEITO.
+II- COM O CANCELAMENTO DA SÚMULA  394 DO E. STF FIRMA-SE
+ENTENDIMENTO NO SENTIDO DE QUE A COMPETÊNCIA FIXADA PELA
+CONSTITUIÇÃO FEDERAL EM SEU ARTIGO 102, INCISO I, ALÍNEA "B", DEVE
+SER INTERPRETADA RESTRITIVAMENTE, NÃO ALCANÇANDO EX-TITULARES DE
+MANDATO OU CARGO.
+III- INCOMPETÊNCIA DECLARADA POR ESTA CORTE, CONSIDERANDO QUE O
+AGENTE NÃO MAIS DISPÕE DE  FORO PRIVATIVO, POR NÃO SE ENCONTRAR
+ATUALMENTE NO EXERCÍCIO DE MANDATO ELETIVO.
+IV- REMESSA DO FEITO PARA O JUÍZO FEDERAL DE PRIMEIRO GRAU PARA
+PROCESSAMENTO E EXAME DA MATÉRIA REMANESCENTE DE COMPETÊNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INSTAURAÇÃO, INQUÉRITO POLICIAL, REQUISIÇÃO,
+PROCURADOR-GERAL DE JUSTIÇA, OBJETIVO, APURAÇÃO,
+RESPONSABILIDADE PENAL, EX-PREFEITO, MALVERSAÇÃO, VERBA PÚBLICA,
+PROCEDÊNCIA, FUNDO NACIONAL DE DESENVOLVIMENTO (FND), DECORRÊNCIA,
+CONVÊNIO.
+ENTENDIMENTO, TRIBUNAL DE JUSTIÇA, COMPETÊNCIA,
+TRIBUNAL REGIONAL FEDERAL (TRF), DETERMINAÇÃO, REMESSA, AUTOS.
+ENTENDIMENTO, RELATOR, OCORRÊNCIA, INCORPORAÇÃO, VERBA PÚBLICA,
+PATRIMÔNIO, MUNICÍPIO, INEXISTÊNCIA, DANO AO ERÁRIO, UNIÃO FEDERAL,
+HIPÓTESE, NEGÓCIO JURÍDICO, DOAÇÃO, DECORRÊNCIA, INCOMPETÊNCIA,
+JUSTIÇA FEDERAL.
+POSTERIORIDADE, ADITAMENTO, VOTO, RELATOR, MOTIVO, CANCELAMENTO,
+SUPREMO TRIBUNAL FEDERAL (STF), SÚMULA, ACRÉSCIMO, ENTENDIMENTO,
+SUPREMO TRIBUNAL FEDERAL (STF), NECESSIDADE,
+INTERPRETAÇÃO RESTRITIVA, ARTIGO, CONSTITUIÇÃO FEDERAL,
+DESCABIMENTO, APLICAÇÃO, EX-PREFEITO, FORO PRIVILEGIADO,
+DECORRÊNCIA, DETERMINAÇÃO, REMESSA, AUTOR, JUSTIÇA FEDERAL,
+PRIMEIRA INSTÂNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>25/05/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>08/08/2000</td>
+</tr>
+
+
+														
+														<tr>
+<td><span class="label_pontilhada">Outras Fontes</span></td></tr>
+<tr>
+<td>RTRF 53/185</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CF-88    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD- ANO-1988 ART-211 PAR-1 ART-71 INC-6 ART-109 INC-1
+ART-102 INC-1 LET-B ART-105 INC-1 LET-D
+<br></br>
+  CC-16    CODIGO CIVIL
+LEG-FED LEI-3071 ANO-1916 ART-1165
+<br></br>
+LEG-FED SUM-394
+STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030584934" target="blanck">97030584934</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_7" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_7" class="titulo_popup"><font 97030584934</label>
+										<input type="image" onclick="javascript: fechar('popup_7');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_7"
+											value="Processo 97030584934" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030584934<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 204<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL MÁRCIO MORAES</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:08/08/2000 PÁGINA: 144</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"PROSSEGUINDO O JULGAMENTO, O SR. DES. FEDERAL RELATOR ADITOU
+RELATORIO E VOTO PARA RETIFICA-LOS PARCIALMENTE. EM CONSEQUENCIA, O
+ÓRGÃO ESPECIAL, À UNANIMIDADE, DECIDIU ACOMPANHAR O SR. DES.
+FEDERAL MÁRCIO MORAES PARA DECLINAR DA COMPETENCIA DA CORTE PARA
+PROCESSAR E JULGAR O FEITO, DECLARANDO COMPETENTE O JUÍZO FEDERAL
+DE 1º GRAU, TENDO EM VISTA A REVOGAÇÃO DA SÚMULA 394 DO SUPREMO
+TRIBUNAL FEDERAL. PARTICIPARAM DO JULGAMENTO OS SRS. DES. FEDERAIS
+ANNA MARIA PIMENTEL (RETIFICOU O VOTO), SOUZA PIRES, CÉLIO
+BENEVIDES (RETIFICOU O VOTO), ARICE AMARAL (RETIFICOU O VOTO),
+THEOTONIO COSTA (RETIFICOU O VOTO), BAPTISTA PEREIRA (RETIFICOU O
+VOTO), SUZANA CAMARGO, ANDRÉ NABARRETE (RETIFICOU O VOTO), ANDRADE
+MARTINS, ROBERTO HADDAD, RAMZA TARTUCE (RETIFICOU O VOTO), SYLVIA
+STEINER (RETIFICOU O VOTO), SALETTE NASCIMENTO E OLIVEIRA LIMA
+(RETIFICOU O VOTO). AUSENTES, POR ENCONTRAREM-SE EM GOZO DE LICENÇA
+ESPECIAL, AS SRAS. DES. FEDERAIS DIVA MALERBI E MARLI FERREIRA."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>CONSTITUCIONAL. PROCESSUAL. SÚMULA 394 DO E. SUPREMO TRIBUNAL
+FEDERAL. CANCELAMENTO.  COMPETÊNCIA. INQUÉRITO . PREFEITO.
+APURAÇÃO DE CRIME POR DESVIO DE VERBA PÚBLICA. INCOMPETÊNCIA
+SUSCITADA PELA JUSTIÇA ESTADUAL. INDICIADO. EX-TITULAR DE MANDATO
+ELETIVO. FORO PRIVATIVO. INEXISTÊNCIA. TRF. INCOMPETÊNCIA
+DECLARADA.
+I- INQUÉRITO RECEBIDO DO TRIBUNAL DE JUSTIÇA DE MATO GROSSO DO SUL,
+QUE DECLINOU DE SUA COMPETÊNCIA. APURAÇÃO DE CRIME POR DESVIO DE
+VERBA PÚBLICA. PREFEITO.
+II- COM O CANCELAMENTO DA SÚMULA  394 DO E. STF FIRMA-SE
+ENTENDIMENTO NO SENTIDO DE QUE A COMPETÊNCIA FIXADA PELA
+CONSTITUIÇÃO FEDERAL EM SEU ARTIGO 102, INCISO I, ALÍNEA "B", DEVE
+SER INTERPRETADA RESTRITIVAMENTE, NÃO ALCANÇANDO EX-TITULARES DE
+MANDATO OU CARGO.
+III- INCOMPETÊNCIA DECLARADA POR ESTA CORTE, CONSIDERANDO QUE O
+AGENTE NÃO MAIS DISPÕE DE  FORO PRIVATIVO, POR NÃO SE ENCONTRAR
+ATUALMENTE NO EXERCÍCIO DE MANDATO ELETIVO.
+IV- REMESSA DO FEITO PARA O JUÍZO FEDERAL DE PRIMEIRO GRAU PARA
+PROCESSAMENTO E EXAME DA MATÉRIA REMANESCENTE DE COMPETÊNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INSTAURAÇÃO, INQUÉRITO POLICIAL, REQUISIÇÃO,
+PROCURADOR-GERAL DE JUSTIÇA, OBJETIVO, APURAÇÃO,
+RESPONSABILIDADE PENAL, EX-PREFEITO, MALVERSAÇÃO, VERBA PÚBLICA,
+PROCEDÊNCIA, FUNDO NACIONAL DE DESENVOLVIMENTO (FND), DECORRÊNCIA,
+CONVÊNIO.
+ENTENDIMENTO, TRIBUNAL DE JUSTIÇA, COMPETÊNCIA,
+TRIBUNAL REGIONAL FEDERAL (TRF), DETERMINAÇÃO, REMESSA, AUTOS.
+ENTENDIMENTO, RELATOR, OCORRÊNCIA, INCORPORAÇÃO, VERBA PÚBLICA,
+PATRIMÔNIO, MUNICÍPIO, INEXISTÊNCIA, DANO AO ERÁRIO, UNIÃO FEDERAL,
+HIPÓTESE, NEGÓCIO JURÍDICO, DOAÇÃO, DECORRÊNCIA, INCOMPETÊNCIA,
+JUSTIÇA FEDERAL.
+POSTERIORIDADE, ADITAMENTO, VOTO, RELATOR, MOTIVO, CANCELAMENTO,
+SUPREMO TRIBUNAL FEDERAL (STF), SÚMULA, ACRÉSCIMO, ENTENDIMENTO,
+SUPREMO TRIBUNAL FEDERAL (STF), NECESSIDADE,
+INTERPRETAÇÃO RESTRITIVA, ARTIGO, CONSTITUIÇÃO FEDERAL,
+DESCABIMENTO, APLICAÇÃO, EX-PREFEITO, FORO PRIVILEGIADO,
+DECORRÊNCIA, DETERMINAÇÃO, REMESSA, AUTOR, JUSTIÇA FEDERAL,
+PRIMEIRA INSTÂNCIA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>25/05/2000</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>08/08/2000</td>
+</tr>
+
+
+														
+														<tr>
+<td><span class="label_pontilhada">Outras Fontes</span></td></tr>
+<tr>
+<td>RTRF 53/185</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CF-88    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD- ANO-1988 ART-211 PAR-1 ART-71 INC-6 ART-109 INC-1
+ART-102 INC-1 LET-B ART-105 INC-1 LET-D
+<br></br>
+  CC-16    CODIGO CIVIL
+LEG-FED LEI-3071 ANO-1916 ART-1165
+<br></br>
+LEG-FED SUM-394
+STF</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030584934" target="blanck">97030584934</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_7" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_7" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_7');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_7"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																CONSTITUCIONAL. PROCESSUAL. SÚMULA 394 DO E. SUPREMO TRIBUNAL
+FEDERAL. CANCELAMENTO.  COMPETÊNCIA. INQUÉRITO . PREFEITO.
+APURAÇÃO DE CRIME POR DESVIO DE VERBA PÚBLICA. INCOMPETÊNCIA
+SUSCITADA PELA JUSTIÇA ESTADUAL. INDICIADO. EX-TITULAR DE MANDATO
+ELETIVO. FORO PRIVATIVO. INEXISTÊNCIA. TRF. INCOMPETÊNCIA
+DECLARADA.
+I- INQUÉRITO RECEBIDO DO TRIBUNAL DE JUSTIÇA DE MATO GROSSO DO SUL,
+QUE DECLINOU DE SUA COMPETÊNCIA. APURAÇÃO DE CRIME POR DESVIO DE
+VERBA PÚBLICA. PREFEITO.
+II- COM O CANCELAMENTO DA SÚMULA  394 DO E. STF FIRMA-SE
+ENTENDIMENTO NO SENTIDO DE QUE A COMPETÊNCIA FIXADA PELA
+CONSTITUIÇÃO FEDERAL EM SEU ARTIGO 102, INCISO I, ALÍNEA "B", DEVE
+SER INTERPRETADA RESTRITIVAMENTE, NÃO ALCANÇANDO EX-TITULARES DE
+MANDATO OU CARGO.
+III- INCOMPETÊNCIA DECLARADA POR ESTA CORTE, CONSIDERANDO QUE O
+AGENTE NÃO MAIS DISPÕE DE  FORO PRIVATIVO, POR NÃO SE ENCONTRAR
+ATUALMENTE NO EXERCÍCIO DE MANDATO ELETIVO.
+IV- REMESSA DO FEITO PARA O JUÍZO FEDERAL DE PRIMEIRO GRAU PARA
+PROCESSAMENTO E EXAME DA MATÉRIA REMANESCENTE DE COMPETÊNCIA.<br />(<font 97030584934, DESEMBARGADOR FEDERAL MÁRCIO MORAES, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:08/08/2000 PÁGINA: 144.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc8">Documento 8 - TRF3 - <font 98030051903</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc7"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc9"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_8');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_8');imprimir();fechar('popup_8');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030051903<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 216<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SYLVIA STEINER</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:01/08/2000 PÁGINA: 212</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"PROSSEGUINDO O JULGAMENTO, O ÓRGÃO ESPECIAL, POR MAIORIA, DEFERIU
+O PEDIDO DE ARQUIVAMENTO DOS AUTOS, NOS TERMOS DO VOTO DA SENHORA
+DESEMBARGADORA FEDERAL RELATORA."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL - DILIGÊNCIA
+EFETUADA POR JUIZ - BUSCA DE TESTEMUNHAS EM LOCAL DE TRABALHO PARA
+OITIVA NA JUNTA DE CONCILIAÇÃO E JULGAMENTO - AUSÊNCIA DE OFICIAL
+DE JUSTIÇA PARA O ATO - ILICITUDE PENAL - INEXISTÊNCIA -
+ARQUIVAMENTO DOS AUTOS DO INQUÉRITO.
+1. INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL DESTA E. CORTE, POR
+PRERROGATIVA DE FUNÇÃO DE QUE GOZA O MM. JUIZ DA JUNTA DE
+CONCILIAÇÃO E JULGAMENTO DA CIDADE DE ITÁPOLIS.
+2. A BUSCA, PELO JUIZ, DE TESTEMUNHAS A SEREM OUVIDAS EM AUDIÊNCIA
+NA JUNTA DE CONCILIAÇÃO E JULGAMENTO, NÃO HAVENDO OFICIAL DE
+JUSTIÇA NO MOMENTO, EMBORA SEJA CONDUTA NÃO RECOMENDÁVEL, NÃO
+CONFIGURA ILÍCITO PENAL.
+3. ARQUIVAMENTO DOS AUTOS DO INQUÉRITO, POR INEXISTÊNCIA DE
+INFRAÇÃO A SER APURADA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>COMPARECIMENTO, JUIZ DO TRABALHO, EMPRESA, BUSCA PESSOAL,
+TESTEMUNHA, OBJETIVO, INQUIRIÇÃO, AUDIÊNCIA. DIRETOR, EMPRESA,
+COMUNICAÇÃO, FATO, OAB, ALEGAÇÃO, OCORRÊNCIA, VIOLAÇÃO, LUGAR,
+TRABALHO.
+AUTORIDADE POLICIAL, LAVRATURA, OCORRÊNCIA, PRESERVAÇÃO, DIREITO,
+ENTENDIMENTO, INEXISTÊNCIA, DELITO.
+INEXISTÊNCIA, PROVA, ABUSO DE PODER, ACRÉSCIMO, PREVISÃO LEGAL,
+POSSIBILIDADE, JUIZ, DETERMINAÇÃO, DILIGÊNCIA, NECESSIDADE,
+ESCLARECIMENTO, FATO, DECORRÊNCIA, ARQUIVAMENTO,
+INQUÉRITO POLICIAL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>01/08/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CLT-43    CONSOLIDAÇÃO DAS LEIS DO TRABALHO
+LEG-FED DEL-5452 ANO-1943 ART-765</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030051903" target="blanck">98030051903</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_8" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_8" class="titulo_popup"><font 98030051903</label>
+										<input type="image" onclick="javascript: fechar('popup_8');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_8"
+											value="Processo 98030051903" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 98030051903<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 216<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADORA FEDERAL SYLVIA STEINER</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:01/08/2000 PÁGINA: 212</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"PROSSEGUINDO O JULGAMENTO, O ÓRGÃO ESPECIAL, POR MAIORIA, DEFERIU
+O PEDIDO DE ARQUIVAMENTO DOS AUTOS, NOS TERMOS DO VOTO DA SENHORA
+DESEMBARGADORA FEDERAL RELATORA."</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL - INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL - DILIGÊNCIA
+EFETUADA POR JUIZ - BUSCA DE TESTEMUNHAS EM LOCAL DE TRABALHO PARA
+OITIVA NA JUNTA DE CONCILIAÇÃO E JULGAMENTO - AUSÊNCIA DE OFICIAL
+DE JUSTIÇA PARA O ATO - ILICITUDE PENAL - INEXISTÊNCIA -
+ARQUIVAMENTO DOS AUTOS DO INQUÉRITO.
+1. INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL DESTA E. CORTE, POR
+PRERROGATIVA DE FUNÇÃO DE QUE GOZA O MM. JUIZ DA JUNTA DE
+CONCILIAÇÃO E JULGAMENTO DA CIDADE DE ITÁPOLIS.
+2. A BUSCA, PELO JUIZ, DE TESTEMUNHAS A SEREM OUVIDAS EM AUDIÊNCIA
+NA JUNTA DE CONCILIAÇÃO E JULGAMENTO, NÃO HAVENDO OFICIAL DE
+JUSTIÇA NO MOMENTO, EMBORA SEJA CONDUTA NÃO RECOMENDÁVEL, NÃO
+CONFIGURA ILÍCITO PENAL.
+3. ARQUIVAMENTO DOS AUTOS DO INQUÉRITO, POR INEXISTÊNCIA DE
+INFRAÇÃO A SER APURADA.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>COMPARECIMENTO, JUIZ DO TRABALHO, EMPRESA, BUSCA PESSOAL,
+TESTEMUNHA, OBJETIVO, INQUIRIÇÃO, AUDIÊNCIA. DIRETOR, EMPRESA,
+COMUNICAÇÃO, FATO, OAB, ALEGAÇÃO, OCORRÊNCIA, VIOLAÇÃO, LUGAR,
+TRABALHO.
+AUTORIDADE POLICIAL, LAVRATURA, OCORRÊNCIA, PRESERVAÇÃO, DIREITO,
+ENTENDIMENTO, INEXISTÊNCIA, DELITO.
+INEXISTÊNCIA, PROVA, ABUSO DE PODER, ACRÉSCIMO, PREVISÃO LEGAL,
+POSSIBILIDADE, JUIZ, DETERMINAÇÃO, DILIGÊNCIA, NECESSIDADE,
+ESCLARECIMENTO, FATO, DECORRÊNCIA, ARQUIVAMENTO,
+INQUÉRITO POLICIAL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>01/08/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CLT-43    CONSOLIDAÇÃO DAS LEIS DO TRABALHO
+LEG-FED DEL-5452 ANO-1943 ART-765</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=98030051903" target="blanck">98030051903</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_8" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_8" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_8');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_8"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL - INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL - DILIGÊNCIA
+EFETUADA POR JUIZ - BUSCA DE TESTEMUNHAS EM LOCAL DE TRABALHO PARA
+OITIVA NA JUNTA DE CONCILIAÇÃO E JULGAMENTO - AUSÊNCIA DE OFICIAL
+DE JUSTIÇA PARA O ATO - ILICITUDE PENAL - INEXISTÊNCIA -
+ARQUIVAMENTO DOS AUTOS DO INQUÉRITO.
+1. INQUÉRITO DE APRECIAÇÃO PELO ÓRGÃO ESPECIAL DESTA E. CORTE, POR
+PRERROGATIVA DE FUNÇÃO DE QUE GOZA O MM. JUIZ DA JUNTA DE
+CONCILIAÇÃO E JULGAMENTO DA CIDADE DE ITÁPOLIS.
+2. A BUSCA, PELO JUIZ, DE TESTEMUNHAS A SEREM OUVIDAS EM AUDIÊNCIA
+NA JUNTA DE CONCILIAÇÃO E JULGAMENTO, NÃO HAVENDO OFICIAL DE
+JUSTIÇA NO MOMENTO, EMBORA SEJA CONDUTA NÃO RECOMENDÁVEL, NÃO
+CONFIGURA ILÍCITO PENAL.
+3. ARQUIVAMENTO DOS AUTOS DO INQUÉRITO, POR INEXISTÊNCIA DE
+INFRAÇÃO A SER APURADA.<br />(<font 98030051903, DESEMBARGADORA FEDERAL SYLVIA STEINER, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:01/08/2000 PÁGINA: 212.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc9">Documento 9 - TRF3 - <font 95030614317</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc8"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="#_doc10"><img src="/juris/imagens/down.gif" /></a>
+												
+												<a href="javascript:abrir('popup_sf_9');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_9');imprimir();fechar('popup_9');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 95030614317<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 108<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ DATA:29/03/2000 PÁGINA: 162</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, POR UNANIMIDADE, RECONHECEU A SUA
+INCOMPETÊNCIAPARA JULGAR O FEITO E DETERMINOU A SUA REMESSA À
+SUBSEÇÃO DE ARAÇATUBA, SEÇÃO JUDICIÁRIA DO ESTADO DE SÃO PAULO, NOS
+TERMOS DO VOTO DO SENHOR DESEMBARGADOR FEDERAL RELATOR."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>1.SÚMULA Nº 394 STF:
+COMETIDO O CRIME DURANTE O EXERCÍCIO FUNCIONAL,PREVALECE A
+COMPETÊNCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA QUE O
+INQUÉRITO OU A AÇÃO PENAL SEJAM INICIADOS APÓS A CESSAÇÃO DAQUELE
+EXERCÍCIO.
+2.INDEXAÇÃO: VIDE EMENTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES ACERCA
+DA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO E
+JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÃO PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA ESPECIAL MESMO APÓS A
+CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA DELITIVA TIVESSE
+SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA  DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PARA PERMANÊNCIA DOSAUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA  A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO DOMINGOS MARTIN ANDORFATO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SUBSEÇÃO DE ARAÇATUBA/SP.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/03/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-9639 ANO-1998 ART-11
+<br></br>
+LEG-FED LEI-1079 ANO-1950
+<br></br>
+LEG-FED SUM-394
+STF
+<br></br>
+LEG-FED DEL-201 ANO-1967
+<br></br>
+LEG-FED LEI-8212 ANO-1991 ART-95 LET-D
+<br></br>
+LEG-FED LEI-3528 ANO-1990
+<br></br>
+  CF-46    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD- ANO-1946 ART-59 INC-1 ART-62 ART-88 ART-92 ART-100
+ART-101 INC-1 LET-A LET-B LET-C ART-104 INC-2 ART-109 INC-7
+ART-124 INC-9 INC-12
+<br></br>
+LEG-MUN LEI-3434 ANO-1991
+ARAÇATUBA</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=95030614317" target="blanck">95030614317</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_9" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_9" class="titulo_popup"><font 95030614317</label>
+										<input type="image" onclick="javascript: fechar('popup_9');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_9"
+											value="Processo 95030614317" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 95030614317<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 108<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ DATA:29/03/2000 PÁGINA: 162</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, POR UNANIMIDADE, RECONHECEU A SUA
+INCOMPETÊNCIAPARA JULGAR O FEITO E DETERMINOU A SUA REMESSA À
+SUBSEÇÃO DE ARAÇATUBA, SEÇÃO JUDICIÁRIA DO ESTADO DE SÃO PAULO, NOS
+TERMOS DO VOTO DO SENHOR DESEMBARGADOR FEDERAL RELATOR."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>1.SÚMULA Nº 394 STF:
+COMETIDO O CRIME DURANTE O EXERCÍCIO FUNCIONAL,PREVALECE A
+COMPETÊNCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA QUE O
+INQUÉRITO OU A AÇÃO PENAL SEJAM INICIADOS APÓS A CESSAÇÃO DAQUELE
+EXERCÍCIO.
+2.INDEXAÇÃO: VIDE EMENTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES ACERCA
+DA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO E
+JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÃO PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA ESPECIAL MESMO APÓS A
+CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA DELITIVA TIVESSE
+SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA  DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PARA PERMANÊNCIA DOSAUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA  A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO DOMINGOS MARTIN ANDORFATO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SUBSEÇÃO DE ARAÇATUBA/SP.</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/03/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED LEI-9639 ANO-1998 ART-11
+<br></br>
+LEG-FED LEI-1079 ANO-1950
+<br></br>
+LEG-FED SUM-394
+STF
+<br></br>
+LEG-FED DEL-201 ANO-1967
+<br></br>
+LEG-FED LEI-8212 ANO-1991 ART-95 LET-D
+<br></br>
+LEG-FED LEI-3528 ANO-1990
+<br></br>
+  CF-46    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD- ANO-1946 ART-59 INC-1 ART-62 ART-88 ART-92 ART-100
+ART-101 INC-1 LET-A LET-B LET-C ART-104 INC-2 ART-109 INC-7
+ART-124 INC-9 INC-12
+<br></br>
+LEG-MUN LEI-3434 ANO-1991
+ARAÇATUBA</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=95030614317" target="blanck">95030614317</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_9" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_9" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_9');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_9"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES ACERCA
+DA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO E
+JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÃO PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA ESPECIAL MESMO APÓS A
+CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA DELITIVA TIVESSE
+SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA  DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PARA PERMANÊNCIA DOSAUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA  A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO DOMINGOS MARTIN ANDORFATO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SUBSEÇÃO DE ARAÇATUBA/SP.<br />(<font 95030614317, DESEMBARGADOR FEDERAL THEOTONIO COSTA, TRF3 - ÓRGÃO ESPECIAL, DJ DATA:29/03/2000 PÁGINA: 162.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc10">Documento 10 - TRF3 - <font 97030638198</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc9"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_10');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_10');imprimir();fechar('popup_10');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030638198<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 205<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ DATA:22/02/2000 PÁGINA: 313</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, A UNANIMIDADE, RECONHECEU A INCOMPETÊNCIA DESTA
+CORTE PARA PROCESSAR E JULGAR O FEITO, DETERMINANDO O SEU
+ENCAMINHAMENTO PARA A SEÇÃO JUDICIÁRIA DE MATO GROSSO DO SUL, NOS
+TERMOS DO VOTO DO SENHOR DESEMBARGADOR FEDERAL RELATOR."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>SÚMULA 209, STJ:"COMPETE A JUSTIÇA ESTADUAL PROCESSAR E JULGAR
+PREFEITO POR DESVIO DE VERBA TRANSFERIDA E INCORPORADA AO
+PATRIMONIO MUNICIPAL".
+SÚMULA 208, STJ: "COMPETE A JUSTIÇA FEDERAL PROCESSAR E JULGAR
+PREFEITO MUNICIPAL POR DESVIO DE VERBA SUJEITA A PRESTAÇÃO DE
+CONTAS PERANTE ORGÃO FEDERAL".
+SÚMULA 394, STF:"COMETIDO O CRIME DURANTE O EXERCICIO FUNCIONAL,
+PREVALECE A COMPETENCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA
+QUE O INQUERITO OU A AÇÃO PENAL SEJAM INICIADOS APOS A CESSAÇÃO
+DAQUELE EXERCICIO".</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES
+ACERCADA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO
+E JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÕES PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA DA COMPETÊNCIA ESPECIAL
+MESMO APÓS A CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA
+DELITIVA TIVESSE SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PAR PERMANÊNCIA DO AUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO JORGE ANDRÉ CAETANO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SEÇÃO JUDICÁRIA DE MATO GROSSO DO SUL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INAPLICABILIDADE, SÚMULA, STF, PRORROGAÇÃO,
+COMPETÊNCIA POR PRERROGATIVA DE FUNÇÃO, INTERESSE PÚBLICO,
+INEXISTÊNCIA, POSTERIORIDADE, AFASTAMENTO, EXERCÍCIO DE FUNÇÃO,
+NECESSIDADE, OBSERVÂNCIA, PRINCÍPIO DA IGUALDADE, DETERMINAÇÃO,
+SEGUIMENTO, AUTOS, JUÍZO A QUO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>22/02/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED DEL-201 ANO-1967
+<br></br>
+LEG-FED LEI-1079 ANO-1950
+<br></br>
+LEG-FED SUM-209
+STJ
+<br></br>
+  CF-46    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD-0 ANO-1946 ART-59 INC-1 ART-62 ART-88 ART-92 ART-100
+ART-101 INC-1 LET-A LET-B LET-C ART-104 INC-2 ART-108
+ART-109 INC-7 ART-124 INC-9 INC-12
+<br></br>
+LEG-FED SUM-394
+STF
+<br></br>
+LEG-FED SUM-208
+STJ
+<br></br>
+LEG-FED LEI-3528 ANO-1990</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030638198" target="blanck">97030638198</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_10" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_10" class="titulo_popup"><font 97030638198</label>
+										<input type="image" onclick="javascript: fechar('popup_10');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_10"
+											value="Processo 97030638198" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 97030638198<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 205<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJ DATA:22/02/2000 PÁGINA: 313</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>"O ÓRGÃO ESPECIAL, A UNANIMIDADE, RECONHECEU A INCOMPETÊNCIA DESTA
+CORTE PARA PROCESSAR E JULGAR O FEITO, DETERMINANDO O SEU
+ENCAMINHAMENTO PARA A SEÇÃO JUDICIÁRIA DE MATO GROSSO DO SUL, NOS
+TERMOS DO VOTO DO SENHOR DESEMBARGADOR FEDERAL RELATOR."</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Descrição</span></td></tr>
+<tr>
+<td>SÚMULA 209, STJ:"COMPETE A JUSTIÇA ESTADUAL PROCESSAR E JULGAR
+PREFEITO POR DESVIO DE VERBA TRANSFERIDA E INCORPORADA AO
+PATRIMONIO MUNICIPAL".
+SÚMULA 208, STJ: "COMPETE A JUSTIÇA FEDERAL PROCESSAR E JULGAR
+PREFEITO MUNICIPAL POR DESVIO DE VERBA SUJEITA A PRESTAÇÃO DE
+CONTAS PERANTE ORGÃO FEDERAL".
+SÚMULA 394, STF:"COMETIDO O CRIME DURANTE O EXERCICIO FUNCIONAL,
+PREVALECE A COMPETENCIA ESPECIAL POR PRERROGATIVA DE FUNÇÃO, AINDA
+QUE O INQUERITO OU A AÇÃO PENAL SEJAM INICIADOS APOS A CESSAÇÃO
+DAQUELE EXERCICIO".</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES
+ACERCADA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO
+E JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÕES PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA DA COMPETÊNCIA ESPECIAL
+MESMO APÓS A CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA
+DELITIVA TIVESSE SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PAR PERMANÊNCIA DO AUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO JORGE ANDRÉ CAETANO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SEÇÃO JUDICÁRIA DE MATO GROSSO DO SUL.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>INAPLICABILIDADE, SÚMULA, STF, PRORROGAÇÃO,
+COMPETÊNCIA POR PRERROGATIVA DE FUNÇÃO, INTERESSE PÚBLICO,
+INEXISTÊNCIA, POSTERIORIDADE, AFASTAMENTO, EXERCÍCIO DE FUNÇÃO,
+NECESSIDADE, OBSERVÂNCIA, PRINCÍPIO DA IGUALDADE, DETERMINAÇÃO,
+SEGUIMENTO, AUTOS, JUÍZO A QUO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/12/1999</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>22/02/2000</td>
+</tr>
+
+
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>LEG-FED DEL-201 ANO-1967
+<br></br>
+LEG-FED LEI-1079 ANO-1950
+<br></br>
+LEG-FED SUM-209
+STJ
+<br></br>
+  CF-46    CONSTITUIÇÃO FEDERAL
+LEG-FED CFD-0 ANO-1946 ART-59 INC-1 ART-62 ART-88 ART-92 ART-100
+ART-101 INC-1 LET-A LET-B LET-C ART-104 INC-2 ART-108
+ART-109 INC-7 ART-124 INC-9 INC-12
+<br></br>
+LEG-FED SUM-394
+STF
+<br></br>
+LEG-FED SUM-208
+STJ
+<br></br>
+LEG-FED LEI-3528 ANO-1990</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=97030638198" target="blanck">97030638198</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_10" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_10" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_10');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_10"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PROCESSO PENAL. COMPETÊNCIA: INQUÉRITO: EX-PREFEITO: SÚMULA 394 DO
+S.T.F: CANCELAMENTO: PRERROGATIVA DE FORO ESPECIAL VINCULADA AO
+TEMPO DO EFETIVO EXERCÍCIO DO MANDATO ELETIVO: PRIVILÉGIO CONCEDIDO
+EM RAZÃO DO INTERESSE PÚBLICO. PROCESSO E JULGAMENTO AFETO AO JUÍZO
+SINGULAR.
+I- APÓS PROLONGADOS DEBATES JURÍDICOS E DECISÕES DIVERGENTES
+ACERCADA QUESTÃO REFERENTE À FIXAÇÃO DA COMPETÊNCIA PARA O PROCESSO
+E JULGAMENTO DE OCUPANTE DE CARGO OU FUNÇÕES PÚBLICA REVESTIDO DE
+PRERROGATIVA DE FORO ESPECIAL APÓS A FINALIZAÇÃO DO EXERCÍCIO DO
+CARGO OU MANDATO, O SUPREMO TRIBUNAL FEDERAL EDITOU A SÚMULA 394,
+ENUNCIANDO A PREVALÊNCIA DA COMPETÊNCIA DA COMPETÊNCIA ESPECIAL
+MESMO APÓS A CESSAÇÃO DO EXERCÍCIO, NOS CASOS EM QUE A CONDUTA
+DELITIVA TIVESSE SIDO PRATICADA DURANTE O EXERCÍCIO FUNCIONAL.
+II- MODIFICADO O ENTENDIMENTO SEDIMENTADO, EM RAZÃO DE DIVERSOS
+QUESTIONAMENTOS A RESPEITO, A SÚMULA 394 VEIO A SER CANCELADA PELA
+SUPREMA CORTE, EM 25.08.99, PASSANDO-SE A RESTRINGIR A PRERROGATIVA
+DE FORO ESPECIAL UNICAMENTE AO TEMPO DO EXERCÍCIO DO MANDATO, NÃO
+SUBSISTINDO QUANDO O AGENTE DEIXAR DE OCUPAR O CARGO QUE,
+ORIGINARIAMENTE, CONFERIA-LHE O PROCESSO E JULGAMENTO PERANTE UMA
+DETERMINADA CORTE SUPERIOR, POIS O PRIVILÉGIO DE FORO ESPECIAL NÃO
+ADVÉM DO INTERESSE PESSOAL DO INVESTIDO NO CARGO, E SIM EM RAZÃO DO
+INTERESSE PÚBLICO, NÃO PODENDO, PORTANTO, SER DEFERIDO A QUEM NÃO
+MAIS O EXERCE.
+III- NO CASO, COMPROVADO QUE O INDICIADO NÃO MAIS EXERCE O CARGO DE
+ADMINISTRADOR MUNICIPAL, QUE EXERCIA À ÉPOCA DA CONDUTA CRIMINOSA
+PELA QUAL É INVESTIGADO, NÃO TENDO SIDO POSTERIORMENTE ELEITO OU
+ASSUMIDO QUALQUER OUTRO REVESTIDO, TAMBÉM, DO BENEFÍCIO ESPECIAL,
+CESSANDO, PORTANTO, OS MOTIVOS PAR PERMANÊNCIA DO AUTOS NESTA
+CORTE.
+IV- RECONHECIDA A INCOMPETÊNCIA DESTA CORTE PARA A APRECIAÇÃO DO
+PRESENTE INQUÉRITO CONTRA O EX-PREFEITO JORGE ANDRÉ CAETANO,
+MANTENDO-SE COMO VÁLIDOS TODOS OS ATOS PRATICADOS E DECISÕES
+PROFERIDAS POR JURISDIÇÃO COMPETENTE ATÉ O MOMENTO, DETERMINANDO
+SEU ENCAMINHAMENTO AO JUÍZO SINGULAR COMPETENTE, NO CASO, À JUSTIÇA
+FEDERAL, SEÇÃO JUDICÁRIA DE MATO GROSSO DO SUL.<br />(<font 97030638198, DESEMBARGADOR FEDERAL THEOTONIO COSTA, TRF3 - ÓRGÃO ESPECIAL, DJ DATA:22/02/2000 PÁGINA: 313.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<table class="table_pesquisa_lista" summary="Lista de jurisprudência unificada" cellspacing="0" cellpadding="3">
+					
+					<tr>
+						<td class="titulo_doc">
+							<span><a name="_doc11">Documento 11 - TRF3 - <font 91030172635</a></span>
+						</td>
+					</tr>
+					<tr class="tr_doc">
+						<td>
+											<div id="menu_popup_unificada">
+												
+												
+												<a href="#_doc10"><img src="/juris/imagens/top.gif" /></a>
+												
+												
+												<a href="javascript:abrir('popup_sf_11');"><img src="/juris/imagens/icon_sem_formatacao.png" 
+													title="Resultado sem formatação" alt="Resultado sem formatação"
+													value=" " /></a>
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="abrir('popup_11');imprimir();fechar('popup_11');return false;" onkeypress=" " value=" " />
+
+
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 91030172635<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 9<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:29/10/1996 PÁGINA: 82249</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>'O ORGAO ESPECIAL, POR UNANIMIDADE, ACOLHEU O PEDIDO DO MINISTERIO
+PUBLICO FEDERAL PARA DETERMINAR O RETORNO DOS AUTOS A 1. VARA
+FEDERAL DA SECAO JUDICIARIA DE CAMPO GRANDE, MATO GROSSO DO SUL,
+NOS TERMOS DO VOTO DO SENHOR JUIZ RELATOR. ACOMPANHARAM O SENHOR
+JUIZ RELATOR OS SENHORES JUIZES BAPTISTA PEREIRA, SUZANA CAMARGO,
+ANDRE NABARRETE, ANA SCARTEZZINI, SOUZA PIRES, DIVA MALERBI, CELIO
+BENEVIDES, ARICE AMARAL, PEDRO ROTTA E SINVAL ANTUNES. AUSENTES,
+JUSTIFICADAMENTE, OS SENHORES JUIZES HOMAR CAIS, JORGE SCARTEZZINI
+E ANNAMARIA PIMENTEL; POR ENCONTRAR-SE EM CORREICAO, O SENHOR JUIZ
+JOSE KALLAS; POR ESTAR SERVINDO JUNTO AO TRIBUNAL REGIONAL
+ELEITORAL, O SENHOR JUIZ MARCIO MORAES; POR ESTAR EM GOZO DE
+LICENCA ESPECIAL PARA TRATAR DE ASSUNTOS RELATIVOS AO SEXTO
+CONCURSO PUBLICO PARA PROVIMENTO DE CARGOS DE JUIZ FEDERAL
+SUBSTITUTO, A SENHORA JUIZA LUCIA FIGUEIREDO.'</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL E PROCESSO. INQUÉRITO. COMPETÊNCIA RATIONE PERSONAE. DEPUTADO
+ESTADUAL. CRIME COMUM COMETIDO EM DETRIMENTO DE BENS E INTERESSES
+DA UNIÃO ANTES DO MANDATO. PRERROGATIVA DE FUNÇÃO EXISTENTE TÃO
+SOMENTE ENQUANTO PERDURAR SEU EXERCÍCIO. CESSAÇÃO DA COMPETÊNCIA
+DESTE TRIBUNAL APÓS FINDA A LEGISLATURA SEM TER OBTIDO REELEIÇÃO.
+RETORNO DO PROCESSO AO JUÍZO DE ORIGEM.
+1- A COMPETÊNCIA POR PRERROGATIVA DE FUNÇÃO DE QUE GOZA PARLAMENTAR
+ESTADUAL, QUANTO A DELITO COMETIDO ANTERIORMENTE AO MANDATO,
+PERSISTE TÃO SOMENTE ENQUANTO INVESTIDO NO CARGO, CESSANDO A
+COMPETÊNCIA ESPECIAL DO TRIBUNAL REGIONAL FEDERAL FINDO O MANDATO
+ELETIVO QUE A MOTIVOU, SEM REELEIÇÃO. PRECEDENTES NO STF.
+2- FINDO O MANDATO, CESSADA A COMPETÊNCIA DO TRIBUNAL PARA O
+PROCESSAMENTO DO FEITO, COM A REMESSA DOS AUTOS AO JUÍZO DE ORIGEM,
+QUE READQUIRE COMPETÊNCIA PARA O PROCESSO E JULGAMENTO DO FEITO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>IMUNIDADE PARLAMENTAR, PERÍODO, MANDATO, EXERCÍCIO, TÉRMINO.
+DEPUTADO ESTADUAL, CRIME COMUM, ANTERIORIDADE, MANDATO.
+COMPETÊNCIA, TRF, LIMITE, AUTOS, RETORNO, JUÍZO A QUO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/10/1996</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/10/1996</td>
+</tr>
+
+
+														
+														<tr>
+<td><span class="label_pontilhada">Outras Fontes</span></td></tr>
+<tr>
+<td>RTRF 29/235</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-334 ART-333 ART-342 PAR-1 ART-299</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=91030172635" target="blanck">91030172635</a></td>
+</tr>
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+
+
+<div id="popup_11" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_11" class="titulo_popup"><font 91030172635</label>
+										<input type="image" onclick="javascript: fechar('popup_11');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_11"
+											value="Processo 91030172635" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo" class="sub_conteudo">
+											<div id="menu_popup_unificada">
+												
+												<input type="image" src="/juris/imagens/icon_imprimir.png" title="Imprimir" alt="Imprimir"
+													onclick="imprimir();return false;" onkeypress=" " value=" " />
+											</div>
+											<div id="item_resultado">
+												<table class="table_resultado"  summary="Lista detalhada de jurisprudência unificada" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																<span class="label_pontilhada">Processo</span>
+															</td>
+														</tr>
+														<tr>
+															<td>
+																<font 91030172635<br />
+																<font color="blue"><b>INQ</b></font> - INQUERITO - 9<br />
+															</td>
+														</tr>
+														<tr>
+<td><span class="label_pontilhada">Relator(a)</span></td></tr>
+<tr>
+<td>DESEMBARGADOR FEDERAL THEOTONIO COSTA</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Sigla do órgão</span></td></tr>
+<tr>
+<td>TRF3</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Órgão julgador</span></td></tr>
+<tr>
+<td>ÓRGÃO ESPECIAL</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Fonte</span></td></tr>
+<tr>
+<td>DJU DATA:29/10/1996 PÁGINA: 82249</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Decisão</span></td></tr>
+<tr>
+<td>'O ORGAO ESPECIAL, POR UNANIMIDADE, ACOLHEU O PEDIDO DO MINISTERIO
+PUBLICO FEDERAL PARA DETERMINAR O RETORNO DOS AUTOS A 1. VARA
+FEDERAL DA SECAO JUDICIARIA DE CAMPO GRANDE, MATO GROSSO DO SUL,
+NOS TERMOS DO VOTO DO SENHOR JUIZ RELATOR. ACOMPANHARAM O SENHOR
+JUIZ RELATOR OS SENHORES JUIZES BAPTISTA PEREIRA, SUZANA CAMARGO,
+ANDRE NABARRETE, ANA SCARTEZZINI, SOUZA PIRES, DIVA MALERBI, CELIO
+BENEVIDES, ARICE AMARAL, PEDRO ROTTA E SINVAL ANTUNES. AUSENTES,
+JUSTIFICADAMENTE, OS SENHORES JUIZES HOMAR CAIS, JORGE SCARTEZZINI
+E ANNAMARIA PIMENTEL; POR ENCONTRAR-SE EM CORREICAO, O SENHOR JUIZ
+JOSE KALLAS; POR ESTAR SERVINDO JUNTO AO TRIBUNAL REGIONAL
+ELEITORAL, O SENHOR JUIZ MARCIO MORAES; POR ESTAR EM GOZO DE
+LICENCA ESPECIAL PARA TRATAR DE ASSUNTOS RELATIVOS AO SEXTO
+CONCURSO PUBLICO PARA PROVIMENTO DE CARGOS DE JUIZ FEDERAL
+SUBSTITUTO, A SENHORA JUIZA LUCIA FIGUEIREDO.'</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Ementa</span></td></tr>
+<tr>
+<td>PENAL E PROCESSO. INQUÉRITO. COMPETÊNCIA RATIONE PERSONAE. DEPUTADO
+ESTADUAL. CRIME COMUM COMETIDO EM DETRIMENTO DE BENS E INTERESSES
+DA UNIÃO ANTES DO MANDATO. PRERROGATIVA DE FUNÇÃO EXISTENTE TÃO
+SOMENTE ENQUANTO PERDURAR SEU EXERCÍCIO. CESSAÇÃO DA COMPETÊNCIA
+DESTE TRIBUNAL APÓS FINDA A LEGISLATURA SEM TER OBTIDO REELEIÇÃO.
+RETORNO DO PROCESSO AO JUÍZO DE ORIGEM.
+1- A COMPETÊNCIA POR PRERROGATIVA DE FUNÇÃO DE QUE GOZA PARLAMENTAR
+ESTADUAL, QUANTO A DELITO COMETIDO ANTERIORMENTE AO MANDATO,
+PERSISTE TÃO SOMENTE ENQUANTO INVESTIDO NO CARGO, CESSANDO A
+COMPETÊNCIA ESPECIAL DO TRIBUNAL REGIONAL FEDERAL FINDO O MANDATO
+ELETIVO QUE A MOTIVOU, SEM REELEIÇÃO. PRECEDENTES NO STF.
+2- FINDO O MANDATO, CESSADA A COMPETÊNCIA DO TRIBUNAL PARA O
+PROCESSAMENTO DO FEITO, COM A REMESSA DOS AUTOS AO JUÍZO DE ORIGEM,
+QUE READQUIRE COMPETÊNCIA PARA O PROCESSO E JULGAMENTO DO FEITO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Indexação</span></td></tr>
+<tr>
+<td>IMUNIDADE PARLAMENTAR, PERÍODO, MANDATO, EXERCÍCIO, TÉRMINO.
+DEPUTADO ESTADUAL, CRIME COMUM, ANTERIORIDADE, MANDATO.
+COMPETÊNCIA, TRF, LIMITE, AUTOS, RETORNO, JUÍZO A QUO.</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Decisão</span></td></tr>
+<tr>
+<td>17/10/1996</td>
+</tr>
+
+														<tr>
+<td><span class="label_pontilhada">Data da Publicação</span></td></tr>
+<tr>
+<td>29/10/1996</td>
+</tr>
+
+
+														
+														<tr>
+<td><span class="label_pontilhada">Outras Fontes</span></td></tr>
+<tr>
+<td>RTRF 29/235</td>
+</tr>
+
+														
+														<tr>
+<td><span class="label_pontilhada">Referência Legislativa</span></td></tr>
+<tr>
+<td>  CP-40    CODIGO PENAL
+LEG-FED DEL-2848 ANO-1940 ART-334 ART-333 ART-342 PAR-1 ART-299</td>
+</tr>
+
+														
+														
+														
+														
+														
+														
+														<tr>
+<td><span class="label_pontilhada">Inteiro Teor</span></td></tr>
+<tr>
+<td><a href ="http://www.trf3.jus.br/trf3r/index.php?id=20&op=resultado&processo=91030172635" target="blanck">91030172635</a></td>
+</tr>
+
+
+													</tbody>
+												</table>
+											</div>
+										</div>
+
+
+
+
+						</td>
+					</tr>
+
+
+
+<tr>
+						<td>
+
+
+<div id="popup_sf_11" class="popup">
+									<div class="barra_titulo">
+										<label for="id_002_documento_sf_11" class="titulo_popup">&nbsp;</label>
+										<input type="image" onclick="javascript: fechar('popup_sf_11');return false;" onkeypress=" "
+											class="img_fechar" src="/juris/imagens/btn_fechar.png" id="id_002_documento_sf_11"
+											value="Resultado sem Formatação" alt=" " />
+									</div>
+									<div class="conteudo_popup">
+										<div id="sub_conteudo_sf" class="sub_conteudo">
+												<div id="menu_popup_unificada_sf">
+												</div>
+												<div id="item_resultado_sf">
+<table class="table_resultado"  summary="Resultado sem formatação" cellpadding="5" cellspacing="0">
+													<tbody>
+														<tr>
+															<td>
+																PENAL E PROCESSO. INQUÉRITO. COMPETÊNCIA RATIONE PERSONAE. DEPUTADO
+ESTADUAL. CRIME COMUM COMETIDO EM DETRIMENTO DE BENS E INTERESSES
+DA UNIÃO ANTES DO MANDATO. PRERROGATIVA DE FUNÇÃO EXISTENTE TÃO
+SOMENTE ENQUANTO PERDURAR SEU EXERCÍCIO. CESSAÇÃO DA COMPETÊNCIA
+DESTE TRIBUNAL APÓS FINDA A LEGISLATURA SEM TER OBTIDO REELEIÇÃO.
+RETORNO DO PROCESSO AO JUÍZO DE ORIGEM.
+1- A COMPETÊNCIA POR PRERROGATIVA DE FUNÇÃO DE QUE GOZA PARLAMENTAR
+ESTADUAL, QUANTO A DELITO COMETIDO ANTERIORMENTE AO MANDATO,
+PERSISTE TÃO SOMENTE ENQUANTO INVESTIDO NO CARGO, CESSANDO A
+COMPETÊNCIA ESPECIAL DO TRIBUNAL REGIONAL FEDERAL FINDO O MANDATO
+ELETIVO QUE A MOTIVOU, SEM REELEIÇÃO. PRECEDENTES NO STF.
+2- FINDO O MANDATO, CESSADA A COMPETÊNCIA DO TRIBUNAL PARA O
+PROCESSAMENTO DO FEITO, COM A REMESSA DOS AUTOS AO JUÍZO DE ORIGEM,
+QUE READQUIRE COMPETÊNCIA PARA O PROCESSO E JULGAMENTO DO FEITO.<br />(<font 91030172635, DESEMBARGADOR FEDERAL THEOTONIO COSTA, TRF3 - ÓRGÃO ESPECIAL, DJU DATA:29/10/1996 PÁGINA: 82249.)
+															</td>
+														</tr>
+
+													</tbody>
+												</table>
+												</div>
+										</div>
+									</div>
+<div class="barra_bottom">
+									</div>
+</div>
+						</td>
+					</tr>
+
+
+
+
+				</table>
+
+				<div id="paginacao" class="paginacao">
+										<input type="image" src="/juris/imagens/nav_ult.png" onkeypress=" " onclick="submetePaginacao(1)" disabled class="botao_desabilitado"
+						alt="Primeira Página" title="Primeira Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_ant.png" onkeypress=" " onclick="submetePaginacao(0)" disabled class="botao_desabilitado"
+						alt="Página Anterior" title="Página Anterior" value=" " />
+					<input type="image" src="/juris/imagens/nav_prox.png" onkeypress=" " onclick="submetePaginacao(2)" disabled class="botao_desabilitado"
+						alt="Próxima Página" title="Próxima Página" value=" " />
+					<input type="image" src="/juris/imagens/nav_pri.png" onkeypress=" " onclick="submetePaginacao(1)" disabled class="botao_desabilitado"
+						alt="Última Página" title="Última Página" value=" " />
+				</div>
+			</div>
+	
+		</div>
+			<div id="rodape"><span>SCES - Lote 09 Trecho 3, Polo 08, 2º andar, Salas 210 e 211. - Setor de Clubes - CEP: 70.200-003 - Brasília - DF - 
+	Telefone: (61) 30227300</span></div>
+	</form>
+</body>
+</html>

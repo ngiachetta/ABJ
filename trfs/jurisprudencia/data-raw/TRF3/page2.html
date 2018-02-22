@@ -1,0 +1,1303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Jurisprudência</title>
+<link href="/juris/css/internet.css" rel="stylesheet" type="text/css" />
+<!--[if IE 7]>
+	<link href="/juris/css/internet_ie7.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<script language="javascript" type="text/javascript" src="/juris/js/wz_tooltip.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/JavaScriptUtil.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/Parsers.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/InputMask.js"></script>
+<script language="javascript" type="text/javascript" src="/juris/js/internet.js"></script>
+<script type="text/javascript" src="/juris/js/jquery-1.12.0.min.js"></script>
+<script language="javascript" type="text/javascript">
+	var campos = ['livreAvancada','clas','proc','rel','data1','data2','emen','obpr'];
+	var tribunais = ['STF','STJ','TRF1','TRF2','TRF3','TRF4','TRF5','TNU', 'TRU', 'TR'];
+	var trus = ['TRU1','TRU2','TRU3','TRU4','TRU5'];
+	var trs = ['TR1','TR2','TR3','TR4','TR5'];
+	var tipos = ['ACORDAO','ACORDAOJEF','SUMULA','SUMULAJEF','ARGUICAO'];
+        
+	function validaForm(form) {
+		var valido = false;
+		for(var i=0; i<campos.length && !valido; i++) {
+			var valor = getElementoPorNome(campos[i]).value;
+			valido = trim(valor).length!=0;
+		}
+		if(!valido) {
+			alert(MSG_FORMULARIO_IVALIDO);
+			return false;
+		}
+		valido = false;
+		for(i=0; i<tribunais.length && !valido; i++) {
+			var chk = getElementoPorNome(tribunais[i]);
+			valido = chk.checked;
+		}
+		if(!valido) {
+			alert(MSG_FORMULARIO_IVALIDO);
+			return false;
+		}
+		if (getElementoPorNome('TRU').checked) {
+			for (i=0; i<trus.length && !valido; i++) {
+				var chk = getElementoPorNome(trus[i]);
+				valido = chk.checked;
+			}
+			if(!valido) {
+				alert(MSG_FORMULARIO_IVALIDO);
+				return false;
+			}
+		}
+		if (getElementoPorNome('TR').checked) {
+			for (i=0; i<trs.length && !valido; i++) {
+				var chk = getElementoPorNome(trs[i]);
+				valido = chk.checked;
+			}
+			if(!valido) {
+				alert(MSG_FORMULARIO_IVALIDO);
+				return false;
+			}
+		}
+                
+                if (getElementoPorNome('TRF1').checked) {
+			for (i=0; i<trs.length && !valido; i++) {
+				var chk = getElementoPorNome(trs[i]);
+				valido = chk.checked;
+			}
+			if(!valido) {
+				alert(MSG_FORMULARIO_IVALIDO);
+				return false;
+			}
+		}
+		
+	}
+	
+	function adicionaOperador(op) {
+		var campo = getElementoPorNome('livreAvancada');
+		campo.value = campo.value + op;
+		campo.focus();
+	}
+	function load() {
+		apagaEspacos();
+		criaMascaraData("data1");
+		criaMascaraData("data2");
+		atualizaTodos();
+alert('Nenhum documento encontrado!')
+	}
+	var chks = tribunais;
+	function atualizaTodos() {
+		var checked = true;
+		for(var i=0; i<chks.length && checked; i++) {
+			checked = checked && getElementoPorNome(chks[i]).checked;
+		}
+		
+		getElementoPorNome('TODAS').checked = checked;
+		
+		if (getElementoPorNome('TRU').checked) {
+			getElementoPorId('tr_regioes_tru').style.visibility = "";
+			checked = true;
+			for (i=0; i<trus.length; i++) {
+				checked = checked && getElementoPorNome(trus[i]).checked;
+			}
+			getElementoPorNome('TODAS_TRU').checked = checked;
+		} else {
+			marcarDemarcarTodasTRU(getElementoPorNome('TRU'));
+			getElementoPorId('tr_regioes_tru').style.visibility = "hidden";
+		}
+		
+		if (getElementoPorNome('TR').checked) {
+			getElementoPorId('tr_regioes_tr').style.visibility = "";
+			checked = true;
+			for (i=0; i<trs.length; i++) {
+				checked = checked && getElementoPorNome(trs[i]).checked;
+			}
+			getElementoPorNome('TODAS_TR').checked = checked;
+		} else {
+			marcarDemarcarTodasTR(getElementoPorNome('TR'));
+			getElementoPorId('tr_regioes_tr').style.visibility = "hidden";
+		}
+                
+                
+                
+                
+                if (getElementoPorNome('TRF1').checked) {
+			//getElementoPorId('trf1_bases_trf1').style.visibility = "";
+			//checked = true;
+			//for (i=0; i<trs.length; i++) {
+	 		//	checked = checked && getElementoPorNome(trs[i]).checked;
+			//}
+			//getElementoPorNome('TODAS_TRF1').checked = checked;
+		} else {
+			//marcarDemarcarTodasTRF1(getElementoPorNome('TRF1'));
+			//getElementoPorId('trf1_bases_trf1').style.visibility = "hidden";
+		}
+                
+     
+                
+		
+		if (getElementoPorNome('TODAS').checked) {
+			marcarDemarcarTodasTR(getElementoPorNome('TODAS'));
+			marcarDemarcarTodasTRU(getElementoPorNome('TODAS'));
+                        marcarDemarcarTodasTRF1(getElementoPorNome('TODAS'));
+			getElementoPorId('tr_regioes_tr').style.visibility = "hidden";
+			getElementoPorId('tr_regioes_tru').style.visibility = "hidden";
+                        getElementoPorId('trf1_bases_trf1').style.visibility = "hidden";
+		} 
+	}
+	
+	function marcarDemarcarTodas(chkTodos) {
+		for(var i=0; i<chks.length; i++) {
+			getElementoPorNome(chks[i]).checked = chkTodos.checked;
+		}
+		marcarDemarcarTodasTR(chkTodos);
+		marcarDemarcarTodasTRU(chkTodos);
+                marcarDemarcarTodasTRF1(chkTodos);
+		if (chkTodos.checked) {
+			getElementoPorId('tr_regioes_tr').style.visibility = "hidden";
+			getElementoPorId('tr_regioes_tru').style.visibility = "hidden";
+                        getElementoPorId('trf1_bases_trf1').style.visibility = "hidden";
+		}
+	}
+	
+      
+	function marcarDemarcarTodasTR(chkTodos) {
+		for(var i=0; i< trs.length; i++) {
+			getElementoPorNome(trs[i]).checked = chkTodos.checked;
+		}
+		getElementoPorNome('TODAS_TR').checked = chkTodos.checked;
+	}
+	
+	function marcarDemarcarTodasTRU(chkTodosTRU) {
+		for(var i=0; i < trus.length; i++) {
+			getElementoPorNome(trus[i]).checked = chkTodosTRU.checked;
+		}
+		getElementoPorNome('TODAS_TRU').checked = chkTodosTRU.checked;
+	}
+        
+          function marcarDemarcarTodasTRF1(chkTodosTRF1) {
+		for(var i=0; i < tipos.length; i++) {
+			getElementoPorNome(tipos[i]).checked = chkTodosTRF1.checked;
+		}
+		getElementoPorNome('TODAS_TRF1').checked = chkTodosTRF1.checked;
+	}
+        
+
+	function limparCampos(){
+		//Livre Avancada
+		document.getElementById("td_00001").value="";
+		//Numero Processo
+		document.getElementById("td_00003").value="";
+		//Classe
+		document.getElementById("td_00031").value="";
+		//Magistrado
+		document.getElementById("td_0004").value="";
+		//Data inicio e fim
+		document.getElementById("td_00005").value="";
+		document.getElementById("td_00006").value="";
+		//ementa
+		document.getElementById("td_0000008").value="";
+		//Objeto do processo
+		document.getElementById("td_00035").value="";
+		//Resumida
+		document.getElementById("td_0000025").checked=false;
+
+		//TRF's
+		getElementoPorNome('TODAS').checked = false;
+		marcarDemarcarTodas(getElementoPorNome('TODAS'));
+		getElementoPorNome('TODAS_TRU').checked = false;
+		marcarDemarcarTodas(getElementoPorNome('TODAS_TRU'));
+		getElementoPorNome('TODAS_TR').checked = false;
+		marcarDemarcarTodas(getElementoPorNome('TODAS_TR'));
+                getElementoPorNome('TODAS_TRF1').checked = false;
+		marcarDemarcarTodas(getElementoPorNome('TODAS_TRF1'));
+	}
+</script>
+</head>
+
+<body onload="load(); retornaTipoPesquisa();">
+<noscript>Scripts do Sistema</noscript>
+<form name="form" id="form" method="post" action="Resposta" onsubmit="return validaForm(this)">
+	<div id="formulario">
+		<div id="topo">
+			<div id="portal_header">
+				<div id="portal_topo">
+					<a href="http://www.jf.jus.br" style="border:0px"><img  style="border:0px" src="/juris/imagens/logo.jpg" /></a>
+				</div>
+				<div id="migalha">
+					<p>Brasília, 22 de fevereiro de 2018</p>
+				</div>
+			</div>
+		</div>
+		<div id="link_migalha">
+			<a href="javascript:abrePopup('ajuda','../ajuda.html')">Ajuda</a>
+			|
+			<a href="mailto:jurisprudenciaunificada@cjf.jus.br">Fale conosco</a>
+			<img src="/juris/imagens/bullet.gif" class="tab_link" alt=" "/>
+		</div>	
+		<div id="topo_conteudo">
+			<div id="left"></div>
+			<div id="right"></div>
+		</div>
+		
+		<div id="conteudo">
+			<h1>Jurisprudência Unificada <img alt=" " title="Possibilita a consulta unificada às bases de dados oficiais de jurisprudência do Supremo Tribunal Federal; do Superior Tribunal de Justiça; dos cinco Tribunais Regionais Federais e da Turma Nacional de Uniformização de Jurisprudência dos Juizados Especiais Federais. Essas bases de dados são permanentemente atualizadas. Incluem súmulas, acórdãos e links para o inteiro teor dos documentos. Na maioria das vezes, excluem-se apenas teses repetitivas de um mesmo relator." onMouseOver="return escape(this.title);" onfocus=" " src="/juris/imagens/question.png" class="img_tooltip" /></h1>
+			<h2>Pesquisa livre 
+			<img alt=" " title="É recomendada para busca por palavras/expressões em qualquer lugar do documento de jurisprudência. Exemplo: carreira e ''ministério público'' (as expressões devem ser colocadas entre aspas)." onMouseOver="return escape(this.title);" onfocus=" " src="/juris/imagens/question.png" class="img_tooltip" /><br />
+
+			<a href="javascript:escolhaDaPesquisa('A'); OmiteConteudoAvancado('ckbMostra', 'ckbOmite', 'ckbMostra', document.getElementById('pesquisaAS').value); " id="ckbMostra">Pesquisa avançada</a>
+			<a href="javascript:escolhaDaPesquisa('S'); OmiteConteudoSimples('ckbMostra', 'ckbOmite', 'ckbMostra', document.getElementById('pesquisaAS').value);" id="ckbOmite" style="display:none">Pesquisa simples</a>
+
+			<input type="hidden" value="A" name="pesquisaAS" id="pesquisaAS" />
+
+			</h2>
+			<table class="table_form" summary="Dados para pesquisa livre" cellpadding="0" cellspacing="1">
+				<tbody>
+					<tr>
+						<td colspan="2">
+							<input type="text" value=" " name="livreAvancada" class="txt_gd" id="td_00001"/>
+							<input  id="td_0000025"
+								name="RESUMIDA" type="checkbox" value="RESUMIDA" 
+								/>
+							<label for="td_0000025">Mostrar informação resumida</label>							
+						</td>
+					</tr>
+				</tbody>
+			</table>
+<div id="pesquisaAvancada" style="display:none">
+			<input type="button" onclick="adicionaOperador(' e ')" onkeypress=" " value="e"/>
+			<input type="button" onclick="adicionaOperador(' ou ')" onkeypress=" " value="ou"/>
+			<input type="button" onclick="adicionaOperador(' adj ')" onkeypress=" " value="adj"/>
+			<input type="button" onclick="adicionaOperador(' nao ')" onkeypress=" " value="não"/>
+			<input type="button" onclick="adicionaOperador(' prox ')" onkeypress=" " value="prox"/>
+			<input type="button" onclick="adicionaOperador(' mesmo ')" onkeypress=" " value="mesmo"/>
+			<input type="button" onclick="adicionaOperador(' com ')" onkeypress=" " value="com"/>
+			<input type="button" onclick="adicionaOperador('$')" onkeypress=" " value="$"/>	
+
+
+			<h2>Pesquisa por campos específicos
+			<img alt=" " title="Permite ao usuário digitar um ou mais campos específicos disponíveis, ou mesmo conjulgá-los com a pesquisa livre, restringindo o resultado da busca de acordo com o seu interesse de recuperação." onMouseOver="return escape(this.title);" onfocus=" " src="/juris/imagens/question.png" class="img_tooltip" /></h2>
+			<table class="table_form" summary="Dados para pesquisa específica" cellpadding="0" cellspacing="1">
+				<tbody>
+					<tr>
+						<td class="label td_right largura_td">
+							<label for="td_00003">Número</label>						</td>
+						<td>
+							<input type="text" value=" " name="proc" class="txt_md" id="td_00003"/>						</td>
+					</tr>
+					  <tr>
+						<td class="label td_right">
+							<label for="td_00031">Classe</label>	
+						</td>
+						<td>
+							<select name="clas" id="td_00031">
+								 <option value=""></options>
+								 <option value="">---TODAS---</option>
+								 
+										  <option  value="AGV">AGRAVO</option>
+			             			
+										  <option  value="AG">AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGECR">AGRAVO DE INSTRUMENTO EM EXECUÇÃO CRIMINAL</option>
+			             			
+										  <option  value="AGMC">AGRAVO DE INSTRUMENTO EM MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="AGIAC">AGRAVO DE INSTRUMENTO NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="AGANT">AGRAVO DE INSTRUMENTO NO PEDIDO DE ANTECIPAÇÃO DE TUTELA</option>
+			             			
+										  <option  value="AGTRB">AGRAVO DE INSTRUMENTO TRABALHISTA</option>
+			             			
+										  <option  value="AP">AGRAVO DE PETIÇÃO</option>
+			             			
+										  <option  value="APMS">AGRAVO DE PETIÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="APAG">AGRAVO DE PETIÇÃO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGPT">AGRAVO DE PETIÇÃO TRABALHISTA</option>
+			             			
+										  <option  value="AGEPN">AGRAVO EM EXECUÇÃO PENAL</option>
+			             			
+										  <option  value="AGMSG">AGRAVO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGVREO">AGRAVO EM REMESSA EX-OFFICIO</option>
+			             			
+										  <option  value="AGSLAC">AGRAVO EM SUSPENSÃO DE LIMINAR EM AÇÃO CAUTELAR</option>
+			             			
+										  <option  value="ASLMS">AGRAVO EM SUSPENSÃO DE LIMINAR EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGI">AGRAVO INOMINADO</option>
+			             			
+										  <option  value="AGIEEX">AGRAVO INOMINADO EM EMBARGOS À EXECUÇÃO</option>
+			             			
+										  <option  value="AGIEXEC">AGRAVO INOMINADO EM EXECUÇÃO DE SENTENÇA</option>
+			             			
+										  <option  value="AGIPET">AGRAVO INOMINADO EM PETIÇÃO</option>
+			             			
+										  <option  value="AISLACP">AGRAVO INOMINADO EM SUSPENSÃO DE LIMINAR EM AÇÃO CIVIL PÚBLICA</option>
+			             			
+										  <option  value="AGIAMS">AGRAVO INOMINADO NA AMS</option>
+			             			
+										  <option  value="AIAC">AGRAVO INOMINADO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="AGIAR">AGRAVO INOMINADO NA AÇÃO RESCISÓRIA </option>
+			             			
+										  <option  value="AGIEXAR">AGRAVO INOMINADO NA EXECUÇÃO DE SENTENÇA EM AR</option>
+			             			
+										  <option  value="AGIVCMC">AGRAVO INOMINADO NA IMPUGNAÇÃO AO VALOR DA CAUSA EM MC</option>
+			             			
+										  <option  value="AGIMC">AGRAVO INOMINADO NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="AGIRCL">AGRAVO INOMINADO NA RECLAMAÇÃO</option>
+			             			
+										  <option  value="AGIREO">AGRAVO INOMINADO NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="AGIAG">AGRAVO INOMINADO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGIMS">AGRAVO INOMINADO NO MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGISS">AGRAVO INOMINADO NO PEDIDO DE SUSPENSÃO DE SEGURANÇA</option>
+			             			
+										  <option  value="AIEAC">AGRAVO INOMINADO NOS EMBARGOS DE DECLARAÇÃO NA AC</option>
+			             			
+										  <option  value="AIEMS">AGRAVO INOMINADO NOS EMBARGOS DE DECLARAÇÃO NA AMS</option>
+			             			
+										  <option  value="AIEIAC">AGRAVO INOMINADO NOS EMBARGOS INFRINGENTES NA AC</option>
+			             			
+										  <option  value="AIEEXAR">AGRAVO INOMINADO NOS EMBARGOS À EXECUÇÃO EM AR</option>
+			             			
+										  <option  value="AGT">AGRAVO INTERNO</option>
+			             			
+										  <option  value="AGTACR">AGRAVO INTERNO EM APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="AGTMCI">AGRAVO INTERNO EM MEDIDA CAUTELAR INOMINADA</option>
+			             			
+										  <option  value="AGTP">AGRAVO INTERNO EM PRECATÓRIO</option>
+			             			
+										  <option  value="AGTRO">AGRAVO INTERNO EM RECURSO ORDINÁRIO TRABALHISTA</option>
+			             			
+										  <option  value="AGTSL">AGRAVO INTERNO EM SUSPENSÃO DE LIMINAR</option>
+			             			
+										  <option  value="AGTAMS">AGRAVO INTERNO NA AMS</option>
+			             			
+										  <option  value="AGTAC">AGRAVO INTERNO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="AGTAR">AGRAVO INTERNO NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="AGTMC">AGRAVO INTERNO NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="AGTPT">AGRAVO INTERNO NA PETIÇÃO</option>
+			             			
+										  <option  value="AGTREO">AGRAVO INTERNO NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="AGTROMS">AGRAVO INTERNO NA REMESSA EX OFFICIO NO MS</option>
+			             			
+										  <option  value="AGTAG">AGRAVO INTERNO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGTATAR">AGRAVO INTERNO NO AGRAVO INTERNO NA AR</option>
+			             			
+										  <option  value="AGTHC">AGRAVO INTERNO NO HABEAS CORPUS</option>
+			             			
+										  <option  value="AGTMS">AGRAVO INTERNO NO MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGTEAC">AGRAVO INTERNO NOS EMBARGOS DE DECLARAÇÃO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="AGTEAG">AGRAVO INTERNO NOS EMBARGOS DE DECLARAÇÃO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="ATEEIAC">AGRAVO INTERNO NOS EMBARGOS DE DECLARAÇÃO NOS EIAC</option>
+			             			
+										  <option  value="AGTEIAC">AGRAVO INTERNO NOS EMBARGOS INFRINGENTES EM AC</option>
+			             			
+										  <option  value="AGVAMS">AGRAVO NA AMS</option>
+			             			
+										  <option  value="AGVAC">AGRAVO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="ASATAO">AGRAVO NA SUSPENSÃO DE ANTECIPAÇÃO DE TUTELA EM AÇÃO ORDINARIA</option>
+			             			
+										  <option  value="AGRSC">AGRAVO NA SUSPENSÃO DE CAUTELAR</option>
+			             			
+										  <option  value="AGVSEL">AGRAVO NA SUSPENSÃO DE EXECUÇÃO DE LIMINAR</option>
+			             			
+										  <option  value="AGVSS">AGRAVO NA SUSPENSÃO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGVAG">AGRAVO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGP">AGRAVO NO PRECATÓRIO</option>
+			             			
+										  <option  value="AGR">AGRAVO REGIMENTAL</option>
+			             			
+										  <option  value="AGRAV">AGRAVO REGIMENTAL EM AVOCATORIA</option>
+			             			
+										  <option  value="AREDRO">AGRAVO REGIMENTAL EM EMBARGOS DE DIVERGÊNCIA NO RO</option>
+			             			
+										  <option  value="AGEAMC">AGRAVO REGIMENTAL EM EMBARGOS INFRINGENTES EM AGRMC</option>
+			             			
+										  <option  value="AGEACR">AGRAVO REGIMENTAL EM EMBARGOS INFRINGENTES EM APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="AGEIRO">AGRAVO REGIMENTAL EM EMBARGOS INFRINGENTES EM RECURSO ORDINÁRIO</option>
+			             			
+										  <option  value="AGRHC">AGRAVO REGIMENTAL EM HABEAS CORPUS</option>
+			             			
+										  <option  value="AGRIVC">AGRAVO REGIMENTAL EM IMPUGNAÇÃO AO VALOR DA CAUSA</option>
+			             			
+										  <option  value="AGMS">AGRAVO REGIMENTAL EM MANDADO DE SEGURANÇA.</option>
+			             			
+										  <option  value="AGRMCI">AGRAVO REGIMENTAL EM MEDIDA CAUTELAR INOMINADA</option>
+			             			
+										  <option  value="ARREAG">AGRAVO REGIMENTAL EM RE NO AG</option>
+			             			
+										  <option  value="AGRREX">AGRAVO REGIMENTAL EM RECURSO ESPECIAL E EXTRAORDINARIO</option>
+			             			
+										  <option  value="AGARES">AGRAVO REGIMENTAL EM RECURSO ESPECIAL NO AG</option>
+			             			
+										  <option  value="AGRASS">AGRAVO REGIMENTAL EM RESTAURAÇÃO DE AUTOS PERDIDOS EM SS</option>
+			             			
+										  <option  value="ARSLACP">AGRAVO REGIMENTAL EM SUSPENSÃO DE LIMINAR EM AÇÃO CIVIL PÚBLICA</option>
+			             			
+										  <option  value="AGRAC">AGRAVO REGIMENTAL NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="AGRACR">AGRAVO REGIMENTAL NA APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="AGAMS">AGRAVO REGIMENTAL NA APELAÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGRAP">AGRAVO REGIMENTAL NA AÇÃO PENAL</option>
+			             			
+										  <option  value="AGRAR">AGRAVO REGIMENTAL NA AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="AGRCT">AGRAVO REGIMENTAL NA CARTA TESTEMUNHAVEL</option>
+			             			
+										  <option  value="AGRCOR">AGRAVO REGIMENTAL NA CORREIÇÃO PARCIAL</option>
+			             			
+										  <option  value="AGREXS">AGRAVO REGIMENTAL NA EXCEÇÃO DE SUSPEIÇÃO</option>
+			             			
+										  <option  value="AIVCAR">AGRAVO REGIMENTAL NA IVC NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="AGRMC">AGRAVO REGIMENTAL NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="AGRPET">AGRAVO REGIMENTAL NA PETIÇÃO</option>
+			             			
+										  <option  value="AGRSML">AGRAVO REGIMENTAL NA PETIÇÃO DE MEDIDA LIMINAR</option>
+			             			
+										  <option  value="AGRPRA">AGRAVO REGIMENTAL NA PETIÇÃO DE RESTAURAÇÃO DE AUTOS</option>
+			             			
+										  <option  value="AGRPSL">AGRAVO REGIMENTAL NA PETIÇÃO DE SUSPENSÃO DE LIMINAR</option>
+			             			
+										  <option  value="AGRQCR">AGRAVO REGIMENTAL NA QUEIXA-CRIME</option>
+			             			
+										  <option  value="AGRRCL">AGRAVO REGIMENTAL NA RECLAMAÇÃO</option>
+			             			
+										  <option  value="AGREO">AGRAVO REGIMENTAL NA REMESSA EX OFFICIO.</option>
+			             			
+										  <option  value="AGRRP">AGRAVO REGIMENTAL NA REPRESENTAÇÃO</option>
+			             			
+										  <option  value="AGRVCR">AGRAVO REGIMENTAL NA REVISÃO CRIMINAL</option>
+			             			
+										  <option  value="AGRSEL">AGRAVO REGIMENTAL NA SUSPENSÃO DE EXECUÇÃO DE LIMINAR</option>
+			             			
+										  <option  value="AGRSES">AGRAVO REGIMENTAL NA SUSPENSÃO DE EXECUÇÃO DE SENTENÇA</option>
+			             			
+										  <option  value="AGRSL">AGRAVO REGIMENTAL NA SUSPENSÃO DE LIMINAR</option>
+			             			
+										  <option  value="AGRSLC">AGRAVO REGIMENTAL NA SUSPENSÃO DE LIMINAR EM AÇÃO CAUTELAR - PETIÇÃO</option>
+			             			
+										  <option  value="AGRSLMS">AGRAVO REGIMENTAL NA SUSPENSÃO DE LIMINAR NO MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGSS">AGRAVO REGIMENTAL NA SUSPENSÃO DE SEGURANÇA</option>
+			             			
+										  <option  value="AGA">AGRAVO REGIMENTAL NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="AGRARE">AGRAVO REGIMENTAL NO AGRAVO DE INSTRUMENTO EM RECURSO EXTRAORDINÁRIO</option>
+			             			
+										  <option  value="AAGRO">AGRAVO REGIMENTAL NO AGRAVO DE INSTRUMENTO EM RECURSO ORDINARIO</option>
+			             			
+										  <option  value="AGAP">AGRAVO REGIMENTAL NO AGRAVO DE PETIÇÃO</option>
+			             			
+										  <option  value="AGRAPN">AGRAVO REGIMENTAL NO AGRAVO EM EXECUÇÃO  PENAL</option>
+			             			
+										  <option  value="AGRAGI">AGRAVO REGIMENTAL NO AGRAVO INOMINADO</option>
+			             			
+										  <option  value="AGRCC">AGRAVO REGIMENTAL NO CONFLITO DE COMPETÊNCIA</option>
+			             			
+										  <option  value="AGIP">AGRAVO REGIMENTAL NO INQUERITO POLICIAL</option>
+			             			
+										  <option  value="AGRPRC">AGRAVO REGIMENTAL NO PRECATÓRIO</option>
+			             			
+										  <option  value="AGRRR">AGRAVO REGIMENTAL NO RECURSO DE REVISTA</option>
+			             			
+										  <option  value="AGRRSE">AGRAVO REGIMENTAL NO RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="AGRRO">AGRAVO REGIMENTAL NO RECURSO ORDINARIO</option>
+			             			
+										  <option  value="AGEDAG">AGRAVO REGIMENTAL NOS EDAG</option>
+			             			
+										  <option  value="AEDAMS">AGRAVO REGIMENTAL NOS EDAMS</option>
+			             			
+										  <option  value="AEEIAR">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO  NOS EIAR</option>
+			             			
+										  <option  value="AGREAC">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO NA AC</option>
+			             			
+										  <option  value="AGEDAR">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="AGEEXS">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO NA EXECUÇÃO DE SUSPEIÇÃO</option>
+			             			
+										  <option  value="AEDREO">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO NA REO</option>
+			             			
+										  <option  value="ARDEAC">AGRAVO REGIMENTAL NOS EMBARGOS DE DECLARAÇÃO NOS EIAC</option>
+			             			
+										  <option  value="AEAGTR">AGRAVO REGIMENTAL NOS EMBARGOS DE DIVERGENCIA NO AGTRB</option>
+			             			
+										  <option  value="AGEAMS">AGRAVO REGIMENTAL NOS EMBARGOS DE DIVERGÊNCIA NA AMS</option>
+			             			
+										  <option  value="AGRERO">AGRAVO REGIMENTAL NOS EMBARGOS EM RO</option>
+			             			
+										  <option  value="AEIAAR">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES DA ANTAR</option>
+			             			
+										  <option  value="AGEIAC">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES NA AC</option>
+			             			
+										  <option  value="AGREAM">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES NA AMS</option>
+			             			
+										  <option  value="AGREAR">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES NA AR</option>
+			             			
+										  <option  value="AGEREO">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES NA REO</option>
+			             			
+										  <option  value="AGREAG">AGRAVO REGIMENTAL NOS EMBARGOS INFRINGENTES NO AG</option>
+			             			
+										  <option  value="ANTAR">ANTECIPAÇÃO DA TUTELA NA AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="ANTAG">ANTECIPAÇÃO DA TUTELA NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="ANTAC">ANTECIPAÇÃO DE TUTELA NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="AC">APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="ACR">APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="AHD">APELAÇÃO EM HABEAS DATA</option>
+			             			
+										  <option  value="AMI">APELAÇÃO EM MANDADO DE INJUNÇÃO</option>
+			             			
+										  <option  value="AMS">APELAÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="INAPN">ARGUIÇÃO DE INCONSTITUCIONALIDADE EM AÇÃO PENAL</option>
+			             			
+										  <option  value="INAC">ARGUIÇÃO DE INCONSTITUCIONALIDADE NA AC</option>
+			             			
+										  <option  value="INAMS">ARGUIÇÃO DE INCONSTITUCIONALIDADE NA AMS</option>
+			             			
+										  <option  value="INREO">ARGUIÇÃO DE INCONSTITUCIONALIDADE NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="INAG">ARGUIÇÃO DE INCONSTITUCIONALIDADE NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="INSRE">ARGUIÇÃO DE INCONSTITUCIONALIDADE NO RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="INRO">ARGUIÇÃO DE INCONSTITUCIONALIDADE NO RECURSO ORDINARIO</option>
+			             			
+										  <option  value="INEDAC">ARGUIÇÃO DE INCONSTITUCIONALIDADE NOS EDAC</option>
+			             			
+										  <option  value="INEIAC">ARGUIÇÃO DE INCONSTITUCIONALIDADE NOS EIAC</option>
+			             			
+										  <option  value="IMP">ARGÜIÇÃO DE IMPEDIMENTO</option>
+			             			
+										  <option  value="INMS">ARGÜIÇÃO DE INCONSTITUCIONALIDADE NO MS</option>
+			             			
+										  <option  value="ACP">AÇÃO CIVIL PUBLICA</option>
+			             			
+										  <option  value="AIAD">AÇÃO DE IMPROBIDADE ADMINISTRATIVA</option>
+			             			
+										  <option  value="APN">AÇÃO PENAL</option>
+			             			
+										  <option  value="APNP">AÇÃO PENAL PÚBLICA</option>
+			             			
+										  <option  value="APP">AÇÃO POPULAR</option>
+			             			
+										  <option  value="AR">AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="CT">CARTA TESTEMUNHAVEL</option>
+			             			
+										  <option  value="COM">COMUNICAÇÃO</option>
+			             			
+										  <option  value="CC">CONFLITO DE COMPETENCIA</option>
+			             			
+										  <option  value="COR">CORREIÇÃO PARCIAL</option>
+			             			
+										  <option  value="DC">DISSIDIO COLETIVO</option>
+			             			
+										  <option  value="EEDIUJ">EMBARGOS DE DECLARAÇÃO  NOS EMBARGOS DE DECLARAÇÃO EM IUJ</option>
+			             			
+										  <option  value="EDAG">EMBARGOS DE DECLARAÇÃO EM AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="EDAGTR">EMBARGOS DE DECLARAÇÃO EM AGRAVO DE INSTRUMENTO TRABALHISTA</option>
+			             			
+										  <option  value="EDAIMC">EMBARGOS DE DECLARAÇÃO EM AGRAVO INOMINADO NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EDAGT">EMBARGOS DE DECLARAÇÃO EM AGRAVO INTERNO</option>
+			             			
+										  <option  value="EAGMS">EMBARGOS DE DECLARAÇÃO EM AGRAVO INTERNO NA AMS</option>
+			             			
+										  <option  value="EDAR">EMBARGOS DE DECLARAÇÃO EM AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="EDEDSS">EMBARGOS DE DECLARAÇÃO EM EMBARGOS DE DECLARAÇÃO NA SS</option>
+			             			
+										  <option  value="EDEVRO">EMBARGOS DE DECLARAÇÃO EM EMBARGOS DE DIVERGÊNCIA EM RO</option>
+			             			
+										  <option  value="EDEXIN">EMBARGOS DE DECLARAÇÃO EM EXCEÇÃO DE INCOMPETENCIA</option>
+			             			
+										  <option  value="EUJAMS">EMBARGOS DE DECLARAÇÃO EM IUJAMS </option>
+			             			
+										  <option  value="EDIVC">EMBARGOS DE DECLARAÇÃO EM IVC</option>
+			             			
+										  <option  value="EDMS">EMBARGOS DE DECLARAÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="EDPET">EMBARGOS DE DECLARAÇÃO EM PETIÇÃO</option>
+			             			
+										  <option  value="EDP">EMBARGOS DE DECLARAÇÃO EM PRECATÓRIO</option>
+			             			
+										  <option  value="EDQCR">EMBARGOS DE DECLARAÇÃO EM QUEIXA CRIME</option>
+			             			
+										  <option  value="EDRVCR">EMBARGOS DE DECLARAÇÃO EM REVISÃO CRIMINAL</option>
+			             			
+										  <option  value="EDSL">EMBARGOS DE DECLARAÇÃO EM SUSPENSÃO DE LIMINAR</option>
+			             			
+										  <option  value="EDAC">EMBARGOS DE DECLARAÇÃO NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="EDACR">EMBARGOS DE DECLARAÇÃO NA APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="EDAMS">EMBARGOS DE DECLARAÇÃO NA APELAÇÃO EM  MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="EDIN">EMBARGOS DE DECLARAÇÃO NA ARGUIÇÃO DE INCONSTITUCIONALIDADE</option>
+			             			
+										  <option  value="EINAMS">EMBARGOS DE DECLARAÇÃO NA ARGUIÇÃO DE INCONSTITUCIONALIDADE NA AMS</option>
+			             			
+										  <option  value="EDINAC">EMBARGOS DE DECLARAÇÃO NA ARGÜIÇÃO DE INCONSTITUCIONALIDADE NA AC</option>
+			             			
+										  <option  value="EDAPN">EMBARGOS DE DECLARAÇÃO NA AÇÃO PENAL</option>
+			             			
+										  <option  value="EDCT">EMBARGOS DE DECLARAÇÃO NA CARTA TESTEMUNHÁVEL</option>
+			             			
+										  <option  value="EDCOR">EMBARGOS DE DECLARAÇÃO NA CORREIÇÃO PARCIAL</option>
+			             			
+										  <option  value="EDEXI">EMBARGOS DE DECLARAÇÃO NA EXCEÇÃO DE IMPEDIMENTO</option>
+			             			
+										  <option  value="EDSUSP">EMBARGOS DE DECLARAÇÃO NA EXCEÇÃO DE SUSPEIÇÃO</option>
+			             			
+										  <option  value="EINREO">EMBARGOS DE DECLARAÇÃO NA INREO</option>
+			             			
+										  <option  value="EDMC">EMBARGOS DE DECLARAÇÃO NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EQUOAC">EMBARGOS DE DECLARAÇÃO NA QUESTÃO DE ORDEM NA AC</option>
+			             			
+										  <option  value="EDRCL">EMBARGOS DE DECLARAÇÃO NA RECLAMAÇÃO</option>
+			             			
+										  <option  value="EDREO">EMBARGOS DE DECLARAÇÃO NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="EDSS">EMBARGOS DE DECLARAÇÃO NA SUSPENSÃO DE SEGURANÇA</option>
+			             			
+										  <option  value="EDASMC">EMBARGOS DE DECLARAÇÃO NO AGR NA SUSPENSÃO DE LIMINAR NA MC</option>
+			             			
+										  <option  value="EDAP">EMBARGOS DE DECLARAÇÃO NO AGRAVO DE PETIÇÃO</option>
+			             			
+										  <option  value="EDAGPT">EMBARGOS DE DECLARAÇÃO NO AGRAVO DE PETIÇÃO TRABALHISTA</option>
+			             			
+										  <option  value="EDAGI">EMBARGOS DE DECLARAÇÃO NO AGRAVO INOMINADO</option>
+			             			
+										  <option  value="EAGIAC">EMBARGOS DE DECLARAÇÃO NO AGRAVO INOMINADO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="EAGIAG">EMBARGOS DE DECLARAÇÃO NO AGRAVO INOMINADO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="EAIEAC">EMBARGOS DE DECLARAÇÃO NO AGRAVO INOMINADO NOS EAC</option>
+			             			
+										  <option  value="EAGTAC">EMBARGOS DE DECLARAÇÃO NO AGRAVO INTERNO EM AC</option>
+			             			
+										  <option  value="EDAGTAR">EMBARGOS DE DECLARAÇÃO NO AGRAVO INTERNO EM AR</option>
+			             			
+										  <option  value="EAGTMC">EMBARGOS DE DECLARAÇÃO NO AGRAVO INTERNO EM MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EDAGTAG">EMBARGOS DE DECLARAÇÃO NO AGRAVO INTERNO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="EDAGR">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL</option>
+			             			
+										  <option  value="EAGACR">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL EM APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="EAGRPR">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL EM AUTOS DE PRC</option>
+			             			
+										  <option  value="EAGRAC">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA AC</option>
+			             			
+										  <option  value="EAGAMS">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA AMS</option>
+			             			
+										  <option  value="EAGRAR">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA AR</option>
+			             			
+										  <option  value="EDAGMC">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EAGREO">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA REO</option>
+			             			
+										  <option  value="EDAGSS">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA SS</option>
+			             			
+										  <option  value="EDAGA">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO AG</option>
+			             			
+										  <option  value="EAAGRA">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO AGRAC</option>
+			             			
+										  <option  value="EAEREO">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO EDREO</option>
+			             			
+										  <option  value="EAGRHC">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO HC</option>
+			             			
+										  <option  value="EAGRMS">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO MS</option>
+			             			
+										  <option  value="EDAGRP">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO PRECATORIO</option>
+			             			
+										  <option  value="EAGREX">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO RECURSO EXTRAORDINÁRIO</option>
+			             			
+										  <option  value="EDAGRO">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NO RO</option>
+			             			
+										  <option  value="EDAERO">EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NOS ERO</option>
+			             			
+										  <option  value="EAGRQC">EMBARGOS DE DECLARAÇÃO NO AGRQCR</option>
+			             			
+										  <option  value="EDCC">EMBARGOS DE DECLARAÇÃO NO CONFLITO DE COMPETENCIA</option>
+			             			
+										  <option  value="EDHC">EMBARGOS DE DECLARAÇÃO NO HABEAS CORPUS</option>
+			             			
+										  <option  value="EDINQ">EMBARGOS DE DECLARAÇÃO NO INQUERITO</option>
+			             			
+										  <option  value="EDUJAC">EMBARGOS DE DECLARAÇÃO NO IUJAC</option>
+			             			
+										  <option  value="EDRCCR">EMBARGOS DE DECLARAÇÃO NO RECURSO CRIMINAL</option>
+			             			
+										  <option  value="EDRCHC">EMBARGOS DE DECLARAÇÃO NO RECURSO DE HABEAS CORPUS</option>
+			             			
+										  <option  value="EDRR">EMBARGOS DE DECLARAÇÃO NO RECURSO DE REVISTA</option>
+			             			
+										  <option  value="EDRSE">EMBARGOS DE DECLARAÇÃO NO RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="EDRO">EMBARGOS DE DECLARAÇÃO NO RECURSO ORDIN.TRABALHISTA</option>
+			             			
+										  <option  value="EDEDMS">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO EM MS</option>
+			             			
+										  <option  value="EDEACR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA ACR</option>
+			             			
+										  <option  value="EDEAMS">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA AMS</option>
+			             			
+										  <option  value="EDEAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="EDEDAR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA AR</option>
+			             			
+										  <option  value="EDEDMC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EDEREO">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NA REO</option>
+			             			
+										  <option  value="EDEDAG">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO AG</option>
+			             			
+										  <option  value="EEDAGA">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO AGA</option>
+			             			
+										  <option  value="EEARAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO AGRAC</option>
+			             			
+										  <option  value="EEAREO">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO AGREO</option>
+			             			
+										  <option  value="EDEDCC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO CC</option>
+			             			
+										  <option  value="EDEDHC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO HC</option>
+			             			
+										  <option  value="EERCCR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO RECURSO CRIMINAL</option>
+			             			
+										  <option  value="EDEDRO">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NO RO</option>
+			             			
+										  <option  value="EEDEAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NOS EAC</option>
+			             			
+										  <option  value="EEEDAG">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NOS EDAG</option>
+			             			
+										  <option  value="EEEEAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NOS EDEAC</option>
+			             			
+										  <option  value="EEEAMS">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NOS EDEAMS</option>
+			             			
+										  <option  value="EEEIAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS DE DECLARAÇÃO NOS EIAC</option>
+			             			
+										  <option  value="EEIACR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS INFRINGENTES EM APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="EEIAC">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS INFRINGENTES NA AC</option>
+			             			
+										  <option  value="EDEIAR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS INFRINGENTES NA AR</option>
+			             			
+										  <option  value="EEIREO">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS INFRINGENTES NA REO</option>
+			             			
+										  <option  value="EDEIRSE">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS INFRINGENTES NO RSE</option>
+			             			
+										  <option  value="EEEXAR">EMBARGOS DE DECLARAÇÃO NOS EMBARGOS À EXECUÇÃO EM AR</option>
+			             			
+										  <option  value="EDIAC">EMBARGOS DE DIVERGENCIA EM APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="EDIAMS">EMBARGOS DE DIVERGENCIA NA APELAÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="EDIAG">EMBARGOS DE DIVERGENCIA NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="EDIVRO">EMBARGOS DE DIVERGENCIA NO RECURSO ORDINARIO</option>
+			             			
+										  <option  value="EDIEDR">EMBARGOS DE DIVERGÊNCIA EM EMBARGOS DE DECLARAÇÃO NA REO</option>
+			             			
+										  <option  value="EDACPIA">EMBARGOS DECLARAÇÃO EM AÇÃO CIVIL PÚBLICA DE IMPROBIDADE ADMINISTRATIV</option>
+			             			
+										  <option  value="EAGTRB">EMBARGOS EM AGRAVO DE INSTRUMENTO TRABALHISTA</option>
+			             			
+										  <option  value="ERHC">EMBARGOS EM RECURSO DE HABEAS CORPUS</option>
+			             			
+										  <option  value="EINACR">EMBARGOS INFRINGENTES E DE NULIDADE NA ACR</option>
+			             			
+										  <option  value="EIAG">EMBARGOS INFRINGENTES EM AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="EIARAC">EMBARGOS INFRINGENTES EM AGRAVO REGIMENTAL NA AC</option>
+			             			
+										  <option  value="EIAREO">EMBARGOS INFRINGENTES EM AGRAVO REGIMENTAL NA REO</option>
+			             			
+										  <option  value="EIACR">EMBARGOS INFRINGENTES EM APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="EIMC">EMBARGOS INFRINGENTES EM MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="EIRCCR">EMBARGOS INFRINGENTES EM RECURSO CRIMINAL</option>
+			             			
+										  <option  value="EIRSE">EMBARGOS INFRINGENTES EM RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="EIAC">EMBARGOS INFRINGENTES NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="EIAMS">EMBARGOS INFRINGENTES NA APELAÇÃO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="EIAR">EMBARGOS INFRINGENTES NA AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="EIREO">EMBARGOS INFRINGENTES NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="EIUJAC">EMBARGOS INFRINGENTES NO IUJAC</option>
+			             			
+										  <option  value="EIEDAC">EMBARGOS INFRINGENTES NOS EMBARGOS DE DECLARAÇÃO NA AC</option>
+			             			
+										  <option  value="EIEDAG">EMBARGOS INFRINGENTES NOS EMBARGOS DE DECLARAÇÃO NO AG</option>
+			             			
+										  <option  value="EAC">EMBARGOS NA APELAÇÃO CIVEL</option>
+			             			
+										  <option  value="EACR">EMBARGOS NA APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="EREO">EMBARGOS NA REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="EAP">EMBARGOS NO AGRAVO DE PETIÇÃO</option>
+			             			
+										  <option  value="ERO">EMBARGOS NO RECURSO ORDINARIO TRABALHISTA</option>
+			             			
+										  <option  value="DEDAMS">EMBARGOS NOS EMBARGOS DE DECLARAÇÃO NA AMS</option>
+			             			
+										  <option  value="EEAAMS">EMBARGOS NOS EMBARGOS DE DECLARAÇÃO NO AGRAVO REGIMENTAL NA AMS</option>
+			             			
+										  <option  value="EEX">EMBARGOS À EXECUÇÃO</option>
+			             			
+										  <option  value="EEXEC">EMBARGOS À EXECUÇÃO DE SENTENÇA</option>
+			             			
+										  <option  value="EEXAR">EMBARGOS À EXECUÇÃO NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="EXVERD">EXCEÇÃO DA VERDADE</option>
+			             			
+										  <option  value="EXI">EXCEÇÃO DE IMPEDIMENTO</option>
+			             			
+										  <option  value="EXINC">EXCEÇÃO DE INCOMPETÊNCIA</option>
+			             			
+										  <option  value="EXSUSP">EXCEÇÃO DE SUSPEIÇÃO</option>
+			             			
+										  <option  value="EXEC">EXECUÇÃO DE SENTENÇA</option>
+			             			
+										  <option  value="HC">HABEAS CORPUS</option>
+			             			
+										  <option  value="HD">HABEAS DATA</option>
+			             			
+										  <option  value="IVCAR">IMPUGNAÇÃO AO VALOR DA CAUSA NA AÇÃO RESCISORIA</option>
+			             			
+										  <option  value="ICSAC">INCIDENTE DE CANCELAMENTO DE SUMULA NA AC</option>
+			             			
+										  <option  value="IF">INCIDENTE DE FALSIDADE</option>
+			             			
+										  <option  value="IINAMS">INCIDENTE DE INCONSTITUCIONALIDADE NA AMS</option>
+			             			
+										  <option  value="IIAC">INCIDENTE DE INCONSTITUCIONALIDADE NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="IUJRSE">INCIDENTE DE INFORMIZAÇÃO DE JURISPRUDÊNCIA NO RSE</option>
+			             			
+										  <option  value="IUJAC">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NA AC</option>
+			             			
+										  <option  value="IUJAMS">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NA AMS</option>
+			             			
+										  <option  value="IUJREO">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NA REO</option>
+			             			
+										  <option  value="IUJAG">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NO AG</option>
+			             			
+										  <option  value="IUJCC">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NO CC</option>
+			             			
+										  <option  value="IUJRCR">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NO RCCR</option>
+			             			
+										  <option  value="IUJRO">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NO RO</option>
+			             			
+										  <option  value="IJEIAC">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDENCIA NOS EIAC</option>
+			             			
+										  <option  value="IUJAGR">INCIDENTE DE UNIFORMIZAÇÃO DE JURISPRUDÊNCIA EM AGRAVO REGIMENTAL </option>
+			             			
+										  <option  value="INAGR">INCIDENTE EM AGRAVO REGIMENTAL</option>
+			             			
+										  <option  value="IRMC">INCIDENTE REGIMENTAL NA MEDIDA CAUTELAR</option>
+			             			
+								        	 <option selected="selected" value="INQ">INQUERITO
+								        
+										  <option  value="INT">INTERPELAÇÃO</option>
+			             			
+										  <option  value="MI">MANDADO DE INJUNÇÃO</option>
+			             			
+										  <option  value="MS">MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="MC">MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="MCAG">MEDIDA CAUTELAR EM AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="MCAR">MEDIDA CAUTELAR EM AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="MCI">MEDIDA CAUTELAR INOMINADA</option>
+			             			
+										  <option  value="NOTCRI">NOTÍCIA CRIME</option>
+			             			
+										  <option  value="AV">PEDIDO DE AVOCAÇÃO</option>
+			             			
+										  <option  value="PET">PETIÇÃO</option>
+			             			
+										  <option  value="PD">PETIÇÃO DE DESAFORAMENTO</option>
+			             			
+										  <option  value="PEP">PETIÇÃO DE EXTINÇÃO DE PUNIBILIDADE</option>
+			             			
+										  <option  value="PMI">PETIÇÃO DE MANDADO DE INJUNÇÃO</option>
+			             			
+										  <option  value="PMC">PETIÇÃO DE MEDIDA CAUTELAR</option>
+			             			
+										  <option  value="PN">PETIÇÃO DE NOTIFICAÇÃO</option>
+			             			
+										  <option  value="PNJ">PETIÇÃO DE NOTIFICAÇÃO JUDICIAL</option>
+			             			
+										  <option  value="PO">PETIÇÃO DE OPOSIÇÃO</option>
+			             			
+										  <option  value="RE">PETIÇÃO DE RECURSO EXTRAORDINARIO</option>
+			             			
+										  <option  value="RHC">PETIÇÃO DE RECURSO ORDINARIO EM HABEAS CORPUS</option>
+			             			
+										  <option  value="PRV">PETIÇÃO DE REVISÃO</option>
+			             			
+										  <option  value="PSES">PETIÇÃO DE SUSPENSÃO DE EXECUÇÃO DE SENTENÇA</option>
+			             			
+										  <option  value="PSIP">PETIÇÃO DE SUSPENSÃO DE IMISSÃO DE POSSE</option>
+			             			
+										  <option  value="PUP">PETIÇÃO DE UNIFICAÇÃO DE PENAS</option>
+			             			
+										  <option  value="PVCP">PETIÇÃO DE VERIFICAÇÃO DE CESSAÇÃO DE PERICULOSIDADE</option>
+			             			
+										  <option  value="PRC">PRECATORIO</option>
+			             			
+										  <option  value="PA">PROCESSO ADMINISTRATIVO</option>
+			             			
+										  <option  value="QCR">QUEIXA-CRIME</option>
+			             			
+										  <option  value="QUO">QUESTÃO DE ORDEM</option>
+			             			
+										  <option  value="QUOAGT">QUESTÃO DE ORDEM EM AGRAVO INTERNO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="QUOAC">QUESTÃO DE ORDEM EM APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="QUOAMS">QUESTÃO DE ORDEM NA AMS</option>
+			             			
+										  <option  value="QUOACR">QUESTÃO DE ORDEM NA APELAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="QINREO">QUESTÃO DE ORDEM NA ARGUIÇÃO DE INCONSTITUCIONALIDADE NA REO</option>
+			             			
+										  <option  value="QUOAPN">QUESTÃO DE ORDEM NA AÇÃO PENAL</option>
+			             			
+										  <option  value="QUOAR">QUESTÃO DE ORDEM NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="QUOEXS">QUESTÃO DE ORDEM NA EXCEÇÃO DE SUSPEIÇÃO</option>
+			             			
+										  <option  value="QUONCR">QUESTÃO DE ORDEM NA NOTÍCIA CRIME</option>
+			             			
+										  <option  value="QUOPET">QUESTÃO DE ORDEM NA PETIÇÃO</option>
+			             			
+										  <option  value="QUOREO">QUESTÃO DE ORDEM NA REMESSA EX-OFFICIO</option>
+			             			
+										  <option  value="QUORC">QUESTÃO DE ORDEM NA REPRESENTAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="QUOAG">QUESTÃO DE ORDEM NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="QATEIAC">QUESTÃO DE ORDEM NO AGRAVO INTERNO NOS EIAC</option>
+			             			
+										  <option  value="QUOHC">QUESTÃO DE ORDEM NO HABEAS CORPUS</option>
+			             			
+										  <option  value="QUOINQ">QUESTÃO DE ORDEM NO INQUERITO</option>
+			             			
+										  <option  value="QUOMS">QUESTÃO DE ORDEM NO MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="QUORSE">QUESTÃO DE ORDEM NO RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="QUOEAC">QUESTÃO DE ORDEM NOS EMBARGOS DE DECLARAÇÃO NA AC</option>
+			             			
+										  <option  value="QUOEAG">QUESTÃO DE ORDEM NOS EMBARGOS DE DECLARAÇÃO NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="QUOEAR">QUESTÃO DE ORDEM NOS EMBARGOS INFRINGENTES NA AÇÃO RESCISÓRIA</option>
+			             			
+										  <option  value="REAB">REABILITAÇÃO</option>
+			             			
+										  <option  value="RCL">RECLAMAÇÃO</option>
+			             			
+										  <option  value="RCADAC">RECURSO ADESIVO NA APELAÇÃO CÍVEL</option>
+			             			
+										  <option  value="RCCR">RECURSO CRIMINAL</option>
+			             			
+										  <option  value="ROTRB">RECURSO DE OFICIO TRABALHISTA</option>
+			             			
+										  <option  value="RR">RECURSO DE REVISTA</option>
+			             			
+										  <option  value="RCHC">RECURSO EM HABEAS CORPUS</option>
+			             			
+										  <option  value="REOHC">RECURSO EM HABEAS CORPUS EX OFFICIO</option>
+			             			
+										  <option  value="RHD">RECURSO EM HABEAS DATA</option>
+			             			
+										  <option  value="RSE">RECURSO EM SENTIDO ESTRITO</option>
+			             			
+										  <option  value="RI">RECURSO INOMINADO</option>
+			             			
+										  <option  value="ROMS">RECURSO ORDINARIO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="RO">RECURSO ORDINARIO TRABALHISTA</option>
+			             			
+										  <option  value="REO">REMESSA EX OFFICIO</option>
+			             			
+										  <option  value="REOCR">REMESSA EX OFFICIO CRIMINAL</option>
+			             			
+										  <option  value="REOHD">REMESSA EX OFFICIO EM HABEAS DATA</option>
+			             			
+										  <option  value="REOMS">REMESSA EX OFFICIO EM MANDADO DE SEGURANÇA</option>
+			             			
+										  <option  value="REOTRB">REMESSA EX OFFICIO TRABALHISTA</option>
+			             			
+										  <option  value="RP">REPRESENTAÇÃO</option>
+			             			
+										  <option  value="RPCR">REPRESENTAÇÃO CRIMINAL</option>
+			             			
+										  <option  value="RA">RESTAURAÇÃO DE AUTOS</option>
+			             			
+										  <option  value="RVCR">REVISÃO CRIMINAL</option>
+			             			
+										  <option  value="RSAC">REVISÃO DE SUMULA NA AC</option>
+			             			
+										  <option  value="RSAG">REVISÃO DE SUMULA NO AG</option>
+			             			
+										  <option  value="RSRO">REVISÃO DE SUMULA NO RO</option>
+			             			
+										  <option  value="RMSG">REVOGAÇÃO DE MEDIDA DE SEGURANÇA</option>
+			             			
+										  <option  value="SUM">SUMULA</option>
+			             			
+										  <option  value="SJAC">SUMULACAO DE JURISPRUDENCIA NA APELACAO CIVEL</option>
+			             			
+										  <option  value="SJAG">SUMULAÇÃO DE JURISPRUDENCIA NO AGRAVO DE INSTRUMENTO</option>
+			             			
+										  <option  value="SL">SUSPENSÃO DE LIMINAR</option>
+			             			
+										  <option  value="SS">SUSPENSÃO DE SEGURANÇA</option>
+			             			
+										  <option  value="TC">TERMO CIRCUNSTANCIADO</option>
+			             			
+					  	  </select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label td_right">
+							<label for="td_0004">Magistrado</label>						</td>
+						<td>
+							<input type="text" value=" " name="rel" class="txt_gd" id="td_0004"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="label td_right">
+							<label for="td_00005">Data (dd/mm/aaaa)</label>						</td>
+						<td>
+							<input type="text" value=" " name="data1" class="txt_data" id="td_00005"/>
+							<label for="td_00006">a</label> 
+							<input type="text" value=" " name="data2" class="txt_data" id="td_00006"/>
+							<select name="tipo_data" class="combo_md" id="td_00006">
+								<option selected="selected" value="DTJP">Julgamento</option>
+								<option  value="DTPP">Publicação</option>
+								<option  value="DTDP">Decisão</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td class="label td_right">
+							<label for="td_0000008">Ementa/Indexação</label>						</td>
+						<td>											
+							<input type="text" value=" " name="emen" class="txt_gd" id="td_0000008"/>						
+						</td>
+					</tr>
+					<tr>
+						<td class="label td_right">
+							<label for="td_00035">Objeto do Processo</label>						</td>
+						<td>
+							<input type="text" value=" " name="obpr" class="txt_gd" id="td_00035"/>						
+						</td>
+					</tr>
+				</tbody>
+				</table>
+			</div>
+				<table>
+					<tbody>
+					<tr>
+						<td class="label td_right">
+							<label for="td_00022">Tribunais</label>
+						</td>
+						<td>
+							<fieldset class="oculto_02" id="td_00022">
+								<input  id="label23" name="STF" type="checkbox" value="STF"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label23">STF</label>
+								<input  id="label124" name="STJ" type="checkbox" value="STJ"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label124">STJ</label>
+								<input  id="label25" name="TRF1" type="checkbox" value="TRF1"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label25">TRF1</label>
+								<input  id="label26" name="TRF2" type="checkbox" value="TRF2"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label26">TRF2</label>
+								<input checked="true" id="label127" name="TRF3" type="checkbox" value="TRF3"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label127">TRF3</label>
+								<input  id="label28" name="TRF4" type="checkbox" value="TRF4"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label28">TRF4</label>
+								<input  id="label129" name="TRF5" type="checkbox" value="TRF5"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label129">TRF5</label>
+								<input  id="label130" name="TNU" type="checkbox" value="TNU"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label130">TNU</label>
+								<input  id="label133" name="TRU" type="checkbox" value="TRU"
+									onclick="atualizaTodos();" onkeypress=" " class="checkbox_fonte" />
+								<label for="label133">TRU</label>
+								<input  id="label132" name="TR" type="checkbox" value="TR"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label132">TR</label>
+								<input onclick="marcarDemarcarTodas(this)" onkeypress=" " id="label18"
+									name="TODAS" type="checkbox" value="TODAS" class="checkbox_fonte"
+									onkeypress=" " class="checkbox_fonte" />
+								<label for="label18">Todos</label>
+							</fieldset>
+						</td>
+					</tr>
+					
+					<tr id="tr_regioes_tru" style="visibility: hidden">
+						<td class="label td_right">
+							<label for="td_00023">Regiões da TRU</label>
+						</td>
+						<td>
+							<fieldset class="oculto_02" id="td_00023">
+								<input  id="label325" name="TRU1" type="checkbox" value="TRU1"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label325">TRU 1ª Região</label>
+								<input  id="label326" name="TRU2" type="checkbox" value="TRU2"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label326">TRU 2ª Região</label>
+								<input  id="label327" name="TRU3" type="checkbox" value="TRU3"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label327">TRU 3ª Região</label>
+								<input  id="label328" name="TRU4" type="checkbox" value="TRU4"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label328">TRU 4ª Região</label>
+								<input  id="label329" name="TRU5" type="checkbox" value="TRU5"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label329">TRU 5ª Região</label>
+								<input onclick="marcarDemarcarTodasTRU(this)" onkeypress=" " id="label330"
+									name="TODAS_TRU" type="checkbox" value="TODAS" class="checkbox_fonte"
+									onkeypress=" " class="checkbox_fonte" />
+								<label for="label330">TRU Todos</label>
+							</fieldset>
+						</td>
+					</tr>
+					
+					<tr id="tr_regioes_tr" style="visibility: hidden">
+						<td class="label td_right">
+							<label for="td_00033">Regiões da TR</label>
+						</td>
+						<td>
+							<fieldset class="oculto_02" id="td_00033">
+								<input  id="label425" name="TR1" type="checkbox" value="TR1"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label425">TR 1ª Região</label>
+								<input  id="label426" name="TR2" type="checkbox" value="TR2"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label426">TR 2ª Região</label>
+								<input  id="label427" name="TR3" type="checkbox" value="TR3"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label427">TR 3ª Região</label>
+								<input  id="label428" name="TR4" type="checkbox" value="TR4"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label428">TR 4ª Região</label>
+								<input  id="label429" name="TR5" type="checkbox" value="TR5"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label429">TR 5ª Região</label>
+								<input onclick="marcarDemarcarTodasTR(this)" onkeypress=" " id="label330"
+									name="TODAS_TR" type="checkbox" value="TODAS" class="checkbox_fonte"
+									onkeypress=" " class="checkbox_fonte" />
+								<label for="label430">TR Todos</label>
+							</fieldset>
+						</td>
+					</tr>
+                                        <!-- Issue #2307 (redmine) - alterado por Luis Sergio -->  
+                                       
+                                        <tr id="trf1_bases_trf1" style="visibility: hidden">
+						<td class="label td_right">
+							<label for="td_00043"></label>
+						</td>
+						<td>
+							<fieldset class="oculto_02" id="td_00043">
+                                                            
+								<input  id="label525" name="ACORDAO" type="checkbox" value="ACORDAO"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label525">Acórdãos</label>
+								<input  id="label526" name="ACORDAOJEF" type="checkbox" value="ACORDAO"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label526">Acórdãos JEF</label>
+								<input  id="label527" name="SUMULA" type="checkbox" value="SUMULA"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label527">Súmulas</label>
+								<input  id="label528" name="SUMULAJEF" type="checkbox" value="SUMULA"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label528">Súmulas JEF</label>
+								<input  id="label529" name="ARGUICAO" type="checkbox" value="ARGUICAO"
+									onclick="atualizaTodos()" onkeypress=" " class="checkbox_fonte" />
+								<label for="label529">Arguições</label>
+								
+                                                                <input onclick="marcarDemarcarTodasTRF1(this)" onkeypress=" " id="label530"
+									name="TODAS_TRF1" type="checkbox" value="TODAS" class="checkbox_fonte"
+									onkeypress=" " class="checkbox_fonte" />
+								<label for="label530">Todas</label>
+							</fieldset>
+						</td>
+					</tr>
+                                        
+                                        <!-- Issue #2307 -->                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+					<tr>
+						<td class="label td_left" colspan="2"><a target="_blank" href="http://www.cjf.jus.br/enunciados/">Pesquisa de Enunciados das Jornadas do CEJ</a></td>
+					</tr>					
+				</tbody>
+			</table>
+			<div id="botoes" class="div_botoes">
+				<input type="submit" value="Pesquisar" />
+				<input type="button" value="Limpar" onclick="limparCampos();" />
+			</div>
+		</div>
+	</div>
+		<div id="rodape"><span>SCES - Lote 09 Trecho 3, Polo 08, 2º andar, Salas 210 e 211. - Setor de Clubes - CEP: 70.200-003 - Brasília - DF - 
+	Telefone: (61) 30227300</span></div>
+</form>
+</body>
+</html>

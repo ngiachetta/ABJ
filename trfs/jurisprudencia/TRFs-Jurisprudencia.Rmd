@@ -11,36 +11,112 @@ library(dplyr)
 ```
 
 ```{r}
-url <- "http://www.cjf.jus.br/juris/unificada/Resposta"
+"http://www.cjf.jus.br/juris/unificada/Resposta"
 ```
 
-O Link acima reuni em um único site a busca de jurisprudência por TRF
+O link acima centraliza as buscas por TRF (e outros), sendo assim, é possível buscar por TRF de interesse e a classe na qual estamos interessados.
+
+As funções abaixo, portanto, baixam os arquivos html de acordo com o TRF.
 
 ```{r}
-query_GET <- list(
-  "pesquisaAS" = "A",
-  "clas" = "INQ",
-  "tipo_data" = "DTJP",
-  "TRF2" = "TRF2"
-)
+# Funcao para obter o numero (e apenas o numerod) de paginas para rodar um iterador
+pages_doc <- function(url){
+  max_doc <- url %>% 
+    read_html() %>%
+    html_nodes(xpath = '//*[@class="informacoes_pesquisa"]//td/span') %>% 
+    html_text() %>%
+    .[stringr::str_detect(.,'[0-9]')] %>%
+    pluck(1) %>% 
+    as.numeric()
+  ult_pag <- ceiling(max_doc/30)
+  
+  if(purrr::is_empty(ult_pag)){
+    iterador <- 1
+  } else{
+    iterador <- 2:ult_pag # Pega a partir do 2 pois na funcao busca_TRF ja temos a pagina 1
+  }
+  
+  return(iterador)
+}
 
-file <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/teste.html"
+# Funcao para obter os html das paginas seguintes a partir do que fui obtido no busca_TRF
+busca_TRF_pag <- function(url_list, page, class, TRF, path){
+  query <- url_list %>% pluck(1) %>% html_session() %>% html_node(xpath = '//input[@name="query"]') %>% html_attr('value')
+  if(is.na(query)){
+    query <- url_list %>% pluck(1) %>% stringr::str_extract('(?<=query=).*')    
+  }
 
-primeira <- httr::GET(url, query = query_post,httr::config(ssl_verifypeer = FALSE),
-httr::write_disk(file, TRUE))
+  query_GET_2 <- list(
+  query = query,
+  pg = page,
+  pesquisaAS = "A",
+  clas = class,
+  tipo_data = "DTJP",
+  TRF2 = TRF
+  )
+  
+  if(TRF == "TRF1"){
+    names(query_GET_2)[6] <- "TRF1"
+  } else if (TRF == "TRF2"){
+    names(query_GET_2)[6] <- "TRF2"
+  } else if(TRF == "TRF3"){
+      names(query_GET_2)[6] <- "TRF3"
+  } else if(TRF == "TRF5"){
+      names(query_GET_2)[6] <- "TRF5"
+  } 
+  
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/page", as.character(page), ".html")
+  httr::GET("http://www.cjf.jus.br/juris/unificada/Resposta", query = query_GET_2, httr::config(ssl_verifypeer = FALSE),
+            httr::write_disk(file, TRUE))
+}
 
-query_GET_2 <- list(
-  "query" = primeira$url %>% html_session() %>% html_node(xpath = '//*[@name="query"]') %>% html_attr('value'),
-  "pg" = 2,
-  "pesquisaAS" = "A",
-  "clas" = "INQ",
-  "tipo_data" = "DTJP",
-  "TRF2" = "TRF2"
-)
+# Funcao que baixa todos os html de acordo com as buscas
+busca_TRF <- function(TRF, class = "INQ", path){
+  query_GET_1 <- list(
+  pesquisaAS = "A",
+  clas = class,
+  tipo_data = "DTJP",
+  TRF2 = TRF
+  )
+  
+  if(TRF == "TRF1"){
+    names(query_GET_1)[4] <- "TRF1"
+  } else if (TRF == "TRF2"){
+    names(query_GET_1)[4] <- "TRF2"
+  } else if(TRF == "TRF3"){
+      names(query_GET_1)[4] <- "TRF3"
+  } else if(TRF == "TRF5"){
+      names(query_GET_1)[4] <- "TRF5"
+  } 
+  
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/page1.html")
+  page1 <- httr::GET("http://www.cjf.jus.br/juris/unificada/Resposta", query = query_GET_1, httr::config(ssl_verifypeer = FALSE),
+                     httr::write_disk(file, TRUE))
+  
+  purrr::map(pages_doc(page1$url), ~busca_TRF_pag(url_list = page1, page = .x,  class, TRF, path))
+  
+}
+```
 
+Aplicando a função de acordo com o TRF. No nosso caso estamos interessados nos seguintes TRFs:
 
+1. TRF-1
 
-httr::GET(primeira$url, query = query_GET_2,httr::config(ssl_verifypeer = FALSE),
-httr::write_disk(file, TRUE))
+2. TRF-2
+
+3. TRF-3
+
+5. TRF-5
+
+```{r}
+trfs <- c("TRF1", "TRF2", "TRF3", "TRF5")
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/"
+path <- purrr::map2_chr(trfs, path, ~stringr::str_c(.y, .x, "/"))
+
+map2(trfs, path, ~busca_TRF(TRF = .x, path = .y))
 ```
 
