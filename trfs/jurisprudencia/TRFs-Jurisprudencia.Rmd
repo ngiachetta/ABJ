@@ -147,15 +147,14 @@ parse_trf <- function(file){
   
   stopifnot(file_exist(file) == TRUE)
   
+  node <- file %>% xml2::read_html()
   
-  
-  data <- file %>%
-    xml2::read_html() %>%
+  data <- node %>%
     rvest::html_nodes(xpath = '//table[@class="table_pesquisa_lista"]') %>% 
     rvest::html_table(fill = T) %>% 
     .[2:length(.)] %>% # Remove o primeiro df que nao eg necessario para parsear
     purrr::map(~select(.x, colnames(.) %>% dplyr::first())) %>% # Seleciona apenas a primeira coluna de cada df
-    purrr::map_dfc(~dplyr::slice(.x, 1:linha)) %>% # Pega a primeiras 18 linhas de cada df e aplca bind_cols
+    purrr::map_dfc(~dplyr::slice(.x, 1:18)) %>% # Pega a primeiras 18 linhas de cada df e aplca bind_cols, #Achei uma solucao melhor com dplyr::distinct
     dplyr::slice(c(-1,-2)) %>% # Remove as duas primeiras linhas
     tibble::rownames_to_column() %>% # Adiciona numero as linhas
     dplyr::mutate(var = sjmisc::is_odd(as.numeric(rowname))) %>% # flag 
@@ -189,33 +188,63 @@ trf3 <- map_dfr(trf3_files[1], ~parse_trf(.x)) # Nao
 trf5 <- map_dfr(trf5_files, ~parse_trf(.x)) # Nao
 ```
 
-A funcao acima só esta funcionando para o TRF2, pois ele possui um padrão entre os df.
+A funcao acima só esta funcionando para o TRF2, pois ele possui um padrão entre os df. Sendo assim, temos que pensar como podemos generalizar para os outros TRFs. A solução encontrada está no código abaixo:
 
 ```{r}
-lista_df <-trf5_files[1] %>%
-  xml2::read_html() %>%
-  rvest::html_nodes(xpath = '//table[@class="table_pesquisa_lista"]') %>% 
-  rvest::html_table(fill = T) %>% 
-  .[2:length(.)] %>% 
-  purrr::map(~select(.x, colnames(.) %>% dplyr::first())) 
-
-arruma_lista_trf5 <- function(lista){
-
-}
-
-
-for(i in 1:length(lista_df)){
-  if(nrow(lista_df[[i]]) == 53){
-    lista_df[[i]] <- dplyr::slice(lista_df[[i]], 1:26)
-  } else if(nrow(lista_df[[i]]) == 49){
-    lista_df[[i]] <- dplyr::slice(lista_df[[i]], 1:24) %>% 
-      dplyr::bind_rows(tibble(rep(NA,2))) %>% select(colnames(.) %>% dplyr::first())
-  } else if(nrow(lista_df[[i]]) == 45){
-    lista_df[[i]] <- dplyr::slice(lista_df[[i]], 1:22) %>% 
-      dplyr::bind_rows(tibble(rep(NA,4))) %>% select(colnames(.) %>% dplyr::first())
+parse_trfs <- function(file){
+  node <- file %>% xml2::read_html()
+  
+  num_processo <- node %>%  html_nodes(xpath = '//div[@class="barra_titulo"]/label/font/input') %>%
+    html_attr("value") %>% unique() %>% stringr::str_replace_all("Processo +", "") # IMPORTANTE POREM NAO ESTA NO RESULTADO FINAL
+  
+  data <- node %>%
+    rvest::html_nodes(xpath = '//table[@summary="Lista detalhada de jurisprudência unificada"]') %>% 
+    rvest::html_table(fill = T)
+  
+  num_linha <- purrr::map_dbl(data, nrow) %>% unique() # Existe estes padroes de linhas
+  num_linha_value <- purrr::map_dbl(data, nrow)
+  num_linha_index <- list()
+  for(i in 1:length(num_linha)){
+    num_linha_index[[i]] <- which(num_linha_value == num_linha[i])  
   }
-}
 
-purrr::map_dfc(lista_df, ~dplyr::slice(.x, c(-1,-2)))
+  parse_data <- function(data, index){
+    data <- data[num_linha_index[[index]]] %>% 
+      bind_cols() %>% 
+      tibble::rownames_to_column() %>% # Adiciona numero as linhas
+      dplyr::mutate(var = sjmisc::is_odd(as.numeric(rowname))) %>% # flag 
+      dplyr::select(-rowname)
+  
+    var_names <- data %>% 
+      dplyr::filter(var == T) %>% 
+      dplyr::select_(colnames(.) %>% dplyr::first()) %>% 
+      purrr::pluck(1) %>% 
+      stringr::str_replace_all(" +", "_") %>% 
+      stringr::str_to_lower() %>% 
+      abjutils::rm_accent()
+  
+    data <- data %>% 
+      dplyr::filter(var == F) %>% 
+      dplyr::select(-var) %>% 
+      tidyr::gather() %>% 
+      magrittr::set_names(c("doc_index", "val")) %>% 
+      mutate(key = rep(var_names, nrow(.)/length(var_names))) %>% 
+      tidyr::spread(key, val) %>% 
+      dplyr::distinct(processo, inteiro_teor, .keep_all = TRUE) %>% 
+      dplyr::select(-doc_index) %>% 
+      dplyr::mutate(files = file)
+  }
+
+  purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x))
+}
+  
+
+trf2 <- map_dfr(trf2_files, ~parse_trfs(.x))
+trf3 <- map_dfr(trf3_files[1], ~parse_trfs(.x)) 
+trf5 <- map_dfr(trf5_files, ~parse_trfs(.x)) 
+
+readr::write_rds(trf2, path = "data-raw/rds_data/trf2.rds")
+readr::write_rds(trf3, path = "data-raw/rds_data/trf3.rds")
+readr::write_rds(trf5, path = "data-raw/rds_data/trf5.rds")
 ```
 
