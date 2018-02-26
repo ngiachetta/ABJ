@@ -58,3 +58,24 @@ TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-we
 - TJDFT (consulta processual)
 
 - TJAL (consulta processual)
+
+####
+
+|Tribunais|Tipo_Scraper       |Scraper_feito|Parser_feito|Obs|
+|:-------:|:------------------|------------:|:----------:|:--|
+|TRF-1    |Jurisprudência     |SIM          |SIM         |A consulta para TRF1 retornou vazia|
+|TRF-2    |Jurisprudência     |SIM          |SIM         |   |
+|TRF-3    |Jurisprudência     |SIM          |SIM         |   |
+|TRF-5    |Jurisprudência     |SIM          |SIM         |   |
+|TRF-1    |Consulta Processual|NÃO          |NÃO         |   |
+|TRF-2    |Consulta Processual|NÃO          |NÃO         |   |
+|TRF-3    |Consulta Processual|NÃO          |NÃO         |   |
+|TRF-5    |Consulta Processual|NÃO          |NÃO         |   |
+|TJAL     |Jurisprudência     |SIM          |SIM         |   |
+|TJDFT    |Jurisprudência     |SIM          |SIM         |   |
+|TJSP     |Jurisprudência     |SIM          |SIM         |   |
+|TJRJ     |Jurisprudência     |NÃO          |NÃO         |Problemas na coleta|
+|TJAL     |Consulta Processual|SIM          |SIM         |   |
+|TJDFT    |Consulta Processual|SIM          |SIM         |   |
+|TJSP     |Consulta Processual|SIM          |SIM         |   |
+|TJRJ     |Consulta Processual|NÃO          |NÃO         |Problemas na coleta|
