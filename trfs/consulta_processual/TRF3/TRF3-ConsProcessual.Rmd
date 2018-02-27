@@ -1,0 +1,98 @@
+---
+title: "TRF-3"
+output: html_notebook
+---
+
+```{r}
+library(RSelenium)
+library(rvest)
+library(dplyr)
+library(httr)
+library(decryptr)
+```
+
+```{r}
+obter_processo <- function(num_processo){
+  
+  if(stringr::str_detect(num_processo, "[[:punct:]]")){
+    num_processo <- stringr::str_replace_all(num_processo, "[[:punct:]]", "")  
+  }
+  
+  url <- "http://web.trf3.jus.br/consultas/Internet/ConsultaProcessual?NumeroProcesso="
+    
+  remDr <- suppressMessages(RSelenium::rsDriver())
+  remDr$client$navigate(url)
+  
+  # Numero de processo
+  webElem <- remDr$client$findElement(using = 'name', value = 'NumeroProcesso')
+  webElem$sendKeysToElement(list(num_processo))
+
+  # Captcha
+  captcha <- ""
+  while (captcha == "") {
+    print("Preencher o Captcha")
+    captcha <- readline(prompt="")
+    print(captcha)
+  }
+  webElem <- remDr$client$findElement(using = 'id', value = 'Captcha')
+  webElem$sendKeysToElement(list(captcha))
+
+  # Pesquisar
+  webElem <- remDr$client$findElement(using = 'xpath', value = '//input[@value="Pesquisar"]')
+  webElem$clickElement()
+
+  # Todas as partes
+  webElem <- remDr$client$findElement(using = 'xpath', value = '//input[@id="todasPartes"]')
+  webElem$clickElement()
+
+  # Todas as fases
+  webElem <- remDr$client$findElement(using = 'xpath', value = '//input[@id="todasFases"]')
+  webElem$clickElement()
+
+  # Obter o conteudo da pagina
+  Sys.sleep(10)
+  
+  info_source <- remDr$client$getPageSource()
+
+  suppressMessages(remDr$client$closeall())
+  
+  return(info_source)
+}
+
+num_processo <- "0006278-77.2009.4.03.6112"
+proc_teste <- obter_processo(num_processo)
+```
+
+```{r}
+parse_infos <- function(node){
+  nome_tabelas <- c("partes", "assuntos", "apensos", "peticoes", "fases")
+  
+  value <- node %>% rvest::html_nodes(xpath = '//div[@class="corpo"]') %>% 
+    xml2::xml_siblings(.) %>% 
+    rvest::html_text(trim = T)
+  
+  key <- node %>% rvest::html_nodes(xpath = '//div[@class="corpo"]') %>% 
+    rvest::html_text(trim = T)
+  
+  infos <- tibble::tibble(key = key, val = value) %>%
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_replace_all(key, "[[:punct:]]",""),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, " +", "_")) %>% 
+    dplyr::filter(!(key %in% nome_tabelas)) %>% 
+    tidyr::spread(key, val)
+  
+  tabelas <- node %>%
+    rvest::html_nodes(xpath = '//table') %>% 
+    rvest::html_table() %>% 
+    purrr::map_dfc(., ~tidyr::nest(.x)) %>% 
+    magrittr::set_names(nome_tabelas)
+  
+  tab_infos <- bind_cols(infos, tabelas)
+  
+  return(tab_infos)
+}
+
+node <- proc_teste %>% unlist() %>% xml2::read_html()
+tabela <- parse_infos(node)
+```

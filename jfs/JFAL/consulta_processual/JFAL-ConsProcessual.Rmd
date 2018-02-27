@@ -1,0 +1,20 @@
+---
+title: "JFAL-ConsProcessual"
+output: html_notebook
+---
+
+```{r}
+library(RSelenium)
+library(rvest)
+library(dplyr)
+```
+
+```{r}
+#Abrindo o browser
+remDr <- RSelenium::rsDriver()
+# Acessando a pagina
+remDr$client$navigate("https://jef.jfal.jus.br/cretainternetal/consulta/processo/pesquisar2.wsp")
+# Acessando a busca por numero do processo
+webElem <- remDr$client$findElement()
+```
+
