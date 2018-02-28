@@ -235,7 +235,8 @@ parse_trfs <- function(file){
       dplyr::mutate(files = file)
   }
 
-  purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x))
+  data <- purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x)) %>% 
+    dplyr::bind_cols(., tibble::tibble(num_processo = num_processo))
 }
   
 
