@@ -72,13 +72,18 @@ parse_infos <- function(node){
     rvest::html_text(trim = T)
   
   key <- node %>% rvest::html_nodes(xpath = '//div[@class="corpo"]') %>% 
-    rvest::html_text(trim = T)
+    rvest::html_text(trim = T) %>% 
+    stringr::str_to_lower() %>% 
+    stringr::str_replace_all("[[:punct:]]","") %>% 
+    abjutils::rm_accent() %>% 
+    stringr::str_replace_all(" +", "_")
+    
   
   infos <- tibble::tibble(key = key, val = value) %>%
-    dplyr::mutate(key = stringr::str_to_lower(key),
-                  key = stringr::str_replace_all(key, "[[:punct:]]",""),
-                  key = abjutils::rm_accent(key),
-                  key = stringr::str_replace_all(key, " +", "_")) %>% 
+    # dplyr::mutate(key = stringr::str_to_lower(key),
+    #               key = stringr::str_replace_all(key, "[[:punct:]]",""),
+    #               key = abjutils::rm_accent(key),
+    #               key = stringr::str_replace_all(key, " +", "_")) %>% 
     dplyr::filter(!(key %in% nome_tabelas)) %>% 
     tidyr::spread(key, val)
   
@@ -86,7 +91,7 @@ parse_infos <- function(node){
     rvest::html_nodes(xpath = '//table') %>% 
     rvest::html_table() %>% 
     purrr::map_dfc(., ~tidyr::nest(.x)) %>% 
-    magrittr::set_names(nome_tabelas)
+    magrittr::set_names(key[key %in% nome_tabelas])
   
   tab_infos <- bind_cols(infos, tabelas)
   
@@ -105,5 +110,21 @@ processos <- trf3$inteiro_teor
 processos_obtidos <- purrr::map(processos, ~obter_processo(.x))
 
 readr::write_rds(processos_obtidos, "data-raw/arquivo_bruto_processos.rds")
+```
+
+```{r}
+processos_obtidos <- readr::read_rds("data-raw/arquivo_bruto_processos.rds")
+
+obtem_node <- function(lista_processo){
+  node <- lista_processo %>% 
+    unlist() %>% 
+    xml2::read_html()
+  return(node)
+}
+
+processos_parse <- purrr::map(1:length(processos_obtidos), ~obtem_node(processos_obtidos[.x])) %>% 
+  purrr::map_dfr(., ~parse_infos(.x))
+
+readr::write_rds(processos_parse, "data-raw/processos_parseados.rds")
 ```
 
