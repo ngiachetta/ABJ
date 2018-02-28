@@ -69,8 +69,8 @@ TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-we
 |TRF-5    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-1    |Consulta Processual|NÃO          |NÃO         |   |
 |TRF-2    |Consulta Processual|NÃO          |NÃO         |   |
-|TRF-3    |Consulta Processual|SIM          |SIM         |   |
-|TRF-5    |Consulta Processual|NÃO          |NÃO         |   |
+|TRF-3    |Consulta Processual|SIM          |SIM         |Obtenção dos dados obtidos na Jurisprudência (TRF3) ok|
+|TRF-5    |Consulta Processual|SIM          |NÃO         |   |
 |TJAL     |Jurisprudência     |SIM          |SIM         |   |
 |TJDFT    |Jurisprudência     |SIM          |SIM         |   |
 |TJSP     |Jurisprudência     |SIM          |SIM         |   |
@@ -79,10 +79,6 @@ TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-we
 |TJDFT    |Consulta Processual|SIM          |SIM         |   |
 |TJSP     |Consulta Processual|SIM          |SIM         |   |
 |TJRJ     |Consulta Processual|NÃO          |NÃO         |Problemas na coleta|
-|JFSP     |Jurisprudência     |NÃO          |NÃO         |   |
-|JFAL     |Jurisprudência     |NÃO          |NÃO         |   |
-|JFRJ     |Jurisprudência     |NÃO          |NÃO         |   |
-|JFDF     |Jurisprudência     |NÃO          |NÃO         |   |
 |JFSP     |Consulta Processual|SIM          |SIM         |   |
 |JFAL     |Consulta Processual|NÃO          |NÃO         |   |
 |JFRJ     |Consulta Processual|SIM          |NÃO         |   |
