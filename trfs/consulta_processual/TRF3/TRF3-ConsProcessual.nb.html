@@ -284,77 +284,21 @@ readr::write_rds(processos_obtidos, &quot;data-raw/arquivo_bruto_processos.rds&q
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHVycnI6Om1hcCgxOmxlbmd0aChwcm9jZXNzb3Nfb2J0aWRvcyksIH5vYnRlbV9ub2RlKHByb2Nlc3Nvc19vYnRpZG9zWy54XSkpXG5cbmBgYCJ9 -->
-<pre class="r"><code>purrr::map(1:length(processos_obtidos), ~obtem_node(processos_obtidos[.x]))
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvY2Vzc29zX29idGlkb3MgPC0gcmVhZHI6OnJlYWRfcmRzKFwiZGF0YS1yYXcvYXJxdWl2b19icnV0b19wcm9jZXNzb3MucmRzXCIpXG5cbm9idGVtX25vZGUgPC0gZnVuY3Rpb24obGlzdGFfcHJvY2Vzc28pe1xuICBub2RlIDwtIGxpc3RhX3Byb2Nlc3NvICU+JSBcbiAgICB1bmxpc3QoKSAlPiUgXG4gICAgeG1sMjo6cmVhZF9odG1sKClcbiAgcmV0dXJuKG5vZGUpXG59XG5cbnByb2Nlc3Nvc19wYXJzZSA8LSBwdXJycjo6bWFwKDE6bGVuZ3RoKHByb2Nlc3Nvc19vYnRpZG9zKSwgfm9idGVtX25vZGUocHJvY2Vzc29zX29idGlkb3NbLnhdKSkgJT4lIFxuICBwdXJycjo6bWFwX2RmciguLCB+cGFyc2VfaW5mb3MoLngpKVxuXG5yZWFkcjo6d3JpdGVfcmRzKHByb2Nlc3Nvc19wYXJzZSwgXCJkYXRhLXJhdy9wcm9jZXNzb3NfcGFyc2VhZG9zLnJkc1wiKVxuYGBgIn0= -->
+<pre class="r"><code>processos_obtidos &lt;- readr::read_rds(&quot;data-raw/arquivo_bruto_processos.rds&quot;)
+
+obtem_node &lt;- function(lista_processo){
+  node &lt;- lista_processo %&gt;% 
+    unlist() %&gt;% 
+    xml2::read_html()
+  return(node)
+}
+
+processos_parse &lt;- purrr::map(1:length(processos_obtidos), ~obtem_node(processos_obtidos[.x])) %&gt;% 
+  purrr::map_dfr(., ~parse_infos(.x))
+
+readr::write_rds(processos_parse, &quot;data-raw/processos_parseados.rds&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiW1sxXV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1syXV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1szXV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s0XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s1XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s2XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s3XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s4XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1s5XV1cbnt4bWxfZG9jdW1lbnR9XG48aHRtbCB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzE5OTkveGh0bWxcIj5cblsxXSA8aGVhZD5cXG48bWV0YSBodHRwLWVxdWl2PVwiQ29udGVudC1UeXBlXCIgY29udGVudD1cInRleHQvaHRtbDsgY2hhcnNldD1VVEYtOFwiPlxcbjx0aXRsZT48XC90aXRsZT5cXG48bGluIC4uLlxuWzJdIDxib2R5PlxcbiAgICA8ZGl2IGlkPVwiY29udGFpbmVyXCI+XFxuICAgICAgPGRpdiBpZD1cImNhYmVjYWxob1wiPlxcbiAgICAgICAgPGRpdiBpZD1cImJhbm5lclwiPlxcbiAgICAgICAgICAuLi5cblxuW1sxMF1dXG57eG1sX2RvY3VtZW50fVxuPGh0bWwgeG1sbnM9XCJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hodG1sXCI+XG5bMV0gPGhlYWQ+XFxuPG1ldGEgaHR0cC1lcXVpdj1cIkNvbnRlbnQtVHlwZVwiIGNvbnRlbnQ9XCJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLThcIj5cXG48dGl0bGU+PFwvdGl0bGU+XFxuPGxpbiAuLi5cblsyXSA8Ym9keT5cXG4gICAgPGRpdiBpZD1cImNvbnRhaW5lclwiPlxcbiAgICAgIDxkaXYgaWQ9XCJjYWJlY2FsaG9cIj5cXG4gICAgICAgIDxkaXYgaWQ9XCJiYW5uZXJcIj5cXG4gICAgICAgICAgLi4uXG5cbltbMTFdXVxue3htbF9kb2N1bWVudH1cbjxodG1sIHhtbG5zPVwiaHR0cDovL3d3dy53My5vcmcvMTk5OS94aHRtbFwiPlxuWzFdIDxoZWFkPlxcbjxtZXRhIGh0dHAtZXF1aXY9XCJDb250ZW50LVR5cGVcIiBjb250ZW50PVwidGV4dC9odG1sOyBjaGFyc2V0PVVURi04XCI+XFxuPHRpdGxlPjxcL3RpdGxlPlxcbjxsaW4gLi4uXG5bMl0gPGJvZHk+XFxuICAgIDxkaXYgaWQ9XCJjb250YWluZXJcIj5cXG4gICAgICA8ZGl2IGlkPVwiY2FiZWNhbGhvXCI+XFxuICAgICAgICA8ZGl2IGlkPVwiYmFubmVyXCI+XFxuICAgICAgICAgIC4uLlxuIn0= -->
-<pre><code>[[1]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[2]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[3]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[4]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[5]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[6]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[7]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[8]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[9]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[10]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...
-
-[[11]]
-{xml_document}
-&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
-[1] &lt;head&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;title&gt;&lt;/title&gt;\n&lt;lin ...
-[2] &lt;body&gt;\n    &lt;div id=&quot;container&quot;&gt;\n      &lt;div id=&quot;cabecalho&quot;&gt;\n        &lt;div id=&quot;banner&quot;&gt;\n          ...</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
