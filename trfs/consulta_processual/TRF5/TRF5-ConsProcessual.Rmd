@@ -67,7 +67,8 @@ movimentacao <- mov_node %>%
   } %>% 
   mutate(data = stringr::str_replace_all(data, "[E-e]m", ""),
          data = stringr::str_trim(data)) %>% 
-  tidyr::separate(data, c("data", "hora"), sep = " ")
+  tidyr::separate(data, c("data", "hora"), sep = " ") %>% 
+  tidyr::nest(.key = "movimentacao")
 
 # Informacoes gerais
 proc <- node %>% html_node(xpath = '/html/body/p[2]') %>% html_text() %>% stringr::str_replace_all("[^0-9]", "")
@@ -78,11 +79,23 @@ info_node <- node %>%
 
 info_1 <- info_node %>% purrr::pluck(1) %>% select_(., colnames(.) %>% dplyr::first()) %>% 
   magrittr::set_names("key") %>% 
-  tidyr::separate(key, c("key", "val"), sep = ":") %>% 
+  tidyr::separate(key, c("key", "val"), sep = ":")
+
+for (i in 1:nrow(info_1)){
+  if(stringr::str_detect(info_1$val[i], "[A-z]|[0-9]")==F & is.na(info_1$val[i])==F){
+    info_1$val[i] <- NA
+  }
+}
+
+info_1$val[1] <- info_1$key[1]
+info_1$key[1] <- "classe"
+
+info_1 <- info_1 %>%
   mutate(key = stringr::str_to_lower(key),
          key = stringr::str_replace_all(key, "[[:punct:]]",""),
          key = abjutils::rm_accent(key),
-         key = stringr::str_replace_all(key, " +", "_"))
+         key = stringr::str_replace_all(key, " +", "_")) %>% 
+  tidyr::spread(key, val)
 
 info_2 <- info_node %>% purrr::pluck(3) %>% 
   magrittr::set_names(c("key", "val")) %>% 
@@ -92,5 +105,7 @@ info_2 <- info_node %>% purrr::pluck(3) %>%
          key = stringr::str_replace_all(key, " +", "_"),
          val = stringr::str_replace_all(val, ":|\\t", "")) %>% 
   tidyr::spread(key, val)
+
+parse_table <- dplyr::bind_cols(info_1, info_2, movimentacao)
 ```
 
