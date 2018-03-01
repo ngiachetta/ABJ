@@ -1,0 +1,272 @@
+---
+title: "TRF2-ConsProcessual"
+output: html_notebook
+---
+
+```{r}
+library(httr)
+library(dplyr)
+library(rvest)
+library(purrr)
+library(stringr)
+```
+
+```{r}
+trf2_processos <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf2.rds") %>% 
+  dplyr::select(inteiro_teor) %>% pluck(1)
+```
+
+```{r}
+url <- "http://www.trf2.gov.br/cgi-bin/pingres-allen?proc=NUMEROPROCESSO&mov=1&seqi=32"
+
+url_processos <- purrr::map_chr(trf2_processos, ~stringr::str_replace(url, "NUMEROPROCESSO", .x))
+
+path <- "data-raw/"
+
+proc <- purrr::map_chr(trf2_processos, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_1.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(url_processos,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+```
+
+```{r}
+# Existem poucas variaçoes nos primeiros documentos, sendo assim, utilizarei como base
+#00119746620054020000
+#00320808820014020000
+#00422906720024020000
+
+files <- dir(path = "data-raw/", 
+             #pattern = "(00119746620054020000)|(00320808820014020000)|(00422906720024020000)", 
+             full.names = T)
+
+node <- files[2] %>% xml2::read_html()
+
+# Obter proximos movimentos (1)
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]$")] %>% 
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+  
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_2.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (2)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_2", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>% 
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_3.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (3)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_3", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>% 
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_4.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (4)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_4", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>%
+                                  .[stringr::str_detect(., "(192)")] %>%
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_5.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (5)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_5", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>%
+                                  .[stringr::str_detect(., "(232)")] %>%
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_6.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (6)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_6", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>%
+                                  .[stringr::str_detect(., "(272)")] %>%
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_7.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (7)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_7", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>%
+                                  .[stringr::str_detect(., "(312)")] %>%
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+query <- proxima_pagina %>% stringr::str_extract(., "[0-9]{4,}") %>% 
+  .[!is.na(.)]
+
+proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>% 
+stringr::str_c(.,"_8.html"))
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/")
+PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
+  
+purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
+           httr::config(ssl_verifypeer = FALSE),
+           write_disk(.y, overwrite = T)))
+
+# Obter proximos movimentos (8)
+files <- dir(path = "data-raw/", 
+             pattern = ".*[0-9]_8", 
+             full.names = T)
+
+proxima_pagina <-purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
+                                  rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+                                  rvest::html_attr('href') %>% 
+                                  .[stringr::str_detect(., "(seqi=)")] %>% 
+                                  .[stringr::str_detect(., "[0-9]{3,}$")] %>%
+                                  .[stringr::str_detect(., "(352)")] %>%
+                                  stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+  .[stringr::str_detect(.,"[0-9]{4,}")]
+
+purrr::is_empty(proxima_pagina)
+
+# Obtendo as informacoes gerais
+node %>% rvest::html_nodes(xpath = '//p[@class="sem_indent"]') %>% html_text() %>% 
+  .[stringr::str_detect(., "[0-9]|[A-z]")] %>% 
+  .[!stringr::str_detect(., "(Movimentos:)|(Todas as Partes)|(Todas as peti)|(Movimentos Poste)")]
+
+# Movimentacao
+data <- node %>% html_nodes(xpath = '//li') %>% html_text() %>% 
+  stringr::str_replace("[E-e]m", "") %>% 
+  stringr::str_trim() %>% 
+  stringr::str_replace_all(" +","")
+descr_mov <- node %>% html_nodes(xpath = '//p[not(@class="sem_indent")]') %>% rvest::html_text() %>% 
+  .[sjmisc::is_even(1:length(.))] %>% 
+  stringr::str_trim()
+movimentacao <- tibble::tibble(data = data, movimentacao = descr_mov) %>% 
+  tidyr::separate(data, c("data", "hora"), sep = "-")
+
+```
+
