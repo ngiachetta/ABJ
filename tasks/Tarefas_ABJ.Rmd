@@ -68,7 +68,7 @@ TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-we
 |TRF-3    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-5    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-1    |Consulta Processual|NÃO          |NÃO         |   |
-|TRF-2    |Consulta Processual|NÃO          |NÃO         |   |
+|TRF-2    |Consulta Processual|SIM          |SIM*        |Parser de movimentacao feito, porém o de infos gerais em andamento|
 |TRF-3    |Consulta Processual|SIM          |SIM         |Obtenção dos dados obtidos na Jurisprudência (TRF3) ok|
 |TRF-5    |Consulta Processual|SIM          |NÃO         |Parser parcial|
 |TJAL     |Jurisprudência     |SIM          |SIM         |   |
