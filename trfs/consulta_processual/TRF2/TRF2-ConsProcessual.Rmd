@@ -107,14 +107,14 @@ obter_pag(path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ
 #00320808820014020000
 #00422906720024020000
 
-files <- dir(path = "data-raw/", pattern = "(00119746620054020000)", full.names = T)
-
-node <- files[1] %>% xml2::read_html()
-# Obtendo as informacoes gerais
-node %>% rvest::html_nodes(xpath = '//p[@class="sem_indent"]') %>% html_text() %>% 
-  .[stringr::str_detect(., "[0-9]|[A-z]")] %>% 
-  .[!stringr::str_detect(., "(Movimentos:)|(Todas as Partes)|(Todas as peti)|(Movimentos Poste)")] %>% 
-  tibble(key = .) 
+# files <- dir(path = "data-raw/", pattern = "(00119746620054020000)", full.names = T)
+# 
+# node <- files[1] %>% xml2::read_html()
+# # Obtendo as informacoes gerais
+# node %>% rvest::html_nodes(xpath = '//p[@class="sem_indent"]') %>% html_text() %>% 
+#   .[stringr::str_detect(., "[0-9]|[A-z]")] %>% 
+#   .[!stringr::str_detect(., "(Movimentos:)|(Todas as Partes)|(Todas as peti)|(Movimentos Poste)")] %>% 
+#   tibble(key = .) 
 
 # Movimentacao
 movimentacao_proc <- function(node){
