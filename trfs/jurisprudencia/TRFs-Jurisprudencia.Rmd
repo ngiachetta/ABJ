@@ -116,7 +116,7 @@ trfs <- c("TRF1", "TRF2", "TRF3", "TRF5")
 path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/"
 path <- purrr::map2_chr(trfs, path, ~stringr::str_c(.y, .x, "/"))
 
-map2(trfs, path, ~busca_TRF(TRF = .x, path = .y))
+purrr::map2(trfs, path, ~busca_TRF(TRF = .x, path = .y))
 ```
 
 # PARSEANDO OS DADOS
@@ -128,7 +128,7 @@ trf3_files <- dir(path[3], full.names = T, pattern = "page")
 trf5_files <- dir(path[4], full.names = T, pattern = "page")
 ```
 
-```{r}
+```{r Descontinuado}
 file_exist <- function(file){
   # Caso o node tenha NA significa que ele existe
   node <- file %>% 
@@ -191,7 +191,6 @@ trf2 <- map_dfr(trf2_files, ~parse_trf(.x))
 A funcao acima só esta funcionando para o TRF2, pois ele possui um padrão entre os df. Sendo assim, temos que pensar como podemos generalizar para os outros TRFs. A solução encontrada está no código abaixo:
 
 ```{r}
-file <- trf5_files[1]
 parse_trfs <- function(file){
   node <- file %>% xml2::read_html()
   
@@ -246,7 +245,8 @@ parse_trfs <- function(file){
     return(tabela)
   }
 
-  data <- purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x)) 
+  data <- purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x)) %>% 
+    dplyr::distinct(.keep_all = T)
   
 }
   
