@@ -8,6 +8,7 @@ library(rvest)
 library(httr)
 library(purrr)
 library(dplyr)
+library(RSelenium)
 ```
 
 ```{r}
@@ -120,6 +121,8 @@ purrr::map2(trfs, path, ~busca_TRF(TRF = .x, path = .y))
 ```
 
 # PARSEANDO OS DADOS
+
+## TRF 2, 3 e 5
 
 ```{r}
 trf1_files <- dir(path[1], full.names = T, pattern = "page")
@@ -258,5 +261,104 @@ trf5 <- purrr::map_dfr(trf5_files, ~parse_trfs(.x))
 readr::write_rds(trf2, path = "data-raw/rds_data/trf2.rds")
 readr::write_rds(trf3, path = "data-raw/rds_data/trf3.rds")
 readr::write_rds(trf5, path = "data-raw/rds_data/trf5.rds")
+```
+
+## TRF 1
+
+```{r}
+obter_trf1 <- function(){
+  url <- "https://jurisprudencia.trf1.jus.br/busca/resultado.jsp"  
+  
+  remDr <- RSelenium::rsDriver(browser = "firefox")
+  remDr$client$navigate(url)
+  Sys.sleep(1)
+  webElem <- remDr$client$findElement(using = "xpath", value = "//select[@id='processo']/option[@value='11']")
+  webElem$clickElement()
+  Sys.sleep(1)
+  webElem <- remDr$client$findElement(using = "id", value = "pesquisar")
+  webElem$clickElement()
+  
+  Sys.sleep(4)
+  
+  page1 <- remDr$client$getPageSource()
+
+  obter_total_pag <- function(page){
+    page1 %>%
+      purrr::pluck(1) %>% 
+      xml2::read_html() %>%
+      rvest::html_node(xpath = '//table[@class="mensagem"]//td[@class="direita"]') %>%
+      rvest::html_text(trim = T) %>%
+      stringr::str_extract("[0-9]+$") %>%
+      as.numeric()  
+  }
+  
+  pages <- list()
+  tamanho <- obter_total_pag(page1)
+  for(i in 1:tamanho-1){
+    if(i != 33){
+      webElem <- remDr$client$findElement(using = "xpath",value = '//table[@class="dados"]//td[@class="paginacao"]/a[text()="próxima ›"]')
+      webElem$clickElement() 
+    }
+    Sys.sleep(5)
+    pages[i] <- remDr$client$getPageSource()
+  }
+
+  pages <- append(pages, page1)
+  return(pages)
+
+  remDr$client$closeall()
+  
+
+}
+trf1 <- obter_trf1()
+readr::write_rds(trf1, "data-raw/TRF1/busca_v2/dado_bruto_trf1.rds")
+```
+
+```{r}
+parse_info_trf1 <- function(lista_trf1){
+  node <- lista_trf1 %>% xml2::read_html()
+  
+  node_processos <- node %>% rvest::html_nodes(xpath = '//div[@class="resultado"]')
+  
+  key <- node_processos %>% 
+    rvest::html_nodes(xpath = '//div[@class="campo"]//div[@class="nome"]') %>%
+    rvest::html_text()
+  val <- node_processos %>% 
+    rvest::html_nodes(xpath = '//div[@class="campo"]//div[@class="valor"]|//div[@class="campo"]//ul[@class="valores"]/li[1]') %>% # Observar que existe perda de informacao
+    rvest::html_text()
+  
+  tabela <- tibble::tibble(key = key, val=val) %>% 
+    dplyr::mutate(proc_dummy = stringr::str_detect(key, "[P-p]rocesso"),
+                  key = stringr::str_to_lower(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  group = NA)
+  # Definindo os grupos
+  grupo <- 1
+  for (i in 1:nrow(tabela)){
+    if(tabela[i,3] == TRUE){
+      tabela[i,4] <- grupo
+      grupo = grupo + 1
+    }
+  }
+  for (i in 1:nrow(tabela)){
+    if(is.na(tabela[i+1,4])){
+      tabela[i+1,4] <- tabela[i,4]  
+    } 
+  }
+
+  tab_infos <- tabela %>% 
+    select(-proc_dummy) %>% 
+    tidyr::spread(key, val)
+  
+  return(tab_infos)
+}
+
+# Eh importante destacar que a informacao pode estar imcompleta uma ves que ao realizar a busca pelo xpath
+# '//div[@class="campo"]//div[@class="valor"]|//div[@class="campo"]//ul[@class="valores"]/li[1]'
+# As irmas do nó li  não estaram contidas no dado obtido.
+trf1 <- purrr::map_dfr(trf1, ~parse_info_trf1(.x))
+
+readr::write_rds(trf1, "data-raw/rds_data/trf1.rds")
 ```
 
