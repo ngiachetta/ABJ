@@ -184,13 +184,14 @@ parse_trf <- function(file){
 }
 
 trf2 <- map_dfr(trf2_files, ~parse_trf(.x))
-trf3 <- map_dfr(trf3_files[1], ~parse_trf(.x)) # Nao 
-trf5 <- map_dfr(trf5_files, ~parse_trf(.x)) # Nao
+#trf3 <- map_dfr(trf3_files[1], ~parse_trf(.x)) # Nao 
+#trf5 <- map_dfr(trf5_files, ~parse_trf(.x)) # Nao
 ```
 
 A funcao acima só esta funcionando para o TRF2, pois ele possui um padrão entre os df. Sendo assim, temos que pensar como podemos generalizar para os outros TRFs. A solução encontrada está no código abaixo:
 
 ```{r}
+file <- trf5_files[1]
 parse_trfs <- function(file){
   node <- file %>% xml2::read_html()
   
@@ -207,42 +208,52 @@ parse_trfs <- function(file){
   for(i in 1:length(num_linha)){
     num_linha_index[[i]] <- which(num_linha_value == num_linha[i])  
   }
-
+  
+  # Funcao que recebe uma lista com df indexada pelo tamanho de linhas e elementos da lista
   parse_data <- function(data, index){
-    data <- data[num_linha_index[[index]]] %>% 
-      bind_cols() %>% 
-      tibble::rownames_to_column() %>% # Adiciona numero as linhas
-      dplyr::mutate(var = sjmisc::is_odd(as.numeric(rowname))) %>% # flag 
-      dplyr::select(-rowname)
-  
-    var_names <- data %>% 
-      dplyr::filter(var == T) %>% 
-      dplyr::select_(colnames(.) %>% dplyr::first()) %>% 
-      purrr::pluck(1) %>% 
-      stringr::str_replace_all(" +", "_") %>% 
-      stringr::str_to_lower() %>% 
-      abjutils::rm_accent()
-  
-    data <- data %>% 
-      dplyr::filter(var == F) %>% 
-      dplyr::select(-var) %>% 
-      tidyr::gather() %>% 
-      magrittr::set_names(c("doc_index", "val")) %>% 
-      mutate(key = rep(var_names, nrow(.)/length(var_names))) %>% 
-      tidyr::spread(key, val) %>% 
-      dplyr::distinct(processo, inteiro_teor, .keep_all = TRUE) %>% 
-      dplyr::select(-doc_index) %>% 
-      dplyr::mutate(files = file)
+    
+    data <- data[num_linha_index[[index]]]
+    
+    ## Funcao para parsear uma tabela por vez
+    ## data é uma lista de df
+    parse_table_one <- function(data){
+      ### tab = transforma um elemento da lista em df
+      tab <- data %>% 
+        tibble::rownames_to_column() %>% # Adiciona numero as linhas
+        dplyr::mutate(var = sjmisc::is_odd(as.numeric(rowname))) %>% # flag 
+        dplyr::select(-rowname)
+      ### var_names = obtem o nome da variavel
+      var_names <- tab %>%
+        dplyr::filter(var == T) %>% 
+        dplyr::select_(colnames(.) %>% dplyr::first()) %>% 
+        purrr::pluck(1) %>% 
+        stringr::str_replace_all(" +", "_") %>% 
+        stringr::str_to_lower() %>% 
+        abjutils::rm_accent()
+      tab <- tab %>% 
+        dplyr::filter(var == F) %>% 
+        dplyr::select(-var) %>% 
+        tidyr::gather() %>% 
+        magrittr::set_names(c("doc_index", "val")) %>% 
+        mutate(key = rep(var_names, nrow(.)/length(var_names))) %>% 
+        tidyr::spread(key, val) %>% 
+        dplyr::distinct(processo, inteiro_teor, .keep_all = TRUE) %>% 
+        dplyr::select(-doc_index) %>% 
+        dplyr::mutate(files = file)
+      return(tab)
+    }
+    tabela <- purrr::map_df(data,~parse_table_one(.x))
+    return(tabela)
   }
 
-  data <- purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x)) %>% 
-    dplyr::bind_cols(., tibble::tibble(num_processo = num_processo))
+  data <- purrr::map_dfr(1:length(num_linha_index), ~parse_data(data, .x)) 
+  
 }
   
 
 trf2 <- map_dfr(trf2_files, ~parse_trfs(.x))
 trf3 <- map_dfr(trf3_files[1], ~parse_trfs(.x)) 
-trf5 <- map_dfr(trf5_files, ~parse_trfs(.x)) 
+trf5 <- purrr::map_dfr(trf5_files, ~parse_trfs(.x)) 
 
 readr::write_rds(trf2, path = "data-raw/rds_data/trf2.rds")
 readr::write_rds(trf3, path = "data-raw/rds_data/trf3.rds")
