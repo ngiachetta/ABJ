@@ -17,8 +17,9 @@ library(data.table)
 ## 00014068420174050000
 ## 200683000106242
 ## 200405000360589
+trf5_processos <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf5.rds") %>% 
+  dplyr::select(inteiro_teor) %>% tidyr::drop_na() %>% purrr::pluck(1) %>% unique() 
 
-query <- "00014068420174050000"
 
 path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/consulta_processual/TRF5/data-raw/"
 
@@ -42,7 +43,7 @@ obter_ConsTRF5 <- function(query, path){
              httr::config(ssl_verifypeer = FALSE),
              write_disk(PathFile, overwrite = T)) 
 }
-obter_ConsTRF5(query, path)
+purrr::map2(trf5_processos, path, ~obter_ConsTRF5(.x,.y))
 ```
 
 ```{r}
