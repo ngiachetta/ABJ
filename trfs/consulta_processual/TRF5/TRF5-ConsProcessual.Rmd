@@ -52,26 +52,37 @@ file <- dir(path = "data-raw/", full.names = T)
 node <- file[1] %>% read_html()
 
 # Movimentacao
-mov_node <- node %>%
-  html_table(fill = T) %>% 
-  .[6:length(.)]
+mov_parse <- function(file){
+  node <- file %>% read_html()
+  
+  mov_node <- node %>%
+    html_table(fill = T) %>% 
+    .[6:length(.)]
 
-movimentacao <- mov_node %>% 
-  purrr::map_dfc(~select_(.x , .x %>% colnames() %>% dplyr::last())) %>% 
-  data.table::transpose() %>% {
-    if(ncol(.) == 3 ){
-      magrittr::set_names(., c("data", "mov", "detalhe"))
-    } else if (ncol(.) == 2){
-      magrittr::set_names(., c("data", "mov"))
-    }
-  } %>% 
-  mutate(data = stringr::str_replace_all(data, "[E-e]m", ""),
-         data = stringr::str_trim(data)) %>% 
-  tidyr::separate(data, c("data", "hora"), sep = " ") %>% 
-  tidyr::nest(.key = "movimentacao")
+  movimentacao <- mov_node %>% 
+    purrr::map_dfc(~select_(.x , .x %>% colnames() %>% dplyr::last())) %>% 
+    data.table::transpose() %>% {
+      if(ncol(.) == 3){
+        magrittr::set_names(., c("data", "mov", "detalhe"))
+        } else if (ncol(.) == 2){
+          magrittr::set_names(., c("data", "mov"))
+          }
+      } %>% 
+    mutate(data = stringr::str_replace_all(data, "[E-e]m", ""),
+           data = stringr::str_trim(data),
+           file = file) %>% 
+    dplyr::group_by(file) %>% 
+    tidyr::separate(data, c("data", "hora"), sep = " ") %>% 
+    tidyr::nest(.key = "movimentacao")
+
+  return(movimentacao)
+}
 
 # Informacoes gerais
-proc <- node %>% html_node(xpath = '/html/body/p[2]') %>% html_text() %>% stringr::str_replace_all("[^0-9]", "")
+proc <- node %>% 
+  html_node(xpath = '/html/body/p[2]') %>%
+  html_text() %>% 
+  stringr::str_replace_all("[^0-9]", "")
 
 info_node <- node %>%
   html_table(fill = T) %>% 

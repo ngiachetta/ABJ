@@ -59,8 +59,8 @@ obter_processo <- function(num_processo){
   return(info_source)
 }
 
-num_processo <- "0006278-77.2009.4.03.6112"
-proc_teste <- obter_processo(num_processo)
+# num_processo <- "0006278-77.2009.4.03.6112"
+# proc_teste <- obter_processo(num_processo)
 ```
 
 ```{r}
@@ -98,8 +98,8 @@ parse_infos <- function(node){
   return(tab_infos)
 }
 
-node <- proc_teste %>% unlist() %>% xml2::read_html()
-tabela <- parse_infos(node)
+# node <- proc_teste %>% unlist() %>% xml2::read_html()
+# tabela <- parse_infos(node)
 ```
 
 ```{r}
