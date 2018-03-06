@@ -111,7 +111,7 @@ trf5 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_
 ## TJSP
 
 ```{r}
-tjsp <- readr::read_rds("tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
+tjsp <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
 ```
 
 ```{r}
@@ -151,7 +151,7 @@ tjsp_3 %>%
 ## TJAL
 
 ```{r}
-tjal <- readr::read_rds("tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
+tjal <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
 ```
 
 ```{r}
@@ -188,7 +188,7 @@ tjal %>%
 ## TJDFT
 
 ```{r}
-tjdft <- readr::read_rds("tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
+tjdft <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
 ```
 
 
