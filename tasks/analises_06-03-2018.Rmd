@@ -34,7 +34,7 @@ trf1_2 <- trf1 %>% mutate(num_proc = str_replace_all(processo, "[^0-9]", ""),
 
     1. Número de processos em segunda instância levantados.
     
-    ```{r}
+```{r}
 trf1_2 %>% nrow()
 ```
     
@@ -80,7 +80,7 @@ trf3_2 <- trf3 %>% mutate(num_proc = str_replace_all(processo, ".*\\/", ""),
 
     1. Número de processos em segunda instância levantados.
     
-    ```{r}
+```{r}
 trf3_2 %>% nrow()
 ```
     
@@ -124,7 +124,7 @@ tjsp_2 <- tjsp %>%
 
     1. Número de processos em segunda instância levantados.
     
-    ```{r}
+```{r}
 tjsp_2 %>% nrow()
 ```
     
@@ -161,7 +161,7 @@ glimpse(tjal)
 
     1. Número de processos em segunda instância levantados.
     
-    ```{r}
+```{r}
 tjal %>% nrow()
 ```
     
@@ -195,7 +195,7 @@ tjdft <- readr::read_rds("tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
 
     1. Número de processos em segunda instância levantados.
     
-    ```{r}
+```{r}
 tjdft %>% nrow()
 ```
     
