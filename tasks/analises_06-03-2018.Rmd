@@ -1,0 +1,218 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Documento para apresentação do dia 06 de Março de 2018
+
+1. Numeros de processos em segunda instância que você levantou separado por TJ/TRF;
+
+2. Taxa de arquivamento nos processos de segunda instância.
+
+# TRFs
+
+## TRF-1
+
+```{r}
+library(dplyr)
+library(ggplot2)
+library(stringr)
+```
+
+
+```{r}
+trf1 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf1.rds")
+```
+
+```{r}
+glimpse(trf1)
+
+trf1_2 <- trf1 %>% mutate(num_proc = str_replace_all(processo, "[^0-9]", ""),
+                num_proc = str_trim(num_proc)) %>% 
+  distinct(num_proc, .keep_all = T)
+```
+
+    1. Número de processos em segunda instância levantados.
+    
+    ```{r}
+trf1_2 %>% nrow()
+```
+    
+    2. Taxa de arquivamento nos processos de segunda instância
+    
+Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
+    
+```{r}
+trf1_2 %>% 
+  mutate(decisao = str_to_lower(decisao),
+         decisao = abjutils::rm_accent(decisao),
+         decisao = str_replace_all(decisao, "[[:punct:]]", " "),
+         declar_dummy = case_when(str_detect(decisao, "(declar[(amos)|(ou)])")~1,
+                                        T~0),
+         extinta_dummy = case_when(str_detect(decisao, "(extinta)")~1,
+                                        T~0),
+         arquivamento_dummy = case_when(declar_dummy == 1 & extinta_dummy == 1| str_detect(decisao, "(rejeit)|(arquiv)") ~1,
+                                        T~0)) %>% 
+  summarise(tx_arquivamento = mean(arquivamento_dummy))
+```
+
+## TRF-2
+
+```{r}
+trf2 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf2.rds")
+```
+
+
+## TRF-3
+
+```{r}
+trf3 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf3.rds")
+```
+
+```{r}
+glimpse(trf3)
+
+trf3_2 <- trf3 %>% mutate(num_proc = str_replace_all(processo, ".*\\/", ""),
+                          num_proc = str_replace_all(num_proc, "[^0-9]", ""),
+                num_proc = str_trim(num_proc)) %>% 
+  distinct(num_proc, .keep_all = T)
+```
+
+    1. Número de processos em segunda instância levantados.
+    
+    ```{r}
+trf3_2 %>% nrow()
+```
+    
+    2. Taxa de arquivamento nos processos de segunda instância
+    
+Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
+    
+```{r}
+trf3_2 %>% 
+  mutate(acordao = str_to_lower(acordao),
+         acordao = abjutils::rm_accent(acordao),
+         acordao = str_replace_all(acordao, "[[:punct:]]", " "),
+         declar_dummy = case_when(str_detect(acordao, "(declar[(amos)|(ou)])")~1,
+                                        T~0),
+         extinta_dummy = case_when(str_detect(acordao, "(extinta)")~1,
+                                        T~0),
+         arquivamento_dummy = case_when(declar_dummy == 1 & extinta_dummy == 1| str_detect(acordao, "(rejeit)|(arquiv)") ~1,
+                                        T~0)) %>% 
+  summarise(tx_arquivamento = mean(arquivamento_dummy))
+```
+
+## TRF-5
+
+```{r}
+trf5 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf5.rds")
+```
+    
+## TJSP
+
+```{r}
+tjsp <- readr::read_rds("tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
+```
+
+```{r}
+glimpse(tjsp)
+
+tjsp_2 <- tjsp %>% 
+  distinct(id, .keep_all = T)
+```
+
+
+    1. Número de processos em segunda instância levantados.
+    
+    ```{r}
+tjsp_2 %>% nrow()
+```
+    
+    2. Taxa de arquivamento nos processos de segunda instância
+    
+Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
+    
+```{r}
+tjsp_3 <- tjsp_2 %>% select(id, decisions) %>% tidyr::unnest()
+
+tjsp_3 %>% 
+  mutate(decision = str_to_lower(decision),
+         decision = abjutils::rm_accent(decision),
+         decision = str_replace_all(decision, "[[:punct:]]", " "),
+         declar_dummy = case_when(str_detect(decision, "(declar[(amos)|(ou)])")~1,
+                                        T~0),
+         extinta_dummy = case_when(str_detect(decision, "(extinta)")~1,
+                                        T~0),
+         arquivamento_dummy = case_when(declar_dummy == 1 & extinta_dummy == 1| str_detect(decision, "(rejeit)|(arquiv)") ~1,
+                                        T~0)) %>% 
+  summarise(tx_arquivamento = mean(arquivamento_dummy))
+```
+
+## TJAL
+
+```{r}
+tjal <- readr::read_rds("tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
+```
+
+```{r}
+glimpse(tjal)
+```
+
+
+    1. Número de processos em segunda instância levantados.
+    
+    ```{r}
+tjal %>% nrow()
+```
+    
+    2. Taxa de arquivamento nos processos de segunda instância
+    
+Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
+    
+```{r}
+tjal <- tjal %>% select(value, julgamento) %>% tidyr::unnest()
+
+tjal %>% 
+  mutate(decisao = str_to_lower(decisao),
+         decisao = abjutils::rm_accent(decisao),
+         decisao = str_replace_all(decisao, "[[:punct:]]", " "),
+         declar_dummy = case_when(str_detect(decisao, "(declar[(amos)|(ou)])")~1,
+                                        T~0),
+         extinta_dummy = case_when(str_detect(decisao, "(extinta)")~1,
+                                        T~0),
+         arquivamento_dummy = case_when(declar_dummy == 1 & extinta_dummy == 1| str_detect(decisao, "(rejeit)|(arquiv)") ~1,
+                                        T~0)) %>% 
+  summarise(tx_arquivamento = mean(arquivamento_dummy))
+```
+
+## TJDFT
+
+```{r}
+tjdft <- readr::read_rds("tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
+```
+
+
+
+    1. Número de processos em segunda instância levantados.
+    
+    ```{r}
+tjdft %>% nrow()
+```
+    
+    2. Taxa de arquivamento nos processos de segunda instância
+    
+Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
+    
+```{r}
+tjdft %>% 
+  mutate(decisao = str_to_lower(decisao),
+         decisao = abjutils::rm_accent(decisao),
+         decisao = str_replace_all(decisao, "[[:punct:]]", " "),
+         declar_dummy = case_when(str_detect(decisao, "(declar[(amos)|(ou)])")~1,
+                                        T~0),
+         extinta_dummy = case_when(str_detect(decisao, "(extinta)")~1,
+                                        T~0),
+         arquivamento_dummy = case_when(declar_dummy == 1 & extinta_dummy == 1| str_detect(decisao, "(rejeit)|(arquiv)") ~1,
+                                        T~0)) %>% 
+  summarise(tx_arquivamento = mean(arquivamento_dummy))
+```
