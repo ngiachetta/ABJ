@@ -362,3 +362,116 @@ trf1 <- purrr::map_dfr(trf1, ~parse_info_trf1(.x))
 readr::write_rds(trf1, "data-raw/rds_data/trf1.rds")
 ```
 
+## TRF2
+
+Outro site oferece informações sobre o TRF2 separadamente e permitindo a busca por classe do processo.
+
+```{r}
+url <- "http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1"
+
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/TRF2/busca_v2/"
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/page1.html")
+page1 <- httr::GET("http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1",query = query, httr::config(ssl_verifypeer = FALSE),
+                   httr::write_disk(file, TRUE))
+```
+
+## TRF3
+
+```{r}
+Sys.sleep(20)
+url <- "http://web.trf3.jus.br/base-textual"
+remDr <- RSelenium::rsDriver(browser = "firefox")
+remDr$client$navigate(url)
+
+webElem <- remDr$client$findElement(using = "xpath", value ='//select[@id="classe"]/option[@value="126"]')
+webElem$clickElement()
+
+webElem <- remDr$client$findElement(using = "id", value = "pesquisar")
+webElem$clickElement()
+
+webElem <- remDr$client$findElement(using = "xpath", value ='//div[@id="itemlistaresultados"]/span/a')
+webElem$clickElement()
+
+page1 <- remDr$client$getPageSource()
+
+obter_pag <- function(page1=page1){
+  node <- page1 %>% purrr::pluck(1) %>% xml2::read_html()
+  r <- node %>% rvest::html_nodes(xpath = '//span[@class="labellinha"]') %>%
+    xml2::xml_siblings() %>% 
+    xml2::xml_integer() %>% 
+    .[is.na(.)==F]
+  return(r)
+}
+
+page <- list()
+for(l in 0:(ceiling(obter_pag(page1)/10)-2)){
+  webElems <- remDr$client$findElements(using = "xpath", value = '//span[@class="linkdocumento"]')
+  for(i in 1:length(webElems)){
+    webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="linkdocumento"]')
+    webElem[[i]]$clickElement()
+    page_n <- remDr$client$getPageSource()
+    page <- append(page, page_n)
+    remDr$client$goBack()
+  }
+  xpath <- '//div[@id="navegacaoSuperior"]/a[@href="/base-textual/Home/ListaResumida/3?np=PADRAO"]' %>% 
+    str_replace("(PADRAO)", as.character(l))
+  webElem <- remDr$client$findElement(using = "xpath", value=xpath)
+  webElem$clickElement()
+}
+
+ webElems <- remDr$client$findElements(using = "xpath", value = '//span[@class="linkdocumento"]')
+  for(i in 1:length(webElems)){
+    webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="linkdocumento"]')
+    webElem[[i]]$clickElement()
+    page_n <- remDr$client$getPageSource()
+    page <- append(page, page_n)
+    remDr$client$goBack()
+    }
+readr::write_rds(page, "data-raw/TRF3/busca_v2/dados_brutos_trf3.rds")
+```
+
+```{r}
+parse_table_trf3 <- function(page){
+  node <- page  %>%  xml2::read_html()  
+  
+  key <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="docTitulo"]') %>% 
+    rvest::html_text() %>% 
+    stringr::str_trim()
+  
+  val <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="docTexto"]|//div[@class="docTexto"]/div/pre') %>%
+    rvest::html_text(trim = T) %>% 
+    stringr::str_replace_all("\\n", "") %>% 
+    stringr::str_trim() 
+  
+  for(i in 1:length(val)){
+    l = i + 1
+    if(val[i] == val[l] & l != length(val) + 1){
+      val[i] <- NA
+    }
+  }
+
+  val <- val[!is.na(val)]
+  
+  node_proc <- node %>% rvest::html_node(xpath = '//div[@class="paragrafoSolr"]')
+  
+  key_proc <- node_proc %>% rvest::html_node(xpath = '//*[@class="docTitulo"]') %>% rvest::html_text()
+  val_proc <- node_proc %>% rvest::html_node(xpath = '//*[@class="docTexto"]') %>% rvest::html_text(trim = T)
+  
+  tabela <- tibble::tibble(key = c(key_proc, key), val = c(val_proc, val)) %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, " +", "_")) %>% 
+    tidyr::spread(key, val)
+  
+  return(tabela)
+}
+
+trf3 <- purrr::map_dfr(page, ~parse_table_trf3(.x))
+
+readr::write_rds(trf3, "data-raw/rds_data/trf3.rds")
+```
+
