@@ -1,6 +1,10 @@
 ---
-title: "R Notebook"
-output: html_notebook
+title: Análises 
+date: March 31, 2018
+output:
+  prettydoc::html_pretty:
+    theme: leonids
+    highlight: github
 ---
 
 # Levantamento das coletas sobre os tribunais
@@ -29,7 +33,7 @@ Os tribunais requisitados para esta apresentação foram os TRFs e TJs, entre el
 
 Alguns deles não estão na análise, pois foram retirados para realizar uma coleta mais consistente, como por exemplo, o `TRF-2` ou tiveram problemas na coleta como `TJRJ`. Além disso, cabe destacar que o caso do `TRF-5` precisa ser discutido, pois a maioria das decisões não são capazes de informar o arquivamento ou não dos casos (irei explorar este caso ao longo do relatório).
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(stringr)
@@ -40,11 +44,11 @@ library(ggplot2)
 
 ### TRF-1
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf1 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf1.rds")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 glimpse(trf1)
 
 trf1_2 <- trf1 %>% mutate(num_proc = str_replace_all(processo, "[^0-9]", ""),
@@ -52,17 +56,17 @@ trf1_2 <- trf1 %>% mutate(num_proc = str_replace_all(processo, "[^0-9]", ""),
   distinct(num_proc, .keep_all = T)
 ```
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf1_2 %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_trf1 <- trf1_2 %>% 
   mutate(decisao = str_to_lower(decisao),
          decisao = abjutils::rm_accent(decisao),
@@ -83,11 +87,11 @@ Nova coleta em andamento.
 
 ### TRF-3
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf3 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf3.rds")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 glimpse(trf3)
 
 trf3_2 <- trf3 %>% mutate(num_proc = str_replace_all(processo, ".*\\/", ""),
@@ -96,17 +100,17 @@ trf3_2 <- trf3 %>% mutate(num_proc = str_replace_all(processo, ".*\\/", ""),
   distinct(num_proc, .keep_all = T)
 ```
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf3_2 %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_trf3 <- trf3_2 %>% 
   mutate(acordao = str_to_lower(acordao),
          acordao = abjutils::rm_accent(acordao),
@@ -122,28 +126,28 @@ tx_trf3 <- trf3_2 %>%
 
 ### TRF-5
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf5 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf5.rds")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 glimpse(trf5)
 
 trf5 %>% count(decisao)
 ```
   
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 trf5 %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_trf5 <- trf5 %>% 
   mutate(decisao = str_to_lower(decisao),
          decisao = abjutils::rm_accent(decisao),
@@ -163,7 +167,7 @@ O resultado baixo se dá devido a forma como a decisão está disposta.
 
 ## Visualização gráfica
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_trfs <- dplyr::bind_rows(tx_trf1, tx_trf3, tx_trf5) %>% mutate(TRF = c("TRF1", "TRF3", "TRF5"))
 
 ggplot(tx_trfs, aes(x = TRF, y = tx_arquivamento, fill = TRF))+ geom_col()+
@@ -176,11 +180,11 @@ ggplot(tx_trfs, aes(x = TRF, y = tx_arquivamento, fill = TRF))+ geom_col()+
 
 ### TJSP
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjsp <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 glimpse(tjsp)
 
 tjsp_2 <- tjsp %>% 
@@ -188,17 +192,17 @@ tjsp_2 <- tjsp %>%
 ```
 
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjsp_2 %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjsp_3 <- tjsp_2 %>% select(id, decisions) %>% tidyr::unnest()
 
 tx_tjsp <- tjsp_3 %>% 
@@ -218,26 +222,26 @@ tx_tjsp
 
 ## TJAL
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjal <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 glimpse(tjal)
 ```
 
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjal %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjal <- tjal %>% select(value, julgamento) %>% tidyr::unnest()
 
 tx_tjal <- tjal %>% 
@@ -257,21 +261,21 @@ tx_tjal
 
 ## TJDFT
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjdft <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
 ```
 
-    1. Número de processos em segunda instância levantados.
+1. Número de processos em segunda instância levantados.
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tjdft %>% nrow()
 ```
     
-    2. Taxa de arquivamento nos processos de segunda instância
+2. Taxa de arquivamento nos processos de segunda instância
     
 Para obter a taxa de arquivamento nos processos, basta procurar, por meio de `regex`, palavras que podem estar relacionadas com tal ação. As palavras escolhidas e suas variações foram, _rejeitar_, _declarar extinta_ e _arquivou_ 
     
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_tjdft <- tjdft %>% 
   mutate(decisao = str_to_lower(decisao),
          decisao = abjutils::rm_accent(decisao),
@@ -289,7 +293,7 @@ tx_tjdft
 
 ## Visualização gráfica
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 tx_tj <- dplyr::bind_rows(tx_tjsp, tx_tjal, tx_tjdft) %>% mutate(TRF = c("TJSP", "TJAL", "TJDFT"))
 
 ggplot(tx_tj, aes(x = TRF, y = tx_arquivamento, fill = TRF))+ geom_col()+

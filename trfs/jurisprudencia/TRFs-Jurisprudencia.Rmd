@@ -369,12 +369,15 @@ Outro site oferece informações sobre o TRF2 separadamente e permitindo a busca
 ```{r}
 url <- "http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1"
 
-path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/TRF2/busca_v2/"
-dir.create(path, FALSE, TRUE)
-path <- normalizePath(path)
-file <- stringr::str_c(path, "/page1.html")
-page1 <- httr::GET("http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1",query = query, httr::config(ssl_verifypeer = FALSE),
-                   httr::write_disk(file, TRUE))
+remDr <- RSelenium::rsDriver(browser = "firefox")
+remDr$client$navigate(url)
+
+webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="span_ementa ver-ementa"]')
+webElem[[1]]$clickElement()
+for(i in 1:length(webElem)){
+ webElem[[i]]$clickElement()
+}
+page <- remDr$client$getPageSource()
 ```
 
 ## TRF3
