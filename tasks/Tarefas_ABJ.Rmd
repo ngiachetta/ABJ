@@ -43,24 +43,6 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) 
 
 #### Scrappers de Jurisprudência
 
-Os Scrappers de Jurisprudência são:
-
-TJSP: [jurisprudência](https://esaj.tjsp.jus.br/cjsg/consultaCompleta.do) - Falta de parsear alguns erros
-
-TJAL: [jurisprudência](https://www2.tjal.jus.br/cjsg/consultaCompleta.do) - Ok
-
-TJRJ (somente a jurisprudencia): [jurisprudência](http://www4.tjrj.jus.br/ejuris/ConsultarJurisprudencia.aspx) - Problemas com a consulta 
-
-TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-web/sistj?visaoId=tjdf.sistj.acordaoeletronico.buscaindexada.apresentacao.VisaoBuscaAcordao) - Ok
-
-#### Parsear
-
-- TJDFT (consulta processual)
-
-- TJAL (consulta processual)
-
-####
-
 |Tribunais|Tipo_Scraper       |Scraper_feito|Parser_feito|Obs|
 |:-------:|:------------------|------------:|:----------:|:--|
 |TRF-1    |Jurisprudência     |SIM          |SIM         |A consulta para TRF1 retornou vazia|
@@ -83,3 +65,11 @@ TJDFT: [jurisprudência](https://pesquisajuris.tjdft.jus.br/IndexadorAcordaos-we
 |JFAL     |Consulta Processual|NÃO          |NÃO         |   |
 |JFRJ     |Consulta Processual|SIM          |NÃO         |   |
 |JFDF     |Consulta Processual|NÃO          |NÃO         |   |
+
+#### Algumas análises
+
+##### 06 de Março
+
+1. Numeros de processos em segunda instancia que você levantou separado por TJ/TRF
+
+2. Taxa de arquivamento nos processos de segunda inst
