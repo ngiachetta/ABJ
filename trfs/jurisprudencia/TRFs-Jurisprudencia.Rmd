@@ -367,28 +367,123 @@ readr::write_rds(trf1, "data-raw/rds_data/trf1.rds")
 Outro site oferece informações sobre o TRF2 separadamente e permitindo a busca por classe do processo.
 
 ```{r}
+# visualizar a ementa
+abrir_texto_completo <- function(){
+  webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="span_ementa ver-ementa"]')
+  if(length(webElem) == 0){
+    print("Pagina sem 'esconder texto'")
+  } else{
+     for(i in 1:length(webElem)){
+      webElem[[i]]$clickElement()
+    }   
+  }
+}
+
+#Obter todas as paginas
+obter_paginas <- function(node){
+  # Iterador
+  ultima_pag <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
+    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
+    stringr::str_extract("(start=)[0-9]+") %>% 
+    stringr::str_extract("[0-9]+")
+  paginas <- as.character(seq(0, ultima_pag, 10))
+  # Url de acesso
+  url_acesso <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
+    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
+    stringr::str_replace("(start=)[0-9]+", "start=ALTERAAQUI") %>% 
+    stringr::str_c("http://www10.trf2.jus.br/consultas/", .)
+  paginas <- purrr::map_chr(paginas, ~stringr::str_replace(url_acesso, "(ALTERAAQUI)", .x))
+  return(paginas)
+}
+
+  obtem_source <- function(pages_url){
+    proc_pages <- list()
+    for (i in 1:length(pages_url)){
+      remDr$client$navigate(pages_url[i])
+      abrir_texto_completo()
+      page_n <- remDr$client$getPageSource()
+      proc_pages <- append(proc_pages, page_n)
+      Sys.sleep(1)
+      
+    }
+    return(proc_pages)
+  }
+
 url <- "http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1"
 
-#
 remDr <- RSelenium::rsDriver(browser = "firefox")
 remDr$client$navigate(url)
-
-#
-
-webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="span_ementa ver-ementa"]')
-for(i in 1:length(webElem)){
- webElem[[i]]$clickElement()
-}
+# Pegar a primeira pagina para obter os principais informacoes
 page <- remDr$client$getPageSource()
-
 node <- page %>% purrr::pluck(1) %>% xml2::read_html()
 
-ultima_pag <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>% rvest::html_attr("href") %>% purrr::pluck(2) %>% 
-  stringr::str_extract("(start=)[0-9]+") %>% 
-  stringr::str_extract("[0-9]+")
+pages_url <- obter_paginas(node)
 
-remDr$client$getCurrentUrl()
+paginas_brutas <- obtem_source(pages_url)
+  
+readr::write_rds(paginas_brutas, "data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
 ```
+
+```{r}
+node <- paginas_brutas[3] %>% purrr::pluck(1) %>%  xml2::read_html() 
+
+# Ementa_versao 1
+obter_ementa_v1 <- function(node){
+  xpath_1 <- '//li[@class="g"]'
+  node_pag <- node %>% rvest::html_nodes(xpath = xpath_1)
+  ementas <- purrr::map(node_pag, ~rvest::html_text(rvest::html_nodes(.x, '.text_ementa'))) %>% 
+    purrr::map_chr(., ~paste0(.x, collapse = " "))
+  xpath_2 <- '//div[@class="doc-text"]/text()'
+  l <- 1
+  for(i in 1:length(ementas)){
+    node_ <- node_pag %>% rvest::html_nodes( xpath = xpath_2) %>% rvest::html_text()
+    while(nchar(ementas[i]) == 0){
+      ementas[i] <- node_ %>% pluck(l)
+      l <- l + 1
+    }
+  }
+  return(tibble::tibble(ementas))
+}
+
+# Ementa_versao 2
+obter_ementa_v2 <- function(node){
+  xpath_1 <- '//li[@class="g"]'
+  node_pag <- node %>% rvest::html_nodes(xpath = xpath_1)
+  ementas <- purrr::map(node_pag, ~rvest::html_text(rvest::html_nodes(.x, '.text_ementa'))) %>% 
+    purrr::map_chr(., ~paste0(.x, collapse = " "))
+  return(tibble::tibble(ementas))
+}
+
+obter_outra_info <- function(node){
+  classe <- node %>% rvest::html_nodes(xpath = '//span[@class="recurso"]') %>% rvest::html_text() %>% .[seq(1, length(.),2)] %>% stringr::str_replace(".*:", "") %>% stringr::str_trim()
+
+  orgao <- node %>% rvest::html_nodes(xpath = '//span[@class="recurso"]') %>% rvest::html_text() %>% .[seq(2, length(.),2)] %>% stringr::str_replace(".*:", "") %>% stringr::str_trim()
+
+  datas_relator <- node%>% rvest::html_nodes(xpath = '//div[@class="data-relator"]') %>% rvest::html_text()# precisa de reparo
+  
+  num_processo <- node %>% html_nodes('.number_link') %>% rvest::html_text(trim = T)
+  
+  tabela <- tibble(num_processo = num_processo, classe = classe, orgao_julgador = orgao, datas_relator = datas_relator)
+  
+  return(tabela)
+}
+
+wrapup_info <- function(node){
+  ementa_v1 <- obter_ementa_v1(node)
+  ementa_v2 <- obter_ementa_v2(node)
+  infos <- obter_outra_info(node)
+  
+  tabela <- dplyr::bind_cols(infos, ementa_v2, ementa_v1)
+  return(tabela)
+}
+
+wrapup_info(node)
+
+nodes <- purrr::map(paginas_brutas, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
+
+trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
+```
+
 
 ## TRF3
 
