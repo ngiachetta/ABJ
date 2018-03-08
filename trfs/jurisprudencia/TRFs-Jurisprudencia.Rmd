@@ -482,6 +482,8 @@ wrapup_info(node)
 nodes <- purrr::map(paginas_brutas, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
 
 trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
+
+readr::write_rds(trf2, "data-raw/rds_data/trf2.rds")
 ```
 
 
