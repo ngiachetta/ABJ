@@ -39,19 +39,17 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) 
 
 * Diario
 
-# Prioridades 
-
-#### Scrappers de Jurisprudência
+#### Scrappers de Jurisprudência e Consulta processual
 
 |Tribunais|Tipo_Scraper       |Scraper_feito|Parser_feito|Obs|
 |:-------:|:------------------|------------:|:----------:|:--|
-|TRF-1    |Jurisprudência     |SIM          |SIM         |A consulta para TRF1 retornou vazia|
+|TRF-1    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-2    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-3    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-5    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-1    |Consulta Processual|NÃO          |NÃO         |   |
 |TRF-2    |Consulta Processual|SIM          |SIM*        |Parser de movimentacao feito, porém o de infos gerais em andamento|
-|TRF-3    |Consulta Processual|SIM          |SIM         |Obtenção dos dados obtidos na Jurisprudência (TRF3) ok|
+|TRF-3    |Consulta Processual|SIM          |SIM         |   |
 |TRF-5    |Consulta Processual|SIM          |NÃO         |Parser parcial; TRF5 fora do ar (05/03)|
 |TJAL     |Jurisprudência     |SIM          |SIM         |   |
 |TJDFT    |Jurisprudência     |SIM          |SIM         |   |
@@ -73,3 +71,18 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) 
 1. Numeros de processos em segunda instancia que você levantou separado por TJ/TRF
 
 2. Taxa de arquivamento nos processos de segunda inst
+
+#### Coleta dos diários
+
+Objetivo: Construir scrapers dos diários da primeira instância.
+
+|Tribunais|Scraper feito|Obs|
+|--------:|:-----------:|--:|
+|TJSP     |Pacote DJE   |   |
+|TJAL     |Pacote DJE   |   |
+|TJRJ     |NÃO          |   |
+|TJDFT    |NÃO          |   |
+|JFSP     |NÃO          |Em andamento|
+|JFAL     |NÃO          |Em andamento (Problema com uma das consultas)|
+|JFRJ     |SIM          |Scraper para coletar o link dos diários feito|
+|JFDF     |NÃO          |   |
