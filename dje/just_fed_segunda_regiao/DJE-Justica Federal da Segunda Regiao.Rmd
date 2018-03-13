@@ -1,0 +1,330 @@
+---
+title: "DJE-Justica Federal da Segunda Regiao"
+output: html_notebook
+---
+
+O site do DJE da Segunda Região permite retirar __três__ tipos de informações:
+
+    1. Tribunal Regional Federal da 2ª Região;
+    
+    2. Seção Judiciária do Rio de Janeiro; 
+    
+    3. Seção Judiciária do Espírito Santo.
+    
+Abaixo tem três tentativas, sendo que duas delas deram certo:
+
+    1. Acessando o site com httr
+    
+    2. Acessando o site com Selenium (Funcionou)
+    
+    3. Acessando o site com httr, porém outro link (Funcionou)
+    
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+library(RSelenium)
+```
+
+## 1. Acessando com httr 
+
+```{r httr}
+url <- "http://dje.trf2.jus.br/DJE/Paginas/Externas/FiltraPesquisaDocumentos.aspx"
+query_post <- list(
+  "__VIEWSTATE"=httr::POST(url) %>% 
+  xml2::read_html() %>% 
+  rvest::html_node(xpath = '//*[@id="__VIEWSTATE"]') %>% 
+  rvest::html_attr("value"),
+  "__EVENTVALIDATION"=httr::POST(url) %>% 
+  xml2::read_html() %>% 
+  rvest::html_node(xpath = '//*[@id="__EVENTVALIDATION"]') %>% 
+  rvest::html_attr("value"),
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_rblTipoPesquisa"="0",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$rblTipoPesquisa"="0",
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlAreaJudicial"="1",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$ddlAreaJudicial"="1",
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataInicial"="25/03/2017",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$tbxDataInicial"="25/03/2017",
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataFinal"="27/03/2017",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$tbxDataFinal"="27/03/2017",
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlRegistrosPaginas"="5",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$ddlRegistrosPaginas"="5",
+  "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_btnFiltrar"="Pesquisar",
+  "ctl00$ContentPlaceHolder$ctrFiltraPesquisaDocumentos$btnFiltrar"="Pesquisar"
+)
+path <- "data-raw/"
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/busca.html")
+request <- httr::POST(doc_url$url,body = query_post, 
+           httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))
+```
+
+## 2. Acessando com Selenium
+
+```{r}
+url <- "http://dje.trf2.jus.br/DJE/Paginas/Externas/FiltraPesquisaDocumentos.aspx"
+
+referencedirectory <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_segunda_regiao/data-raw/"
+fprof <- makeFirefoxProfile(list(browser.download.dir = referencedirectory,
+                                 browser.download.folderList = 2L, 
+                                 browser.download.manager.showWhenStarting = F,
+                                 browser.helperApps.neverAsk.saveToDisk="text/xml",
+                                 browser.tabs.remote.autostart =T,
+                                 browser.tabs.remote.autostart.2 = T,
+                                 browser.tabs.remote.desktopbehavior = T))
+remDr <- RSelenium::rsDriver(browser = "firefox", extraCapabilities = fprof)
+remDr$client$navigate(url)
+
+webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_rblTipoPesquisa_0")
+webElem$clickElement()
+
+# Selecionar orgao
+orgao <- "0"
+xpath_orgao <- '//select[@id="ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlAreaJudicial"]/option[@value="VALORORGAO"]'
+xpath_orgao <- stringr::str_replace(xpath_orgao, "VALORORGAO", orgao)
+webElem <- remDr$client$findElement(using = "xpath", value =xpath_orgao)
+webElem$clickElement()
+
+Sys.sleep(3)
+# Datas
+
+## Inicial
+data_inicial <- "20032017"
+webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataInicial")
+webElem$sendKeysToElement(list(data_inicial))
+
+Sys.sleep(3)
+## Final
+data_final <- "25032017"
+webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataFinal")
+webElem$sendKeysToElement(list(data_final))
+
+  # Numero de paginas
+  webElem <- remDr$client$findElement(using = "xpath", value = '//select[@id="ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlRegistrosPaginas"]/option[@value="100"]')
+  webElem$clickElement()
+
+Sys.sleep(3)
+# Pesquisar
+webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_btnFiltrar")
+webElem$clickElement()
+
+Sys.sleep(3)
+
+page_source <- remDr$client$getPageSource()
+
+arquivos <- page_source %>% purrr::pluck(1) %>% xml2::read_html() %>% html_nodes(xpath = '//tr[@class="LinhaGrid"]/td[@style="width:35%;"]/a') %>% rvest::html_attr("id")
+
+jud_adm <- "Jud"
+
+arquivos <- arquivos[stringr::str_detect(arquivos, jud_adm)]
+
+for(i in 1:length(arquivos)){
+    webElem <- remDr$client$findElement(using = "id", value = arquivos[i])
+    webElem$clickElement()
+    webElem <- NULL
+    Sys.sleep(5)
+}
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_segunda_regiao/data-raw/"
+
+dje_2regiao <- function(orgao = "0", data_inicial="", data_final="", jud_adm="Jud", path){
+  url <- "http://dje.trf2.jus.br/DJE/Paginas/Externas/FiltraPesquisaDocumentos.aspx"
+
+  referencedirectory <- path
+  fprof <- makeFirefoxProfile(list(browser.download.dir = referencedirectory,
+                                   browser.download.folderList = 2L, 
+                                   browser.download.manager.showWhenStarting = F,
+                                   browser.helperApps.neverAsk.saveToDisk="text/xml",
+                                   browser.tabs.remote.autostart =T,
+                                   browser.tabs.remote.autostart.2 = T,
+                                   browser.tabs.remote.desktopbehavior = T))
+  remDr <- RSelenium::rsDriver(browser = "firefox", extraCapabilities = fprof)
+  remDr$client$navigate(url)
+
+  webElem <- remDr$client$findElement(using = "id", 
+                                      value="ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_rblTipoPesquisa_0")
+  webElem$clickElement()
+  Sys.sleep(10)
+  
+  # Selecionar orgao
+  orgao <- "0"
+  xpath_orgao <- '//select[@id="ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlAreaJudicial"]/option[@value="VALORORGAO"]'
+  xpath_orgao <- stringr::str_replace(xpath_orgao, "VALORORGAO", orgao)
+  webElem <- remDr$client$findElement(using = "xpath", value=xpath_orgao)
+  Sys.sleep(1)
+  webElem$clickElement()
+  
+  Sys.sleep(3)
+  # Datas
+
+  ## Inicial
+  data_inicial <- stringr::str_replace_all(data_inicial, "[[:punct:]]","")
+  webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataInicial")
+  Sys.sleep(1)
+  webElem$sendKeysToElement(list(data_inicial))
+
+  Sys.sleep(3)
+  ## Final
+  data_final <- stringr::str_replace_all(data_final, "[[:punct:]]","")
+  webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataFinal")
+  Sys.sleep(1)
+  webElem$sendKeysToElement(list(data_final))
+  Sys.sleep(3)
+  
+   # Numero de paginas
+  webElem <- remDr$client$findElement(using = "xpath", value = '//select[@id="ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlRegistrosPaginas"]/option[@value="100"]')
+  webElem$clickElement()
+
+  Sys.sleep(3)
+  # Pesquisar
+  webElem <- remDr$client$findElement(using = "id", value = "ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_btnFiltrar")
+  webElem$clickElement()
+
+  Sys.sleep(3)
+
+  page_source <- remDr$client$getPageSource()
+
+  arquivos <- page_source %>% purrr::pluck(1) %>% xml2::read_html() %>% html_nodes(xpath = '//tr[@class="LinhaGrid"]/td[@style="width:35%;"]/a') %>% rvest::html_attr("id")
+
+  arquivos <- arquivos[stringr::str_detect(arquivos, jud_adm)]
+  
+  for(i in 1:length(arquivos)){
+    webElem <- remDr$client$findElement(using = "id", value = arquivos[i])
+    webElem$clickElement()
+    webElem <- NULL
+    Sys.sleep(5)
+  }
+}
+
+dje_2regiao(orgao = "0", data_inicial = "23/07/2017", data_final = "27/07/2017", jud_adm = "Jud", path = path)
+```
+
+## 3. Acessando com o httr, porém link diferente de 1 e 2
+
+```{r}
+parse_pages <- function(file){
+  ## Parser
+  node <- xml2::read_html(file)
+  
+  ### Titulo
+  title <- node %>%
+    rvest::html_nodes('.title-doc') %>%
+    rvest::html_text(trim = T)
+  
+  ## Caderno (pode apresentar inconsistencias)
+  cadernos <- node %>%
+    rvest::html_nodes('.doc-text') %>% 
+    rvest::html_text(trim = T) %>%
+    .[stringr::str_detect(.,"[C-c]aderno:")]
+  
+  ## Data de publicação e disponibilização
+  nome <- node %>% 
+    rvest::html_nodes(xpath = '//li[@class="espacado dleft"]/span[@class="nome"]') %>%
+    rvest::html_text()
+  valor <- node %>% 
+    rvest::html_nodes(xpath = '//li[@class="espacado dleft"]/span[@class="valor"]') %>% 
+    rvest::html_text()
+  datas <- tibble::tibble(nome = nome, valor = valor)
+  datas_pub <- datas %>% filter(stringr::str_detect(nome, "publica")) %>% 
+    select(valor) %>% 
+    magrittr::set_names("data_publicacao")
+  datas_disp <- datas %>% filter(stringr::str_detect(nome, "disponib")) %>% 
+    select(valor) %>% 
+    magrittr::set_names("data_disponibilizacao")
+  datas <- dplyr::bind_cols(datas_pub, datas_disp)
+  
+  ## Link para download do diario
+  link_download <- node %>%
+    html_nodes(xpath = '//li/a[@title="Download do Caderno"]') %>% 
+    rvest::html_attr('href')
+  
+  ## Juntando os vetores
+  tabela <- tibble::tibble(titulo = title, 
+                           caderno = cadernos,
+                           link_download = link_download) %>% 
+    dplyr::bind_cols(datas) %>% 
+    dplyr::mutate(file = file)
+  
+  return(tabela)
+}
+
+obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path){
+  # Obter a primeira pagina
+  query <- list(
+    "proxystylesheet"="v2_index",
+    "getfields"="*",
+    "entqr"=3,
+    "lr"="lang_pt",
+    "ie"="UTF-8",
+    "oe"="UTF-8",
+    "requiredfields"="(orgao:MUDARORGAO).(-sin_proces_sigilo_judici:s).(-sin_sigilo_judici:s)", # Diferente
+    "sort"="date:D:S:d1", # Diferente
+    "entsp"="a",
+    "adv"=1,
+    "base"="DJE",
+    "ulang"="",
+    "access"="p",
+    "entqrm"=0,
+    "wc"=200,
+    "wc_mc"=0,
+    "ud"=1,
+    "client"="v2_index",
+    "filter"=0,
+    "as_q"="inmeta:dt_public:daterange:DATAINICIAL..DATAFINAL", # Diferente
+    "q"="",
+    "start"=0, #Diferente
+    "site"="v2_dje"
+  )  
+  
+  # Arrumando as datas
+  data_pub_inicial <- lubridate::dmy(data_pub_inicial) %>% lubridate::ymd() %>% as.character()
+  data_pub_final <- lubridate::dmy(data_pub_final) %>% lubridate::ymd() %>% as.character()
+
+  query$requiredfields <- stringr::str_replace(query$requiredfields, "MUDARORGAO", orgao)
+  query$as_q <- stringr::str_replace(query$as_q, "DATAINICIAL", data_pub_inicial)
+  query$as_q <- stringr::str_replace(query$as_q, "DATAFINAL", data_pub_final)
+
+  url <- "http://www10.trf2.jus.br/consultas/"
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/page1.html")
+  request <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file, TRUE))
+
+  # Parsear a primeira pagina para obter
+  # informacoes sobre quantas paginas temos que percorrer
+
+  node <- httr::content(request, as = "parsed")
+
+  ultima_pagina <- node %>% 
+    rvest::html_nodes(xpath = '//a[@class="pagination-link no_mobile"]') %>%
+    rvest::html_attr('href') %>%
+    stringr::str_extract("(start=)[0-9]+") %>%
+    dplyr::last() %>%
+    stringr::str_extract("[0-9]+")
+  # Caso o html tenha apenas uma pagina o objeto ultima_pagina
+  # retornara NA
+
+  # iterador para obter todas as paginas
+  if(is.na(ultima_pagina)==F){
+    vetor_paginas <- seq(10, ultima_pagina, 10)
+    for (i in 1:length(vetor_paginas)){
+      query$start <- vetor_paginas[i]
+      path <- normalizePath(path)
+      file <- stringr::str_c(path, "/page", i, ".html")
+      request <- httr::GET(url, query = query,
+                           httr::config(ssl_verifypeer = FALSE),
+                           httr::write_disk(file, TRUE))
+    }  
+  }
+  files <- dir("data-raw/",full.names = TRUE)
+  dados <- purrr::map_dfr(files, ~parse_pages(.x))
+  
+  return(dados)
+}
+
+diarios <- obter_diarios(data_pub_inicial = "20-05-2015",data_pub_final = "22-05-2015", path = "data-raw/")
+
+```
+

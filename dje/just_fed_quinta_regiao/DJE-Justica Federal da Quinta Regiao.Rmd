@@ -1,0 +1,36 @@
+---
+title: "DJE-Justica Federal da Quinta Regiao"
+output: html_notebook
+---
+
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+```
+
+
+```{r}
+url <- "https://www4.trf5.jus.br/diarioeletinternet/"
+
+query <- list(
+  "autoScroll"="",
+  "frmVisao"="frmVisao",
+  "frmVisao:edicao"="1",
+  "frmVisao:j_id45"="Pesquisar",
+  "frmVisao:meses"="01", # Problema no mês
+  "frmVisao:orgao"="5",
+  "frmVisao:periodo"="2014",
+  "javax.faces.ViewState"= httr::POST(url,httr::config(ssl_verifypeer = FALSE)) %>% 
+    xml2::read_html() %>% html_node(xpath = '//*[@id="javax.faces.ViewState"]') %>% rvest::html_attr("value")
+)
+path <- "data-raw/"
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/busca.html")
+request <- httr::POST(url,body = query, 
+           httr::config(ssl_verifypeer = FALSE),encode = "form",
+           httr::write_disk(file, TRUE))
+```
+

@@ -1,0 +1,45 @@
+---
+title: "DJE-Justica Federal da Terceira Regiao"
+output: html_notebook
+---
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+```
+
+```{r}
+# Obtendo a primeira pagina
+url <- "http://web.trf3.jus.br/diario/Consulta/ResultadoPesquisa"
+
+query <- list(
+  "FiltroPesquisaPublicacao.CodigoOrgao"=2,	# 2 eh SJSP
+  "FiltroPesquisaPublicacao.CodigoTipoPublicacao"=1, # Vai de 1 a 9
+  "FiltroPesquisaPublicacao.CodigoUnidade"="",	
+  "FiltroPesquisaPublicacao.DataFinal"="13/03/2018",
+  "FiltroPesquisaPublicacao.DataInicial"="13/03/2018",
+  "FiltroPesquisaPublicacao.DocumentosPagina"="100",
+  "FiltroPesquisaPublicacao.IdSerie"="",	
+  "FiltroPesquisaPublicacao.NomeLocalidade"="",
+  "FiltroPesquisaPublicacao.NumeroOab"="",
+  "FiltroPesquisaPublicacao.NumeroProcesso"=""
+)
+
+path <- "data-raw/"
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/busc2.html")
+request <- httr::POST(url,body = query, 
+           httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))
+
+node <- request %>% xml2::read_html()
+node %>% html_table(fill = T)
+tibble(link_diario = node %>%
+         html_nodes(xpath = '//td[@class="alinhamento"]/a') %>%
+         html_attr("href") %>% 
+         stringr::str_c("http://web.trf3.jus.br",.))
+
+```
+
