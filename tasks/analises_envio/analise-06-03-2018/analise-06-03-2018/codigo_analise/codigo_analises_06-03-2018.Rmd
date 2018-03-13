@@ -41,7 +41,7 @@ library(ggplot2)
 ### TRF-1
 
 ```{r}
-trf1 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf1.rds")
+trf1 <- readr::read_rds("data-raw/trf1.rds")
 ```
 
 ```{r}
@@ -84,7 +84,7 @@ Nova coleta em andamento.
 ### TRF-3
 
 ```{r}
-trf3 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf3.rds")
+trf3 <- readr::read_rds("data-raw/trf3.rds")
 ```
 
 ```{r}
@@ -123,7 +123,7 @@ tx_trf3 <- trf3_2 %>%
 ### TRF-5
 
 ```{r}
-trf5 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf5.rds")
+trf5 <- readr::read_rds("data-raw/trf5.rds")
 ```
 
 ```{r}
@@ -177,7 +177,7 @@ ggplot(tx_trfs, aes(x = TRF, y = tx_arquivamento, fill = TRF))+ geom_col()+
 ### TJSP
 
 ```{r}
-tjsp <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJSP/data-raw_SP/data_rds/d_cposg.rds")
+tjsp <- readr::read_rds("data-raw/d_cposg_tjsp.rds")
 ```
 
 ```{r}
@@ -219,7 +219,7 @@ tx_tjsp
 ## TJAL
 
 ```{r}
-tjal <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/consulta_processual/TJAL/data-raw_AL/cposg_rds_AL/cposg.rds")
+tjal <- readr::read_rds("data-raw/cposg_tjal.rds")
 ```
 
 ```{r}
@@ -258,7 +258,7 @@ tx_tjal
 ## TJDFT
 
 ```{r}
-tjdft <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJDFT/data-raw/rds_files/data.rds")
+tjdft <- readr::read_rds("data-raw/data_tjdft.rds")
 ```
 
     1. Número de processos em segunda instância levantados.
