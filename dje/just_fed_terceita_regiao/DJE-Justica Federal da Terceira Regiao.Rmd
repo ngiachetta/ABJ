@@ -2,7 +2,7 @@
 title: "DJE-Justica Federal da Terceira Regiao"
 output: html_notebook
 ---
-```{r}
+```{r message=F, warning=FALSE}
 library(httr)
 library(rvest)
 library(dplyr)
@@ -11,7 +11,9 @@ library(purrr)
 
 ```{r}
 # Obtendo a primeira pagina
-url <- "http://web.trf3.jus.br/diario/Consulta/ResultadoPesquisa"
+url <- "http://web.trf3.jus.br/diario/Consulta/ResultadoPesquisa/"
+
+url_1 <- stringr::str_c(url, "1")
 
 query <- list(
   "FiltroPesquisaPublicacao.CodigoOrgao"=2,	# 2 eh SJSP
@@ -29,17 +31,45 @@ query <- list(
 path <- "data-raw/"
 dir.create(path, FALSE, TRUE)
 path <- normalizePath(path)
-file <- stringr::str_c(path, "/busc2.html")
-request <- httr::POST(url,body = query, 
+file <- stringr::str_c(path, "/page1.html")
+request_POST <- function(url, query = NULL, file){
+  if(is.null(query)){
+    request <- httr::POST(url, 
            httr::config(ssl_verifypeer = FALSE),
            httr::write_disk(file, TRUE))
+  }else{
+    request <- httr::POST(url,body = query, 
+           httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))    
+  }
+
+  return(request)
+}
+request <- request_POST(url_1, query = query,file = file)
 
 node <- request %>% xml2::read_html()
-node %>% html_table(fill = T)
-tibble(link_diario = node %>%
-         html_nodes(xpath = '//td[@class="alinhamento"]/a') %>%
-         html_attr("href") %>% 
-         stringr::str_c("http://web.trf3.jus.br",.))
+
+total_pag <- node %>% html_node(xpath = '//form/label') %>% html_text() %>% stringr::str_extract("[0-9]+$") %>% as.numeric()
+
+qnt_percorrer <- 2:ceiling(total_pag/100)
+
+urls <- list()
+files <- list()
+for(i in 1:length(qnt_percorrer)){
+  urls[[i]] <- stringr::str_c(url, qnt_percorrer[i])
+  files[[i]] <- stringr::str_c(path, "/page", qnt_percorrer[i], ".html")
+}
+
+request_POST(urls[[1]], file = files[[1]], query = query)
+
+# purrr::map(urls,files, ~request_POST(.x, file = .y))
+# request_POST(urls[[1]], file = files[[1]])
+# 
+# node %>% html_table(fill = T)
+# tibble(link_diario = node %>%
+#          html_nodes(xpath = '//td[@class="alinhamento"]/a') %>%
+#          html_attr("href") %>% 
+#          stringr::str_c("http://web.trf3.jus.br",.))
 
 ```
 
