@@ -1,0 +1,1337 @@
+﻿numero,nome,entrancia1,cargo,inicio,entrancia2,anterior,geral,cargo_criminal
+2,José Fernandes Freitas Neto,Entrância Especial,6ª Vara Criminal - Capital,20/10/1999 23:00:00,"18A
+                        4M 21D",9A 10M 26D,31A 8M 22D,TRUE
+36,Claudio Lima Bueno de Camargo,Entrância Especial,1ª Vara Criminal do Foro Regional de São Miguel Paulista,07/07/2005 00:00:00,"12A
+                        8M 7D",13A 1M 3D,28A 9M 5D,TRUE
+55,Xisto Albarelli Rangel Neto,Entrância Especial,2ª Vara Criminal do Foro Regional de São Miguel Paulista,04/08/2005 00:00:00,"12A
+                        7M 10D",12A 3M 6D,27A 6M 18D,TRUE
+63,José Zoéga Coelho,Entrância Especial,Vara do Juizado Especial Criminal - Capital,26/10/2005 23:00:00,"12A
+                        4M 15D",12A 2M 21D,29A 2M 12D,TRUE
+68,Antonio Benedito Morello,Entrancia Final,1ª Vara Criminal da Comarca de São Carlos,11/05/2006 00:00:00,"11A
+                        10M 3D",22A 1M 24D,38A 4M 1D,TRUE
+70,Antonio Roberto Sylla,Entrancia Final,1ª Vara Criminal da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",17A 8M 5D,35A 0M 7D,TRUE
+75,Junio Cláudio Campos Furtado,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Ribeirão Preto,11/05/2006 00:00:00,"11A
+                        10M 3D",14A 10M 21D,34A 2M 8D,TRUE
+80,Luiz Carlos de Carvalho Moreira,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",16A 3M 2D,32A 4M 10D,TRUE
+85,Décio Divanir Mazeto,Entrancia Final,3ª Vara Criminal da Comarca de Marília,11/05/2006 00:00:00,"11A
+                        10M 3D",14A 5M 13D,30A 9M 27D,TRUE
+100,Elizabeth Lopes de Freitas,Entrancia Final,4ª Vara Criminal da Comarca de Santos,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 6M 19D,29A 1M 25D,TRUE
+102,Benedito Antonio Okuno,Entrancia Final,1ª Vara Criminal da Comarca de Bauru,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 4M 26D,28A 9M 5D,TRUE
+104,Mauricio Garibe,Entrancia Final,1ª Vara Criminal da Comarca de Jundiaí,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 7M 4D,28A 9M 5D,TRUE
+113,Sandra Regina Nostre Marques,Entrancia Final,1ª Vara Criminal da Comarca de São Bernardo do Campo,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 10M 17D,28A 4M 13D,TRUE
+119,Jayme Walmer de Freitas,Entrancia Final,1ª Vara Criminal da Comarca de Sorocaba,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 2M 7D,27A 11M 19D,TRUE
+128,Maria da Conceição Pinto Vendeiro,Entrancia Final,3ª Vara Criminal da Comarca de Diadema,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,27A 6M 18D,TRUE
+138,Luis Augusto Freire Teotonio,Entrancia Final,1ª Vara do Júri e das Execuções Criminais da Comarca de Ribeirão Preto,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,27A 6M 18D,TRUE
+147,Freddy Lourenço Ruiz Costa,Entrancia Final,1ª Vara Criminal da Comarca de Mogi das Cruzes,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 9M 6D,27A 2M 3D,TRUE
+155,Heitor Donizete de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Diadema,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 8M 9D,27A 2M 3D,TRUE
+158,Érika Soares de Azevedo Mascarenhas,Entrancia Final,Juíza de Direito Titular II da 6ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,27A 2M 3D,TRUE
+159,Marcos Fleury Silveira de Alvarenga,Entrancia Final,Juiz de Direito Titular II da 12ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,27A 2M 3D,TRUE
+161,Klaus Marouelli Arroyo,Entrancia Final,Juiz de Direito Titular II da 23ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 6M 7D,27A 2M 3D,TRUE
+164,Maria de Fátima dos Santos Gomes Muniz de Oliveira,Entrancia Final,Juíza de Direito Titular II da 29ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 8M 9D,27A 2M 3D,TRUE
+165,Marcos Alexandre Coelho Zilli,Entrancia Final,Juiz de Direito Titular II da 15ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 7M 4D,27A 2M 3D,TRUE
+166,Luciano Franchi Lemes,Entrancia Final,1ª Vara Criminal da Comarca de Franca,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,27A 2M 3D,TRUE
+171,Benedito Roberto Garcia Pozzer,Entrancia Final,Juiz de Direito Titular II da 7ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+175,Nelson Becker,Entrancia Final,Juiz de Direito Titular II da 5ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+177,José Eduardo Marcondes Machado,Entrancia Final,Vara das Execuções Criminais e da Infância e Juventude da Comarca de Itu,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+182,Hugo Leandro Maranzano,Entrancia Final,Vara do Juizado Especial Criminal e de Violência Doméstica e Familiar Contra a Mulher da Comarca de Sorocaba,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,26A 3M 23D,TRUE
+189,João Pedro Bressane de Paula Barbosa,Entrancia Final,2ª Vara Criminal da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,26A 3M 23D,TRUE
+193,André Carvalho e Silva de Almeida,Entrancia Final,Juiz de Direito Titular II da 30ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 2M 7D,26A 3M 23D,TRUE
+197,Edison Tetsuzo Namba,Entrancia Final,Juiz de Direito Titular II da 31ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+201,Ana Lucia Fernandes Queiroga,Entrancia Final,16ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,25A 8M 20D,TRUE
+205,Maria dos Anjos Garcia de Alcaraz da Fonseca,Entrancia Final,Juíza de Direito Titular II da 22ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,25A 8M 20D,TRUE
+206,Marco Antonio Martin Vargas,Entrancia Final,Juiz de Direito Titular II da 32ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+209,Ulysses de Oliveira Gonçalves Junior,Entrancia Final,1ª Vara das Execuções Criminais - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+210,José Ricardo Santini Antonietto,Entrancia Final,1ª Vara Criminal do Foro Regional de Penha de França,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+217,Fátima Vilas Boas Cruz,Entrancia Final,Juíza de Direito Titular II da 17ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",10A 11M 3D,25A 8M 20D,TRUE
+221,Emerson Sumariva Júnior,Entrancia Final,3ª Vara Criminal da Comarca de Araçatuba,13/07/2006 00:00:00,"11A
+                        8M 1D",8A 7M 2D,26A 3M 23D,TRUE
+224,Enio Móz Godoy,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Bauru,31/08/2006 00:00:00,"11A
+                        6M 14D",8A 0M 18D,24A 7M 26D,TRUE
+232,Guaracy Sibille Leite,Entrancia Final,1ª Vara Criminal da Comarca de Ribeirão Preto,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,28A 4M 13D,TRUE
+234,Teresa de Almeida Ribeiro Magalhães,Entrancia Final,18ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,27A 11M 19D,TRUE
+238,Aparecida Angélica Correia,Entrancia Final,1ª Vara Criminal do Foro Regional de Pinheiros,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 6M 19D,27A 6M 18D,TRUE
+242,Leyla Maria da Silva Lacaz,Entrancia Final,14ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,27A 2M 3D,TRUE
+243,José Romano Lucarini,Entrancia Final,1ª Vara Criminal da Comarca de Santos,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 11M 23D,27A 2M 3D,TRUE
+250,Antonio Carlos de Campos Machado Júnior,Entrancia Final,Juiz de Direito Titular II da 19ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,26A 3M 23D,TRUE
+253,Flavio Fenoglio Guimarães,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de São José dos Campos,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 11M 23D,25A 8M 20D,TRUE
+256,Olavo Paula Leite Rocha,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Sumaré,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,25A 8M 20D,TRUE
+274,Vicente Luiz Adua,Entrancia Final,Juiz de Direito Titular II da 14ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,24A 7M 26D,TRUE
+280,José Roberto Cabral Longaretti,Entrancia Final,Juiz de Direito Titular II da 13ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,24A 7M 26D,TRUE
+282,Isaura Cristina Barreira,Entrancia Final,30ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 3M 13D,24A 7M 26D,TRUE
+287,Jefferson Barbin Torelli,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Jundiaí",30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,24A 7M 26D,TRUE
+292,Rodrigo Capez,Entrancia Final,Juiz de Direito Titular II da 11ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 3M 13D,24A 7M 26D,TRUE
+296,Renata William Rached Catelli,Entrancia Final,21ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,24A 7M 26D,TRUE
+301,Marcello Ovidio Lopes Guimarães,Entrancia Final,Juiz de Direito Titular II da 18ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,24A 7M 4D,TRUE
+311,Waldir Calciolari,Entrancia Final,Juiz de Direito Titular II da 25ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,23A 11M 14D,TRUE
+320,Antonio Maria Patiño Zorz,Entrancia Final,29ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 8M 9D,23A 11M 14D,TRUE
+324,Patricia Alvares Cruz,Entrancia Final,Juíza de Direito Titular II da 9ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",9A 11M 28D,23A 1M 16D,TRUE
+338,Caio Ventosa Chaves,Entrancia Final,4ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 11M 19D,29A 2M 12D,TRUE
+344,Abelardo de Azevedo Silveira,Entrancia Final,2ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,27A 6M 18D,TRUE
+345,Orlando Brossi Junior,Entrancia Final,3ª Vara Criminal da Comarca de Franca,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,27A 6M 18D,TRUE
+346,Maria Letícia Pozzi Buassi,Entrancia Final,4ª Vara Criminal da Comarca de São José do Rio Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 11M 19D,27A 6M 18D,TRUE
+347,Wellington José Prates,Entrancia Final,2ª Vara Criminal da Comarca de Araçatuba,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 4M 16D,27A 2M 3D,TRUE
+350,Claudio do Prado Amaral,Entrancia Final,2ª Vara Criminal da Comarca de São Carlos,26/04/2007 00:00:00,"10A
+                        10M 16D",12A 1M 17D,27A 2M 3D,TRUE
+356,Sueli Zeraik de Oliveira Armani,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Taubaté,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 6M 13D,25A 8M 20D,TRUE
+357,Lúcio Alberto Eneas da Silva Ferreira,Entrancia Final,4ª Vara Criminal da Comarca de Ribeirão Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,25A 8M 20D,TRUE
+361,Antonio de Oliveira Angrisani Filho,Entrancia Final,27ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,24A 7M 26D,TRUE
+362,Jose Fernando Azevedo Minhoto,Entrancia Final,4ª Vara Criminal da Comarca de Osasco,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,24A 7M 26D,TRUE
+366,Cesar Luís de Souza Pereira,Entrancia Final,4ª Vara Criminal da Comarca de Sorocaba,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,24A 7M 26D,TRUE
+368,Carlos Alberto Corrêa de Almeida Oliveira,Entrancia Final,25ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 6M 13D,24A 7M 26D,TRUE
+373,Flavio de Oliveira Cesar,Entrancia Final,1ª Vara Criminal da Comarca de Taubaté,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,24A 7M 26D,TRUE
+378,Patrícia Helena Hehl Forjaz de Toledo,Entrancia Final,2ª Vara Criminal da Comarca de Diadema,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,23A 11M 14D,TRUE
+379,Marcelo Matias Pereira,Entrancia Final,Juiz de Direito Titular II da 10ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,23A 11M 14D,TRUE
+380,Rogério Danna Chaib,Entrancia Final,1ª Vara Criminal da Comarca de Limeira,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 4M 16D,23A 11M 14D,TRUE
+382,Ilona Marcia Bittencourt Cruz,Entrancia Final,5ª Vara Criminal da Comarca de Ribeirão Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 1M 14D,23A 11M 14D,TRUE
+389,Maria Cecília Leone,Entrancia Final,10ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 5M 30D,23A 1M 16D,TRUE
+391,Daniela Martins de Castro Mariani Cavallanti,Entrancia Final,2ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",10A 1M 7D,23A 1M 16D,TRUE
+396,Claudia Maria Carbonari de Faria,Entrancia Final,"Vara do Júri, das Execuções Criminais, da Infância e da Juventude e do Idoso da Comarca de Diadema",26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,22A 2M 14D,TRUE
+403,Paulo Eduardo de Almeida Sorci,Entrancia Final,5ª Vara das Execuções Criminais - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,22A 2M 14D,TRUE
+405,Érika Christina de Lacerda Brandão Raskin,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 2M 14D,22A 2M 14D,TRUE
+413,José Guilherme Di Rienzo Marrey,Entrancia Final,6ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        9M 16D",9A 5M 30D,22A 1M 14D,TRUE
+417,Emerson Ueocka,Entrancia Final,3ª Vara Criminal da Comarca de Presidente Prudente,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,30A 9M 27D,TRUE
+419,Jane Rute Nalini Anderson,Entrancia Final,3ª Vara Criminal da Comarca de Jundiaí,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,29A 2M 12D,TRUE
+427,Izabel Irlanda Castro Correia Araújo,Entrancia Final,15ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,27A 6M 18D,TRUE
+428,Eugênio Augusto Clementi Júnior,Entrancia Final,2ª Vara Criminal da Comarca de Americana,19/07/2007 00:00:00,"10A
+                        7M 23D",11A 1M 12D,27A 6M 18D,TRUE
+429,André Carlos de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Americana,19/07/2007 00:00:00,"10A
+                        7M 23D",13A 7M 5D,27A 6M 18D,TRUE
+430,Guacy Sibille Leite,Entrancia Final,3ª Vara Criminal da Comarca de Ribeirão Preto,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,27A 6M 18D,TRUE
+431,Silvana Amneris Rôlo Pereira Borges,Entrancia Final,6ª Vara Criminal da Comarca de Santos,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 1M 2D,27A 2M 3D,TRUE
+435,Andréa Barreira Brandão,Entrancia Final,3ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 4M 7D,25A 8M 20D,TRUE
+437,Isabel Cristina Alonso Bezerra dos Santos,Entrancia Final,2ª Vara do Júri e das Execuções Criminais da Comarca de Ribeirão Preto,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 4M 1D,24A 7M 26D,TRUE
+438,Cristina Elena Varela Werlang,Entrancia Final,1ª Vara Criminal do Foro Regional do Tatuapé,19/07/2007 00:00:00,"10A
+                        7M 23D",11A 7M 12D,24A 7M 26D,TRUE
+443,Ana Lucia Siqueira de Figueiredo,Entrancia Final,1ª Vara Criminal do Foro Regional de Santo Amaro,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,24A 7M 26D,TRUE
+445,André Luiz de Macedo,Entrancia Final,3ª Vara Criminal da Comarca de São Carlos,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,24A 7M 26D,TRUE
+446,Luciane Jabur Mouchaloite Figueiredo,Entrancia Final,Juíza de Direito Titular II da 21ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 7M 8D,24A 7M 26D,TRUE
+451,Cynthia Torres Cristofaro,Entrancia Final,23ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,23A 11M 14D,TRUE
+452,Patrícia Suárez Pae Kim,Entrancia Final,1ª Vara Criminal da Comarca de Campinas,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 4M 3D,23A 11M 14D,TRUE
+455,José Rodrigues Arimatéa,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Franca",19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,23A 1M 16D,TRUE
+459,ROGERIO ALCAZAR,Entrancia Final,4ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 2M 12D,23A 1M 16D,TRUE
+471,Nidea Rita Coltro Sorci,Entrancia Final,2ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 5M 7D,22A 2M 14D,TRUE
+476,José Loureiro Sobrinho,Entrancia Final,1ª Vara Criminal da Comarca de São José dos Campos,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 1M 4D,21A 0M 0D,TRUE
+484,Luís Guilherme Vaz de Lima Cardinale,Entrancia Final,2ª Vara Criminal da Comarca de São Vicente,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 5M 9D,20A 3M 21D,TRUE
+488,Luiz Augusto Barrichello Neto,Entrancia Final,2ª Vara Criminal da Comarca de Limeira,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,20A 3M 21D,TRUE
+491,Cecilia Pinheiro da Fonseca,Entrancia Final,3ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 7M 3D,20A 3M 21D,TRUE
+501,Durval José de Moraes Leme,Entrancia Final,1ª Vara Criminal da Comarca de Rio Claro,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,29A 2M 12D,TRUE
+503,Walter Luiz Esteves de Azevedo,Entrancia Final,5ª Vara Criminal da Comarca de Santos,27/09/2007 00:00:00,"10A
+                        5M 15D",3A 11M 4D,28A 9M 5D,TRUE
+504,Zurich Oliva Costa Netto,Entrancia Final,Vara das Execuções Criminais da Comarca de São José do Rio Preto,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 3M 27D,26A 3M 23D,TRUE
+513,Edegar de Sousa Castro,Entrancia Final,3ª Vara Criminal da Comarca de São Bernardo do Campo,27/09/2007 00:00:00,"10A
+                        5M 15D",5A 10M 19D,23A 1M 16D,TRUE
+516,Teresa Cristina Cabral Santana,Entrancia Final,2ª Vara Criminal da Comarca de Santo André,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,22A 2M 14D,TRUE
+523,Fernanda Galizia Noriega,Entrancia Final,28ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",8A 3M 10D,21A 0M 0D,TRUE
+531,Helio Narvaez,Entrancia Final,Juiz de Direito Titular II da 8ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 6M 12D,19A 8M 14D,TRUE
+532,Clávio Kenji Adati,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Guarulhos,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 4M 24D,19A 8M 14D,TRUE
+538,Maria Domitila Prado Manssur,Entrancia Final,Juíza de Direito Titular II da 16ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",7A 6M 11D,19A 8M 14D,TRUE
+540,Roberto Brandão Galvão Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itapetininga,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 4M 24D,19A 8M 14D,TRUE
+549,Carlos Gutemberg de Santis Cunha,Entrancia Final,4ª Vara Criminal da Comarca de São José dos Campos,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 6M 0D,19A 4M 5D,TRUE
+550,Danielle Martins Cardoso,Entrancia Final,3ª Vara Criminal da Comarca de Osasco,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 6M 0D,19A 4M 5D,TRUE
+551,Alexandre Betini,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Santos,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 0M 16D,19A 4M 5D,TRUE
+556,Fábio Aguiar Munhoz Soares,Entrancia Final,17ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,19A 4M 5D,TRUE
+560,Rodrigo Pares Andreucci,Entrancia Final,3ª Vara Criminal da Comarca de Piracicaba,27/09/2007 00:00:00,"10A
+                        5M 15D",3A 9M 16D,18A 11M 16D,TRUE
+569,Clovis Elias Thamê,Entrancia Final,2ª Vara Criminal da Comarca de Jundiaí,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,30A 9M 27D,TRUE
+571,Adriana Albergueti Albano,Entrancia Final,1ª Vara Criminal da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 11M 13D,25A 8M 20D,TRUE
+573,Silvia Estela Gigena,Entrancia Final,2ª Vara Criminal da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 7M 14D,24A 7M 26D,TRUE
+576,José Roberto Bernardi Liberal,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 5M 26D,23A 11M 14D,TRUE
+598,André Rossi,Entrancia Final,2ª Vara Criminal da Comarca de Guarujá,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 8M 18D,19A 4M 5D,TRUE
+600,Milton de Oliveira Sampaio Neto,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de São José dos Campos,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 8M 18D,19A 4M 5D,TRUE
+601,Alessandro Viana Vieira de Paula,Entrancia Final,Vara das Execuções Criminais da Comarca de Itapetininga,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 7M 14D,19A 4M 5D,TRUE
+605,André Gustavo Cividanes Furlan,Entrancia Final,2ª Vara Criminal da Comarca de São Bernardo do Campo,29/11/2007 00:00:00,"10A
+                        3M 14D",4A 8M 2D,19A 4M 5D,TRUE
+606,Davi Marcio Prado Silva,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Bauru,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 4M 28D,19A 4M 5D,TRUE
+612,Maria Lucinda da Costa,Entrancia Final,1ª Vara Criminal da Comarca de Santo André,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,18A 11M 16D,TRUE
+614,Fernando Luiz Batalha Navajas,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itaquaquecetuba,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,18A 11M 16D,TRUE
+624,Carlos José Zulian,Entrancia Final,1ª Vara Criminal - Capital,10/04/2008 00:00:00,"9A
+                        11M 4D",9A 4M 0D,24A 7M 26D,TRUE
+627,Andrea Ribeiro Borges,Entrancia Final,1ª Vara Criminal e de Violência Doméstica e Familiar contra a Mulher da Comarca de Itu,10/04/2008 00:00:00,"9A
+                        11M 4D",9A 4M 0D,23A 1M 16D,TRUE
+628,João Carlos Germano,Entrancia Final,3ª Vara Criminal da Comarca de Taubaté,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 4M 30D,23A 1M 16D,TRUE
+633,Fernanda Souza Pereira de Lima Carvalho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de São Vicente,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 0M 10D,20A 3M 21D,TRUE
+646,Beatriz Afonso Pascoal Queiroz,Entrancia Final,3ª Vara Criminal da Comarca de São José dos Campos,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 3M 25D,18A 11M 16D,TRUE
+648,Lucas Tambor Bueno,Entrancia Final,4ª Vara Criminal da Comarca de Santo André,10/04/2008 00:00:00,"9A
+                        11M 4D",2A 10M 11D,18A 6M 11D,TRUE
+650,Renata Biagioni,Entrancia Final,Vara das Execuções Criminais da Comarca de Marília,10/04/2008 00:00:00,"9A
+                        11M 4D",2A 9M 11D,18A 6M 11D,TRUE
+654,Cibele Frigi Rodrigues Rizzi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Rio Claro,03/07/2008 00:00:00,"9A
+                        8M 11D",2A 9M 18D,17A 5M 14D,TRUE
+655,Daniela Mie Murata,Entrancia Final,3ª Vara Criminal da Comarca de Limeira,03/07/2008 00:00:00,"9A
+                        8M 11D",2A 10M 22D,17A 5M 14D,TRUE
+664,Carla dos Santos Fullin,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Campinas,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 2M 26D,20A 3M 21D,TRUE
+665,Atis de Araujo Oliveira,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Presidente Prudente,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,19A 8M 14D,TRUE
+666,Antonio Carlos Pinheiro de Freitas,Entrancia Final,1ª Vara Criminal da Comarca de Catanduva,19/02/2009 00:00:00,"9A
+                        0M 23D",5A 5M 8D,19A 4M 5D,TRUE
+667,Vinicius de Toledo Piza Peluso,Entrancia Final,1ª Vara Criminal da Comarca de Praia Grande,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 10M 19D,19A 4M 5D,TRUE
+669,Daniele Mendes de Melo,Entrancia Final,2ª Vara Criminal da Comarca de Bauru,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 2M 26D,19A 4M 5D,TRUE
+670,Telma Berkelmans dos Santos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Barueri,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,19A 4M 5D,TRUE
+672,João Luciano Sales do Nascimento,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Praia Grande,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,18A 11M 16D,TRUE
+679,Gerdinaldo Quichaba Costa,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Americana",19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,14A 9M 26D,TRUE
+680,Ricardo Tseng Kuei Hsu,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Suzano,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 9M 22D,14A 9M 26D,TRUE
+684,Sergio Araújo Gomes,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Campinas,03/09/2009 00:00:00,"8A
+                        6M 11D",5A 4M 19D,27A 2M 3D,TRUE
+686,José Wagner Parrão Molina,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Presidente Prudente,03/09/2009 00:00:00,"8A
+                        6M 11D",4A 0M 23D,24A 7M 26D,TRUE
+690,Gisele de Castro Catapano,Entrancia Final,1ª Vara Criminal da Comarca de Osasco,03/09/2009 00:00:00,"8A
+                        6M 11D",6A 5M 7D,23A 1M 16D,TRUE
+699,Max Gouvea Gerth,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Taubaté,03/09/2009 00:00:00,"8A
+                        6M 11D",4A 0M 23D,18A 11M 16D,TRUE
+704,Marcos Augusto Barbosa dos Reis,Entrancia Final,1ª Vara Criminal da Comarca de Jacareí,03/09/2009 00:00:00,"8A
+                        6M 11D",3A 9M 10D,17A 5M 14D,TRUE
+705,Adeilson Ferreira Negri,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Araçatuba,03/09/2009 00:00:00,"8A
+                        6M 11D",3A 10M 7D,14A 9M 26D,TRUE
+710,Ettore Geraldo Avolio,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Piracicaba,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,24A 7M 26D,TRUE
+714,Sylvio Ribeiro de Souza Neto,Entrancia Final,2ª Vara Criminal da Comarca de Ribeirão Preto,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,24A 7M 26D,TRUE
+717,Ana Claudia Madeira de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Piracicaba,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,23A 1M 16D,TRUE
+718,Wania Regina Gonçalves da Cunha,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Taubaté,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 2M 11D,22A 2M 14D,TRUE
+719,Nelson Augusto Bernardes de Souza,Entrancia Final,3ª Vara Criminal da Comarca de Campinas,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 5M 24D,22A 2M 14D,TRUE
+720,Sérgio Lazzareschi de Mesquita,Entrancia Final,3ª Vara Criminal da Comarca de Rio Claro,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 2M 11D,22A 2M 14D,TRUE
+721,Elia Kinosita Bulman,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Osasco,04/02/2011 00:00:00,"7A
+                        1M 10D",8A 1M 30D,20A 3M 21D,TRUE
+724,Alessandra Regina Ramos Rodrigues Bisognin,Entrancia Final,2ª Vara Criminal do Foro Regional de Santo Amaro,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 7M 12D,19A 8M 14D,TRUE
+728,Maria de Fatima Guimarães Pimentel de Lima,Entrancia Final,1ª Vara Criminal da Comarca de Guarulhos,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 3M 8D,19A 8M 14D,TRUE
+732,Márcio Lucio Falavigna Sauandag,Entrancia Final,22ª Vara Criminal - Capital,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 7M 12D,19A 4M 5D,TRUE
+739,Tânia Magalhães Avelar Moreira da Silveira,Entrancia Final,1ª Vara Criminal do Foro Regional do Jabaquara,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 8M 20D,18A 11M 16D,TRUE
+748,Walter Ariette dos Santos,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e Juventude da Comarca de Rio Claro",05/05/2011 00:00:00,"6A
+                        10M 9D",18A 10M 3D,28A 4M 13D,TRUE
+752,Sonia Nazaré Fernandes Fraga,Entrancia Final,Juíza de Direito Titular II da 24ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",12A 4M 25D,22A 2M 14D,TRUE
+756,Augusto Antonini,Entrancia Final,Juiz de Direito Titular II da 28ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",6A 2M 11D,20A 3M 21D,TRUE
+757,Flavia de Cassia Gonzales de Oliveira,Entrancia Final,2ª Vara Criminal da Comarca de Piracicaba,05/05/2011 00:00:00,"6A
+                        10M 9D",11A 4M 19D,20A 3M 21D,TRUE
+768,Margarete Pellizari,Entrancia Final,2ª Vara Criminal da Comarca de Sorocaba,05/05/2011 00:00:00,"6A
+                        10M 9D",11A 2M 25D,19A 4M 5D,TRUE
+772,Luiz Guilherme Cursino de Moura Santos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Pindamonhangaba,05/05/2011 00:00:00,"6A
+                        10M 9D",5A 5M 11D,19A 4M 5D,TRUE
+777,Eva Lôbo Chaib Dias Jorge,Entrancia Final,12ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",6A 2M 11D,18A 11M 16D,TRUE
+791,Alceu Corrêa Junior,Entrancia Final,2ª Vara Criminal da Comarca de Catanduva,04/08/2011 00:00:00,"6A
+                        7M 10D",12A 4M 17D,22A 2M 14D,TRUE
+792,José Eduardo da Costa,Entrancia Final,1ª Vara Criminal da Comarca de Indaiatuba,04/08/2011 00:00:00,"6A
+                        7M 10D",7A 9M 12D,21A 0M 0D,TRUE
+802,Marise Terra Pinto Bourgogne de Almeida,Entrancia Final,5ª Vara Criminal da Comarca de São José dos Campos,04/08/2011 00:00:00,"6A
+                        7M 10D",7A 10M 24D,19A 4M 5D,TRUE
+803,Marcus Cunha Rodrigues,Entrancia Final,2ª Vara Criminal da Comarca de Sumaré,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 8M 11D,18A 11M 16D,TRUE
+805,Milena Dias,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Santo André,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 5M 11D,18A 11M 16D,TRUE
+811,Caio Ferraz de Camargo Lopasso,Entrancia Final,2ª Vara Criminal da Comarca de Guarulhos,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 0M 0D,17A 5M 14D,TRUE
+813,Renata Sanchez Guidugli Gusmão,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Santos,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 8M 11D,17A 5M 14D,TRUE
+817,Marcelo Vieira,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Limeira,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 10M 20D,14A 9M 26D,TRUE
+819,Marcos Alexandre Santos Ambrogi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mauá,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 9M 8D,14A 9M 26D,TRUE
+820,Fernando Martinho de Barros Penteado,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de São Bernardo do Campo,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 2M 5D,14A 9M 26D,TRUE
+822,Fernando Augusto Andrade Conceição,Entrancia Final,2ª Vara Criminal da Comarca de Suzano,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 9M 8D,13A 8M 24D,TRUE
+827,Richard Francisco Chequini,Entrancia Final,Juiz de Direito Titular II da 20ª Vara Criminal - Capital,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,20A 3M 21D,TRUE
+832,Fernanda Teixeira Salviano da Rocha,Entrancia Final,2ª Vara Criminal da Comarca de Taubaté,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,19A 8M 14D,TRUE
+834,Suzana Jorge de Mattia Ihara,Entrancia Final,1ª Vara Criminal do Foro Regional de Santana,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,19A 4M 5D,TRUE
+839,Valdir Ricardo Lima Pompêo Marinho,Entrancia Final,2ª Vara Criminal da Comarca de Santos,27/10/2011 00:00:00,"6A
+                        4M 15D",5A 11M 3D,18A 11M 16D,TRUE
+845,Hélio Villaça Furukawa,Entrancia Final,2ª Vara Criminal da Comarca de Itu,27/10/2011 00:00:00,"6A
+                        4M 15D",5A 5M 9D,14A 9M 26D,TRUE
+851,André Luís Bastos,Entrancia Final,1ª Vara Criminal da Comarca de Itapetininga,29/03/2012 00:00:00,"5A
+                        11M 14D",5A 3M 30D,19A 4M 5D,TRUE
+857,Glaucio Roberto Brittes de Araujo,Entrancia Final,4ª Vara Criminal da Comarca de Guarulhos,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 6M 14D,18A 11M 16D,TRUE
+858,Jarbas Luiz dos Santos,Entrancia Final,3ª Vara Criminal da Comarca de Santo André,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 9M 30D,18A 11M 16D,TRUE
+866,Maria Fernanda Belli,Entrancia Final,Juíza de Direito Titular II da 1ª Vara Criminal - Capital,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 11M 1D,14A 9M 26D,TRUE
+871,Hélio Benedini Ravagnani,Entrancia Final,2ª Vara Criminal da Comarca de Sertãozinho,29/03/2012 00:00:00,"5A
+                        11M 14D",5A 10M 11D,13A 8M 24D,TRUE
+873,Cláudio Augusto Saad Abujamra,Entrancia Final,3ª Vara Criminal da Comarca de Bauru,11/06/2012 00:00:00,"5A
+                        9M 3D",13A 6M 1D,23A 11M 14D,TRUE
+877,José Tadeu Lopes de Oliveira,Entrancia Final,3ª Vara Criminal da Comarca de Guarulhos,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 7M 15D,20A 3M 21D,TRUE
+881,Emerson Tadeu Pires de Camargo,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Sorocaba,11/06/2012 00:00:00,"5A
+                        9M 3D",8A 6M 0D,19A 4M 5D,TRUE
+882,Aristóteles de Alencar Sampaio,Entrancia Final,1ª Vara Criminal da Comarca de Sumaré,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 0M 24D,19A 4M 5D,TRUE
+883,Luciana Piovesan,Entrancia Final,Juíza de Direito Titular II da 27ª Vara Criminal - Capital,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 10M 0D,19A 4M 5D,TRUE
+884,Luiz Antonio Cunha,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Piracicaba,11/06/2012 00:00:00,"5A
+                        9M 3D",9A 2M 22D,18A 11M 16D,TRUE
+885,Carlos Eduardo Lora Franco,Entrancia Final,Juiz de Direito Titular II da 3ª Vara Criminal - Capital,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 8M 27D,18A 11M 16D,TRUE
+892,Italo Morelle,Entrancia Final,11ª Vara Criminal - Capital,13/12/2012 00:00:00,"5A
+                        3M 1D",12A 8M 27D,24A 7M 26D,TRUE
+896,Luis Guilherme Pião,Entrancia Final,2ª Vara Criminal da Comarca de São José do Rio Preto,13/12/2012 00:00:00,"5A
+                        3M 1D",7A 0M 19D,18A 6M 11D,TRUE
+904,Priscila Devechi Ferraz Maia,Entrancia Final,5ª Vara Criminal da Comarca de Guarulhos,13/12/2012 00:00:00,"5A
+                        3M 1D",6A 5M 14D,13A 8M 24D,TRUE
+915,Erica Regina Colmenero Coimbra,Entrancia Final,Juíza de Direito Titular II da 2ª Vara Criminal - Capital,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 11M 28D,19A 4M 5D,TRUE
+918,Maria Paula Cassone Rossi,Entrancia Final,9ª Vara Criminal - Capital,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 16D,18A 11M 16D,TRUE
+919,Luciana Cassiano Zamperlini Cochito,Entrancia Final,1ª Vara Criminal da Comarca de São José do Rio Preto,27/06/2013 00:00:00,"4A
+                        8M 15D",9A 9M 16D,18A 11M 16D,TRUE
+925,Rodrigo Barbosa Sales,Entrancia Final,3ª Vara Criminal da Comarca de São Vicente,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 23D,14A 9M 26D,TRUE
+926,Alice Galhano Pereira da Silva,Entrancia Final,Vara Criminal e do Juizado Especial Criminal do Foro Regional VII - Itaquera,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 23D,14A 9M 26D,TRUE
+927,Paulo Roberto Cichitosi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Jacareí,27/06/2013 00:00:00,"4A
+                        8M 15D",5A 11M 8D,14A 9M 26D,TRUE
+931,Cyntia Menezes de Paula Straforini,Entrancia Final,1ª Vara Criminal da Comarca de Barueri,27/06/2013 00:00:00,"4A
+                        8M 15D",6A 2M 1D,13A 8M 24D,TRUE
+932,Brenno Gimenes Cesca,Entrancia Final,2ª Vara Criminal da Comarca de São José dos Campos,27/06/2013 00:00:00,"4A
+                        8M 15D",6A 2M 1D,13A 8M 24D,TRUE
+937,Henrique de Castilho Jacinto,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Araçatuba,27/06/2013 00:00:00,"4A
+                        8M 15D",5A 11M 8D,11A 6M 25D,TRUE
+939,Cynthia Maria Sabino Bezerra Camurri,Entrancia Final,8ª Vara Criminal - Capital,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 10M 23D,19A 4M 5D,TRUE
+944,Daniella Camberlingo Querobim,Entrancia Final,3ª Vara Criminal da Comarca de Sorocaba,17/10/2013 00:00:00,"4A
+                        4M 25D",9A 10M 6D,18A 11M 16D,TRUE
+945,Roberta de Toledo Malzoni Domingues,Entrancia Final,Vara Criminal do Foro Regional da Lapa,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 11M 20D,18A 11M 16D,TRUE
+951,Daniela de Carvalho Duarte,Entrancia Final,5ª Vara Criminal da Comarca de São Bernardo do Campo,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 4M 29D,14A 9M 26D,TRUE
+956,Angel Tomas Castroviejo,Entrancia Final,1ª Vara Criminal da Comarca de Sertãozinho,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 0M 20D,13A 8M 24D,TRUE
+963,Alfredo Gehring Cardoso Falchi Fonseca,Entrancia Final,2ª Vara Criminal da Comarca de Itapetininga,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+964,Gabriel Pires de Campos Sormani,Entrancia Final,Vara Criminal da Comarca de Taboão da Serra,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+966,Marco Mattos Sestini,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Mauá",17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+968,Érica Marcelina Cruz,Entrancia Final,1ª Vara Criminal da Comarca de Suzano,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 0M 20D,11A 6M 25D,TRUE
+971,Marcos Vieira de Morais,Entrancia Final,Juiz de Direito Titular II da 26ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",8A 11M 27D,19A 8M 14D,TRUE
+975,Paulo Eduardo Balbone Costa,Entrancia Final,7ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",9A 9M 0D,18A 11M 16D,TRUE
+978,Fernando Cesar Carrari,Entrancia Final,26ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",9A 3M 9D,17A 5M 14D,TRUE
+979,Fernanda Afonso de Almeida,Entrancia Final,19ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",8A 9M 23D,14A 9M 26D,TRUE
+989,Fábio Correia Bonini,Entrancia Final,4ª Vara Criminal da Comarca de Bauru,23/10/2014 00:00:00,"3A
+                        4M 19D",14A 5M 19D,19A 8M 14D,TRUE
+992,Maria Priscilla Ernandes Veiga Oliveira,Entrancia Final,4ª Vara Criminal - Capital,23/10/2014 00:00:00,"3A
+                        4M 19D",10A 5M 3D,18A 11M 16D,TRUE
+996,Ana Paula Achoa Mezher,Entrancia Final,2ª Vara Criminal da Comarca de Osasco,23/10/2014 00:00:00,"3A
+                        4M 19D",8A 5M 5D,17A 5M 14D,TRUE
+998,Wendell Lopes Barbosa de Souza,Entrancia Final,13ª Vara Criminal - Capital,23/10/2014 00:00:00,"3A
+                        4M 19D",9A 1M 8D,14A 9M 26D,TRUE
+1004,Paulo Ricardo Cursino de Moura,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Carapicuíba,23/10/2014 00:00:00,"3A
+                        4M 19D",6A 10M 24D,11A 6M 25D,TRUE
+1017,Giovana Furtado de Oliveira,Entrancia Final,24ª Vara Criminal - Capital,12/02/2015 00:00:00,"3A
+                        1M 2D",9A 10M 12D,18A 11M 16D,TRUE
+1019,José Manuel Ferreira Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Votuporanga,12/02/2015 00:00:00,"3A
+                        1M 2D",9A 8M 13D,14A 9M 26D,TRUE
+1020,Alexandre das Neves,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Guarujá,12/02/2015 00:00:00,"3A
+                        1M 2D",7A 6M 24D,14A 9M 26D,TRUE
+1024,Luiz Augusto Esteves de Mello,Entrancia Final,2ª Vara Criminal da Comarca de Marília,12/02/2015 00:00:00,"3A
+                        1M 2D",7A 4M 16D,11A 6M 25D,TRUE
+1032,Luciana Viveiros Corrêa dos Santos Seabra,Entrancia Final,Vara das Execuções Criminais da Comarca de São Vicente,30/04/2015 00:00:00,"2A
+                        10M 14D",8A 11M 12D,14A 9M 26D,TRUE
+1033,Gláucia Véspoli dos Santos Ramos de Oliveira,Entrancia Final,5ª Vara Criminal da Comarca de São José do Rio Preto,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 9M 11D,13A 8M 24D,TRUE
+1040,Adjair de Andrade Cintra,Entrancia Final,Vara das Execuções Criminais da Comarca de Guarulhos,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 9M 11D,11A 6M 25D,TRUE
+1043,Bruno Ronchetti de Castro,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Botucatu,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 5M 1D,11A 6M 25D,TRUE
+1045,Antonio Carlos Costa Pessoa Martins,Entrancia Final,2ª Vara Criminal da Comarca de Praia Grande,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 5M 1D,11A 2M 9D,TRUE
+1050,Carina Lucheta Carrara,Entrancia Final,1ª Vara Criminal da Comarca de Jaú,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,17A 5M 14D,TRUE
+1052,Júlio Alexandre Felix de Faria,Entrancia Final,31ª Vara Criminal - Capital,02/07/2015 00:00:00,"2A
+                        8M 12D",9A 7M 8D,14A 9M 26D,TRUE
+1054,Lizandra Maria Lapenna Peçanha,Entrancia Final,4ª Vara Criminal da Comarca de São Bernardo do Campo,02/07/2015 00:00:00,"2A
+                        8M 12D",7A 11M 13D,12A 11M 13D,TRUE
+1059,Josias Martins de Almeida Junior,Entrancia Final,1ª Vara Criminal da Comarca de Botucatu,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,11A 6M 25D,TRUE
+1060,Davi de Castro Pereira Rio,Entrancia Final,2ª Vara Criminal da Comarca de Mogi das Cruzes,02/07/2015 00:00:00,"2A
+                        8M 12D",6A 0M 28D,10A 6M 18D,TRUE
+1062,Gilberto Azevedo de Moraes Costa,Entrancia Final,6ª Vara Criminal da Comarca de Guarulhos,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,10A 6M 18D,TRUE
+1063,Tiago Ducatti Lino Machado,Entrancia Final,3ª Vara Criminal da Comarca de Mogi das Cruzes,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,9A 7M 13D,TRUE
+1065,Carolina Conti Reed,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Taboão da Serra,13/08/2015 00:00:00,"2A
+                        7M 1D",8A 0M 25D,18A 11M 16D,TRUE
+1068,Betiza Marques Soria Prado,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Jaú,13/08/2015 00:00:00,"2A
+                        7M 1D",5A 8M 3D,12A 11M 13D,TRUE
+1071,Paulo Antonio Canali Campanella,Entrancia Final,2ª Vara Criminal da Comarca de Mauá,13/08/2015 00:00:00,"2A
+                        7M 1D",4A 3M 8D,9A 7M 13D,TRUE
+1075,Cristina Escher,Entrancia Final,Juíza de Direito Titular II da 4ª Vara Criminal - Capital,08/10/2015 00:00:00,"2A
+                        5M 6D",9A 11M 11D,17A 5M 14D,TRUE
+1077,Alexandre Torres de Aguiar,Entrancia Final,1ª Vara Criminal da Comarca de São Vicente,08/10/2015 00:00:00,"2A
+                        5M 6D",8A 0M 11D,14A 9M 26D,TRUE
+1078,Fabio Calheiros do Nascimento,Entrancia Final,2ª Vara Criminal da Comarca de Barueri,08/10/2015 00:00:00,"2A
+                        5M 6D",6A 1M 18D,12A 11M 13D,TRUE
+1079,Edmilson Rosa dos Santos,Entrancia Final,3ª Vara Criminal da Comarca de Guarujá,08/10/2015 00:00:00,"2A
+                        5M 6D",6A 1M 18D,9A 7M 13D,TRUE
+1082,Valdívia Ferreira Brandão,Entrancia Final,Vara Criminal do Foro Regional do Ipiranga,17/12/2015 00:00:00,"2A
+                        2M 25D",11A 5M 16D,19A 8M 14D,TRUE
+1084,Lissandra Reis Ceccon,Entrancia Final,5ª Vara Criminal da Comarca de Campinas,17/12/2015 00:00:00,"2A
+                        2M 25D",9A 0M 17D,18A 6M 11D,TRUE
+1085,Eduardo Pereira Santos Junior,Entrancia Final,5ª Vara Criminal - Capital,17/12/2015 00:00:00,"2A
+                        2M 25D",9A 6M 29D,17A 5M 14D,TRUE
+1086,Ewerton Meirelis Gonçalves,Entrancia Final,2ª Vara Criminal da Comarca de Franca,17/12/2015 00:00:00,"2A
+                        2M 25D",10A 0M 23D,14A 9M 26D,TRUE
+1087,Carla de Oliveira Pinto Ferrari,Entrancia Final,20ª Vara Criminal - Capital,17/12/2015 00:00:00,"2A
+                        2M 25D",10A 8M 17D,14A 9M 26D,TRUE
+1088,Caio Cesar Ginez Almeida Bueno,Entrancia Final,2ª Vara Criminal da Comarca de Rio Claro,17/12/2015 00:00:00,"2A
+                        2M 25D",7A 8M 7D,13A 8M 24D,TRUE
+1091,Fernanda Ambrogi,Entrancia Final,2ª Vara Criminal da Comarca de Jacareí,17/12/2015 00:00:00,"2A
+                        2M 25D",7A 8M 7D,11A 2M 9D,TRUE
+1092,Henrique Alves Correa Iatarola,Entrancia Final,2ª Vara Criminal da Comarca de Botucatu,17/12/2015 00:00:00,"2A
+                        2M 25D",6A 3M 27D,10A 6M 18D,TRUE
+1093,Walter Godoy dos Santos Junior,Entrancia Final,1ª Vara Criminal da Comarca de Carapicuíba,17/12/2015 00:00:00,"2A
+                        2M 25D",4A 7M 12D,9A 7M 13D,TRUE
+1112,Jorge Canil,Entrancia Final,1ª Vara Criminal da Comarca de Votuporanga,01/12/2016 00:00:00,"1A
+                        3M 13D",26A 11M 23D,28A 9M 5D,TRUE
+1115,Eduardo Rezende Melo,Entrancia Final,1ª Vara Criminal e de Crimes contra Crianças e Adolescentes da Comarca de São Caetano do Sul,01/12/2016 00:00:00,"1A
+                        3M 13D",11A 11M 15D,26A 3M 23D,TRUE
+1117,Celso Alves Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Registro,01/12/2016 00:00:00,"1A
+                        3M 13D",20A 1M 10D,24A 7M 26D,TRUE
+1122,Adugar Quirino do Nascimento Souza Junior,Entrancia Final,1ª Vara Criminal da Comarca de Assis,01/12/2016 00:00:00,"1A
+                        3M 13D",13A 6M 16D,19A 4M 5D,TRUE
+1123,Elaní Cristina Mendes Marum,Entrancia Final,Vara Criminal da Comarca de São João da Boa Vista,01/12/2016 00:00:00,"1A
+                        3M 13D",12A 7M 16D,19A 4M 5D,TRUE
+1129,Luiz Antonio Dela Marta,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Barretos,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,21A 0M 0D,TRUE
+1135,Fernanda Christina Calazans Lobo e Campos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mogi Mirim,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,18A 11M 16D,TRUE
+1136,Laércio José Mendes Ferreira Filho,Entrancia Final,2ª Vara Criminal da Comarca de Bragança Paulista,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,18A 6M 11D,TRUE
+1137,Cristina Alves Biagi Fabri,Entrancia Final,2ª Vara Criminal do Foro Regional de Santana,20/04/2017 00:00:00,"0A
+                        10M 22D",11A 5M 24D,18A 6M 11D,TRUE
+1138,Fernanda Martins Perpetuo de Lima Vazquez,Entrancia Final,1ª Vara Criminal da Comarca de Barretos,20/04/2017 00:00:00,"0A
+                        10M 22D",10A 11M 2D,18A 6M 11D,TRUE
+1141,Silvana Cristina Bonifácio Souza,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Assis,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,14A 9M 26D,TRUE
+1145,Juliana Ibrahim Guirao Kapor,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Hortolândia,20/04/2017 00:00:00,"0A
+                        10M 22D",10A 9M 22D,13A 8M 24D,TRUE
+1147,Helen Cristina de Melo Alexandre,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itanhaém,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,12A 11M 13D,TRUE
+1148,Carolina Cheque de Freitas,Entrancia Final,2ª Vara Criminal da Comarca de Atibaia,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,12A 11M 13D,TRUE
+1149,Mauricio Ferreira Fontes,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Fernandópolis,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 6M 24D,12A 11M 13D,TRUE
+1150,José Augusto Reis de Toledo Leite,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Atibaia,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,12A 11M 13D,TRUE
+1151,Osmar Marcello Junior,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de São João da Boa Vista,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 6M 24D,12A 11M 13D,TRUE
+1153,Sandro Rafael Barbosa Pacheco,Entrancia Final,1ª Vara Criminal da Comarca de Mauá,20/04/2017 00:00:00,"0A
+                        10M 22D",8A 10M 1D,10A 6M 18D,TRUE
+1154,Sérgio Cedano,Entrancia Final,2ª Vara Criminal da Comarca de Itaquaquecetuba,20/04/2017 00:00:00,"0A
+                        10M 22D",7A 4M 10D,8A 8M 27D,TRUE
+1155,Júlio da Silva Branchini,Entrancia Final,Vara Criminal da Comarca de Caraguatatuba,20/04/2017 00:00:00,"0A
+                        10M 22D",5A 5M 24D,8A 8M 27D,TRUE
+1158,Roberto Raineri Simão,Entrancia Final,3ª Vara Criminal da Comarca de Araraquara,03/08/2017 00:00:00,"0A
+                        7M 11D",20A 9M 13D,25A 8M 20D,TRUE
+1161,Raquel Grellet Pereira Bernardi,Entrancia Final,1ª Vara Criminal da Comarca de Ourinhos,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 8M 4D,19A 8M 14D,TRUE
+1167,Carla Milhomens Lopes de Figueiredo Gonçalves De Bonis,Entrancia Final,3ª Vara Criminal da Comarca de Santos,03/08/2017 00:00:00,"0A
+                        7M 11D",11A 2M 16D,14A 9M 26D,TRUE
+1168,Leonardo Marzola Colombini,Entrancia Final,3ª Vara Criminal da Comarca de Atibaia,03/08/2017 00:00:00,"0A
+                        7M 11D",11A 8M 10D,14A 9M 26D,TRUE
+1173,Mauricio José Nogueira,Entrancia Final,2ª Vara Criminal da Comarca de Votuporanga,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 0M 15D,11A 6M 25D,TRUE
+1176,Marcelo Nalesso Salmaso,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Tatuí,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 0M 15D,11A 6M 25D,TRUE
+1180,Camilla Marcela Ferrari Arcaro,Entrancia Final,1ª Vara Criminal da Comarca de Santa Bárbara DOeste,03/08/2017 00:00:00,"0A
+                        7M 11D",9A 3M 24D,11A 2M 9D,TRUE
+1181,Luciana do Carmo Nogueira,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Ferraz de Vasconcelos,03/08/2017 00:00:00,"0A
+                        7M 11D",9A 8M 5D,11A 2M 9D,TRUE
+1184,Thiago Massao Cortizo Teraoka,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mogi das Cruzes,03/08/2017 00:00:00,"0A
+                        7M 11D",4A 7M 21D,7A 9M 14D,TRUE
+1187,Gisela Ruffo,Entrancia Final,4ª Vara Criminal da Comarca de Piracicaba,30/11/2017 00:00:00,"0A
+                        3M 14D",11A 6M 12D,21A 0M 0D,TRUE
+1188,Fabio Marques Dias,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Batatais,30/11/2017 00:00:00,"0A
+                        3M 14D",11A 6M 12D,20A 3M 21D,TRUE
+1189,Jane Carrasco Alves Floriano,Entrancia Final,1ª Vara Criminal da Comarca de Lins,30/11/2017 00:00:00,"0A
+                        3M 14D",18A 5M 13D,19A 8M 14D,TRUE
+1192,Vinicius Castrequini Bufulin,Entrancia Final,2ª Vara Criminal da Comarca de Fernandópolis,30/11/2017 00:00:00,"0A
+                        3M 14D",10A 2M 3D,12A 11M 13D,TRUE
+1197,Josiane Patricia Cabrini,Entrancia Final,1ª Vara Criminal da Comarca de Marília,30/11/2017 00:00:00,"0A
+                        3M 14D",8A 1M 15D,11A 2M 9D,TRUE
+1198,Carolina Marchiori Bueno Cocenzo,Entrancia Final,3ª Vara Criminal da Comarca de São José do Rio Preto,30/11/2017 00:00:00,"0A
+                        3M 14D",10A 0M 1D,11A 2M 9D,TRUE
+1200,Camile de Lima e Silva Bonilha,Entrancia Final,2ª Vara Criminal da Comarca de Carapicuíba,30/11/2017 00:00:00,"0A
+                        3M 14D",6A 3M 26D,9A 7M 13D,TRUE
+2,José Fernandes Freitas Neto,Entrância Especial,6ª Vara Criminal - Capital,20/10/1999 23:00:00,"18A
+                        4M 21D",9A 10M 26D,31A 8M 22D,TRUE
+11,Claudio Lima Bueno de Camargo,Entrância Especial,1ª Vara Criminal do Foro Regional de São Miguel Paulista,07/07/2005 00:00:00,"12A
+                        8M 7D",13A 1M 3D,28A 9M 5D,TRUE
+13,Xisto Albarelli Rangel Neto,Entrância Especial,2ª Vara Criminal do Foro Regional de São Miguel Paulista,04/08/2005 00:00:00,"12A
+                        7M 10D",12A 3M 6D,27A 6M 18D,TRUE
+15,José Zoéga Coelho,Entrância Especial,Vara do Juizado Especial Criminal - Capital,26/10/2005 23:00:00,"12A
+                        4M 15D",12A 2M 21D,29A 2M 12D,TRUE
+19,Antonio Benedito Morello,Entrancia Final,1ª Vara Criminal da Comarca de São Carlos,11/05/2006 00:00:00,"11A
+                        10M 3D",22A 1M 24D,38A 4M 1D,TRUE
+21,Antonio Roberto Sylla,Entrancia Final,1ª Vara Criminal da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",17A 8M 5D,35A 0M 7D,TRUE
+26,Junio Cláudio Campos Furtado,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Ribeirão Preto,11/05/2006 00:00:00,"11A
+                        10M 3D",14A 10M 21D,34A 2M 8D,TRUE
+29,Luiz Carlos de Carvalho Moreira,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",16A 3M 2D,32A 4M 10D,TRUE
+32,Décio Divanir Mazeto,Entrancia Final,3ª Vara Criminal da Comarca de Marília,11/05/2006 00:00:00,"11A
+                        10M 3D",14A 5M 13D,30A 9M 27D,TRUE
+38,Elizabeth Lopes de Freitas,Entrancia Final,4ª Vara Criminal da Comarca de Santos,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 6M 19D,29A 1M 25D,TRUE
+40,Benedito Antonio Okuno,Entrancia Final,1ª Vara Criminal da Comarca de Bauru,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 4M 26D,28A 9M 5D,TRUE
+42,Mauricio Garibe,Entrancia Final,1ª Vara Criminal da Comarca de Jundiaí,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 7M 4D,28A 9M 5D,TRUE
+48,Sandra Regina Nostre Marques,Entrancia Final,1ª Vara Criminal da Comarca de São Bernardo do Campo,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 10M 17D,28A 4M 13D,TRUE
+50,Jayme Walmer de Freitas,Entrancia Final,1ª Vara Criminal da Comarca de Sorocaba,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 2M 7D,27A 11M 19D,TRUE
+51,Maria da Conceição Pinto Vendeiro,Entrancia Final,3ª Vara Criminal da Comarca de Diadema,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,27A 6M 18D,TRUE
+55,Luis Augusto Freire Teotonio,Entrancia Final,1ª Vara do Júri e das Execuções Criminais da Comarca de Ribeirão Preto,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,27A 6M 18D,TRUE
+64,Freddy Lourenço Ruiz Costa,Entrancia Final,1ª Vara Criminal da Comarca de Mogi das Cruzes,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 9M 6D,27A 2M 3D,TRUE
+72,Heitor Donizete de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Diadema,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 8M 9D,27A 2M 3D,TRUE
+75,Érika Soares de Azevedo Mascarenhas,Entrancia Final,Juíza de Direito Titular II da 6ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,27A 2M 3D,TRUE
+76,Marcos Fleury Silveira de Alvarenga,Entrancia Final,Juiz de Direito Titular II da 12ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,27A 2M 3D,TRUE
+78,Klaus Marouelli Arroyo,Entrancia Final,Juiz de Direito Titular II da 23ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 6M 7D,27A 2M 3D,TRUE
+81,Maria de Fátima dos Santos Gomes Muniz de Oliveira,Entrancia Final,Juíza de Direito Titular II da 29ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 8M 9D,27A 2M 3D,TRUE
+82,Marcos Alexandre Coelho Zilli,Entrancia Final,Juiz de Direito Titular II da 15ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 7M 4D,27A 2M 3D,TRUE
+83,Luciano Franchi Lemes,Entrancia Final,1ª Vara Criminal da Comarca de Franca,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,27A 2M 3D,TRUE
+88,Benedito Roberto Garcia Pozzer,Entrancia Final,Juiz de Direito Titular II da 7ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+92,Nelson Becker,Entrancia Final,Juiz de Direito Titular II da 5ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+94,José Eduardo Marcondes Machado,Entrancia Final,Vara das Execuções Criminais e da Infância e Juventude da Comarca de Itu,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+99,Hugo Leandro Maranzano,Entrancia Final,Vara do Juizado Especial Criminal e de Violência Doméstica e Familiar Contra a Mulher da Comarca de Sorocaba,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,26A 3M 23D,TRUE
+106,João Pedro Bressane de Paula Barbosa,Entrancia Final,2ª Vara Criminal da Comarca de Presidente Prudente,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 0M 27D,26A 3M 23D,TRUE
+110,André Carvalho e Silva de Almeida,Entrancia Final,Juiz de Direito Titular II da 30ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 2M 7D,26A 3M 23D,TRUE
+114,Edison Tetsuzo Namba,Entrancia Final,Juiz de Direito Titular II da 31ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",12A 4M 27D,26A 3M 23D,TRUE
+118,Ana Lucia Fernandes Queiroga,Entrancia Final,16ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,25A 8M 20D,TRUE
+122,Maria dos Anjos Garcia de Alcaraz da Fonseca,Entrancia Final,Juíza de Direito Titular II da 22ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 6M 21D,25A 8M 20D,TRUE
+123,Marco Antonio Martin Vargas,Entrancia Final,Juiz de Direito Titular II da 32ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+126,Ulysses de Oliveira Gonçalves Junior,Entrancia Final,1ª Vara das Execuções Criminais - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+127,José Ricardo Santini Antonietto,Entrancia Final,1ª Vara Criminal do Foro Regional de Penha de França,11/05/2006 00:00:00,"11A
+                        10M 3D",11A 11M 5D,25A 8M 20D,TRUE
+134,Fátima Vilas Boas Cruz,Entrancia Final,Juíza de Direito Titular II da 17ª Vara Criminal - Capital,11/05/2006 00:00:00,"11A
+                        10M 3D",10A 11M 3D,25A 8M 20D,TRUE
+138,Emerson Sumariva Júnior,Entrancia Final,3ª Vara Criminal da Comarca de Araçatuba,13/07/2006 00:00:00,"11A
+                        8M 1D",8A 7M 2D,26A 3M 23D,TRUE
+141,Enio Móz Godoy,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Bauru,31/08/2006 00:00:00,"11A
+                        6M 14D",8A 0M 18D,24A 7M 26D,TRUE
+149,Guaracy Sibille Leite,Entrancia Final,1ª Vara Criminal da Comarca de Ribeirão Preto,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,28A 4M 13D,TRUE
+151,Teresa de Almeida Ribeiro Magalhães,Entrancia Final,18ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,27A 11M 19D,TRUE
+155,Aparecida Angélica Correia,Entrancia Final,1ª Vara Criminal do Foro Regional de Pinheiros,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 6M 19D,27A 6M 18D,TRUE
+159,Leyla Maria da Silva Lacaz,Entrancia Final,14ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,27A 2M 3D,TRUE
+160,José Romano Lucarini,Entrancia Final,1ª Vara Criminal da Comarca de Santos,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 11M 23D,27A 2M 3D,TRUE
+167,Antonio Carlos de Campos Machado Júnior,Entrancia Final,Juiz de Direito Titular II da 19ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,26A 3M 23D,TRUE
+170,Flavio Fenoglio Guimarães,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de São José dos Campos,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 11M 23D,25A 8M 20D,TRUE
+173,Olavo Paula Leite Rocha,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Sumaré,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,25A 8M 20D,TRUE
+191,Vicente Luiz Adua,Entrancia Final,Juiz de Direito Titular II da 14ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,24A 7M 26D,TRUE
+197,José Roberto Cabral Longaretti,Entrancia Final,Juiz de Direito Titular II da 13ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,24A 7M 26D,TRUE
+199,Isaura Cristina Barreira,Entrancia Final,30ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 3M 13D,24A 7M 26D,TRUE
+204,Jefferson Barbin Torelli,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Jundiaí",30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,24A 7M 26D,TRUE
+209,Rodrigo Capez,Entrancia Final,Juiz de Direito Titular II da 11ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",11A 3M 13D,24A 7M 26D,TRUE
+213,Renata William Rached Catelli,Entrancia Final,21ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 7M 5D,24A 7M 26D,TRUE
+218,Marcello Ovidio Lopes Guimarães,Entrancia Final,Juiz de Direito Titular II da 18ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 1M 9D,24A 7M 4D,TRUE
+228,Waldir Calciolari,Entrancia Final,Juiz de Direito Titular II da 25ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 5M 23D,23A 11M 14D,TRUE
+237,Antonio Maria Patiño Zorz,Entrancia Final,29ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",10A 8M 9D,23A 11M 14D,TRUE
+241,Patricia Alvares Cruz,Entrancia Final,Juíza de Direito Titular II da 9ª Vara Criminal - Capital,30/11/2006 00:00:00,"11A
+                        3M 14D",9A 11M 28D,23A 1M 16D,TRUE
+255,Caio Ventosa Chaves,Entrancia Final,4ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 11M 19D,29A 2M 12D,TRUE
+261,Abelardo de Azevedo Silveira,Entrancia Final,2ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,27A 6M 18D,TRUE
+262,Orlando Brossi Junior,Entrancia Final,3ª Vara Criminal da Comarca de Franca,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,27A 6M 18D,TRUE
+263,Maria Letícia Pozzi Buassi,Entrancia Final,4ª Vara Criminal da Comarca de São José do Rio Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 11M 19D,27A 6M 18D,TRUE
+264,Wellington José Prates,Entrancia Final,2ª Vara Criminal da Comarca de Araçatuba,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 4M 16D,27A 2M 3D,TRUE
+267,Claudio do Prado Amaral,Entrancia Final,2ª Vara Criminal da Comarca de São Carlos,26/04/2007 00:00:00,"10A
+                        10M 16D",12A 1M 17D,27A 2M 3D,TRUE
+273,Sueli Zeraik de Oliveira Armani,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Taubaté,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 6M 13D,25A 8M 20D,TRUE
+274,Lúcio Alberto Eneas da Silva Ferreira,Entrancia Final,4ª Vara Criminal da Comarca de Ribeirão Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,25A 8M 20D,TRUE
+278,Antonio de Oliveira Angrisani Filho,Entrancia Final,27ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,24A 7M 26D,TRUE
+279,Jose Fernando Azevedo Minhoto,Entrancia Final,4ª Vara Criminal da Comarca de Osasco,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 8M 13D,24A 7M 26D,TRUE
+283,Cesar Luís de Souza Pereira,Entrancia Final,4ª Vara Criminal da Comarca de Sorocaba,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,24A 7M 26D,TRUE
+285,Carlos Alberto Corrêa de Almeida Oliveira,Entrancia Final,25ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 6M 13D,24A 7M 26D,TRUE
+290,Flavio de Oliveira Cesar,Entrancia Final,1ª Vara Criminal da Comarca de Taubaté,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,24A 7M 26D,TRUE
+295,Patrícia Helena Hehl Forjaz de Toledo,Entrancia Final,2ª Vara Criminal da Comarca de Diadema,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,23A 11M 14D,TRUE
+296,Marcelo Matias Pereira,Entrancia Final,Juiz de Direito Titular II da 10ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,23A 11M 14D,TRUE
+297,Rogério Danna Chaib,Entrancia Final,1ª Vara Criminal da Comarca de Limeira,26/04/2007 00:00:00,"10A
+                        10M 16D",8A 4M 16D,23A 11M 14D,TRUE
+299,Ilona Marcia Bittencourt Cruz,Entrancia Final,5ª Vara Criminal da Comarca de Ribeirão Preto,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 1M 14D,23A 11M 14D,TRUE
+306,Maria Cecília Leone,Entrancia Final,10ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 5M 30D,23A 1M 16D,TRUE
+308,Daniela Martins de Castro Mariani Cavallanti,Entrancia Final,2ª Vara Criminal - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",10A 1M 7D,23A 1M 16D,TRUE
+313,Claudia Maria Carbonari de Faria,Entrancia Final,"Vara do Júri, das Execuções Criminais, da Infância e da Juventude e do Idoso da Comarca de Diadema",26/04/2007 00:00:00,"10A
+                        10M 16D",8A 10M 1D,22A 2M 14D,TRUE
+320,Paulo Eduardo de Almeida Sorci,Entrancia Final,5ª Vara das Execuções Criminais - Capital,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 4M 15D,22A 2M 14D,TRUE
+322,Érika Christina de Lacerda Brandão Raskin,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        10M 16D",9A 2M 14D,22A 2M 14D,TRUE
+330,José Guilherme Di Rienzo Marrey,Entrancia Final,6ª Vara Criminal da Comarca de Campinas,26/04/2007 00:00:00,"10A
+                        9M 16D",9A 5M 30D,22A 1M 14D,TRUE
+334,Emerson Ueocka,Entrancia Final,3ª Vara Criminal da Comarca de Presidente Prudente,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,30A 9M 27D,TRUE
+336,Jane Rute Nalini Anderson,Entrancia Final,3ª Vara Criminal da Comarca de Jundiaí,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,29A 2M 12D,TRUE
+344,Izabel Irlanda Castro Correia Araújo,Entrancia Final,15ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,27A 6M 18D,TRUE
+345,Eugênio Augusto Clementi Júnior,Entrancia Final,2ª Vara Criminal da Comarca de Americana,19/07/2007 00:00:00,"10A
+                        7M 23D",11A 1M 12D,27A 6M 18D,TRUE
+346,André Carlos de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Americana,19/07/2007 00:00:00,"10A
+                        7M 23D",13A 7M 5D,27A 6M 18D,TRUE
+347,Guacy Sibille Leite,Entrancia Final,3ª Vara Criminal da Comarca de Ribeirão Preto,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,27A 6M 18D,TRUE
+348,Silvana Amneris Rôlo Pereira Borges,Entrancia Final,6ª Vara Criminal da Comarca de Santos,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 1M 2D,27A 2M 3D,TRUE
+352,Andréa Barreira Brandão,Entrancia Final,3ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 4M 7D,25A 8M 20D,TRUE
+354,Isabel Cristina Alonso Bezerra dos Santos,Entrancia Final,2ª Vara do Júri e das Execuções Criminais da Comarca de Ribeirão Preto,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 4M 1D,24A 7M 26D,TRUE
+355,Cristina Elena Varela Werlang,Entrancia Final,1ª Vara Criminal do Foro Regional do Tatuapé,19/07/2007 00:00:00,"10A
+                        7M 23D",11A 7M 12D,24A 7M 26D,TRUE
+360,Ana Lucia Siqueira de Figueiredo,Entrancia Final,1ª Vara Criminal do Foro Regional de Santo Amaro,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,24A 7M 26D,TRUE
+362,André Luiz de Macedo,Entrancia Final,3ª Vara Criminal da Comarca de São Carlos,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,24A 7M 26D,TRUE
+363,Luciane Jabur Mouchaloite Figueiredo,Entrancia Final,Juíza de Direito Titular II da 21ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 7M 8D,24A 7M 26D,TRUE
+368,Cynthia Torres Cristofaro,Entrancia Final,23ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",8A 2M 20D,23A 11M 14D,TRUE
+369,Patrícia Suárez Pae Kim,Entrancia Final,1ª Vara Criminal da Comarca de Campinas,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 4M 3D,23A 11M 14D,TRUE
+372,José Rodrigues Arimatéa,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Franca",19/07/2007 00:00:00,"10A
+                        7M 23D",7A 10M 10D,23A 1M 16D,TRUE
+376,ROGERIO ALCAZAR,Entrancia Final,4ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 2M 12D,23A 1M 16D,TRUE
+388,Nidea Rita Coltro Sorci,Entrancia Final,2ª Vara das Execuções Criminais - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",9A 5M 7D,22A 2M 14D,TRUE
+393,José Loureiro Sobrinho,Entrancia Final,1ª Vara Criminal da Comarca de São José dos Campos,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 1M 4D,21A 0M 0D,TRUE
+401,Luís Guilherme Vaz de Lima Cardinale,Entrancia Final,2ª Vara Criminal da Comarca de São Vicente,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 5M 9D,20A 3M 21D,TRUE
+405,Luiz Augusto Barrichello Neto,Entrancia Final,2ª Vara Criminal da Comarca de Limeira,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 8M 28D,20A 3M 21D,TRUE
+408,Cecilia Pinheiro da Fonseca,Entrancia Final,3ª Vara Criminal - Capital,19/07/2007 00:00:00,"10A
+                        7M 23D",7A 7M 3D,20A 3M 21D,TRUE
+418,Durval José de Moraes Leme,Entrancia Final,1ª Vara Criminal da Comarca de Rio Claro,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,29A 2M 12D,TRUE
+420,Walter Luiz Esteves de Azevedo,Entrancia Final,5ª Vara Criminal da Comarca de Santos,27/09/2007 00:00:00,"10A
+                        5M 15D",3A 11M 4D,28A 9M 5D,TRUE
+421,Zurich Oliva Costa Netto,Entrancia Final,Vara das Execuções Criminais da Comarca de São José do Rio Preto,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 3M 27D,26A 3M 23D,TRUE
+430,Edegar de Sousa Castro,Entrancia Final,3ª Vara Criminal da Comarca de São Bernardo do Campo,27/09/2007 00:00:00,"10A
+                        5M 15D",5A 10M 19D,23A 1M 16D,TRUE
+433,Teresa Cristina Cabral Santana,Entrancia Final,2ª Vara Criminal da Comarca de Santo André,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,22A 2M 14D,TRUE
+440,Fernanda Galizia Noriega,Entrancia Final,28ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",8A 3M 10D,21A 0M 0D,TRUE
+448,Helio Narvaez,Entrancia Final,Juiz de Direito Titular II da 8ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 6M 12D,19A 8M 14D,TRUE
+449,Clávio Kenji Adati,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Guarulhos,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 4M 24D,19A 8M 14D,TRUE
+455,Maria Domitila Prado Manssur,Entrancia Final,Juíza de Direito Titular II da 16ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",7A 6M 11D,19A 8M 14D,TRUE
+457,Roberto Brandão Galvão Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itapetininga,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 4M 24D,19A 8M 14D,TRUE
+466,Carlos Gutemberg de Santis Cunha,Entrancia Final,4ª Vara Criminal da Comarca de São José dos Campos,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 6M 0D,19A 4M 5D,TRUE
+467,Danielle Martins Cardoso,Entrancia Final,3ª Vara Criminal da Comarca de Osasco,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 6M 0D,19A 4M 5D,TRUE
+468,Alexandre Betini,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Santos,27/09/2007 00:00:00,"10A
+                        5M 15D",4A 0M 16D,19A 4M 5D,TRUE
+473,Fábio Aguiar Munhoz Soares,Entrancia Final,17ª Vara Criminal - Capital,27/09/2007 00:00:00,"10A
+                        5M 15D",6A 2M 30D,19A 4M 5D,TRUE
+477,Rodrigo Pares Andreucci,Entrancia Final,3ª Vara Criminal da Comarca de Piracicaba,27/09/2007 00:00:00,"10A
+                        5M 15D",3A 9M 16D,18A 11M 16D,TRUE
+486,Clovis Elias Thamê,Entrancia Final,2ª Vara Criminal da Comarca de Jundiaí,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,30A 9M 27D,TRUE
+488,Adriana Albergueti Albano,Entrancia Final,1ª Vara Criminal da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 11M 13D,25A 8M 20D,TRUE
+490,Silvia Estela Gigena,Entrancia Final,2ª Vara Criminal da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 7M 14D,24A 7M 26D,TRUE
+493,José Roberto Bernardi Liberal,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Araraquara,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 5M 26D,23A 11M 14D,TRUE
+515,André Rossi,Entrancia Final,2ª Vara Criminal da Comarca de Guarujá,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 8M 18D,19A 4M 5D,TRUE
+517,Milton de Oliveira Sampaio Neto,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de São José dos Campos,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 8M 18D,19A 4M 5D,TRUE
+518,Alessandro Viana Vieira de Paula,Entrancia Final,Vara das Execuções Criminais da Comarca de Itapetininga,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 7M 14D,19A 4M 5D,TRUE
+522,André Gustavo Cividanes Furlan,Entrancia Final,2ª Vara Criminal da Comarca de São Bernardo do Campo,29/11/2007 00:00:00,"10A
+                        3M 14D",4A 8M 2D,19A 4M 5D,TRUE
+523,Davi Marcio Prado Silva,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Bauru,29/11/2007 00:00:00,"10A
+                        3M 14D",3A 4M 28D,19A 4M 5D,TRUE
+529,Maria Lucinda da Costa,Entrancia Final,1ª Vara Criminal da Comarca de Santo André,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,18A 11M 16D,TRUE
+531,Fernando Luiz Batalha Navajas,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itaquaquecetuba,29/11/2007 00:00:00,"10A
+                        3M 14D",2A 9M 5D,18A 11M 16D,TRUE
+541,Carlos José Zulian,Entrancia Final,1ª Vara Criminal - Capital,10/04/2008 00:00:00,"9A
+                        11M 4D",9A 4M 0D,24A 7M 26D,TRUE
+544,Andrea Ribeiro Borges,Entrancia Final,1ª Vara Criminal e de Violência Doméstica e Familiar contra a Mulher da Comarca de Itu,10/04/2008 00:00:00,"9A
+                        11M 4D",9A 4M 0D,23A 1M 16D,TRUE
+545,João Carlos Germano,Entrancia Final,3ª Vara Criminal da Comarca de Taubaté,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 4M 30D,23A 1M 16D,TRUE
+550,Fernanda Souza Pereira de Lima Carvalho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de São Vicente,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 0M 10D,20A 3M 21D,TRUE
+563,Beatriz Afonso Pascoal Queiroz,Entrancia Final,3ª Vara Criminal da Comarca de São José dos Campos,10/04/2008 00:00:00,"9A
+                        11M 4D",3A 3M 25D,18A 11M 16D,TRUE
+565,Lucas Tambor Bueno,Entrancia Final,4ª Vara Criminal da Comarca de Santo André,10/04/2008 00:00:00,"9A
+                        11M 4D",2A 10M 11D,18A 6M 11D,TRUE
+567,Renata Biagioni,Entrancia Final,Vara das Execuções Criminais da Comarca de Marília,10/04/2008 00:00:00,"9A
+                        11M 4D",2A 9M 11D,18A 6M 11D,TRUE
+571,Cibele Frigi Rodrigues Rizzi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Rio Claro,03/07/2008 00:00:00,"9A
+                        8M 11D",2A 9M 18D,17A 5M 14D,TRUE
+572,Daniela Mie Murata,Entrancia Final,3ª Vara Criminal da Comarca de Limeira,03/07/2008 00:00:00,"9A
+                        8M 11D",2A 10M 22D,17A 5M 14D,TRUE
+581,Carla dos Santos Fullin,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Campinas,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 2M 26D,20A 3M 21D,TRUE
+582,Atis de Araujo Oliveira,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Presidente Prudente,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,19A 8M 14D,TRUE
+583,Antonio Carlos Pinheiro de Freitas,Entrancia Final,1ª Vara Criminal da Comarca de Catanduva,19/02/2009 00:00:00,"9A
+                        0M 23D",5A 5M 8D,19A 4M 5D,TRUE
+584,Vinicius de Toledo Piza Peluso,Entrancia Final,1ª Vara Criminal da Comarca de Praia Grande,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 10M 19D,19A 4M 5D,TRUE
+586,Daniele Mendes de Melo,Entrancia Final,2ª Vara Criminal da Comarca de Bauru,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 2M 26D,19A 4M 5D,TRUE
+587,Telma Berkelmans dos Santos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Barueri,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,19A 4M 5D,TRUE
+589,João Luciano Sales do Nascimento,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Praia Grande,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,18A 11M 16D,TRUE
+596,Gerdinaldo Quichaba Costa,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Americana",19/02/2009 00:00:00,"9A
+                        0M 23D",3A 6M 8D,14A 9M 26D,TRUE
+597,Ricardo Tseng Kuei Hsu,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Suzano,19/02/2009 00:00:00,"9A
+                        0M 23D",3A 9M 22D,14A 9M 26D,TRUE
+601,Sergio Araújo Gomes,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Campinas,03/09/2009 00:00:00,"8A
+                        6M 11D",5A 4M 19D,27A 2M 3D,TRUE
+603,José Wagner Parrão Molina,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Presidente Prudente,03/09/2009 00:00:00,"8A
+                        6M 11D",4A 0M 23D,24A 7M 26D,TRUE
+607,Gisele de Castro Catapano,Entrancia Final,1ª Vara Criminal da Comarca de Osasco,03/09/2009 00:00:00,"8A
+                        6M 11D",6A 5M 7D,23A 1M 16D,TRUE
+616,Max Gouvea Gerth,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Taubaté,03/09/2009 00:00:00,"8A
+                        6M 11D",4A 0M 23D,18A 11M 16D,TRUE
+621,Marcos Augusto Barbosa dos Reis,Entrancia Final,1ª Vara Criminal da Comarca de Jacareí,03/09/2009 00:00:00,"8A
+                        6M 11D",3A 9M 10D,17A 5M 14D,TRUE
+622,Adeilson Ferreira Negri,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Araçatuba,03/09/2009 00:00:00,"8A
+                        6M 11D",3A 10M 7D,14A 9M 26D,TRUE
+627,Ettore Geraldo Avolio,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Piracicaba,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,24A 7M 26D,TRUE
+631,Sylvio Ribeiro de Souza Neto,Entrancia Final,2ª Vara Criminal da Comarca de Ribeirão Preto,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,24A 7M 26D,TRUE
+634,Ana Claudia Madeira de Oliveira,Entrancia Final,1ª Vara Criminal da Comarca de Piracicaba,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 4M 20D,23A 1M 16D,TRUE
+635,Wania Regina Gonçalves da Cunha,Entrancia Final,2ª Vara das Execuções Criminais da Comarca de Taubaté,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 2M 11D,22A 2M 14D,TRUE
+636,Nelson Augusto Bernardes de Souza,Entrancia Final,3ª Vara Criminal da Comarca de Campinas,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 5M 24D,22A 2M 14D,TRUE
+637,Sérgio Lazzareschi de Mesquita,Entrancia Final,3ª Vara Criminal da Comarca de Rio Claro,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 2M 11D,22A 2M 14D,TRUE
+638,Elia Kinosita Bulman,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Osasco,04/02/2011 00:00:00,"7A
+                        1M 10D",8A 1M 30D,20A 3M 21D,TRUE
+641,Alessandra Regina Ramos Rodrigues Bisognin,Entrancia Final,2ª Vara Criminal do Foro Regional de Santo Amaro,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 7M 12D,19A 8M 14D,TRUE
+645,Maria de Fatima Guimarães Pimentel de Lima,Entrancia Final,1ª Vara Criminal da Comarca de Guarulhos,04/02/2011 00:00:00,"7A
+                        1M 10D",5A 3M 8D,19A 8M 14D,TRUE
+649,Márcio Lucio Falavigna Sauandag,Entrancia Final,22ª Vara Criminal - Capital,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 7M 12D,19A 4M 5D,TRUE
+656,Tânia Magalhães Avelar Moreira da Silveira,Entrancia Final,1ª Vara Criminal do Foro Regional do Jabaquara,04/02/2011 00:00:00,"7A
+                        1M 10D",7A 8M 20D,18A 11M 16D,TRUE
+665,Walter Ariette dos Santos,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e Juventude da Comarca de Rio Claro",05/05/2011 00:00:00,"6A
+                        10M 9D",18A 10M 3D,28A 4M 13D,TRUE
+669,Sonia Nazaré Fernandes Fraga,Entrancia Final,Juíza de Direito Titular II da 24ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",12A 4M 25D,22A 2M 14D,TRUE
+673,Augusto Antonini,Entrancia Final,Juiz de Direito Titular II da 28ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",6A 2M 11D,20A 3M 21D,TRUE
+674,Flavia de Cassia Gonzales de Oliveira,Entrancia Final,2ª Vara Criminal da Comarca de Piracicaba,05/05/2011 00:00:00,"6A
+                        10M 9D",11A 4M 19D,20A 3M 21D,TRUE
+685,Margarete Pellizari,Entrancia Final,2ª Vara Criminal da Comarca de Sorocaba,05/05/2011 00:00:00,"6A
+                        10M 9D",11A 2M 25D,19A 4M 5D,TRUE
+689,Luiz Guilherme Cursino de Moura Santos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Pindamonhangaba,05/05/2011 00:00:00,"6A
+                        10M 9D",5A 5M 11D,19A 4M 5D,TRUE
+694,Eva Lôbo Chaib Dias Jorge,Entrancia Final,12ª Vara Criminal - Capital,05/05/2011 00:00:00,"6A
+                        10M 9D",6A 2M 11D,18A 11M 16D,TRUE
+708,Alceu Corrêa Junior,Entrancia Final,2ª Vara Criminal da Comarca de Catanduva,04/08/2011 00:00:00,"6A
+                        7M 10D",12A 4M 17D,22A 2M 14D,TRUE
+709,José Eduardo da Costa,Entrancia Final,1ª Vara Criminal da Comarca de Indaiatuba,04/08/2011 00:00:00,"6A
+                        7M 10D",7A 9M 12D,21A 0M 0D,TRUE
+719,Marise Terra Pinto Bourgogne de Almeida,Entrancia Final,5ª Vara Criminal da Comarca de São José dos Campos,04/08/2011 00:00:00,"6A
+                        7M 10D",7A 10M 24D,19A 4M 5D,TRUE
+720,Marcus Cunha Rodrigues,Entrancia Final,2ª Vara Criminal da Comarca de Sumaré,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 8M 11D,18A 11M 16D,TRUE
+722,Milena Dias,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Santo André,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 5M 11D,18A 11M 16D,TRUE
+728,Caio Ferraz de Camargo Lopasso,Entrancia Final,2ª Vara Criminal da Comarca de Guarulhos,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 0M 0D,17A 5M 14D,TRUE
+730,Renata Sanchez Guidugli Gusmão,Entrancia Final,Vara do Juizado Especial Criminal da Comarca de Santos,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 8M 11D,17A 5M 14D,TRUE
+734,Marcelo Vieira,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Limeira,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 10M 20D,14A 9M 26D,TRUE
+736,Marcos Alexandre Santos Ambrogi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mauá,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 9M 8D,14A 9M 26D,TRUE
+737,Fernando Martinho de Barros Penteado,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de São Bernardo do Campo,04/08/2011 00:00:00,"6A
+                        7M 10D",6A 2M 5D,14A 9M 26D,TRUE
+739,Fernando Augusto Andrade Conceição,Entrancia Final,2ª Vara Criminal da Comarca de Suzano,04/08/2011 00:00:00,"6A
+                        7M 10D",5A 9M 8D,13A 8M 24D,TRUE
+744,Richard Francisco Chequini,Entrancia Final,Juiz de Direito Titular II da 20ª Vara Criminal - Capital,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,20A 3M 21D,TRUE
+749,Fernanda Teixeira Salviano da Rocha,Entrancia Final,2ª Vara Criminal da Comarca de Taubaté,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,19A 8M 14D,TRUE
+751,Suzana Jorge de Mattia Ihara,Entrancia Final,1ª Vara Criminal do Foro Regional de Santana,27/10/2011 00:00:00,"6A
+                        4M 15D",6A 2M 16D,19A 4M 5D,TRUE
+756,Valdir Ricardo Lima Pompêo Marinho,Entrancia Final,2ª Vara Criminal da Comarca de Santos,27/10/2011 00:00:00,"6A
+                        4M 15D",5A 11M 3D,18A 11M 16D,TRUE
+762,Hélio Villaça Furukawa,Entrancia Final,2ª Vara Criminal da Comarca de Itu,27/10/2011 00:00:00,"6A
+                        4M 15D",5A 5M 9D,14A 9M 26D,TRUE
+768,André Luís Bastos,Entrancia Final,1ª Vara Criminal da Comarca de Itapetininga,29/03/2012 00:00:00,"5A
+                        11M 14D",5A 3M 30D,19A 4M 5D,TRUE
+774,Glaucio Roberto Brittes de Araujo,Entrancia Final,4ª Vara Criminal da Comarca de Guarulhos,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 6M 14D,18A 11M 16D,TRUE
+775,Jarbas Luiz dos Santos,Entrancia Final,3ª Vara Criminal da Comarca de Santo André,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 9M 30D,18A 11M 16D,TRUE
+783,Maria Fernanda Belli,Entrancia Final,Juíza de Direito Titular II da 1ª Vara Criminal - Capital,29/03/2012 00:00:00,"5A
+                        11M 14D",6A 11M 1D,14A 9M 26D,TRUE
+788,Hélio Benedini Ravagnani,Entrancia Final,2ª Vara Criminal da Comarca de Sertãozinho,29/03/2012 00:00:00,"5A
+                        11M 14D",5A 10M 11D,13A 8M 24D,TRUE
+790,Cláudio Augusto Saad Abujamra,Entrancia Final,3ª Vara Criminal da Comarca de Bauru,11/06/2012 00:00:00,"5A
+                        9M 3D",13A 6M 1D,23A 11M 14D,TRUE
+794,José Tadeu Lopes de Oliveira,Entrancia Final,3ª Vara Criminal da Comarca de Guarulhos,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 7M 15D,20A 3M 21D,TRUE
+798,Emerson Tadeu Pires de Camargo,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Sorocaba,11/06/2012 00:00:00,"5A
+                        9M 3D",8A 6M 0D,19A 4M 5D,TRUE
+799,Aristóteles de Alencar Sampaio,Entrancia Final,1ª Vara Criminal da Comarca de Sumaré,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 0M 24D,19A 4M 5D,TRUE
+800,Luciana Piovesan,Entrancia Final,Juíza de Direito Titular II da 27ª Vara Criminal - Capital,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 10M 0D,19A 4M 5D,TRUE
+801,Luiz Antonio Cunha,Entrancia Final,Vara do Júri e das Execuções Criminais da Comarca de Piracicaba,11/06/2012 00:00:00,"5A
+                        9M 3D",9A 2M 22D,18A 11M 16D,TRUE
+802,Carlos Eduardo Lora Franco,Entrancia Final,Juiz de Direito Titular II da 3ª Vara Criminal - Capital,11/06/2012 00:00:00,"5A
+                        9M 3D",6A 8M 27D,18A 11M 16D,TRUE
+809,Italo Morelle,Entrancia Final,11ª Vara Criminal - Capital,13/12/2012 00:00:00,"5A
+                        3M 1D",12A 8M 27D,24A 7M 26D,TRUE
+813,Luis Guilherme Pião,Entrancia Final,2ª Vara Criminal da Comarca de São José do Rio Preto,13/12/2012 00:00:00,"5A
+                        3M 1D",7A 0M 19D,18A 6M 11D,TRUE
+821,Priscila Devechi Ferraz Maia,Entrancia Final,5ª Vara Criminal da Comarca de Guarulhos,13/12/2012 00:00:00,"5A
+                        3M 1D",6A 5M 14D,13A 8M 24D,TRUE
+832,Erica Regina Colmenero Coimbra,Entrancia Final,Juíza de Direito Titular II da 2ª Vara Criminal - Capital,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 11M 28D,19A 4M 5D,TRUE
+835,Maria Paula Cassone Rossi,Entrancia Final,9ª Vara Criminal - Capital,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 16D,18A 11M 16D,TRUE
+836,Luciana Cassiano Zamperlini Cochito,Entrancia Final,1ª Vara Criminal da Comarca de São José do Rio Preto,27/06/2013 00:00:00,"4A
+                        8M 15D",9A 9M 16D,18A 11M 16D,TRUE
+842,Rodrigo Barbosa Sales,Entrancia Final,3ª Vara Criminal da Comarca de São Vicente,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 23D,14A 9M 26D,TRUE
+843,Alice Galhano Pereira da Silva,Entrancia Final,Vara Criminal e do Juizado Especial Criminal do Foro Regional VII - Itaquera,27/06/2013 00:00:00,"4A
+                        8M 15D",7A 10M 23D,14A 9M 26D,TRUE
+844,Paulo Roberto Cichitosi,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Jacareí,27/06/2013 00:00:00,"4A
+                        8M 15D",5A 11M 8D,14A 9M 26D,TRUE
+848,Cyntia Menezes de Paula Straforini,Entrancia Final,1ª Vara Criminal da Comarca de Barueri,27/06/2013 00:00:00,"4A
+                        8M 15D",6A 2M 1D,13A 8M 24D,TRUE
+849,Brenno Gimenes Cesca,Entrancia Final,2ª Vara Criminal da Comarca de São José dos Campos,27/06/2013 00:00:00,"4A
+                        8M 15D",6A 2M 1D,13A 8M 24D,TRUE
+854,Henrique de Castilho Jacinto,Entrancia Final,1ª Vara das Execuções Criminais da Comarca de Araçatuba,27/06/2013 00:00:00,"4A
+                        8M 15D",5A 11M 8D,11A 6M 25D,TRUE
+856,Cynthia Maria Sabino Bezerra Camurri,Entrancia Final,8ª Vara Criminal - Capital,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 10M 23D,19A 4M 5D,TRUE
+861,Daniella Camberlingo Querobim,Entrancia Final,3ª Vara Criminal da Comarca de Sorocaba,17/10/2013 00:00:00,"4A
+                        4M 25D",9A 10M 6D,18A 11M 16D,TRUE
+862,Roberta de Toledo Malzoni Domingues,Entrancia Final,Vara Criminal do Foro Regional da Lapa,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 11M 20D,18A 11M 16D,TRUE
+868,Daniela de Carvalho Duarte,Entrancia Final,5ª Vara Criminal da Comarca de São Bernardo do Campo,17/10/2013 00:00:00,"4A
+                        4M 25D",7A 4M 29D,14A 9M 26D,TRUE
+873,Angel Tomas Castroviejo,Entrancia Final,1ª Vara Criminal da Comarca de Sertãozinho,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 0M 20D,13A 8M 24D,TRUE
+880,Alfredo Gehring Cardoso Falchi Fonseca,Entrancia Final,2ª Vara Criminal da Comarca de Itapetininga,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+881,Gabriel Pires de Campos Sormani,Entrancia Final,Vara Criminal da Comarca de Taboão da Serra,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+883,Marco Mattos Sestini,Entrancia Final,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Mauá",17/10/2013 00:00:00,"4A
+                        4M 25D",6A 2M 28D,11A 6M 25D,TRUE
+885,Érica Marcelina Cruz,Entrancia Final,1ª Vara Criminal da Comarca de Suzano,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 0M 20D,11A 6M 25D,TRUE
+888,Marcos Vieira de Morais,Entrancia Final,Juiz de Direito Titular II da 26ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",8A 11M 27D,19A 8M 14D,TRUE
+892,Paulo Eduardo Balbone Costa,Entrancia Final,7ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",9A 9M 0D,18A 11M 16D,TRUE
+895,Fernando Cesar Carrari,Entrancia Final,26ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",9A 3M 9D,17A 5M 14D,TRUE
+896,Fernanda Afonso de Almeida,Entrancia Final,19ª Vara Criminal - Capital,20/02/2014 00:00:00,"4A
+                        0M 22D",8A 9M 23D,14A 9M 26D,TRUE
+906,Fábio Correia Bonini,Entrancia Final,4ª Vara Criminal da Comarca de Bauru,23/10/2014 00:00:00,"3A
+                        4M 19D",14A 5M 19D,19A 8M 14D,TRUE
+909,Maria Priscilla Ernandes Veiga Oliveira,Entrancia Final,4ª Vara Criminal - Capital,23/10/2014 00:00:00,"3A
+                        4M 19D",10A 5M 3D,18A 11M 16D,TRUE
+913,Ana Paula Achoa Mezher,Entrancia Final,2ª Vara Criminal da Comarca de Osasco,23/10/2014 00:00:00,"3A
+                        4M 19D",8A 5M 5D,17A 5M 14D,TRUE
+915,Wendell Lopes Barbosa de Souza,Entrancia Final,13ª Vara Criminal - Capital,23/10/2014 00:00:00,"3A
+                        4M 19D",9A 1M 8D,14A 9M 26D,TRUE
+921,Paulo Ricardo Cursino de Moura,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Carapicuíba,23/10/2014 00:00:00,"3A
+                        4M 19D",6A 10M 24D,11A 6M 25D,TRUE
+934,Giovana Furtado de Oliveira,Entrancia Final,24ª Vara Criminal - Capital,12/02/2015 00:00:00,"3A
+                        1M 2D",9A 10M 12D,18A 11M 16D,TRUE
+936,José Manuel Ferreira Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Votuporanga,12/02/2015 00:00:00,"3A
+                        1M 2D",9A 8M 13D,14A 9M 26D,TRUE
+937,Alexandre das Neves,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Guarujá,12/02/2015 00:00:00,"3A
+                        1M 2D",7A 6M 24D,14A 9M 26D,TRUE
+941,Luiz Augusto Esteves de Mello,Entrancia Final,2ª Vara Criminal da Comarca de Marília,12/02/2015 00:00:00,"3A
+                        1M 2D",7A 4M 16D,11A 6M 25D,TRUE
+949,Luciana Viveiros Corrêa dos Santos Seabra,Entrancia Final,Vara das Execuções Criminais da Comarca de São Vicente,30/04/2015 00:00:00,"2A
+                        10M 14D",8A 11M 12D,14A 9M 26D,TRUE
+950,Gláucia Véspoli dos Santos Ramos de Oliveira,Entrancia Final,5ª Vara Criminal da Comarca de São José do Rio Preto,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 9M 11D,13A 8M 24D,TRUE
+957,Adjair de Andrade Cintra,Entrancia Final,Vara das Execuções Criminais da Comarca de Guarulhos,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 9M 11D,11A 6M 25D,TRUE
+960,Bruno Ronchetti de Castro,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Botucatu,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 5M 1D,11A 6M 25D,TRUE
+962,Antonio Carlos Costa Pessoa Martins,Entrancia Final,2ª Vara Criminal da Comarca de Praia Grande,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 5M 1D,11A 2M 9D,TRUE
+967,Carina Lucheta Carrara,Entrancia Final,1ª Vara Criminal da Comarca de Jaú,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,17A 5M 14D,TRUE
+969,Júlio Alexandre Felix de Faria,Entrancia Final,31ª Vara Criminal - Capital,02/07/2015 00:00:00,"2A
+                        8M 12D",9A 7M 8D,14A 9M 26D,TRUE
+971,Lizandra Maria Lapenna Peçanha,Entrancia Final,4ª Vara Criminal da Comarca de São Bernardo do Campo,02/07/2015 00:00:00,"2A
+                        8M 12D",7A 11M 13D,12A 11M 13D,TRUE
+976,Josias Martins de Almeida Junior,Entrancia Final,1ª Vara Criminal da Comarca de Botucatu,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,11A 6M 25D,TRUE
+977,Davi de Castro Pereira Rio,Entrancia Final,2ª Vara Criminal da Comarca de Mogi das Cruzes,02/07/2015 00:00:00,"2A
+                        8M 12D",6A 0M 28D,10A 6M 18D,TRUE
+979,Gilberto Azevedo de Moraes Costa,Entrancia Final,6ª Vara Criminal da Comarca de Guarulhos,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,10A 6M 18D,TRUE
+980,Tiago Ducatti Lino Machado,Entrancia Final,3ª Vara Criminal da Comarca de Mogi das Cruzes,02/07/2015 00:00:00,"2A
+                        8M 12D",5A 10M 12D,9A 7M 13D,TRUE
+982,Carolina Conti Reed,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Taboão da Serra,13/08/2015 00:00:00,"2A
+                        7M 1D",8A 0M 25D,18A 11M 16D,TRUE
+985,Betiza Marques Soria Prado,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Jaú,13/08/2015 00:00:00,"2A
+                        7M 1D",5A 8M 3D,12A 11M 13D,TRUE
+988,Paulo Antonio Canali Campanella,Entrancia Final,2ª Vara Criminal da Comarca de Mauá,13/08/2015 00:00:00,"2A
+                        7M 1D",4A 3M 8D,9A 7M 13D,TRUE
+992,Cristina Escher,Entrancia Final,Juíza de Direito Titular II da 4ª Vara Criminal - Capital,08/10/2015 00:00:00,"2A
+                        5M 6D",9A 11M 11D,17A 5M 14D,TRUE
+994,Alexandre Torres de Aguiar,Entrancia Final,1ª Vara Criminal da Comarca de São Vicente,08/10/2015 00:00:00,"2A
+                        5M 6D",8A 0M 11D,14A 9M 26D,TRUE
+995,Fabio Calheiros do Nascimento,Entrancia Final,2ª Vara Criminal da Comarca de Barueri,08/10/2015 00:00:00,"2A
+                        5M 6D",6A 1M 18D,12A 11M 13D,TRUE
+996,Edmilson Rosa dos Santos,Entrancia Final,3ª Vara Criminal da Comarca de Guarujá,08/10/2015 00:00:00,"2A
+                        5M 6D",6A 1M 18D,9A 7M 13D,TRUE
+999,Valdívia Ferreira Brandão,Entrancia Final,Vara Criminal do Foro Regional do Ipiranga,17/12/2015 00:00:00,"2A
+                        2M 25D",11A 5M 16D,19A 8M 14D,TRUE
+1001,Lissandra Reis Ceccon,Entrancia Final,5ª Vara Criminal da Comarca de Campinas,17/12/2015 00:00:00,"2A
+                        2M 25D",9A 0M 17D,18A 6M 11D,TRUE
+1002,Eduardo Pereira Santos Junior,Entrancia Final,5ª Vara Criminal - Capital,17/12/2015 00:00:00,"2A
+                        2M 25D",9A 6M 29D,17A 5M 14D,TRUE
+1003,Ewerton Meirelis Gonçalves,Entrancia Final,2ª Vara Criminal da Comarca de Franca,17/12/2015 00:00:00,"2A
+                        2M 25D",10A 0M 23D,14A 9M 26D,TRUE
+1004,Carla de Oliveira Pinto Ferrari,Entrancia Final,20ª Vara Criminal - Capital,17/12/2015 00:00:00,"2A
+                        2M 25D",10A 8M 17D,14A 9M 26D,TRUE
+1005,Caio Cesar Ginez Almeida Bueno,Entrancia Final,2ª Vara Criminal da Comarca de Rio Claro,17/12/2015 00:00:00,"2A
+                        2M 25D",7A 8M 7D,13A 8M 24D,TRUE
+1008,Fernanda Ambrogi,Entrancia Final,2ª Vara Criminal da Comarca de Jacareí,17/12/2015 00:00:00,"2A
+                        2M 25D",7A 8M 7D,11A 2M 9D,TRUE
+1009,Henrique Alves Correa Iatarola,Entrancia Final,2ª Vara Criminal da Comarca de Botucatu,17/12/2015 00:00:00,"2A
+                        2M 25D",6A 3M 27D,10A 6M 18D,TRUE
+1010,Walter Godoy dos Santos Junior,Entrancia Final,1ª Vara Criminal da Comarca de Carapicuíba,17/12/2015 00:00:00,"2A
+                        2M 25D",4A 7M 12D,9A 7M 13D,TRUE
+1029,Jorge Canil,Entrancia Final,1ª Vara Criminal da Comarca de Votuporanga,01/12/2016 00:00:00,"1A
+                        3M 13D",26A 11M 23D,28A 9M 5D,TRUE
+1032,Eduardo Rezende Melo,Entrancia Final,1ª Vara Criminal e de Crimes contra Crianças e Adolescentes da Comarca de São Caetano do Sul,01/12/2016 00:00:00,"1A
+                        3M 13D",11A 11M 15D,26A 3M 23D,TRUE
+1034,Celso Alves Filho,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Registro,01/12/2016 00:00:00,"1A
+                        3M 13D",20A 1M 10D,24A 7M 26D,TRUE
+1039,Adugar Quirino do Nascimento Souza Junior,Entrancia Final,1ª Vara Criminal da Comarca de Assis,01/12/2016 00:00:00,"1A
+                        3M 13D",13A 6M 16D,19A 4M 5D,TRUE
+1040,Elaní Cristina Mendes Marum,Entrancia Final,Vara Criminal da Comarca de São João da Boa Vista,01/12/2016 00:00:00,"1A
+                        3M 13D",12A 7M 16D,19A 4M 5D,TRUE
+1046,Luiz Antonio Dela Marta,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Barretos,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,21A 0M 0D,TRUE
+1052,Fernanda Christina Calazans Lobo e Campos,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mogi Mirim,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,18A 11M 16D,TRUE
+1053,Laércio José Mendes Ferreira Filho,Entrancia Final,2ª Vara Criminal da Comarca de Bragança Paulista,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,18A 6M 11D,TRUE
+1054,Cristina Alves Biagi Fabri,Entrancia Final,2ª Vara Criminal do Foro Regional de Santana,20/04/2017 00:00:00,"0A
+                        10M 22D",11A 5M 24D,18A 6M 11D,TRUE
+1055,Fernanda Martins Perpetuo de Lima Vazquez,Entrancia Final,1ª Vara Criminal da Comarca de Barretos,20/04/2017 00:00:00,"0A
+                        10M 22D",10A 11M 2D,18A 6M 11D,TRUE
+1058,Silvana Cristina Bonifácio Souza,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Assis,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,14A 9M 26D,TRUE
+1062,Juliana Ibrahim Guirao Kapor,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Hortolândia,20/04/2017 00:00:00,"0A
+                        10M 22D",10A 9M 22D,13A 8M 24D,TRUE
+1064,Helen Cristina de Melo Alexandre,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Itanhaém,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,12A 11M 13D,TRUE
+1065,Carolina Cheque de Freitas,Entrancia Final,2ª Vara Criminal da Comarca de Atibaia,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 11M 25D,12A 11M 13D,TRUE
+1066,Mauricio Ferreira Fontes,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Fernandópolis,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 6M 24D,12A 11M 13D,TRUE
+1067,José Augusto Reis de Toledo Leite,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Atibaia,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 9M 1D,12A 11M 13D,TRUE
+1068,Osmar Marcello Junior,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de São João da Boa Vista,20/04/2017 00:00:00,"0A
+                        10M 22D",9A 6M 24D,12A 11M 13D,TRUE
+1070,Sandro Rafael Barbosa Pacheco,Entrancia Final,1ª Vara Criminal da Comarca de Mauá,20/04/2017 00:00:00,"0A
+                        10M 22D",8A 10M 1D,10A 6M 18D,TRUE
+1071,Sérgio Cedano,Entrancia Final,2ª Vara Criminal da Comarca de Itaquaquecetuba,20/04/2017 00:00:00,"0A
+                        10M 22D",7A 4M 10D,8A 8M 27D,TRUE
+1072,Júlio da Silva Branchini,Entrancia Final,Vara Criminal da Comarca de Caraguatatuba,20/04/2017 00:00:00,"0A
+                        10M 22D",5A 5M 24D,8A 8M 27D,TRUE
+1075,Roberto Raineri Simão,Entrancia Final,3ª Vara Criminal da Comarca de Araraquara,03/08/2017 00:00:00,"0A
+                        7M 11D",20A 9M 13D,25A 8M 20D,TRUE
+1078,Raquel Grellet Pereira Bernardi,Entrancia Final,1ª Vara Criminal da Comarca de Ourinhos,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 8M 4D,19A 8M 14D,TRUE
+1084,Carla Milhomens Lopes de Figueiredo Gonçalves De Bonis,Entrancia Final,3ª Vara Criminal da Comarca de Santos,03/08/2017 00:00:00,"0A
+                        7M 11D",11A 2M 16D,14A 9M 26D,TRUE
+1085,Leonardo Marzola Colombini,Entrancia Final,3ª Vara Criminal da Comarca de Atibaia,03/08/2017 00:00:00,"0A
+                        7M 11D",11A 8M 10D,14A 9M 26D,TRUE
+1090,Mauricio José Nogueira,Entrancia Final,2ª Vara Criminal da Comarca de Votuporanga,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 0M 15D,11A 6M 25D,TRUE
+1093,Marcelo Nalesso Salmaso,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Tatuí,03/08/2017 00:00:00,"0A
+                        7M 11D",10A 0M 15D,11A 6M 25D,TRUE
+1097,Camilla Marcela Ferrari Arcaro,Entrancia Final,1ª Vara Criminal da Comarca de Santa Bárbara DOeste,03/08/2017 00:00:00,"0A
+                        7M 11D",9A 3M 24D,11A 2M 9D,TRUE
+1098,Luciana do Carmo Nogueira,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Ferraz de Vasconcelos,03/08/2017 00:00:00,"0A
+                        7M 11D",9A 8M 5D,11A 2M 9D,TRUE
+1101,Thiago Massao Cortizo Teraoka,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Mogi das Cruzes,03/08/2017 00:00:00,"0A
+                        7M 11D",4A 7M 21D,7A 9M 14D,TRUE
+1104,Gisela Ruffo,Entrancia Final,4ª Vara Criminal da Comarca de Piracicaba,30/11/2017 00:00:00,"0A
+                        3M 14D",11A 6M 12D,21A 0M 0D,TRUE
+1105,Fabio Marques Dias,Entrancia Final,Vara do Juizado Especial Cível e Criminal da Comarca de Batatais,30/11/2017 00:00:00,"0A
+                        3M 14D",11A 6M 12D,20A 3M 21D,TRUE
+1106,Jane Carrasco Alves Floriano,Entrancia Final,1ª Vara Criminal da Comarca de Lins,30/11/2017 00:00:00,"0A
+                        3M 14D",18A 5M 13D,19A 8M 14D,TRUE
+1109,Vinicius Castrequini Bufulin,Entrancia Final,2ª Vara Criminal da Comarca de Fernandópolis,30/11/2017 00:00:00,"0A
+                        3M 14D",10A 2M 3D,12A 11M 13D,TRUE
+1114,Josiane Patricia Cabrini,Entrancia Final,1ª Vara Criminal da Comarca de Marília,30/11/2017 00:00:00,"0A
+                        3M 14D",8A 1M 15D,11A 2M 9D,TRUE
+1115,Carolina Marchiori Bueno Cocenzo,Entrancia Final,3ª Vara Criminal da Comarca de São José do Rio Preto,30/11/2017 00:00:00,"0A
+                        3M 14D",10A 0M 1D,11A 2M 9D,TRUE
+1117,Camile de Lima e Silva Bonilha,Entrancia Final,2ª Vara Criminal da Comarca de Carapicuíba,30/11/2017 00:00:00,"0A
+                        3M 14D",6A 3M 26D,9A 7M 13D,TRUE
+4,Carmen Sílvia Hernández Quintana Kammer de Lima,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Cubatão,13/12/2001 00:00:00,"16A
+                        3M 1D",3A 8M 0D,24A 7M 26D,TRUE
+9,Antonia Brasilina de Paula Farah,Entrancia Intermediária,2ª Vara Criminal da Comarca de Poá,03/06/2004 00:00:00,"13A
+                        9M 11D",2A 11M 6D,18A 11M 16D,TRUE
+31,Ezaú Messias dos Santos,2ª Entrância,Vara Criminal da Comarca de Itatiba,20/10/1999 23:00:00,"18A
+                        4M 21D",0A 10M 10D,21A 0M 0D,TRUE
+33,Daniela Faria Romano,Entrancia Intermediária,2ª Vara Criminal da Comarca de Indaiatuba,15/06/2000 00:00:00,"17A
+                        8M 27D",0A 11M 29D,19A 8M 14D,TRUE
+47,Ana Paula Schleiffer Livreri,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Bragança Paulista,24/02/2005 00:00:00,"13A
+                        0M 18D",5A 8M 7D,19A 4M 5D,TRUE
+48,Claudionor Antonio Contri Junior,2ª Entrância,Vara Criminal da Comarca de Cruzeiro,31/03/2005 00:00:00,"12A
+                        11M 14D",0A 4M 20D,18A 6M 11D,TRUE
+58,Cleber de Oliveira Sanches,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Salto,26/10/2005 23:00:00,"12A
+                        4M 15D",2A 10M 21D,18A 11M 16D,TRUE
+93,Juan Paulo Haye Biazevic,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Vinhedo,19/07/2007 00:00:00,"10A
+                        7M 23D",0A 7M 19D,13A 8M 24D,TRUE
+94,Erika Dalaruvera de Moraes Almeida,Entrancia Intermediária,1ª Vara Criminal da Comarca de Poá,19/07/2007 00:00:00,"10A
+                        7M 23D",0A 7M 19D,12A 11M 13D,TRUE
+100,Fernanda Augusta Jacó Monteiro,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Valinhos,27/09/2007 00:00:00,"10A
+                        5M 15D",9A 7M 15D,22A 2M 14D,TRUE
+109,Cassio Pereira Brisola,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de São Roque,27/09/2007 00:00:00,"10A
+                        5M 15D",0A 9M 28D,12A 11M 13D,TRUE
+110,Carlos Gustavo de Souza Miranda,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Birigui,27/09/2007 00:00:00,"10A
+                        5M 15D",0A 9M 28D,12A 11M 13D,TRUE
+113,Liege Gueldini de Moraes,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Jandira,27/09/2007 00:00:00,"10A
+                        5M 15D",0A 9M 28D,12A 11M 13D,TRUE
+125,Alexandre Felix da Silva,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Leme,27/09/2007 00:00:00,"10A
+                        5M 15D",0A 2M 8D,11A 2M 9D,TRUE
+133,Hermano Flávio Montanini de Castro,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Bebedouro,29/11/2007 00:00:00,"10A
+                        3M 14D",0A 11M 30D,12A 11M 13D,TRUE
+138,Alexandre Pereira da Silva,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Francisco Morato,29/11/2007 00:00:00,"10A
+                        3M 14D",0A 2M 2D,11A 2M 9D,TRUE
+151,Adriana Aparecida de Carvalho Pedroso,Entrancia Intermediária,Vara Criminal da Comarca de Batatais,10/04/2008 00:00:00,"9A
+                        11M 4D",1A 10M 23D,13A 8M 24D,TRUE
+158,Melina de Medeiros Ros,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Franco da Rocha,10/04/2008 00:00:00,"9A
+                        11M 4D",0A 6M 14D,11A 6M 25D,TRUE
+177,Adriano Pinto de Oliveira,Entrancia Intermediária,1ª Vara Criminal da Comarca de Birigui,04/06/2009 00:00:00,"8A
+                        9M 10D",1A 1M 25D,10A 6M 18D,TRUE
+181,Nicole de Almeida Campos Leite Colombini,Entrancia Intermediária,1ª Vara Criminal da Comarca de Bragança Paulista,20/08/2009 00:00:00,"8A
+                        6M 22D",2A 8M 21D,13A 8M 24D,TRUE
+183,Maria Helena Steffen Toniolo Bueno,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Itapevi,20/08/2009 00:00:00,"8A
+                        6M 22D",2A 1M 1D,11A 6M 25D,TRUE
+190,Fabrício Orpheu Araújo,Entrancia Intermediária,2ª Vara Criminal da Comarca de Tatuí,15/10/2009 00:00:00,"8A
+                        4M 27D",1A 4M 3D,10A 6M 18D,TRUE
+212,Leandro Augusto Gonçalves Santos,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Andradina,04/03/2010 00:00:00,"8A
+                        0M 10D",2A 5M 5D,12A 11M 13D,TRUE
+215,Luciano de Oliveira Silva,Entrancia Intermediária,2ª Vara Criminal da Comarca de Barretos,11/11/2010 00:00:00,"7A
+                        4M 3D",3A 11M 12D,12A 11M 13D,TRUE
+216,Gustavo Sauaia Romero Fernandes,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Embu das Artes,05/05/2011 00:00:00,"6A
+                        10M 9D",4A 10M 6D,14A 9M 26D,TRUE
+218,Fábio José Vasconcelos,Entrancia Intermediária,Vara Criminal da Comarca de Tupã,05/05/2011 00:00:00,"6A
+                        10M 9D",4A 0M 9D,11A 6M 25D,TRUE
+231,Juliana França Bassetto Diniz Junqueira,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Itatiba,04/08/2011 00:00:00,"6A
+                        7M 10D",3A 8M 6D,11A 6M 25D,TRUE
+232,Mariana Teixeira Salviano da Rocha,Entrancia Intermediária,1ª Vara Criminal da Comarca de Tatuí,04/08/2011 00:00:00,"6A
+                        7M 10D",3A 8M 6D,11A 6M 25D,TRUE
+235,Fernando Antonio de Lima,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Jales,04/08/2011 00:00:00,"6A
+                        7M 10D",3A 3M 25D,10A 6M 18D,TRUE
+238,Thiago Baldani Gomes De Filippo,Entrancia Intermediária,2ª Vara Criminal e do Juizado de Violência Doméstica e Familiar contra a Mulher da Comarca de Assis,04/08/2011 00:00:00,"6A
+                        7M 10D",3A 3M 25D,10A 6M 18D,TRUE
+249,Angelo Marcio de Siqueira Pace,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Olímpia,27/10/2011 00:00:00,"6A
+                        4M 15D",3A 6M 17D,12A 11M 13D,TRUE
+251,Pedro Corrêa Liao,Entrancia Intermediária,2ª Vara Criminal e de Crimes contra a Vida da Comarca de São Caetano do Sul,27/10/2011 00:00:00,"6A
+                        4M 15D",4A 1M 0D,11A 6M 25D,TRUE
+263,Roberta de Oliveira Ferreira Lima,Entrancia Intermediária,2ª Vara Criminal da Comarca de Avaré,27/10/2011 00:00:00,"6A
+                        4M 15D",1A 10M 17D,9A 7M 13D,TRUE
+265,Eduardo de Lima Galduróz,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Cotia,27/10/2011 00:00:00,"6A
+                        4M 15D",2A 8M 22D,9A 7M 13D,TRUE
+266,Alexandre Rodrigues Ferreira,Entrancia Intermediária,3ª Vara Criminal da Comarca de Assis,27/10/2011 00:00:00,"6A
+                        4M 15D",2A 0M 12D,8A 8M 27D,TRUE
+279,Denise Gomes Bezerra Mota,Entrancia Intermediária,1ª Vara Criminal da Comarca de Guarujá,29/03/2012 00:00:00,"5A
+                        11M 14D",4A 4M 0D,11A 2M 9D,TRUE
+280,Patrícia de Assis Ferreira Braguini,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Itapecerica da Serra,29/03/2012 00:00:00,"5A
+                        11M 14D",3A 1M 24D,10A 6M 18D,TRUE
+286,Eduardo Messias Altemani,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Poá,29/03/2012 00:00:00,"5A
+                        11M 14D",2A 11M 27D,9A 7M 13D,TRUE
+288,Jair Antonio Pena Junior,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Avaré,29/03/2012 00:00:00,"5A
+                        11M 14D",2A 3M 19D,8A 8M 27D,TRUE
+297,Ana Virginia Mendes Veloso Cardoso,Entrancia Intermediária,2ª Vara Criminal da Comarca de Jaú,11/06/2012 00:00:00,"5A
+                        9M 3D",4A 6M 13D,11A 6M 25D,TRUE
+301,Alexandre Levy Perrucci,Entrancia Intermediária,Vara Criminal da Comarca de Pindamonhangaba,11/06/2012 00:00:00,"5A
+                        9M 3D",4A 6M 13D,11A 2M 9D,TRUE
+321,Rafael Pavan de Moraes Filgueira,Entrancia Intermediária,Vara Criminal da Comarca de Araras,13/12/2012 00:00:00,"5A
+                        3M 1D",4A 8M 3D,11A 6M 25D,TRUE
+347,Arnaldo Luiz Zasso Valderrama,Entrancia Intermediária,1ª Vara Criminal da Comarca de Fernandópolis,13/12/2012 00:00:00,"5A
+                        3M 1D",0A 8M 14D,8A 8M 27D,TRUE
+367,Paulo Rogério Malvezzi,Entrancia Intermediária,Vara Criminal da Comarca de Mogi Guaçu,27/06/2013 00:00:00,"4A
+                        8M 15D",4A 4M 22D,11A 2M 9D,TRUE
+371,Flavio Roberto de Carvalho,Entrancia Intermediária,Vara Criminal da Comarca de São Roque,27/06/2013 00:00:00,"4A
+                        8M 15D",3A 8M 12D,10A 6M 18D,TRUE
+375,Ricardo Domingos Rinhel,Entrancia Intermediária,Vara Criminal da Comarca de Matão,27/06/2013 00:00:00,"4A
+                        8M 15D",1A 2M 29D,9A 7M 13D,TRUE
+376,Luiz Fernando Silva Oliveira,Entrancia Intermediária,Vara Criminal da Comarca de Ibitinga,27/06/2013 00:00:00,"4A
+                        8M 15D",1A 2M 29D,8A 8M 27D,TRUE
+382,Sergio Augusto Duarte Moreira,Entrancia Intermediária,Vara Criminal da Comarca de Cotia,27/06/2013 00:00:00,"4A
+                        8M 15D",1A 2M 29D,7A 9M 14D,TRUE
+383,Rafael Carvalho de Sá Roriz,Entrancia Intermediária,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Franco da Rocha",27/06/2013 00:00:00,"4A
+                        8M 15D",0A 6M 14D,7A 9M 14D,TRUE
+390,Roberta Layaun Chiappeta de Moraes Barros,Entrancia Intermediária,1ª Vara Criminal da Comarca de Atibaia,17/10/2013 00:00:00,"4A
+                        4M 25D",4A 8M 12D,11A 2M 9D,TRUE
+392,Renata Ferreira dos Santos Carvalho,Entrancia Intermediária,2ª Vara Criminal da Comarca de Ourinhos,17/10/2013 00:00:00,"4A
+                        4M 25D",6A 0M 20D,11A 2M 9D,TRUE
+394,Sandro Cavalcanti Rollo,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Arujá,17/10/2013 00:00:00,"4A
+                        4M 25D",5A 4M 5D,10A 6M 18D,TRUE
+400,Heverton Rodrigues Goulart,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Penápolis,17/10/2013 00:00:00,"4A
+                        4M 25D",3A 6M 22D,8A 8M 27D,TRUE
+417,Marshal Rodrigues Gonçalves,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Santa Bárbara DOeste,20/02/2014 00:00:00,"4A
+                        0M 22D",12A 5M 28D,18A 6M 11D,TRUE
+425,Eduardo Luiz de Abreu Costa,Entrancia Intermediária,Vara Criminal da Comarca de Olímpia,20/02/2014 00:00:00,"4A
+                        0M 22D",2A 6M 16D,8A 8M 27D,TRUE
+448,Jorge Luís Galvão,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Jaboticabal,23/10/2014 00:00:00,"3A
+                        4M 19D",11A 1M 12D,18A 11M 16D,TRUE
+499,Maria Cecilia Faulin dos Santos Reschini,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Matão,30/04/2015 00:00:00,"2A
+                        10M 14D",7A 9M 11D,17A 5M 14D,TRUE
+507,Ana Lúcia Granziol,Entrancia Intermediária,2ª Vara Criminal da Comarca de Lins,30/04/2015 00:00:00,"2A
+                        10M 14D",2A 10M 19D,8A 8M 27D,TRUE
+509,Fábio Bernardes de Oliveira Filho,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Caraguatatuba,30/04/2015 00:00:00,"2A
+                        10M 14D",3A 1M 1D,8A 8M 27D,TRUE
+514,Paulo Gustavo Ferrari,Entrancia Intermediária,Vara das Execuções Criminais da Comarca de Tupã,30/04/2015 00:00:00,"2A
+                        10M 14D",1A 10M 3D,5A 5M 10D,TRUE
+523,Carolina Hispagnol Lacombe,Entrancia Intermediária,Vara Criminal da Comarca de Itapevi,30/04/2015 00:00:00,"2A
+                        10M 14D",1A 2M 10D,5A 0M 17D,TRUE
+526,Barbara Syuffi Montes,Entrancia Intermediária,Vara Criminal da Comarca de Votorantim,02/07/2015 00:00:00,"2A
+                        8M 12D",3A 0M 21D,10A 6M 18D,TRUE
+527,Adriana Barrea,Entrancia Intermediária,Vara Criminal da Comarca de Leme,02/07/2015 00:00:00,"2A
+                        8M 12D",2A 0M 5D,8A 8M 27D,TRUE
+528,Maria Carolina Marques Caro Quintiliano,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Ribeirão Pires,02/07/2015 00:00:00,"2A
+                        8M 12D",1A 8M 15D,8A 8M 27D,TRUE
+532,Lucas Eduardo Steinle Camargo,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Araras,02/07/2015 00:00:00,"2A
+                        8M 12D",3A 0M 21D,7A 9M 14D,TRUE
+544,Fábio Augusto Paci Rocha,Entrancia Intermediária,1ª Vara Criminal da Comarca de Avaré,02/07/2015 00:00:00,"2A
+                        8M 12D",0A 4M 20D,3A 5M 1D,TRUE
+550,Carlos Henrique Scala de Almeida,Entrancia Intermediária,"Vara do Júri, das Execuções Criminais e da Infância e da Juventude da Comarca de Bragança Paulista",13/08/2015 00:00:00,"2A
+                        7M 1D",6A 6M 8D,11A 2M 9D,TRUE
+559,Juliana Nobrega Feitosa,Entrancia Intermediária,Vara Criminal da Comarca de Franco da Rocha,13/08/2015 00:00:00,"2A
+                        7M 1D",0A 6M 1D,3A 5M 1D,TRUE
+563,José Marques de Lacerda,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Cruzeiro,08/10/2015 00:00:00,"2A
+                        5M 6D",1A 7M 18D,5A 0M 17D,TRUE
+585,Rodrigo Rissi Fernandes,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Sertãozinho,02/06/2016 00:00:00,"1A
+                        9M 12D",9A 1M 7D,12A 11M 13D,TRUE
+620,Leonardo Lopes Sardinha,Entrancia Intermediária,2ª Vara Criminal da Comarca de Birigui,01/12/2016 00:00:00,"1A
+                        3M 13D",3A 11M 18D,8A 8M 27D,TRUE
+650,Daniel Otero Pereira da Costa,Entrancia Intermediária,Vara Criminal da Comarca de Lorena,20/04/2017 00:00:00,"0A
+                        10M 22D",3A 9M 24D,9A 7M 13D,TRUE
+676,Gustavo de Campos Machado,Entrancia Intermediária,Vara Criminal da Comarca Caçapava,03/08/2017 00:00:00,"0A
+                        7M 11D",4A 1M 7D,9A 7M 13D,TRUE
+679,Júlio César Franceschet,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Ibitinga,03/08/2017 00:00:00,"0A
+                        7M 11D",5A 1M 23D,8A 8M 27D,TRUE
+680,Paulo Guilherme de Faria,Entrancia Intermediária,Vara do Juizado Especial Cível e Criminal da Comarca de Ubatuba,03/08/2017 00:00:00,"0A
+                        7M 11D",2A 5M 22D,5A 5M 10D,TRUE
+739,Pedro de Castro e Sousa,Entrancia Intermediária,Vara Criminal da Comarca de Santa Cruz do Rio Pardo,30/11/2017 00:00:00,"0A
+                        3M 14D",0A 3M 27D,1A 5M 11D,TRUE

@@ -1,0 +1,26 @@
+---
+title: "Tarefa: 14 de Março de 2018"
+output: html_notebook
+---
+
+```{r message=FALSE, warning=FALSE}
+library(rvest)
+library(dplyr)
+library(purrr)
+library(stringr)
+```
+
+```{r}
+url <- "http://www.tjsp.jus.br/PrimeiraInstancia/Juizes/ConsultarJuizes?parametro="
+
+dados <- purrr::map(c("1","2","3","6","7"), ~url %>% stringr::str_c(.,.x)%>%  read_html() %>% html_table(trim = T) %>% pluck(1))
+
+dados_brutos <- purrr::map_dfr(dados,~magrittr::set_names(.x, c("numero", "nome", "entrancia1", "cargo", "inicio", "entrancia2", "anterior", "geral")))
+
+dados_filtrados <- dados_brutos %>% mutate(cargo_criminal = stringr::str_detect(cargo, "[C-c]rim")) %>% 
+  filter(cargo_criminal == TRUE)
+
+readr::write_excel_csv(dados_filtrados, path = "tasks/14Marco2018/juizes-comarca-SP.csv")
+readr::write_excel_csv(dados_brutos, path = "tasks/14Marco2018/juizes-comarca-SP_BRUTO.csv")
+```
+
