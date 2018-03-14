@@ -8,9 +8,10 @@ library(httr)
 library(rvest)
 library(dplyr)
 library(purrr)
+library(RSelenium)
 ```
 
-
+Nesta primeira tentativa, o campo mês apresenta problemas.
 ```{r}
 url <- "https://www4.trf5.jus.br/diarioeletinternet/"
 
@@ -32,5 +33,65 @@ file <- stringr::str_c(path, "/busca.html")
 request <- httr::POST(url,body = query, 
            httr::config(ssl_verifypeer = FALSE),encode = "form",
            httr::write_disk(file, TRUE))
+```
+
+Sendo assim, irei partir para o Selenium
+
+```{r}
+url <- "https://www4.trf5.jus.br/diarioeletinternet/"
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_quinta_regiao/data-raw/"
+fprof <- makeFirefoxProfile(list(browser.download.dir = path,
+                                 browser.download.folderList = 2L, 
+                                 browser.download.manager.showWhenStarting = F,
+                                 browser.helperApps.neverAsk.saveToDisk="text/xml",
+                                 browser.tabs.remote.autostart =T,
+                                 browser.tabs.remote.autostart.2 = T,
+                                 browser.tabs.remote.desktopbehavior = T))
+remDr <- RSelenium::rsDriver(browser = "firefox", extraCapabilities = fprof)
+remDr <- remDr$client
+remDr$navigate(url)
+
+# Acessando o orgao
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmVisao:orgao"]/option[@value="80"]')
+webElem$clickElement()
+# Acessando a edição
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmVisao:edicao"]/option[@value="1"]')
+webElem$clickElement()
+# Acessando as dadas
+## Ano
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmVisao:periodo"]/option[@value="2012"]')
+webElem$clickElement()
+## Mes
+Sys.sleep(2)
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmVisao:meses"]')
+webElem$clickElement()
+Sys.sleep(1)
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmVisao:meses"]/option[@value="02"]')
+webElem$clickElement()
+# Pesquisar
+webElem <- remDr$findElement(using = 'xpath', value = '//input[@id="frmVisao:j_id48"]')
+webElem$clickElement()
+Sys.sleep(3)
+# Mudando a quantidade de registros que aparecem
+webElem <- remDr$findElement(using = 'xpath', value = '//select[@id="frmPesquisa:quantidadeRegistros"]/option[@value="100"]')
+webElem$clickElement()
+# Obtendo os download
+## Obtendo o html para saber quantas iteração serao necessarias
+page_source <- remDr$getPageSource()
+node <- page_source %>% purrr::pluck(1) %>% xml2::read_html()
+tables <- node %>% html_table(fill = T) 
+for(i in 1:length(tables)){
+  if(ncol(tables[[i]])==5){
+    tabela <- tables[[i]]
+  }
+}
+### ultima_pag <- node %>% rvest::html_node(xpath = '//span[@id="frmPesquisa:pageCountTeste"]') %>% rvest::html_text() %>% stringr::str_extract("[0-9]+")
+
+### Extraido o objeto ultima_pag, podemos iterar para percorrer as paginas
+webElems <- remDr$findElements(using = 'xpath', value = '//center/a[@title="Arquivo"]')
+for(i in 1:length(webElems)){
+  webElems[[i]]$clickElement()
+  Sys.sleep(5)
+}
 ```
 
