@@ -1,0 +1,21 @@
+---
+title: "DJE-Justica Federal da Primeira Regiao"
+output: html_notebook
+---
+
+```{r message=F, warning=FALSE}
+library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+```
+
+```{r}
+url <- "https://edj.trf1.jus.br/edj/discover"
+path_html <- "data-raw/"
+dir.create(path_html, FALSE, TRUE)
+  path_html <- normalizePath(path_html)
+  file <- stringr::str_c(path_html, "/page1.html")
+httr::GET(url, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file, TRUE))
+```
+
