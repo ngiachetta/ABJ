@@ -33,12 +33,13 @@ file <- stringr::str_c(path, "/busca.html")
 request <- httr::POST(url,body = query, 
            httr::config(ssl_verifypeer = FALSE),encode = "form",
            httr::write_disk(file, TRUE))
+# Como fazer para colocar um temporizador
 ```
 
 Sendo assim, irei partir para o Selenium
 
 ```{r}
-url <- "https://www4.trf5.jus.br/diarioeletinternet/"
+url <- "http://www4.trf5.jus.br/diarioeletinternet/"
 path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_quinta_regiao/data-raw/"
 fprof <- makeFirefoxProfile(list(browser.download.dir = path,
                                  browser.download.folderList = 2L, 
