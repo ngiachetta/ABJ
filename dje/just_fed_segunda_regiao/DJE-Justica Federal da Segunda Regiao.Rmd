@@ -250,7 +250,7 @@ parse_pages <- function(file){
   return(tabela)
 }
 
-obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path){
+obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path_html, path_pdf){
   # Obter a primeira pagina
   query <- list(
     "proxystylesheet"="v2_index",
@@ -287,9 +287,9 @@ obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path
   query$as_q <- stringr::str_replace(query$as_q, "DATAFINAL", data_pub_final)
 
   url <- "http://www10.trf2.jus.br/consultas/"
-  dir.create(path, FALSE, TRUE)
-  path <- normalizePath(path)
-  file <- stringr::str_c(path, "/page1.html")
+  dir.create(path_html, FALSE, TRUE)
+  path_html <- normalizePath(path_html)
+  file <- stringr::str_c(path_html, "/page1.html")
   request <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file, TRUE))
 
   # Parsear a primeira pagina para obter
@@ -308,23 +308,34 @@ obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path
 
   # iterador para obter todas as paginas
   if(is.na(ultima_pagina)==F){
-    vetor_paginas <- seq(10, ultima_pagina, 10)
-    for (i in 1:length(vetor_paginas)){
+    vetor_paginas <- seq(0, ultima_pagina, 10)
+    for (i in 1:length(vetor_paginas)+1){
       query$start <- vetor_paginas[i]
-      path <- normalizePath(path)
-      file <- stringr::str_c(path, "/page", i, ".html")
+      path_html <- normalizePath(path_html)
+      file <- stringr::str_c(path_html, "/page", i, ".html")
       request <- httr::GET(url, query = query,
                            httr::config(ssl_verifypeer = FALSE),
                            httr::write_disk(file, TRUE))
+      Sys.sleep(1)
     }  
   }
-  files <- dir("data-raw/",full.names = TRUE)
+  files <- dir("data-raw/",full.names = TRUE, pattern = "page")
   dados <- purrr::map_dfr(files, ~parse_pages(.x))
+  
+  dados <- dados %>% 
+    mutate(id_pdf = stringr::str_extract(link_download, "(id=)[0-9]+"),
+           id_pdf = stringr::str_extract(id_pdf, "[0-9]+")) %>% 
+    distinct(id_pdf, .keep_all = T)
+  file_pdf <- purrr::map_chr(dados$id_pdf, ~stringr::str_c(path_pdf,"/", .x ,".pdf")) %>% tibble::tibble(file_path_pdf = .)
+  dados <- dados %>% dplyr::bind_cols(file_pdf)
+  
+  purrr::map2(dados$link_download, dados$file_path_pdf,~download.file(.x, destfile = .y,mode="wb", quiet = T))
   
   return(dados)
 }
 
-diarios <- obter_diarios(data_pub_inicial = "20-05-2015",data_pub_final = "22-05-2015", path = "data-raw/")
+diarios <- obter_diarios(data_pub_inicial = "04-05-2015",data_pub_final = "22-05-2015", path_html = "data-raw/", path_pdf = "data-raw/data-raw_pdf/")
+
 
 ```
 
