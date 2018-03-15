@@ -81,8 +81,8 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 |TJSP     |Pacote DJE   |   |
 |TJAL     |Pacote DJE   |   |
 |TJRJ     |NÃO          |   |
-|TJDFT    |NÃO          |Em andamento|
-|JFSP     |NÃO          |Em andamento|
+|TJDFT    |SIM          |   |
+|JFSP     |NÃO          |Em andamento (Dificuldade para acessar outras paginas)|
 |JFAL     |NÃO          |Em andamento (Problema com uma das consultas)|
-|JFRJ     |SIM          |Scraper para coletar o link dos diários feito|
-|JFDF     |NÃO          |   |
+|JFRJ     |SIM          |   |
+|JFDF     |NÃO          |O site apresenta problemas|
