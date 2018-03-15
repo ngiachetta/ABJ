@@ -73,3 +73,10 @@ request_POST(urls[[1]], file = files[[1]], query = query)
 
 ```
 
+```{r}
+session <- rvest::html_session(url_1)
+
+session %>% rvest:::request_POST(url_1,httr::config(referer = .$url), body = query, httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))
+```
+
