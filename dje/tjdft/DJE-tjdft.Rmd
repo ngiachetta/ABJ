@@ -3,6 +3,8 @@ title: "DJE_TJDFT"
 output: html_notebook
 ---
 
+O scraper do diário do TJDFT faz buscas por datas especificas, isto é, não é possível pegar intervalos de datas. Isto ocorre devido à estrutura do site do tjdft, que dá erro ao procurar diários por período
+
 ```{r}
 library(httr)
 library(rvest)
@@ -11,57 +13,6 @@ library(purrr)
 library(RSelenium)
 ```
 
-```{r}
-data <- "14/03/2010"
-#url <- "https://dje.tjdft.jus.br/dje/djeletronico"
-url <-"https://dje.tjdft.jus.br/dje/djeletronico?visaoId=tjdf.djeletronico.comum.internet.apresentacao.VisaoDiarioEletronicoInternetPorData"
-
-valoresFieldSet <- httr::POST(url, httr::config(ssl_verifypeer = FALSE)) %>% 
-  xml2::read_html() %>% html_node(xpath = '//*[@id="diariosConsultados_valoresFieldSet"]') %>% rvest::html_attr('value')
-query <- list(
-  "colunaParaOrdenar"="",
-  "comando"="consultarDiariosDaData",
-  "comandoFieldSet_diariosConsultados"="",
-  "controladorId"="tjdf.djeletronico.comum.internet.apresentacao.ControladorDiarioEletronicoInternetPorData",
-  "data"=data,
-  "diariosConsultados"="id,ano,numero,dataDePublicacaoDoDiario,linkBaixarPDF,linkBaixarP7S",
-  "diariosConsultados_qtd"="1",
-  "diariosConsultados_valoresFieldSet"=valoresFieldSet,
-  "enderecoDoServlet"="djeletronico",
-  "fieldSetParaOrdenar"="diariosConsultados",
-  "idDoDiarioSelecionado"="",
-  "idDoUsuarioDaSessao"="",
-  "idJanelaAbrirAjax"="",
-  "idJanelaAbrirIsModalAjax"="false",
-  "internet"="1",
-  "linhaEmEdicaoFieldSet_diariosConsultados"="",
-  "linhaEmExclusaoFieldSet_diariosConsultados"="",
-  "nomeDaPagina"="dados",
-  "selecaoFieldSet_diariosConsultados"="",
-  "selecaoFieldSet_diariosConsultados_FIELD_SET_FILHO"="",
-  "skin"="",
-  "tokenDePaginacao"="1",
-  "visaoAnterior"="tjdf.djeletronico.comum.internet.apresentacao.VisaoDiarioEletronicoInternetPorData",
-  "visaoId"="tjdf.djeletronico.comum.internet.apresentacao.VisaoDiarioEletronicoInternetPorData"  
-)
-path <- "data-raw/"
-dir.create(path, FALSE, TRUE)
-path <- normalizePath(path)
-data <- stringr::str_replace_all(data, "[[:punct:]]", "")
-file <- stringr::str_c(path,"/", data,".html")
-request <- httr::POST(url,body = query, 
-           httr::config(ssl_verifypeer = FALSE),encode = "form",
-           httr::write_disk(file, TRUE))
-table_node <- request %>% xml2::read_html() %>% html_node(xpath = '//table[@id="tabela_diariosConsultados"]')
-tabela <- table_node %>% html_table() %>% dplyr::select(1:3) %>% magrittr::set_names(c("ano", "numero", "data_disponibilizacao"))
-
-link_pdf <- table_node %>%
-  html_nodes(xpath = '//td[@style="text-align: CENTER;"]/a') %>%
-  html_attr('href') %>% 
-  .[!stringr::str_detect(., "(P7S)")] %>% tibble(link_pdf = .)
-
-tabela <- tabela %>% dplyr::bind_cols(., link_pdf)
-```
 ```{r}
 dje_tjdft <- function(data, path_html, path_pdf){
   url <-"https://dje.tjdft.jus.br/dje/djeletronico?visaoId=tjdf.djeletronico.comum.internet.apresentacao.VisaoDiarioEletronicoInternetPorData"
