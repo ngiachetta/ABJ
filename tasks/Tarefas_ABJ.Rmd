@@ -78,8 +78,8 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 
 |Tribunais|Scraper feito|Obs|
 |--------:|:-----------:|--:|
-|TJSP     |Pacote DJE   |   |
-|TJAL     |Pacote DJE   |   |
+|TJSP     |Pacote DJE   |o pacote está funcionando|
+|TJAL     |Pacote DJE   |o pacote está funcionando|
 |TJRJ     |NÃO          |   |
 |TJDFT    |SIM          |   |
 |JFSP     |NÃO          |Em andamento (Dificuldade para acessar outras paginas)|
