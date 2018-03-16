@@ -18,9 +18,9 @@ url_1 <- stringr::str_c(url, "1")
 query <- list(
   "FiltroPesquisaPublicacao.CodigoOrgao"=2,	# 2 eh SJSP
   "FiltroPesquisaPublicacao.CodigoTipoPublicacao"=1, # Vai de 1 a 9
-  "FiltroPesquisaPublicacao.CodigoUnidade"="",	
-  "FiltroPesquisaPublicacao.DataFinal"="13/03/2018",
-  "FiltroPesquisaPublicacao.DataInicial"="13/03/2018",
+  "FiltroPesquisaPublicacao.CodigoUnidade"="",
+  "FiltroPesquisaPublicacao.DataInicial"="10/04/2011",
+  "FiltroPesquisaPublicacao.DataFinal"="16/05/2011",
   "FiltroPesquisaPublicacao.DocumentosPagina"="100",
   "FiltroPesquisaPublicacao.IdSerie"="",	
   "FiltroPesquisaPublicacao.NomeLocalidade"="",
@@ -32,20 +32,28 @@ path <- "data-raw/"
 dir.create(path, FALSE, TRUE)
 path <- normalizePath(path)
 file <- stringr::str_c(path, "/page1.html")
-request_POST <- function(url, query = NULL, file){
-  if(is.null(query)){
+request_POST_GET <- function(method = "POST", url, query = NULL, file){
+  if (is.null(query) == T & method == "POST"){
     request <- httr::POST(url, 
            httr::config(ssl_verifypeer = FALSE),
            httr::write_disk(file, TRUE))
-  }else{
-    request <- httr::POST(url,body = query, 
+  }else if( is.null(query) == F & method == "POST"){
+    request <- httr::POST(url, body = query, 
            httr::config(ssl_verifypeer = FALSE),
            httr::write_disk(file, TRUE))    
+  }else if (is.null(query) == T & method == "GET"){
+    request <- httr::GET(url, 
+           httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))
+  }else {
+    request <- httr::GET(url, query = query, 
+           httr::config(ssl_verifypeer = FALSE),
+           httr::write_disk(file, TRUE))  
   }
 
   return(request)
 }
-request <- request_POST(url_1, query = query,file = file)
+request <- request_POST_GET(method = "POST", url_1, query = query,file = file)
 
 node <- request %>% xml2::read_html()
 
@@ -60,23 +68,28 @@ for(i in 1:length(qnt_percorrer)){
   files[[i]] <- stringr::str_c(path, "/page", qnt_percorrer[i], ".html")
 }
 
-request_POST(urls[[1]], file = files[[1]], query = query)
 
-# purrr::map(urls,files, ~request_POST(.x, file = .y))
-# request_POST(urls[[1]], file = files[[1]])
-# 
-# node %>% html_table(fill = T)
-# tibble(link_diario = node %>%
-#          html_nodes(xpath = '//td[@class="alinhamento"]/a') %>%
-#          html_attr("href") %>% 
-#          stringr::str_c("http://web.trf3.jus.br",.))
+purrr::map2(urls, files,~request_POST_GET(method = "GET", .x, file = .y, query = query))
 
+files_path <- dir(path = "data-raw/", pattern = "page", full.names = T)
+
+
+parse_file <- function(file){
+  node_file <- file %>% xml2::read_html()
+
+  tabela <- node_file %>% html_table(fill = T) %>% purrr::pluck(1) %>% {
+    if(ncol(.) == 6){
+      magrittr::set_names(.,c("vazio", "data_disponibilizacao", "orgao", "unidade", "tipo_publicacao", "doc_publ"))
+    }
+  } %>% 
+  dplyr::select(-doc_publ, -vazio)
+  link_diario <- tibble(link_diario = node_file %>%
+           html_nodes(xpath = '//td[@class="alinhamento"]/a') %>%
+           html_attr("href") %>%
+           stringr::str_c("http://web.trf3.jus.br",.))
+  tabela <- dplyr::bind_cols(tabela, link_diario) %>% dplyr::mutate(file = file)
+  return(tabela)
+}
+
+tabela <- map_dfr(files_path, ~parse_file(.x))
 ```
-
-```{r}
-session <- rvest::html_session(url_1)
-
-session %>% rvest:::request_POST(url_1,httr::config(referer = .$url), body = query, httr::config(ssl_verifypeer = FALSE),
-           httr::write_disk(file, TRUE))
-```
-
