@@ -1,0 +1,105 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+url <- "http://www.tjsp.jus.br/SecaoDireitoPrivado/SecaoDireitoPrivado/ComposicaoMagistradosOrdemAntiguidade"
+
+node <- xml2::read_html(url)
+
+tabela_nomes <- node %>% rvest::html_table(fill = T) %>% pluck(1)
+
+nomes <- tabela_nomes$Nome
+
+readr::write_excel_csv(tabela_nomes, "tabelas/tabela_referencia.csv")
+```
+
+```{r}
+obter_codigo <- function(nome){
+  url_0 <- "http://www.tjsp.jus.br/AutoComplete/ListarMagistrados2Grau"
+  query_0 <- list(
+    "texto"=nome
+  )
+  request_0 <- httr::POST(url_0, body = query_0)
+
+  codigo <- httr::content(request_0)
+  lista_cod <- list()
+  for(i in 1:length(codigo)){
+    lista_cod <- append(lista_cod, codigo[[i]]$Codigo) 
+  }
+  codigo <- lista_cod %>% unlist()
+  return(codigo)
+}
+
+primeiros_nomes <- tabela_nomes %>% 
+  dplyr::select(Nome) %>% 
+  dplyr::mutate(primeiro_nome = abjutils::rm_accent(Nome),
+                primeiro_nome = stringr::str_extract(primeiro_nome, "[A-Za-z]+")) %>% 
+  dplyr::select(primeiro_nome) %>% dplyr::distinct() %>% pluck(1)
+
+lista_codigos <- purrr::map(primeiros_nomes, ~obter_codigo(.x))
+
+codigos <- lista_codigos %>% unlist()
+
+url_1 <- "http://www.tjsp.jus.br/ListaTelefonica/ObterMagistrado2Grau?codigo="
+
+link_codigos <- purrr::map_chr(codigos, ~stringr::str_c(url_1, .x))
+
+obter_html_magistrados <- function(path, codigos, link_codigos){
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, codigos, ".html")
+  httr::GET(link_codigos,httr::config(ssl_verifypeer = FALSE),
+            httr::write_disk(file, TRUE))  
+}
+
+path <- "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tasks/21Marco2018/data-raw/"
+purrr::map2(codigos, link_codigos, ~obter_html_magistrados(path, .x,.y))
+
+#Detalhes
+parse_detalhes <- function(node){
+  node_detalhes <- node %>% rvest::html_nodes(xpath = '//div[contains(.,"DETALHES") and @class="lista-dados"]')
+  tabela_detalhes <- node_detalhes %>%
+    rvest::html_nodes(xpath = '//dl[@class="dl-horizontal dl-lista-telefonica"]') %>%
+    rvest::html_text() %>% stringr::str_trim() %>% tibble::tibble(key = .) %>%
+    tidyr::separate(key, into=c("key", "val"), sep = "\r\n") %>% 
+    dplyr::mutate(key = key %>%
+                    stringr::str_to_lower() %>% 
+                    abjutils::rm_accent() %>%
+                    stringr::str_replace_all(" +", "_")) %>% 
+    tidyr::spread(key, val)
+  return(tabela_detalhes)
+}
+
+#Integra
+parse_integra <- function(node){
+  node_integra <- node %>% rvest::html_nodes(xpath = '//div[contains(.,"INTEGRA") and @class="lista-dados"]')
+  tabela_integra <- node_integra %>%
+    rvest::html_nodes(xpath = '//dl[@class="dl-lista-telefonica"]') %>%
+    rvest::html_text() %>% stringr::str_trim() %>% tibble::tibble(key = .) %>%
+    tidyr::separate(key, into=c("camara", "telefone"), sep = "\r\n") 
+  return(tabela_integra)
+}
+
+# Parsear as informacoes do html
+parse_infos <- function(node){
+  detalhes <- parse_detalhes(node)
+  integra <- parse_integra(node)
+  detalhes_duplicate <- detalhes %>% slice(rep(1:n(), each = nrow(integra)))
+  tabela <- dplyr::bind_cols(detalhes_duplicate, integra)
+  return(tabela)
+}
+
+files <- dir("data-raw/", full.names = T)
+tabela_bruta <- purrr::map_dfr(files, ~parse_infos(.x %>% xml2::read_html()))
+
+tabela_criminal <- tabela_bruta %>% 
+  dplyr::mutate(dummy_criminal = stringr::str_detect(camara, "([C-c]rim)")) %>% 
+  dplyr::filter(dummy_criminal == TRUE) %>% 
+  dplyr::select(-dummy_criminal)
+
+readr::write_excel_csv(tabela_bruta, "tabelas/tabela_bruta.csv")
+readr::write_excel_csv(tabela_criminal, "tabelas/tabela_criminal.csv")
+```
+
