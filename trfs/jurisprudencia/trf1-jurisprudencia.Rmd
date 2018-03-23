@@ -1,0 +1,177 @@
+---
+title: "TRF1-Jurisprudencia"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(httr)
+library(rvest)
+library(RSelenium)
+library(stringr)
+library(tidyr)
+```
+
+```{r Funcao_obter_dados}
+
+obter_trf1 <- function(){
+  url <- "https://jurisprudencia.trf1.jus.br/busca/resultado.jsp"  
+  
+  # query <- list(
+  #   "as_q"="",
+  #   "client"="f",
+  #   "num"="10",
+  #   "partialfields"="",
+  #   "q"="",
+  #   "requiredfields"="sco:11",
+  #   "site"="a",
+  #   "start"="0"
+  # )
+  # 
+  # dir.create(path, FALSE, TRUE)
+  # path <- normalizePath(path)
+  # file <- stringr::str_c(path, "/page1.html")
+  # page1 <- httr::POST(url, body = query, httr::config(ssl_verifypeer = FALSE),
+  #                     httr::write_disk(file, TRUE))
+  
+  remDr <- RSelenium::rsDriver(browser = "firefox")
+  remDr$client$navigate(url)
+  Sys.sleep(1)
+  webElem <- remDr$client$findElement(using = "xpath", value = "//select[@id='processo']/option[@value='11']")
+  webElem$clickElement()
+  Sys.sleep(1)
+  webElem <- remDr$client$findElement(using = "id", value = "pesquisar")
+  webElem$clickElement()
+  
+  Sys.sleep(4)
+  
+  page1 <- remDr$client$getPageSource()
+
+  obter_total_pag <- function(page){
+    page1 %>%
+      purrr::pluck(1) %>% 
+      xml2::read_html() %>%
+      rvest::html_node(xpath = '//table[@class="mensagem"]//td[@class="direita"]') %>%
+      rvest::html_text(trim = T) %>%
+      stringr::str_extract("[0-9]+$") %>%
+      as.numeric()  
+  }
+  
+  pages <- list()
+  tamanho <- obter_total_pag(page1)
+  for(i in 1:tamanho-1){
+    if(i != 33){
+      webElem <- remDr$client$findElement(using = "xpath",value = '//table[@class="dados"]//td[@class="paginacao"]/a[text()="próxima ›"]')
+      webElem$clickElement() 
+    }
+    Sys.sleep(5)
+    pages[i] <- remDr$client$getPageSource()
+  }
+
+  pages <- append(pages, page1)
+  return(pages)
+
+  remDr$client$closeall()
+  
+
+}
+trf1 <- obter_trf1()
+readr::write_rds(trf1, "data-raw/TRF1/busca_v2/dado_bruto_trf1.rds")
+```
+
+```{r}
+parse_info_trf1 <- function(lista_trf1){
+  node <- lista_trf1 %>% xml2::read_html()
+  
+  node_processos <- node %>% rvest::html_nodes(xpath = '//div[@class="resultado"]')
+  
+  key <- node_processos %>% 
+    rvest::html_nodes(xpath = '//div[@class="campo"]//div[@class="nome"]') %>%
+    rvest::html_text()
+  val <- node_processos %>% 
+    rvest::html_nodes(xpath = '//div[@class="campo"]//div[@class="valor"]|//div[@class="campo"]//ul[@class="valores"]/li[1]') %>% # Observar que existe perda de informacao
+    rvest::html_text()
+  
+  tabela <- tibble::tibble(key = key, val=val) %>% 
+    dplyr::mutate(proc_dummy = stringr::str_detect(key, "[P-p]rocesso"),
+                  key = stringr::str_to_lower(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  group = NA)
+  # Definindo os grupos
+  grupo <- 1
+  for (i in 1:nrow(tabela)){
+    if(tabela[i,3] == TRUE){
+      tabela[i,4] <- grupo
+      grupo = grupo + 1
+    }
+  }
+  for (i in 1:nrow(tabela)){
+    if(is.na(tabela[i+1,4])){
+      tabela[i+1,4] <- tabela[i,4]  
+    } 
+  }
+
+  tab_infos <- tabela %>% 
+    select(-proc_dummy) %>% 
+    tidyr::spread(key, val)
+  
+  return(tab_infos)
+}
+
+# Eh importante destacar que a informacao pode estar imcompleta uma ves que ao realizar a busca pelo xpath
+# '//div[@class="campo"]//div[@class="valor"]|//div[@class="campo"]//ul[@class="valores"]/li[1]'
+# As irmas do nó li  não estaram contidas no dado obtido.
+trf1 <- purrr::map_dfr(trf1, ~parse_info_trf1(.x))
+
+readr::write_rds(trf1, "data-raw/rds_data/trf1.rds")
+```
+
+```{r Analises}
+trf1 <- readr::read_rds("trfs/jurisprudencia/data-raw/rds_data/trf1.rds")
+
+head(trf1)
+
+# Quantos processos estão identificados como inquerito no identificador do processo
+inquerito_trf1 <- trf1 %>% 
+  dplyr::mutate(processo_num = processo %>%
+                  stringr::str_replace_all(., "[[:punct:]]", "") %>%
+                  stringr::str_extract(.,"[0-9]+"),
+                uf = processo %>%
+                  stringr::str_extract(., "\\/.*[A-Za-z]+;") %>%
+                  stringr::str_extract(., "[A-Z]+"),
+                dummy_inq = stringr::str_detect(processo, "(INQ)|(INQUERITO)"),
+                decisao_clean = decisao %>%
+                  stringr::str_to_lower() %>% 
+                  stringr::str_replace_all("[[:punct:]]|[0-9]", "") %>% 
+                  abjutils::rm_accent(),
+                dummy_unanime = stringr::str_detect(decisao_clean, "(unanimidade)|(por unanimidade)"),
+                dummy_maioria = stringr::str_detect(decisao_clean, "(por maioria)"),
+                dummy_rejeitar = stringr::str_detect(decisao_clean, "(rejeitar)|(rejeitou)"),
+                dummy_parcial = stringr::str_detect(decisao_clean, "(parcial)|(parcialmente)"),
+                dummy_denuncia = stringr::str_detect(decisao_clean, "(denuncia)"),
+                dummy_receber = stringr::str_detect(decisao_clean, "(receber)|(recebeu)")) %>%
+  dplyr::filter(dummy_inq == TRUE)
+inquerito_trf1 %>% count(dummy_inq)  
+
+# Quantas decisões foram unanimes?
+inquerito_trf1 %>% 
+  count(dummy_unanime)
+
+# Quantas decisões foram unanimes para rejeitar a denuncia?
+inquerito_trf1 %>% 
+  mutate(unanime = case_when(dummy_unanime == TRUE ~ "Unanime",
+                             dummy_unanime == FALSE ~ "Nao Unanime"),
+         rejeitar_denuncia = case_when(dummy_denuncia == TRUE & dummy_rejeitar == TRUE  ~ "Denuncia rejeitada",
+                                       dummy_denuncia == TRUE & dummy_rejeitar == FALSE  ~ "Denuncia nao rejeitada",
+                                       dummy_denuncia == FALSE & dummy_rejeitar == TRUE  ~ "Nao Denuncia rejeitada",
+                                       dummy_denuncia == FALSE & dummy_rejeitar == FALSE  ~ "Nao Denuncia nao rejeitada"),
+         maioria_unanime = case_when(dummy_unanime == TRUE & dummy_maioria == FALSE ~ "Decisao unanime",
+                                     dummy_unanime == FALSE & dummy_maioria == TRUE ~ "Decisao por maioria",
+                                     dummy_unanime == TRUE & dummy_maioria == TRUE ~ "Decisao unanime e por maioria")) %>% 
+  count(maioria_unanime, rejeitar_denuncia) %>%
+  filter(rejeitar_denuncia %in% c("Denuncia nao rejeitada", "Denuncia rejeitada")) %>%
+  #recode(maioria_unanime, NA = "Sem Informação") %>% 
+  tidyr::spread(rejeitar_denuncia, n)
+```
+

@@ -1,0 +1,184 @@
+---
+title: "TRF2-Jurisprudencia"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+library(httr)
+library(rvest)
+library(RSelenium)
+library(stringr)
+library(tidyr)
+```
+
+```{r}
+# path <- "data-raw/TRF2/busca_v2/"
+# query <- list(
+#   "access"="p",
+#   "adv"="1",
+#   "as_q"="",
+#   "base"="JP-TRF",
+#   "client"="v2_index",
+#   "entqr"="3",
+#   "entqrm"="0",
+#   "entsp"="a",
+#   "filter"="0",
+#   "getfields"="*",
+#   "ie"="UTF-8",
+#   "lr"="lang_pt",
+#   "oe"="UTF-8",
+#   "proxystylesheet"="v2_index",
+#   "q"="",
+#   "requiredfields"="DescrRecursoFinal:INQUÉRITO+POLICIAL.(-sin_proces_sigilo_judici:s).(-sin_sigilo_judici:s)",
+#   "site"="v2_jurisprudencia",
+#   "sort"="date:D:S:d1",
+#   "start"="0",
+#   "ud"="1",
+#   "ulang"="",
+#   "wc"="200",
+#   "wc_mc"=""
+# )
+# 
+# url <- "http://www10.trf2.jus.br/consultas/"
+# 
+# dir.create(path, FALSE, TRUE)
+# path <- normalizePath(path)
+# file <- stringr::str_c(path, "/page1.html")
+# page1 <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE),
+#                       httr::write_disk(file, TRUE))
+
+# visualizar a ementa
+abrir_texto_completo <- function(){
+  webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="span_ementa ver-ementa"]')
+  if(length(webElem) == 0){
+    print("Pagina sem 'esconder texto'")
+  } else{
+     for(i in 1:length(webElem)){
+      webElem[[i]]$clickElement()
+    }   
+  }
+}
+
+#Obter todas as paginas
+obter_paginas <- function(node){
+  # Iterador
+  ultima_pag <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
+    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
+    stringr::str_extract("(start=)[0-9]+") %>% 
+    stringr::str_extract("[0-9]+")
+  paginas <- as.character(seq(0, ultima_pag, 10))
+  # Url de acesso
+  url_acesso <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
+    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
+    stringr::str_replace("(start=)[0-9]+", "start=ALTERAAQUI") %>% 
+    stringr::str_c("http://www10.trf2.jus.br/consultas/", .)
+  paginas <- purrr::map_chr(paginas, ~stringr::str_replace(url_acesso, "(ALTERAAQUI)", .x))
+  return(paginas)
+}
+
+  obtem_source <- function(pages_url){
+    proc_pages <- list()
+    for (i in 1:length(pages_url)){
+      remDr$client$navigate(pages_url[i])
+      abrir_texto_completo()
+      page_n <- remDr$client$getPageSource()
+      proc_pages <- append(proc_pages, page_n)
+      Sys.sleep(1)
+      
+    }
+    return(proc_pages)
+  }
+
+url <- "http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1"
+
+remDr <- RSelenium::rsDriver(browser = "firefox")
+remDr$client$navigate(url)
+# Pegar a primeira pagina para obter os principais informacoes
+page <- remDr$client$getPageSource()
+node <- page %>% purrr::pluck(1) %>% xml2::read_html()
+
+pages_url <- obter_paginas(node)
+
+paginas_brutas <- obtem_source(pages_url)
+  
+readr::write_rds(paginas_brutas, "data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
+```
+
+```{r}
+#node <- dados_brutos_trf2[3] %>% purrr::pluck(1) %>%  xml2::read_html() 
+
+trf2 <- readr::read_rds("data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
+node <- trf2[[1]] %>% xml2::read_html()
+
+# Tipo do documento
+tipo_doc <- node %>% rvest::html_nodes(xpath = '//span[@title="Ementas"]|//span[@title="Decisões"]|//span[@title="Inteiro Teor"]') %>% html_text()
+
+
+# Ementa_versao 1
+obter_ementa_v1 <- function(node){
+  xpath_1 <- '//li[@class="g"]'
+  node_pag <- node %>% rvest::html_nodes(xpath = xpath_1)
+  ementas <- purrr::map(node_pag, ~rvest::html_text(rvest::html_nodes(.x, '.text_ementa'))) %>% 
+    purrr::map_chr(., ~paste0(.x, collapse = " "))
+  xpath_2 <- '//div[@class="doc-text"]/text()'
+  l <- 1
+  for(i in 1:length(ementas)){
+    node_ <- node_pag %>% rvest::html_nodes( xpath = xpath_2) %>% rvest::html_text()
+    while(nchar(ementas[i]) == 0){
+      ementas[i] <- node_ %>% purrr::pluck(l)
+      l <- l + 1
+    }
+  }
+  return(tibble::tibble(ementas))
+}
+
+# Ementa_versao 2
+obter_ementa_v2 <- function(node){
+  xpath_1 <- '//li[@class="g"]'
+  node_pag <- node %>% rvest::html_nodes(xpath = xpath_1)
+  ementas <- purrr::map(node_pag, ~rvest::html_text(rvest::html_nodes(.x, '.text_ementa'))) %>% 
+    purrr::map_chr(., ~paste0(.x, collapse = " "))
+  return(tibble::tibble(ementas))
+}
+
+obter_outra_info <- function(node){
+  classe <- node %>% rvest::html_nodes(xpath = '//span[@class="recurso"]') %>% rvest::html_text() %>% .[seq(1, length(.),2)] %>% stringr::str_replace(".*:", "") %>% stringr::str_trim()
+
+  orgao <- node %>% rvest::html_nodes(xpath = '//span[@class="recurso"]') %>% rvest::html_text() %>% .[seq(2, length(.),2)] %>% stringr::str_replace(".*:", "") %>% stringr::str_trim()
+
+  datas_relator <- node%>% rvest::html_nodes(xpath = '//div[@class="data-relator"]') %>% rvest::html_text()# precisa de reparo
+  
+  num_processo <- node %>% html_nodes('.number_link') %>% rvest::html_text(trim = T)
+  
+  tipo_doc <- node %>% rvest::html_nodes(xpath = '//span[@title="Ementas"]|//span[@title="Decisões"]|//span[@title="Inteiro Teor"]') %>%
+    html_text()
+  
+  tabela <- tibble(num_processo = num_processo, classe = classe, orgao_julgador = orgao, datas_relator = datas_relator, tipo_documento = tipo_doc)
+  
+  return(tabela)
+}
+
+wrapup_info <- function(node){
+  ementa_v1 <- obter_ementa_v1(node)
+  ementa_v2 <- obter_ementa_v2(node)
+  infos <- obter_outra_info(node)
+  
+  tabela <- dplyr::bind_cols(infos, ementa_v2, ementa_v1)
+  return(tabela)
+}
+
+
+nodes <- purrr::map(trf2, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
+
+trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
+
+readr::write_rds(trf2, "data-raw/rds_data/trf2.rds")
+```
+
+Errata:
+
+Atualização da base, incluindo coluna que especifica se o documento é um Ementa, Inteiro Teor ou Decisão
+Processos duplucados 
+
+E - Ementa, I - iNTEIRO TEOR, D- Decisão

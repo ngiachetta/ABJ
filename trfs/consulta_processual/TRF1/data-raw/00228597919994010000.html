@@ -1,0 +1,977 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="icon" type="image/png" href="/favicon.ico">
+<!-- Framework CSS -->
+<link rel="stylesheet" href="/consultaProcessual/css/blueprint/screen.css" type="text/css"
+	media="screen">
+<link rel="stylesheet" href="/consultaProcessual/css/blueprint/print.css" type="text/css" media="print">
+<!--[if IE]><link rel="stylesheet" href="/consultaProcessual/css/blueprint-0.8/ie.css" type="text/css" media="screen"><![endif]-->
+
+<link rel="stylesheet" type="text/css" media="screen" href="/consultaProcessual/css/template_css.css?2" />
+<link rel="stylesheet" type="text/css" media="screen" title="altoContraste"
+	href="/consultaProcessual/css/template_altoContraste.css?2" disabled="disabled" />
+<link rel="stylesheet" type="text/css" media="screen" title="monocromatica"
+	href="/consultaProcessual/css/template_monocromatica.css?2" disabled="disabled" />
+<link rel="stylesheet" href="/consultaProcessual/css/index.css?2" type="text/css" media="screen" />
+<script type="text/javascript">
+	var baseUrl = '/consultaProcessual';
+</script>
+<script type="text/javascript" src="/consultaProcessual/js/jquery-ui-1.8.13/js/jquery-1.6.1.min.js"></script>
+<link rel="stylesheet" type="text/css" media="screen"
+	href="/consultaProcessual/js/jquery-ui-1.8.13/css/redmond/jquery-ui-1.8.13.custom.css" />
+<script type="text/javascript" src="/consultaProcessual/js/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="/consultaProcessual/js/jquery.crypt.js"></script>
+<script type="text/javascript" src='/consultaProcessual/js/Cookie.js'></script>
+<script type="text/javascript" src='/consultaProcessual/js/jquery.fontResize.js'></script>
+<script type="text/javascript" src='/consultaProcessual/js/index.js'></script>
+<!--<script type="text/javascript" src="https://getfirebug.com/firebug-lite.js"></script>-->
+<script type="text/javascript">
+    var appCache = window.applicationCache;
+
+    if (appCache != null) {
+        appCache.update(); // Attempt to update the user's cache.
+    }
+
+    if (appCache.status == window.applicationCache.UPDATEREADY) {
+        appCache.swapCache();  // The fetch was successful, swap in the new cache.
+    }
+</script>
+        <!-- Google Analytics -->
+        <script type="text/javascript">
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+            ga('create', 'UA-27512799-2', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <!-- End Google Analytics -->
+        <!--<link rel="stylesheet" type="text/css" media="screen" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/themes/redmond/jquery-ui.css" />-->
+<link rel="stylesheet" type="text/css" media="screen"
+	href="/consultaProcessual/js/jquery-ui-1.8.13/css/redmond/jquery-ui-1.8.13.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="/consultaProcessual/css/tipTip.css" />
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.4/jquery-ui.min.js"></script>-->
+<script type="text/javascript"
+	src="/consultaProcessual/js/jquery-ui-1.8.13/js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="/consultaProcessual/js/jquery.dialogr.js"></script>
+<script type="text/javascript" src="/consultaProcessual/js/jquery.watermarkinput.js"></script>
+<script type="text/javascript" src="/consultaProcessual/js/processo.js?1521607240"></script>
+<script type="text/javascript" src="/consultaProcessual/js/jquery.tipTip.minified.js"></script>
+<style type="text/css">
+tbody th {
+	text-align: right;
+}
+
+.ui-widget-content a {
+	color: #2E6E9E;
+	text-decoration: none;
+	outline: 0;
+}
+
+label {
+	margin: 0.5em 0;
+	display: block;
+}
+</style>
+<link rel="stylesheet" type="text/css" media="print" href="/consultaProcessual/css/print.css" />
+</head>
+<body>
+	<div id="container" class="container">
+		<div id="header">
+                <div id="topo">
+	<h1>
+		<a href="#" title="Tribunal Regional Federal da Primeira Regi&atilde;o">Tribunal Regional Federal da Primeira
+			Regi&atilde;o</a>
+	</h1>
+	<div id="topo-center">
+		<p id="trf1">Tribunal Regional Federal da Primeira Regi&atilde;o</p>
+		<p id="trf1-telefone">
+		(61) 3314-5225        </p>
+	</div>
+</div>            </div>
+		<div id="tools" class="span-24 clear">
+			<div id="bread" class="span-20 first">
+                    <ul>
+	<li class="bread-first"><a href="#">In&iacute;cio</a></li>
+				<li><a href="/consultaProcessual/index.php?secao=TRF1">Consulta Processual / TRF1</a></li>
+					<li><a href="/consultaProcessual/numeroProcesso.php?secao=TRF1">Por n&uacute;mero do processo</a></li>
+						<li><span>0022859-79.1999.4.01.0000</span></li>
+		</ul>                </div>
+			<div id="imprimir" class="span-1">
+				<a href="#" rel="#container_print" title="Imprimir"><span>Imprimir</span></a>
+			</div>
+			<div id="acessibilidade" class="span-3 last"></div>
+		</div>
+		<div id="container_print" class="span-24 clear esconderImpressao hide">
+			<div class="span-3 first esconderImpressao">
+				<label><input type="checkbox" name="prnProcesso" value="#aba-processo" rel="" checked="checked" /> Processo</label>
+
+			</div>
+			<div class="span-4 esconderImpressao">
+				<label><input type="checkbox" name="prnMovimentacao" value="#aba-movimentacao" rel="#qtdMov" checked="checked" />
+					Movimenta&ccedil;&otilde;es</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-movimentacao" name="qtdMov" id="qtdMov" maxlength="3" size="10" />
+				</p>
+			</div>
+			<div class="span-3 esconderImpressao">
+				<label><input type="checkbox" name="prnPartes" value="#aba-partes" rel="#qtdParte" checked="checked" /> Partes</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-partes" name="qtdParte" id="qtdParte" maxlength="3" size="10" />
+				</p>
+			</div>
+			<div class="span-3 esconderImpressao">
+				<label><input type="checkbox" name="prnDocumentos" value="#aba-documentos" rel="#qtdDoc" checked="checked" />
+					Documentos</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-documentos" name="qtdDoc" id="qtdDoc" maxlength="3" size="10" />
+				</p>
+			</div>
+
+                                <div class="span-4 esconderImpressao">
+				<label><input type="checkbox" name="prndistribuicao" value="#aba-distribuicao" rel="#qtdDistr" checked="checked" />
+					Distribui&ccedil;&atilde;o</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-distribuicao" name="qtdDistr" id="qtdDistr" maxlength="3" size="10" />
+				</p>
+			</div>
+			<div class="span-4 esconderImpressao">
+				<label><input type="checkbox" name="prnIncidentes" value="#aba-incidentes" rel="#qtdInc" checked="checked" />
+					Incidentes</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-incidentes" name="qtdInc" id="qtdInc" maxlength="3" size="10" />
+				</p>
+			</div>
+			<div class="span-3 esconderImpressao">
+				<label><input type="checkbox" name="prnPeticoes" value="#aba-peticoes" rel="#qtdPet" checked="checked" />
+					Peti&ccedil;&otilde;es</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#aba-peticoes" name="qtdPet" id="qtdPet" maxlength="3" size="10" />
+				</p>
+			</div>
+                
+                <div class="span-3 esconderImpressao">
+				<label><input type="checkbox" name="prnAcessos" value="#ui-tabs-1" rel="#qtdAce" checked="checked" /> Acessos</label>
+				<p>
+					<input type="text" class="qtd-prn" rel="#ui-tabs-1" name="qtdAce" id="qtdAce" maxlength="3" size="10" />
+				</p>
+			</div>
+			<div class="span-3 last esconderImpressao">
+				<button class="btn-print">Imprimir</button>
+			</div>
+		</div>
+		<div class="span-24 first last">
+			<div id="left_side" class="span-5">
+                    <div id="menu-tools" class="span-5 first last">
+
+	<div class="span-5 first last">
+
+		<a id="menu1-close" class="ui-widget" target="_blank"
+			href="http://www.trf1.jus.br/Servicos/RelatorioIndisponibilidade/view_user.php#7">Relatório de Indisponibilidade</a>
+
+	</div>
+
+	<!--div class="span-2 last">
+        
+		<a id="menu-open" href="#">Abrir todos</a>
+        
+	</div-->
+</div>
+<div class="span-5 first last append-bottom menu menu-verde">
+	<h3>
+		<a href="#acessoRapido">Op&ccedil;&otilde;es de pesquisa</a>
+	</h3>
+    	<ul class="filetree">
+
+		<li><a title="N&uacute;mero do Processo"
+			href="/consultaProcessual/numeroProcesso.php?secao=TRF1">N&uacute;mero do
+				Processo</a></li>
+		<li><a title="Nome da Parte"
+			href="/consultaProcessual/nomeParte.php?secao=TRF1">Nome da Parte</a></li>
+		<li><a title="CPF/CNPJ da parte"
+			href="/consultaProcessual/cpfCnpjParte.php?secao=TRF1">CPF/CNPJ da parte</a></li>
+		<li><a title="Nome do Advogado"
+			href="/consultaProcessual/nomeAdvogado.php?secao=TRF1">Nome do Advogado</a></li>
+		<li><a title="C&oacute;digo OAB do Advogado"
+			href="/consultaProcessual/oabAdvogado.php?secao=TRF1">C&oacute;digo OAB do
+				Advogado</a></li>
+		<li><a title="N&uacute;mero do Processo Origin&aacute;rio"
+			href="/consultaProcessual/numeroProcessoOriginario.php?secao=TRF1">N&uacute;mero
+				do Processo Origin&aacute;rio</a></li>
+		<li><a title="N&uacute;mero do Processo de Execu&ccedil;&atilde;o"
+			href="/consultaProcessual/numeroProcessoExecucao.php?secao=TRF1">N&uacute;mero
+				do Processo de Execu&ccedil;&atilde;o</a></li>
+		<li><a title="Protocolo SEDEX"
+			href="/consultaProcessual/protocoloSedex.php?secao=TRF1">Protocolo SEDEX</a></li>
+
+	</ul>
+    </div>                </div>
+			<div id="content" class="span-19 last">
+				<div id="content-center" class="span-19 last">
+                        
+						<!--div id="fazer_login1" class="span-8 last" style="display: block;">
+							<a class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" target="_blank" href="http://www.trf1.jus.br/Servicos/RelatorioIndisponibilidade/view_user.php#7"><span class="ui-button-text">Relatório de Indisponibilidade</span></a>
+						</div-->
+					<div class="span-10 last" id="tools-usuario" style="float: right;">
+						                            <div class="span-10 last" id="tools-usuario" style="float: right; text-align: right;">
+														<div id="fazer_login" class="span-7 last" style="display: block;">
+									<a href="#">Login</a>
+								</div>
+
+								<div id="user-name" class="span-7 last" style="float:left; display: none;">
+
+									<strong id="cpf-usuario">
+                                                                        </strong> / <span id="perfil-usuario">
+                                                                        </span> <span id="cnj-usuario">
+                                                                        </span> / <a id="link_sair" rel="link_sair"
+										href="/consultaProcessual/arquivo/login/sairLogin.php">Sair</a>
+								</div>
+																	<a class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" target="_blank"
+									href="http://portal.trf1.jus.br/portaltrf1/institucional/conciliacao/quero-conciliar/"><span
+									class="ui-button-text">Quero Conciliar</span></a>
+								                            </div>
+						</div>
+					</div>
+					<div class="span-19 last clear">
+						<div id="acessibilidade"></div>
+					</div>
+					<!-- <div class="notice span-12 last clear">Sistemas em manutenção</div> -->
+					<div class="span-19 last clear noticia-letra">
+                                                    <div id="tabs">
+							<ul>
+                                                                            <li><a href="#aba-processo">Processo</a></li>
+								<li><a href="#aba-distribuicao">Distribui&ccedil;&atilde;o</a></li>
+								<li><a href="#aba-partes"
+									onclick="checkPartes('/consultaProcessual','00228597919994010000','TRF1','juris');">Partes</a></li>
+								<!--li><a href="#aba-partes">Partes</a></li-->
+								<li><a href="#aba-movimentacao">Movimenta&ccedil;&atilde;o</a></li>
+								<li><a href="#aba-incidentes">Incidentes</a></li>
+								<li><a href="#aba-peticoes">Peti&ccedil;&otilde;es</a></li>
+								<li><a href="#aba-documentos"
+									onclick="checkDocumentos('/consultaProcessual','00228597919994010000','TRF1','juris');">Documentos</a></li>
+								<li><a
+									href="/consultaProcessual/arquivo/acessos.php?proc=00228597919994010000">Acessos</a></li>
+                                                                    </ul>
+                                <div id="aba-processo"><table>
+	<colgroup>
+		<col class="span-3" />
+		<col class="span-10" />
+	</colgroup>
+	<tbody>
+		<tr>
+			<th>Processo:</th>
+			<td>1999.01.00.025929-8</td>
+		</tr>			<tr>
+				<th>Nova Numera&ccedil;&atilde;o:</th>
+				<td>0022859-79.1999.4.01.0000</td>
+			</tr>		<tr>
+			<th>Grupo:</th>
+			<td>IP - Inquérito Policial<br /></td>
+			<!--td>< ?php echo $processo->dados_proc->classes->classe->sg_classe, ' - ', strtoupper($processo->dados_proc->classes->classe->ds_classe); ?></td-->
+		</tr>
+		<tr>
+			<th>Assunto:</th>
+			<td>
+			287 - DIREITO PENAL<br />		</td>
+			<!--td>< ?php echo ($processo->dados_proc->assunto_principal->assunto->ds_assunto); ?></td-->
+		</tr>
+		<tr>
+			<th>Data de Autua&ccedil;&atilde;o:</th>
+			<td>09/04/1999</td>
+		</tr>
+		<tr>
+			<th>Órgão Julgador:</th>
+			<td>SEGUNDA SEÇÃO</td>
+		</tr>
+		<tr>
+			<th>Juiz Relator:</th>
+			<td>DESEMBARGADOR FEDERAL TOURINHO NETO</td>
+		</tr>
+        <tr>
+			<th>Processo Originário:</th> 
+              <td>00.00.04869-748697/JFPI</td>
+          </tr>
+        
+  </tbody>
+</table></div><div id="aba-movimentacao"><h3>Movimenta&ccedil;&atilde;o</h3>
+<table>
+	<colgroup>
+		<col width="140px">
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Cod</th>
+			<th>Descri&ccedil;&atilde;o</th>
+			<th>Complemento</th>
+		</tr>
+	</thead>
+	<tbody>
+		                        <tr>
+			<td>10/08/2005 17:20:00&nbsp;</td>
+			<td>221220</td>
+			<td class="container_desc">PROCESSO RECEBIDO NO ARQUIVO JUDICIAL</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>05/08/2005 16:44:08&nbsp;</td>
+			<td>220303</td>
+			<td class="container_desc">PROCESSO REMETIDO AO ARQUIVO JUDICIAL</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>05/08/2005 15:29:02&nbsp;</td>
+			<td>140800</td>
+			<td class="container_desc">OFICIO EXPEDIDO</td>
+			<td>AO SR/DPF/DF Nº 3112</td>
+		</tr>
+		                        <tr>
+			<td>01/06/2005 12:29:45&nbsp;</td>
+			<td>90100</td>
+			<td class="container_desc">DECURSO DE PRAZO PARA MANIFESTACAO</td>
+			<td>EM 03.02.2005.</td>
+		</tr>
+		                        <tr>
+			<td>09/12/2004 18:26:25&nbsp;</td>
+			<td>180500</td>
+			<td class="container_desc">DOCUMENTO JUNTADO</td>
+			<td>ARS REFERENTES AOS OFÍCISO Nº 3.381 E 3.382 (AG. AR DO OF. 3976 - ARMÁRIO PRAZO)</td>
+		</tr>
+		                        <tr>
+			<td>09/12/2004 18:01:40&nbsp;</td>
+			<td>140800</td>
+			<td class="container_desc">OFICIO EXPEDIDO</td>
+			<td>Nº 3.976</td>
+		</tr>
+		                        <tr>
+			<td>05/10/2004 12:03:53&nbsp;</td>
+			<td>130290</td>
+			<td class="container_desc">PROCESSO DEVOLVIDO PELA PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>29/09/2004 17:37:04&nbsp;</td>
+			<td>220308</td>
+			<td class="container_desc">PROCESSO REMETIDO A PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>27/09/2004 17:34:49&nbsp;</td>
+			<td>140800</td>
+			<td class="container_desc">OFICIO EXPEDIDO</td>
+			<td>A DPF-PI COMUNICANDO ARQUIVAMENTO</td>
+		</tr>
+		                        <tr>
+			<td>27/09/2004 17:32:41&nbsp;</td>
+			<td>140800</td>
+			<td class="container_desc">OFICIO EXPEDIDO</td>
+			<td>A PRR-PI COMUNICANDO ARQUIVAMENTO</td>
+		</tr>
+		                        <tr>
+			<td>22/09/2004 14:30:00&nbsp;</td>
+			<td>110200</td>
+			<td class="container_desc">DESPACHO PUBLICADO NO D.J. </td>
+			<td>TERMINATIVO.</td>
+		</tr>
+		                        <tr>
+			<td>20/09/2004 17:00:00&nbsp;</td>
+			<td>110180</td>
+			<td class="container_desc">DESPACHO REMETIDO À IMPRENSA NACIONAL</td>
+			<td> PARA PUBLICAÇÃO NO DJ DO DIA 22/09/2004</td>
+		</tr>
+		                        <tr>
+			<td>09/09/2004 19:03:03&nbsp;</td>
+			<td>110100</td>
+			<td class="container_desc">DESPACHO AGUARDANDO PUBLICAÇÃO </td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>09/09/2004 19:02:30&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>DES. FED. RELATOR C/ DECISÃO DET. ARQUIVAMENTO DO PRESENTE INQUÉRITO.</td>
+		</tr>
+		                        <tr>
+			<td>02/09/2004 18:13:27&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>02/09/2004 18:12:27&nbsp;</td>
+			<td>10200</td>
+			<td class="container_desc">REDISTRIBUIÇÃO AUTOMÁTICA</td>
+			<td>Ao DESEMBARGADOR FEDERAL TOURINHO NETO</td>
+		</tr>
+		                        <tr>
+			<td>01/09/2004 17:51:16&nbsp;</td>
+			<td>221125</td>
+			<td class="container_desc">PROCESSO RECEBIDO NA CORIP</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>01/09/2004 09:40:10&nbsp;</td>
+			<td>110505</td>
+			<td class="container_desc">DECISÃO/DESPACHO EXARADA(O) PELO PRESIDENTE DO TRF</td>
+			<td>SECJU - DESPACHO DIVERSO. À CORIP</td>
+		</tr>
+		                        <tr>
+			<td>20/08/2004 17:22:19&nbsp;</td>
+			<td>70600</td>
+			<td class="container_desc">CONCLUSÃO AO PRESIDENTE</td>
+			<td>ALUÍZIO PALMEIRA LIMA ( VIA- SECJU)</td>
+		</tr>
+		                        <tr>
+			<td>20/08/2004 15:17:11&nbsp;</td>
+			<td>110200</td>
+			<td class="container_desc">DESPACHO PUBLICADO NO D.J. </td>
+			<td>INTERLOCUTÓRIO.</td>
+		</tr>
+		                        <tr>
+			<td>17/08/2004 17:00:00&nbsp;</td>
+			<td>110180</td>
+			<td class="container_desc">DESPACHO REMETIDO À IMPRENSA NACIONAL</td>
+			<td> PARA PUBLICAÇÃO NO DJ DO DIA 20/08/2004</td>
+		</tr>
+		                        <tr>
+			<td>12/08/2004 12:15:39&nbsp;</td>
+			<td>110100</td>
+			<td class="container_desc">DESPACHO AGUARDANDO PUBLICAÇÃO </td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>12/08/2004 12:13:40&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>DES. FED. RELATOR C/ DESP. ENCAMINHEM-SE OS AUTOS AO EXMO. SR. PRESIDENTE, PARA FINS DE REDISTRIBUIÇÃO A UM DOS DESEMB. DA EG. SEGUNDA SEÇÃO.</td>
+		</tr>
+		                        <tr>
+			<td>05/08/2004 17:31:02&nbsp;</td>
+			<td>70120</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR COM PETIÇÃO</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>05/08/2004 16:14:25&nbsp;</td>
+			<td>180200</td>
+			<td class="container_desc">PETIÇÃO JUNTADA</td>
+			<td>nr. 1455597 MANIFESTACAO S/R DESPACHO DE FLS.</td>
+		</tr>
+		                        <tr>
+			<td>05/08/2004 12:26:25&nbsp;</td>
+			<td>130290</td>
+			<td class="container_desc">PROCESSO DEVOLVIDO PELA PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>05/06/2003 12:15:00&nbsp;</td>
+			<td>280500</td>
+			<td class="container_desc">VISTA A PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>04/06/2003 17:14:15&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>RELATOR COM R. DESP. DETERMINANDO VISTA A PRR</td>
+		</tr>
+		                        <tr>
+			<td>20/05/2003 14:45:47&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>20/05/2003 14:33:41&nbsp;</td>
+			<td>180200</td>
+			<td class="container_desc">PETIÇÃO JUNTADA</td>
+			<td>nr. 1298645 OFICIO</td>
+		</tr>
+		                        <tr>
+			<td>30/04/2003 17:56:17&nbsp;</td>
+			<td>180500</td>
+			<td class="container_desc">DOCUMENTO JUNTADO</td>
+			<td>AVISO DE RECEBIMENTO DA ECT REF. OFÍCIO N. 452</td>
+		</tr>
+		                        <tr>
+			<td>14/04/2003 16:02:25&nbsp;</td>
+			<td>140800</td>
+			<td class="container_desc">OFICIO EXPEDIDO</td>
+			<td>CONFORME DETERMINADO NO R. DESPACHO DE FLS</td>
+		</tr>
+		                        <tr>
+			<td>03/04/2003 17:46:25&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>RELATOR COM R. DESP. DETERMINANDO EXPEDIÇÃO DE OFÍCIO</td>
+		</tr>
+		                        <tr>
+			<td>24/01/2003 18:56:39&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>24/01/2003 14:19:18&nbsp;</td>
+			<td>180200</td>
+			<td class="container_desc">PETIÇÃO JUNTADA</td>
+			<td>nr. 1252424 MANIFESTACAO S/V. ACORDAO DE FLS.</td>
+		</tr>
+		                        <tr>
+			<td>22/01/2003 14:52:29&nbsp;</td>
+			<td>130290</td>
+			<td class="container_desc">PROCESSO DEVOLVIDO PELA PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>28/02/2002 13:31:00&nbsp;</td>
+			<td>220308</td>
+			<td class="container_desc">PROCESSO REMETIDO A PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>28/02/2002 13:28:57&nbsp;</td>
+			<td>180413</td>
+			<td class="container_desc">MANDADO DE INTIMACAO JUNTADO - MINISTERIO PUBLICO</td>
+			<td>Nº 071</td>
+		</tr>
+		                        <tr>
+			<td>25/02/2002 13:13:54&nbsp;</td>
+			<td>210100</td>
+			<td class="container_desc">ACÓRDÃO PUBLICADO NO D.J.</td>
+			<td>EM 25/02/2002</td>
+		</tr>
+		                        <tr>
+			<td>21/02/2002 16:09:00&nbsp;</td>
+			<td>220328</td>
+			<td class="container_desc">ACORDÃO REMETIDO / (A SER REMETIDO) À IMPRENSA NACIONAL</td>
+			<td> PARA PUBLICAÇÃO NO DJ DO DIA 25/02/2002. Nº de folhas:</td>
+		</tr>
+		                        <tr>
+			<td>15/02/2002 12:48:45&nbsp;</td>
+			<td>260400</td>
+			<td class="container_desc">PROCESSO AGUARDANDO PUBLICAÇÃO DO ACÓRDÃO</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>31/08/2001 15:06:48&nbsp;</td>
+			<td>70400</td>
+			<td class="container_desc">CONCLUSÃO PARA LAVRATURA DE ACÓRDÃO AO</td>
+			<td>JUIZ(A) ITALO MENDES</td>
+		</tr>
+		                        <tr>
+			<td>02/08/2001 16:20:29&nbsp;</td>
+			<td>260350</td>
+			<td class="container_desc">PROCESSO AGUARDANDO VOTO(S)</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>29/06/2001 14:00:00&nbsp;</td>
+			<td>175100</td>
+			<td class="container_desc">A CORTE ESPECIAL, POR MAIORIA,</td>
+			<td>Em questão de ordem decidiu pela competência deste Tribunal, para processar e julgar o presente feito, nos termos do voto do Juiz Italo Mendes.</td>
+		</tr>
+		                        <tr>
+			<td>23/05/2001 16:21:12&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>23/05/2001 16:15:26&nbsp;</td>
+			<td>180200</td>
+			<td class="container_desc">PETIÇÃO JUNTADA</td>
+			<td>nr. 979567 OFICIO</td>
+		</tr>
+		                        <tr>
+			<td>10/05/2001 13:07:56&nbsp;</td>
+			<td>180500</td>
+			<td class="container_desc">DOCUMENTO JUNTADO</td>
+			<td>AR/ECT REF. OF.2774(TRE-PI)</td>
+		</tr>
+		                        <tr>
+			<td>30/04/2001 18:37:40&nbsp;</td>
+			<td>180500</td>
+			<td class="container_desc">DOCUMENTO JUNTADO</td>
+			<td>CÓPIA OF.SUPSE/2774</td>
+		</tr>
+		                        <tr>
+			<td>23/04/2001 16:59:37&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>JUIZ(A) C/R.DESP....REITERE-SE O OFÍCIO DE FLS.148 AO PRESIDENTE DO TRE-PI..</td>
+		</tr>
+		                        <tr>
+			<td>21/11/2000 13:59:16&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td>COM CERTIDÃO.</td>
+		</tr>
+		                        <tr>
+			<td>10/10/2000 17:48:48&nbsp;</td>
+			<td>180500</td>
+			<td class="container_desc">DOCUMENTO JUNTADO</td>
+			<td>AVISO DE RECEBIMENTO REFERENTE O OFÍCIO Nº 491/2000.</td>
+		</tr>
+		                        <tr>
+			<td>02/10/2000 15:01:38&nbsp;</td>
+			<td>180420</td>
+			<td class="container_desc">OFICIO JUNTADO</td>
+			<td>Nº 491/2000, SOLICITANDO INFORMAÇÕES AO T.R.E./PIAUÍ.</td>
+		</tr>
+		                        <tr>
+			<td>28/09/2000 13:58:39&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>JUIZ(A) COM DESPACHO DETERMINANDO OFICIAR AO PRESIDENTE DO T.R.E./PIAUÍ, SOLICITANDO INFORMAÇÕES SOBRE SE O SENHOR JOSÉ RIBAMAR PEREIRA DESEMPENHA ATUALMENTE ALGUM MANDATO POLÍTICO.</td>
+		</tr>
+		                        <tr>
+			<td>25/08/1999 14:04:13&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>25/08/1999 14:02:07&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>JUIZ(A) DIGO, DA 3ª VARA FEDERAL DO PIAUÍ</td>
+		</tr>
+		                        <tr>
+			<td>24/08/1999 16:50:55&nbsp;</td>
+			<td>220319</td>
+			<td class="container_desc">PROCESSO REMETIDO A COORDENADORIA DA CORTE ESPECIAL E DAS SEÇÕES</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>24/08/1999 16:50:49&nbsp;</td>
+			<td>221385</td>
+			<td class="container_desc">PROCESSO RECEBIDO DA ORIGEM</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>24/08/1999 16:50:29&nbsp;</td>
+			<td>60300</td>
+			<td class="container_desc">RESTAURAÇÃO DE BAIXA DEFINITIVA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>14/06/1999 15:58:46&nbsp;</td>
+			<td>60100</td>
+			<td class="container_desc">BAIXA DEFINITIVA A</td>
+			<td>SECAO JUDICIARIA - PI/TERESINA ,MALOTE No. 14052 ,GRPJ No.948</td>
+		</tr>
+		                        <tr>
+			<td>31/05/1999 15:04:03&nbsp;</td>
+			<td>220310</td>
+			<td class="container_desc">PROCESSO REMETIDO AO JUIZO/JUNTA</td>
+			<td>FEDERAL DA 3ª VARA DO ESTADO DO PIAUÍ</td>
+		</tr>
+		                        <tr>
+			<td>31/05/1999 15:03:54&nbsp;</td>
+			<td>90100</td>
+			<td class="container_desc">DECURSO DE PRAZO PARA MANIFESTACAO</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>31/05/1999 14:59:08&nbsp;</td>
+			<td>180200</td>
+			<td class="container_desc">PETIÇÃO JUNTADA</td>
+			<td>nr. 514759 MANIFESTACAO S/R DESPACHO DE FLS.</td>
+		</tr>
+		                        <tr>
+			<td>31/05/1999 14:57:47&nbsp;</td>
+			<td>221260</td>
+			<td class="container_desc">PROCESSO RECEBIDO DA PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>27/05/1999 14:32:07&nbsp;</td>
+			<td>220308</td>
+			<td class="container_desc">PROCESSO REMETIDO A PROCURADORIA REGIONAL DA REPUBLICA</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>27/05/1999 14:30:18&nbsp;</td>
+			<td>180413</td>
+			<td class="container_desc">MANDADO DE INTIMACAO JUNTADO - MINISTERIO PUBLICO</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>11/05/1999 14:55:58&nbsp;</td>
+			<td>110200</td>
+			<td class="container_desc">DESPACHO PUBLICADO NO D.J. </td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>14/04/1999 17:12:46&nbsp;</td>
+			<td>70103</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR COM CERTIDÃO</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>14/04/1999 17:11:59&nbsp;</td>
+			<td>221395</td>
+			<td class="container_desc">PROCESSO RECEBIDO DO GABINETE DO(A)</td>
+			<td>JUIZ(A) C/ DESP DET DESENTRANHAR PROMOCAO DO MPF E RENUMERACAO AUTOS</td>
+		</tr>
+		                        <tr>
+			<td>09/04/1999 18:00:01&nbsp;</td>
+			<td>70100</td>
+			<td class="container_desc">CONCLUSÃO AO RELATOR</td>
+			<td></td>
+		</tr>
+		                        <tr>
+			<td>09/04/1999 17:59:01&nbsp;</td>
+			<td>10100</td>
+			<td class="container_desc">DISTRIBUIÇÃO AUTOMÁTICA</td>
+			<td>Ao Juiz JUIZ CARLOS MOREIRA ALVES</td>
+		</tr>
+			</tbody>
+</table>
+</div><div id="aba-partes"></div><div id="aba-documentos"></div><div id="aba-distribuicao"><h3>Hist&oacute;rico de Distribui&ccedil;&atilde;o</h3>
+<table>
+	<colgroup>
+		<col width="140px">
+	</colgroup>
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>Descri&ccedil;&atilde;o</th>
+			<th>Juiz</th>
+		</tr>
+	</thead>
+	<tbody>
+		                        <tr>
+			<td>02/09/2004&nbsp;</td>
+			<td class="container_desc">REDISTRIBUIÇÃO AUTOMÁTICA&nbsp;</td>
+			<td>DESEMBARGADOR FEDERAL TOURINHO NETO&nbsp;</td>
+		</tr>
+		                        <tr>
+			<td>09/04/1999&nbsp;</td>
+			<td class="container_desc">DISTRIBUIÇÃO AUTOMÁTICA&nbsp;</td>
+			<td>DESEMBARGADOR FEDERAL CARLOS MOREIRA ALVES&nbsp;</td>
+		</tr>
+			</tbody>
+</table>
+</div><div id="aba-incidentes"><h3>Incidentes</h3>
+<div class="notice">Nenhum registro encontrado para este processo.</div>
+</div><div id="aba-peticoes"><h3>Peti&ccedil;&otilde;es</h3>
+<table>
+	<colgroup>
+		<col width="140px">
+	</colgroup>
+	<thead>
+		<tr>
+			<th>N&uacute;mero</th>
+			<th>Data de Entrada</th>
+			<th>Data de Juntada</th>
+			<th>Tipo</th>
+			<th>Complemento</th>
+		</tr>
+	</thead>
+	<tbody>
+                        <tr>
+			<td>514759&nbsp;</td>
+			<td>28/05/1999&nbsp;</td>
+			<td>31/05/1999&nbsp;</td>
+			<td>MANIFESTACAO S/R DESPACHO DE FLS.&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+                        <tr>
+			<td>979567&nbsp;</td>
+			<td>22/05/2001&nbsp;</td>
+			<td>23/05/2001&nbsp;</td>
+			<td>OFICIO&nbsp;</td>
+			<td>484/2001-TRE/PI-ENC.CERTIDÃO&nbsp;</td>
+		</tr>
+                        <tr>
+			<td>1252424&nbsp;</td>
+			<td>21/01/2003&nbsp;</td>
+			<td>24/01/2003&nbsp;</td>
+			<td>MANIFESTACAO S/V. ACORDAO DE FLS.&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+                        <tr>
+			<td>1298645&nbsp;</td>
+			<td>16/05/2003&nbsp;</td>
+			<td>20/05/2003&nbsp;</td>
+			<td>OFICIO&nbsp;</td>
+			<td>300/2003-SEC.PLANEJ/PI PREST.INFORM.&nbsp;</td>
+		</tr>
+                        <tr>
+			<td>1455597&nbsp;</td>
+			<td>04/08/2004&nbsp;</td>
+			<td>05/08/2004&nbsp;</td>
+			<td>MANIFESTACAO S/R DESPACHO DE FLS.&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+                    </tbody>
+</table>
+</div>                            </div>
+						<div style="text-align: right;">
+                                JURIS / F&Iacute;SICO / N                            </div>
+
+
+
+                         
+                         
+                         
+                                                <div class="span-18 clear" style="clear: both; float: none;">
+							<p>
+								<span>Emitido pelo site www.trf1.jus.br em 21/03/2018 &agrave;s 01:40:40 Consulta respondida em 0,166 segundos<!--172.16.3.158--></span>
+							</p>
+							<p>
+								<span>Este servi&ccedil;o tem car&aacute;ter meramente informativo, portanto, SEM cunho oficial.</span>
+							</p>
+						</div>
+                                            </div>
+				</div>
+			</div>
+		</div>
+        <div id="footer">
+	<div class="container" style="display: block; width: 960px; overflow: hidden; margin: 0 auto;">
+		<div class="box-footer span-24">
+			<span>Edif&iacute;cio Sede 1: SAU/SUL Quadra 2, Bloco A, Pra&ccedil;a dos Tribunais Superiores</span>
+			<br />
+			<span>CEP: 70070-900 | Bras&iacute;lia/DF</span>
+					</div>
+	</div>
+	<div id="foot">
+		<div class="container">
+			<div id="direitos"></div>
+		</div>
+	</div>
+</div>
+<div id="loading" class="span-4">
+	<div class="span-1 last" style="margin: 1px 0 0 30px">
+		<img alt="Carregando..." src="/consultaProcessual/images/ajax-loader_1.gif" />
+	</div>
+	<div class="span-2">
+		<strong>Aguarde...</strong>
+	</div>
+</div>
+        <div id="download">
+			<div class="flash" style="display: none;"></div>
+			<div id="container_pbar">
+				<div id="pbar_label"></div>
+				<div id="pbar" style="height: 20px;"></div>
+			</div>
+			<div id="container_download"></div>
+		</div>
+		<div id="dialog_print"></div>
+		<div id="dialog_pub"></div>
+		<div id="dialog"></div>
+		<div id="dialog_login">
+			<!--<form name="form1" id="form1" method="post" action="/consultaProcessual/arquivo/login/autenticar.php?secao=TRF1">-->
+			<form name="frm-mudar-usuario" id="frm-mudar-usuario" method="post"
+				action="/consultaProcessual/arquivo/login/mudarLogin.php?secao=TRF1">
+				<div class="flash" style="display: none;"></div>
+				<div class="span-9">
+					<div class="span-4" style="text-align: left;">
+						<label>CPF<span id="matricula" style="display: none"> / Matr&iacute;cula</span>:
+						</label>
+					</div>
+					<div class="span-4" style="text-align: left;">
+						<input class="text span-3" type="text" name="cpf" id="cpf" value="" />
+					</div>
+				</div>
+				<div class="span-9">
+					<div class="span-4" style="text-align: left;">
+						<label>Senha: </label>
+					</div>
+					<div class="span-4" style="text-align: left;">
+						<input class="text span-3" type="password" name="senha" id="senha" value="" /> <img class="tiptip"
+							src="/consultaProcessual/images/help_icon.png" style="cursor: pointer; vertical-align: middle;"
+							title="Informar o CPF e senha do cadastro do e-Proc." />
+					
+					</div>
+				</div>
+				<input type="hidden" name="fase_id" value="2505093028" /> <input
+					type="hidden" name="DataCons" value="20180321_1_40_40" />
+                                    <input type="hidden" name="proc" value="00228597919994010000" />
+                                        <input type="hidden" name="secao" value="TRF1" />
+                                        <input type="hidden" name="pg" value="1" />
+                                        <input type="hidden" name="enviar" value="Pesquisar" />
+                                    <div class="span-9 esconderImpressao" id="container-secao" style="display: none;">
+					<div class="span-4">
+						<label for="secao">&Oacute;rg&atilde;o</label>
+					</div>
+					<div class="span-4">
+						<select class="consulta" size="1" name="secao" id="secao" disabled="disabled">
+							<option value="">Selecione</option>
+							<option value="TRF1">TRF 1&ordf; Regi&atilde;o</option>
+							<option value="AC">JFAC</option>
+							<option value="AM">JFAM</option>
+							<option value="AP">JFAP</option>
+							<option value="BA">JFBA</option>
+							<option value="DF">JFDF</option>
+							<option value="GO">JFGO</option>
+							<option value="MA">JFMA</option>
+							<option value="MG">JFMG</option>
+							<option value="MT">JFMT</option>
+							<option value="PA">JFPA</option>
+							<option value="PI">JFPI</option>
+							<option value="RO">JFRO</option>
+							<option value="RR">JFRR</option>
+							<option value="TO">JFTO</option>
+						</select>
+					</div>
+				</div>
+				<div class="span-9" style="text-align: center;">OU</div>
+				<div class="span-9" style="text-align: left;">
+					<div class="span-4">
+						<label>Chave de Acesso: </label>
+					</div>
+					<div class="span-4">
+						<input class="text span-3" type="text" name="chave" id="chave" value="" /><img class="tiptip"
+							title="Informar  o código fornecido pela Vara para acesso aos documentos."
+							src="/consultaProcessual/images/help_icon.png" style="cursor: pointer; vertical-align: middle;" />
+					</div>
+				</div>
+				<!--
+                <div id='chave'>
+	                <div class="span-8">
+
+	                    <div>
+	                    	<input type="submit" value="Ok" class="ui-button ui-widget ui-state-default ui-corner-all" name="enviarChave" id="enviarChave" style="width:270px"/>
+	                    </div>
+	                </div>
+	            </div>
+                    -->
+				<!--div class="span-9" style="text-align: right;"><input type="submit" value="Ok" name="enviar" id="enviar" /> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Usuário não cadastrado, <a target="_blank" href="http://www.trf1.jus.br/Processos/ePeticao/ePetCadCpfAdv.php?Oper=F">clique aqui.</a></div-->
+				<div class="span-9" style="text-align: right;">
+					<input type="submit" value="Ok" name="enviar" id="enviar" />
+				</div>
+			</form>
+		</div>
+		<div id="iframe_print" style="display: none">
+			<h1>Tribunal Regional Federal da Primeira Regi&atilde;o</h1>
+			<h2>Tribunal Regional Federal da 1&ordf; Regi&atilde;o</h2>
+                        <div id="prn-processo"></div>
+			<div id="prn-distribuicao"></div>
+			<div id="prn-movimentacao"></div>
+			<div id="prn-incidentes"></div>
+			<div id="prn-peticoes"></div>
+			<div id="prn-partes"></div>
+			<div id="prn-documentos"></div>
+			<div id="prn-abs-1"></div>
+                    </div>
+		<script>
+		$(function(){
+			$(".tiptip").tipTip();
+		});
+		</script>
+		<div id="tiptip_holder">
+			<div id="tiptip_content">
+				<div id="tiptip_arrow">
+					<div id="tiptip_arrow_inner"></div>
+				</div>
+			</div>
+		</div>
+
+</body>
+</html>

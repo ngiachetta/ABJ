@@ -92,11 +92,7 @@ busca_TRF <- function(TRF, class = "INQ", path){
       names(query_GET_1)[4] <- "TRF5"
   } 
   
-  dir.create(path, FALSE, TRUE)
-  path <- normalizePath(path)
-  file <- stringr::str_c(path, "/page1.html")
-  page1 <- httr::GET("http://www.cjf.jus.br/juris/unificada/Resposta", query = query_GET_1, httr::config(ssl_verifypeer = FALSE),
-                     httr::write_disk(file, TRUE))
+  
   
   purrr::map(pages_doc(page1$url), ~busca_TRF_pag(url_list = page1, page = .x,  class, TRF, path))
 }
@@ -425,7 +421,7 @@ readr::write_rds(paginas_brutas, "data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
 ```
 
 ```{r}
-node <- paginas_brutas[3] %>% purrr::pluck(1) %>%  xml2::read_html() 
+node <- dados_brutos_trf2[3] %>% purrr::pluck(1) %>%  xml2::read_html() 
 
 # Ementa_versao 1
 obter_ementa_v1 <- function(node){
@@ -479,7 +475,7 @@ wrapup_info <- function(node){
 
 wrapup_info(node)
 
-nodes <- purrr::map(paginas_brutas, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
+nodes <- purrr::map(dados_brutos_trf2, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
 
 trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
 

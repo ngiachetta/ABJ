@@ -1,0 +1,122 @@
+---
+title: "TRF1-ConsProcessual"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+# aba-movimentacao
+parse_mov <- function(node, processo){
+  node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-movimentacao"]/table') %>%
+    rvest::html_table(fill = T) %>% 
+    magrittr::set_names(c("data", "codigo", "descricao", "complemento")) %>%
+    tidyr::separate(data, into = c("data", "hora"), sep = " ") %>% 
+    #dplyr::mutate(processo = processo) %>%
+    #dplyr::group_by(processo) %>%
+    tidyr::nest(.key = "movimentacao")  
+}
+
+# aba-processo
+parse_processo <- function(node){
+  node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-processo"]/table') %>%
+    rvest::html_table(fill = T) %>%
+    {if(ncol(.)==2){magrittr::set_names(.,c("key", "val"))} else{print("error")}} %>%
+    dplyr::mutate(key = key %>%
+                    stringr::str_replace_all("[[:punct:]]", "") %>%
+                    stringr::str_replace_all(" +", "_") %>%
+                    stringr::str_to_lower() %>%
+                    abjutils::rm_accent()) %>%
+    tidyr::spread(key, val)
+}
+
+# aba-distribuicao
+parse_distribuicao <- function(node, processo){
+    node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-distribuicao"]/table') %>%
+    rvest::html_table(fill = T) %>% 
+    {if(ncol(.)==3){magrittr::set_names(.,c("data", "descricao", "juiz"))} else{print("error")}} %>% 
+    #dplyr::mutate(processo = processo) %>% 
+    #dplyr::group_by(processo) %>% 
+    tidyr::nest(.key = "distribuicao")
+}
+
+# aba-peticoes
+parse_peticoes <- function(node, processo){
+  node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-peticoes"]/table') %>%
+    rvest::html_table(fill = T) %>%
+    #dplyr::mutate(processo = processo) %>%
+    #dplyr::group_by(processo) %>% 
+    tidyr::nest(.key = "peticoes")  
+}
+
+obter_trf1_cp <- function(processo, path){
+  # Obtendo o arquivo html
+  processo <- abjutils::clean_id(processo)
+  url <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+  query <- list(
+    "proc"=processo,
+    "secao"="TRF1",
+    "pg"="1",
+    "enviar"="Pesquisar"
+    )
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path,"/", processo, ".html")
+  request <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE),
+                     httr::write_disk(file, TRUE))
+  
+  teste_node <- request %>% content(as="parsed") %>% rvest::html_node('error span-18 last clear')
+  stopifnot(is.na(teste_node))
+  
+  # Parseando o arquivo
+  node <- request %>% content(as="parsed")
+  
+  processo_info <-node %>% 
+    parse_processo() %>% 
+    dplyr::bind_cols(
+      parse_mov(node, processo),
+      parse_peticoes(node, processo),
+      parse_distribuicao(node, processo)
+    )
+  return(processo_info)
+}
+
+# Exemplo
+processo <- "00494459420154010000"
+path <- "data-raw/"
+obter_trf1_cp(processo, path)
+
+# Reproduzindo para os processos obtidos na consulta de jurisprudencia
+trf1 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tasks/analises_envio/analise-06-03-2018/analise-06-03-2018/codigo_analise/data-raw/trf1.rds")
+
+processos <- trf1 %>% 
+  dplyr::mutate(processo_num = processo %>%
+                  stringr::str_replace_all(., "[[:punct:]]", "") %>%
+                  stringr::str_extract(.,"[0-9]+")) %>% 
+  dplyr::select(processo_num) %>% purrr::pluck(1)
+
+
+path <- "data-raw/"
+purrr::map_dfr(processos, ~obter_trf1_cp(.x, path = path))
+
+files <- dir(path = "data-raw/", full.names = T)
+node <- files[182] %>% xml2::read_html()
+processo <- "01174656520004010000"
+node <- files %>% xml2::read_html()
+
+parse_peticoes(node, processo)
+
+for (i in 1:length(files)){
+  node <- files[i] %>% xml2::read_html()
+  processo <- ""
+  parse_peticoes(node, processo)
+  print(i)
+}
+```
+

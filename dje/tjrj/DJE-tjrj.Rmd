@@ -1,0 +1,43 @@
+---
+title: "DJE-TJRJ"
+output: html_notebook
+---
+
+```{r}
+library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+library(stringr)
+library(png)
+library(magick)
+library(base64enc)
+library(RSelenium)
+```
+
+```{r}
+url <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1"
+file <- "busca.html"
+query <- list(
+  "__VIEWSTATEGENERATOR"=url %>% rvest::html_session(httr::config(ssl_verifypeer = T)) %>% rvest::html_nodes(xpath = '//div/input[@id="__VIEWSTATEGENERATOR"]') %>% rvest::html_attr('value')
+)
+"https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1" %>%
+  GET(httr::config(ssl_verifypeer = FALSE),httr::write_disk(file, TRUE)) %>%
+  read_html() %>%
+  html_nodes(xpath = "//*[@id='captchaImg']") %>%
+  xml_attr("src") %>%
+  str_remove("data:image/png;base64,") %>%
+  base64decode() %>%
+  readPNG() %>%
+  writePNG("static/captcha.png")
+```
+
+```{r}
+remDr <- RSelenium::rsDriver(browser = "firefox")
+remDr$client$navigate(url)
+
+webElem <- 
+  
+"https://www.guru99.com/ssl-certificate-error-handling-selenium.html#1" # solucao
+```
+

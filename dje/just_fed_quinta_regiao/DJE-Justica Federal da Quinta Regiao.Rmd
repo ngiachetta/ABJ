@@ -20,8 +20,8 @@ query <- list(
   "frmVisao"="frmVisao",
   "frmVisao:edicao"="1",
   "frmVisao:j_id45"="Pesquisar",
-  "frmVisao:meses"="01", # Problema no mês
-  "frmVisao:orgao"="5",
+  "frmVisao:meses"="", # Problema no mês
+  "frmVisao:orgao"="80",
   "frmVisao:periodo"="2014",
   "javax.faces.ViewState"= httr::POST(url,httr::config(ssl_verifypeer = FALSE)) %>% 
     xml2::read_html() %>% html_node(xpath = '//*[@id="javax.faces.ViewState"]') %>% rvest::html_attr("value")
@@ -35,6 +35,32 @@ request <- httr::POST(url,body = query,
            httr::write_disk(file, TRUE))
 # Como fazer para colocar um temporizador
 ```
+
+```{r DEU CERTO}
+url <- "https://www4.trf5.jus.br/diarioeletinternet/paginas/consultas/consultaDiario.faces"
+
+query <- list(
+  #"AJAXREQUEST"="_viewRoot",
+  "autoScroll"="",
+  "frmVisao"="frmVisao",
+  "frmVisao:edicao"="1",
+  "frmVisao:j_id45"="Pesquisar",
+  "frmVisao:meses"="02",
+  "frmVisao:orgao"="80",
+  "frmVisao:periodo"="2014",
+  "frmPesquisa:quantidadeRegistros"="100",
+  "javax.faces.ViewState"= httr::POST(url,httr::config(ssl_verifypeer = FALSE)) %>% 
+    xml2::read_html() %>% html_node(xpath = '//*[@id="javax.faces.ViewState"]') %>% rvest::html_attr("value"))
+
+path <- "data-raw/"
+dir.create(path, FALSE, TRUE)
+path <- normalizePath(path)
+file <- stringr::str_c(path, "/busca.html")
+request <- httr::POST(url,body = query, 
+           httr::config(ssl_verifypeer = FALSE),encode = "form",
+           httr::write_disk(file, TRUE))
+```
+
 
 Sendo assim, irei partir para o Selenium
 

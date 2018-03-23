@@ -1,0 +1,200 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+library(httr)
+library(dplyr)
+library(stringr)
+```
+
+
+```{r}
+query <- list(
+  "access"="p",
+  "as_q"="+",
+  "btnG"="Pesquisar",
+  "client"="juris",
+  "entqr"="3",
+  "entqrm"="0",
+  "exclude_apps"="1",
+  "filter"="0",
+  "getfields"="*",
+  "ie"="UTF-8",
+  "lr"="lang_pt",
+  "oe"="UTF-8",
+  "output"="xml_no_dtd",
+  "partialfields"="(ctd:1|ctd:2)",
+  "processType"="cnj",
+  "proxystylesheet"="juris",
+  "q"="Inquérito+policial",
+  "site"="juris",
+  "sort"="date:D:S:d1",
+  "start"="0",
+  "ud"="1",
+  "ulang"="en"
+  )
+
+obter_numpag <- function(url = "http://www.tjrj.jus.br/search", query = query){
+  request <- httr::GET(url, 
+                     query = query, 
+                     httr::config(ssl_verifypeer = FALSE))
+  num_pag <- request %>%
+    content(encoding = "UTF-8") %>% 
+    rvest::html_nodes(xpath = '//span[@class="infoPesquisa"]/b[3]') %>%
+    rvest::html_text() %>% 
+    as.numeric()
+  seq_pag <- seq(0, num_pag, 10)
+  return(seq_pag)
+}
+
+seq_pag <- obter_numpag(query = query)
+
+obter_html <- function(seq_pag, path = "data-raw/"){
+  url <- "http://www.tjrj.jus.br/search"
+  query <- list(
+    "access"="p",
+    "as_q"="+",
+    "btnG"="Pesquisar",
+    "client"="juris",
+    "entqr"="3",
+    "entqrm"="0",
+    "exclude_apps"="1",
+    "filter"="0",
+    "getfields"="*",
+    "ie"="UTF-8",
+    "lr"="lang_pt",
+    "oe"="UTF-8",
+    "output"="xml_no_dtd",
+    "partialfields"="(ctd:1|ctd:2)",
+    "processType"="cnj",
+    "proxystylesheet"="juris",
+    "q"="Inquérito+policial",
+    "site"="juris",
+    "sort"="date:D:S:d1",
+    "start"="0",
+    "ud"="1",
+    "ulang"="en"
+    )
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  for(i in 1:length(seq_pag)){
+    file <- stringr::str_c(path, "/page" ,as.character(i), ".html")
+    query$start <- seq_pag[i]
+    request <- httr::GET(url, 
+                     query = query, 
+                     httr::config(ssl_verifypeer = FALSE),
+                     httr::write_disk(file, TRUE))
+  }
+}
+obter_html(seq_pag = seq_pag)
+
+files <- dir(path = "data-raw/", pattern = "page", full.names = T)
+
+parse_tjrj <- function(file){
+  node <- file %>%
+    xml2::read_html()
+
+  node_proc <- node %>%
+    rvest::html_nodes(xpath = '//table[@id="table_resultado"]')
+
+  # Informações 1
+  node_proc_primcol <- node_proc %>%
+    rvest::html_nodes(xpath = '//td[@class="larguraPrimColuna"]')
+
+  ## Tipo documento
+  tipo_documento <- node_proc_primcol %>%
+    rvest::html_nodes('b') %>%
+    rvest::html_text() %>%
+    tibble::tibble(tipo_documento = .)
+
+  ## Numero do processo
+  num_proc <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')%>% 
+    rvest::html_text() %>%
+    tibble::tibble(num_proc = .)
+
+  ## Link para consulta processual
+  link_cons_proc <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')%>%
+    rvest::html_attr('href') %>%
+    tibble::tibble(link_cons_proc = .)
+
+  ## Classe do processo
+  classe <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/span')%>% 
+    rvest::html_text() %>%
+    stringr::str_replace_all("-", "") %>%
+    stringr::str_trim() %>%
+    tibble::tibble(classe = .)
+
+  # Informações 2
+  node_proc_segcol <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//tr[2]/td')
+
+  ## Relator e Orgao
+  node_relator_orgao <- node_proc_segcol %>%
+    rvest::html_text(trim = T) %>%
+    stringr::str_replace("([E-e]menta)|(EMENTA)", "") %>%
+    stringr::str_split(pattern = " - ")
+
+  ### Relator
+  relator <- node_relator_orgao %>%
+    purrr::map_chr(.,~purrr::pluck(.x,1)) %>%
+    tibble::tibble(relator=.)
+
+  ### Orgao
+  orgao <- node_relator_orgao %>%
+    purrr::map_chr(.,~purrr::pluck(.x,2)) %>%
+    tibble::tibble(orgao=.)
+
+  # Informações 3
+  ## Ementa
+  ementa <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td[@id="ementaRes"]') %>%
+    rvest::html_text() %>%
+    stringr::str_replace_all("(Ocultar ementa)|(Ver ementa completa)", "") %>%
+    tibble::tibble(ementa = .)
+
+  # Informações 4
+  ## Data de julgamento
+  data_julgamento <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td[@colspan="3"]') %>%
+    html_text() %>%
+    .[stringr::str_detect(.,"(Data de julgamento)")] %>%
+    tibble::tibble(key = .) %>%
+    tidyr::separate(key, into = c("key", "data_julgamento"), sep = ":") %>%
+    dplyr::select(data_julgamento)
+
+  ## Data de publicação
+  data_publicacao <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td[@colspan="3"]') %>% html_text() %>% 
+    .[stringr::str_detect(.,"(Data de publica)")] %>%
+    tibble::tibble(key = .) %>% 
+    tidyr::separate(key, into = c("key", "data_publicacao"), sep = ":") %>%
+    dplyr::select(data_publicacao) %>%
+    dplyr::mutate(data_publicacao = str_replace(data_publicacao, "\\n", ""))
+
+  # Tabela final
+  tabela <- dplyr::bind_cols(
+    num_proc,
+    tipo_documento,
+    classe,
+    relator,
+    orgao,
+    ementa,
+    data_julgamento,
+    data_publicacao,
+    link_cons_proc
+    )
+  tabela <- tabela %>% mutate(file = file)
+  return(tabela)
+}
+
+exemplo <- purrr::map_dfr(files, ~parse_tjrj(file = .x))
+
+readr::write_rds(exemplo, "data-raw/data-raw_rds/exemplo.rds")
+```
+

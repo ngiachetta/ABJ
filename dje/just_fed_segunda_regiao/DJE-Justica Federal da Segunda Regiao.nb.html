@@ -239,142 +239,89 @@ request &lt;- httr::POST(doc_url$url,body = query_post,
 <h2>2. Acessando com Selenium</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJsIDwtIFwiaHR0cDovL2RqZS50cmYyLmp1cy5ici9ESkUvUGFnaW5hcy9FeHRlcm5hcy9GaWx0cmFQZXNxdWlzYURvY3VtZW50b3MuYXNweFwiXG5cbnJlZmVyZW5jZWRpcmVjdG9yeSA8LSBcIi9ob21lL25hdGhhbmcvRG9jdW1lbnRvcy9TY3JpcHRzIGFuZCBEb2N1bWVudHMvRVNUQUdJT19BQkovQUJKL2RqZS9qdXN0X2ZlZF9zZWd1bmRhX3JlZ2lhby9kYXRhLXJhdy9cIlxuZnByb2YgPC0gbWFrZUZpcmVmb3hQcm9maWxlKGxpc3QoYnJvd3Nlci5kb3dubG9hZC5kaXIgPSByZWZlcmVuY2VkaXJlY3RvcnksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLmRvd25sb2FkLmZvbGRlckxpc3QgPSAyTCwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLmRvd25sb2FkLm1hbmFnZXIuc2hvd1doZW5TdGFydGluZyA9IEYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLmhlbHBlckFwcHMubmV2ZXJBc2suc2F2ZVRvRGlzaz1cInRleHQveG1sXCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLnRhYnMucmVtb3RlLmF1dG9zdGFydCA9VCxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJyb3dzZXIudGFicy5yZW1vdGUuYXV0b3N0YXJ0LjIgPSBULFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJvd3Nlci50YWJzLnJlbW90ZS5kZXNrdG9wYmVoYXZpb3IgPSBUKSlcbnJlbURyIDwtIFJTZWxlbml1bTo6cnNEcml2ZXIoYnJvd3NlciA9IFwiZmlyZWZveFwiLCBleHRyYUNhcGFiaWxpdGllcyA9IGZwcm9mKVxucmVtRHIkY2xpZW50JG5hdmlnYXRlKHVybClcblxud2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcImlkXCIsIHZhbHVlID0gXCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXJfY3RyRmlsdHJhUGVzcXVpc2FEb2N1bWVudG9zX3JibFRpcG9QZXNxdWlzYV8wXCIpXG53ZWJFbGVtJGNsaWNrRWxlbWVudCgpXG5cbiMgU2VsZWNpb25hciBvcmdhb1xub3JnYW8gPC0gXCIwXCJcbnhwYXRoX29yZ2FvIDwtICcvL3NlbGVjdFtAaWQ9XCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXJfY3RyRmlsdHJhUGVzcXVpc2FEb2N1bWVudG9zX2RkbEFyZWFKdWRpY2lhbFwiXS9vcHRpb25bQHZhbHVlPVwiVkFMT1JPUkdBT1wiXSdcbnhwYXRoX29yZ2FvIDwtIHN0cmluZ3I6OnN0cl9yZXBsYWNlKHhwYXRoX29yZ2FvLCBcIlZBTE9ST1JHQU9cIiwgb3JnYW8pXG53ZWJFbGVtIDwtIHJlbURyJGNsaWVudCRmaW5kRWxlbWVudCh1c2luZyA9IFwieHBhdGhcIiwgdmFsdWUgPXhwYXRoX29yZ2FvKVxud2ViRWxlbSRjbGlja0VsZW1lbnQoKVxuXG5TeXMuc2xlZXAoMylcbiMgRGF0YXNcblxuIyMgSW5pY2lhbFxuZGF0YV9pbmljaWFsIDwtIFwiMjAwMzIwMTdcIlxud2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcImlkXCIsIHZhbHVlID0gXCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXJfY3RyRmlsdHJhUGVzcXVpc2FEb2N1bWVudG9zX3RieERhdGFJbmljaWFsXCIpXG53ZWJFbGVtJHNlbmRLZXlzVG9FbGVtZW50KGxpc3QoZGF0YV9pbmljaWFsKSlcblxuU3lzLnNsZWVwKDMpXG4jIyBGaW5hbFxuZGF0YV9maW5hbCA8LSBcIjI1MDMyMDE3XCJcbndlYkVsZW0gPC0gcmVtRHIkY2xpZW50JGZpbmRFbGVtZW50KHVzaW5nID0gXCJpZFwiLCB2YWx1ZSA9IFwiY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyX2N0ckZpbHRyYVBlc3F1aXNhRG9jdW1lbnRvc190YnhEYXRhRmluYWxcIilcbndlYkVsZW0kc2VuZEtleXNUb0VsZW1lbnQobGlzdChkYXRhX2ZpbmFsKSlcblxuICAjIE51bWVybyBkZSBwYWdpbmFzXG4gIHdlYkVsZW0gPC0gcmVtRHIkY2xpZW50JGZpbmRFbGVtZW50KHVzaW5nID0gXCJ4cGF0aFwiLCB2YWx1ZSA9ICcvL3NlbGVjdFtAaWQ9XCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXJfY3RyRmlsdHJhUGVzcXVpc2FEb2N1bWVudG9zX2RkbFJlZ2lzdHJvc1BhZ2luYXNcIl0vb3B0aW9uW0B2YWx1ZT1cIjEwMFwiXScpXG4gIHdlYkVsZW0kY2xpY2tFbGVtZW50KClcblxuU3lzLnNsZWVwKDMpXG4jIFBlc3F1aXNhclxud2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcImlkXCIsIHZhbHVlID0gXCJjdGwwMF9Db250ZW50UGxhY2VIb2xkZXJfY3RyRmlsdHJhUGVzcXVpc2FEb2N1bWVudG9zX2J0bkZpbHRyYXJcIilcbndlYkVsZW0kY2xpY2tFbGVtZW50KClcblxuU3lzLnNsZWVwKDMpXG5cbnBhZ2Vfc291cmNlIDwtIHJlbURyJGNsaWVudCRnZXRQYWdlU291cmNlKClcblxuYXJxdWl2b3MgPC0gcGFnZV9zb3VyY2UgJT4lIHB1cnJyOjpwbHVjaygxKSAlPiUgeG1sMjo6cmVhZF9odG1sKCkgJT4lIGh0bWxfbm9kZXMoeHBhdGggPSAnLy90cltAY2xhc3M9XCJMaW5oYUdyaWRcIl0vdGRbQHN0eWxlPVwid2lkdGg6MzUlO1wiXS9hJykgJT4lIHJ2ZXN0OjpodG1sX2F0dHIoXCJpZFwiKVxuXG5qdWRfYWRtIDwtIFwiSnVkXCJcblxuYXJxdWl2b3MgPC0gYXJxdWl2b3Nbc3RyaW5ncjo6c3RyX2RldGVjdChhcnF1aXZvcywganVkX2FkbSldXG5cbmZvcihpIGluIDE6bGVuZ3RoKGFycXVpdm9zKSl7XG4gICAgd2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcImlkXCIsIHZhbHVlID0gYXJxdWl2b3NbaV0pXG4gICAgd2ViRWxlbSRjbGlja0VsZW1lbnQoKVxuICAgIHdlYkVsZW0gPC0gTlVMTFxuICAgIFN5cy5zbGVlcCg1KVxufVxucGF0aCA8LSBcIi9ob21lL25hdGhhbmcvRG9jdW1lbnRvcy9TY3JpcHRzIGFuZCBEb2N1bWVudHMvRVNUQUdJT19BQkovQUJKL2RqZS9qdXN0X2ZlZF9zZWd1bmRhX3JlZ2lhby9kYXRhLXJhdy9cIlxuXG5kamVfMnJlZ2lhbyA8LSBmdW5jdGlvbihvcmdhbyA9IFwiMFwiLCBkYXRhX2luaWNpYWw9XCJcIiwgZGF0YV9maW5hbD1cIlwiLCBqdWRfYWRtPVwiSnVkXCIsIHBhdGgpe1xuICB1cmwgPC0gXCJodHRwOi8vZGplLnRyZjIuanVzLmJyL0RKRS9QYWdpbmFzL0V4dGVybmFzL0ZpbHRyYVBlc3F1aXNhRG9jdW1lbnRvcy5hc3B4XCJcblxuICByZWZlcmVuY2VkaXJlY3RvcnkgPC0gcGF0aFxuICBmcHJvZiA8LSBtYWtlRmlyZWZveFByb2ZpbGUobGlzdChicm93c2VyLmRvd25sb2FkLmRpciA9IHJlZmVyZW5jZWRpcmVjdG9yeSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJvd3Nlci5kb3dubG9hZC5mb2xkZXJMaXN0ID0gMkwsIFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLmRvd25sb2FkLm1hbmFnZXIuc2hvd1doZW5TdGFydGluZyA9IEYsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJyb3dzZXIuaGVscGVyQXBwcy5uZXZlckFzay5zYXZlVG9EaXNrPVwidGV4dC94bWxcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYnJvd3Nlci50YWJzLnJlbW90ZS5hdXRvc3RhcnQgPVQsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGJyb3dzZXIudGFicy5yZW1vdGUuYXV0b3N0YXJ0LjIgPSBULFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBicm93c2VyLnRhYnMucmVtb3RlLmRlc2t0b3BiZWhhdmlvciA9IFQpKVxuICByZW1EciA8LSBSU2VsZW5pdW06OnJzRHJpdmVyKGJyb3dzZXIgPSBcImZpcmVmb3hcIiwgZXh0cmFDYXBhYmlsaXRpZXMgPSBmcHJvZilcbiAgcmVtRHIkY2xpZW50JG5hdmlnYXRlKHVybClcblxuICB3ZWJFbGVtIDwtIHJlbURyJGNsaWVudCRmaW5kRWxlbWVudCh1c2luZyA9IFwiaWRcIiwgXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlPVwiY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyX2N0ckZpbHRyYVBlc3F1aXNhRG9jdW1lbnRvc19yYmxUaXBvUGVzcXVpc2FfMFwiKVxuICB3ZWJFbGVtJGNsaWNrRWxlbWVudCgpXG4gIFN5cy5zbGVlcCgxMClcbiAgXG4gICMgU2VsZWNpb25hciBvcmdhb1xuICBvcmdhbyA8LSBcIjBcIlxuICB4cGF0aF9vcmdhbyA8LSAnLy9zZWxlY3RbQGlkPVwiY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyX2N0ckZpbHRyYVBlc3F1aXNhRG9jdW1lbnRvc19kZGxBcmVhSnVkaWNpYWxcIl0vb3B0aW9uW0B2YWx1ZT1cIlZBTE9ST1JHQU9cIl0nXG4gIHhwYXRoX29yZ2FvIDwtIHN0cmluZ3I6OnN0cl9yZXBsYWNlKHhwYXRoX29yZ2FvLCBcIlZBTE9ST1JHQU9cIiwgb3JnYW8pXG4gIHdlYkVsZW0gPC0gcmVtRHIkY2xpZW50JGZpbmRFbGVtZW50KHVzaW5nID0gXCJ4cGF0aFwiLCB2YWx1ZT14cGF0aF9vcmdhbylcbiAgU3lzLnNsZWVwKDEpXG4gIHdlYkVsZW0kY2xpY2tFbGVtZW50KClcbiAgXG4gIFN5cy5zbGVlcCgzKVxuICAjIERhdGFzXG5cbiAgIyMgSW5pY2lhbFxuICBkYXRhX2luaWNpYWwgPC0gc3RyaW5ncjo6c3RyX3JlcGxhY2VfYWxsKGRhdGFfaW5pY2lhbCwgXCJbWzpwdW5jdDpdXVwiLFwiXCIpXG4gIHdlYkVsZW0gPC0gcmVtRHIkY2xpZW50JGZpbmRFbGVtZW50KHVzaW5nID0gXCJpZFwiLCB2YWx1ZSA9IFwiY3RsMDBfQ29udGVudFBsYWNlSG9sZGVyX2N0ckZpbHRyYVBlc3F1aXNhRG9jdW1lbnRvc190YnhEYXRhSW5pY2lhbFwiKVxuICBTeXMuc2xlZXAoMSlcbiAgd2ViRWxlbSRzZW5kS2V5c1RvRWxlbWVudChsaXN0KGRhdGFfaW5pY2lhbCkpXG5cbiAgU3lzLnNsZWVwKDMpXG4gICMjIEZpbmFsXG4gIGRhdGFfZmluYWwgPC0gc3RyaW5ncjo6c3RyX3JlcGxhY2VfYWxsKGRhdGFfZmluYWwsIFwiW1s6cHVuY3Q6XV1cIixcIlwiKVxuICB3ZWJFbGVtIDwtIHJlbURyJGNsaWVudCRmaW5kRWxlbWVudCh1c2luZyA9IFwiaWRcIiwgdmFsdWUgPSBcImN0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcl9jdHJGaWx0cmFQZXNxdWlzYURvY3VtZW50b3NfdGJ4RGF0YUZpbmFsXCIpXG4gIFN5cy5zbGVlcCgxKVxuICB3ZWJFbGVtJHNlbmRLZXlzVG9FbGVtZW50KGxpc3QoZGF0YV9maW5hbCkpXG4gIFN5cy5zbGVlcCgzKVxuICBcbiAgICMgTnVtZXJvIGRlIHBhZ2luYXNcbiAgd2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcInhwYXRoXCIsIHZhbHVlID0gJy8vc2VsZWN0W0BpZD1cImN0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcl9jdHJGaWx0cmFQZXNxdWlzYURvY3VtZW50b3NfZGRsUmVnaXN0cm9zUGFnaW5hc1wiXS9vcHRpb25bQHZhbHVlPVwiMTAwXCJdJylcbiAgd2ViRWxlbSRjbGlja0VsZW1lbnQoKVxuXG4gIFN5cy5zbGVlcCgzKVxuICAjIFBlc3F1aXNhclxuICB3ZWJFbGVtIDwtIHJlbURyJGNsaWVudCRmaW5kRWxlbWVudCh1c2luZyA9IFwiaWRcIiwgdmFsdWUgPSBcImN0bDAwX0NvbnRlbnRQbGFjZUhvbGRlcl9jdHJGaWx0cmFQZXNxdWlzYURvY3VtZW50b3NfYnRuRmlsdHJhclwiKVxuICB3ZWJFbGVtJGNsaWNrRWxlbWVudCgpXG5cbiAgU3lzLnNsZWVwKDMpXG5cbiAgcGFnZV9zb3VyY2UgPC0gcmVtRHIkY2xpZW50JGdldFBhZ2VTb3VyY2UoKVxuXG4gIGFycXVpdm9zIDwtIHBhZ2Vfc291cmNlICU+JSBwdXJycjo6cGx1Y2soMSkgJT4lIHhtbDI6OnJlYWRfaHRtbCgpICU+JSBodG1sX25vZGVzKHhwYXRoID0gJy8vdHJbQGNsYXNzPVwiTGluaGFHcmlkXCJdL3RkW0BzdHlsZT1cIndpZHRoOjM1JTtcIl0vYScpICU+JSBydmVzdDo6aHRtbF9hdHRyKFwiaWRcIilcblxuICBhcnF1aXZvcyA8LSBhcnF1aXZvc1tzdHJpbmdyOjpzdHJfZGV0ZWN0KGFycXVpdm9zLCBqdWRfYWRtKV1cbiAgXG4gIGZvcihpIGluIDE6bGVuZ3RoKGFycXVpdm9zKSl7XG4gICAgd2ViRWxlbSA8LSByZW1EciRjbGllbnQkZmluZEVsZW1lbnQodXNpbmcgPSBcImlkXCIsIHZhbHVlID0gYXJxdWl2b3NbaV0pXG4gICAgd2ViRWxlbSRjbGlja0VsZW1lbnQoKVxuICAgIHdlYkVsZW0gPC0gTlVMTFxuICAgIFN5cy5zbGVlcCg1KVxuICB9XG59XG5cbmRqZV8ycmVnaWFvKG9yZ2FvID0gXCIwXCIsIGRhdGFfaW5pY2lhbCA9IFwiMjMvMDcvMjAxN1wiLCBkYXRhX2ZpbmFsID0gXCIyNy8wNy8yMDE3XCIsIGp1ZF9hZG0gPSBcIkp1ZFwiLCBwYXRoID0gcGF0aClcbmBgYCJ9 -->
-<pre class="r"><code>url &lt;- &quot;http://dje.trf2.jus.br/DJE/Paginas/Externas/FiltraPesquisaDocumentos.aspx&quot;
-
-referencedirectory &lt;- &quot;/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_segunda_regiao/data-raw/&quot;
-fprof &lt;- makeFirefoxProfile(list(browser.download.dir = referencedirectory,
-                                 browser.download.folderList = 2L, 
-                                 browser.download.manager.showWhenStarting = F,
-                                 browser.helperApps.neverAsk.saveToDisk=&quot;text/xml&quot;,
-                                 browser.tabs.remote.autostart =T,
-                                 browser.tabs.remote.autostart.2 = T,
-                                 browser.tabs.remote.desktopbehavior = T))
-remDr &lt;- RSelenium::rsDriver(browser = &quot;firefox&quot;, extraCapabilities = fprof)
-remDr$client$navigate(url)
-
-webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_rblTipoPesquisa_0&quot;)
-webElem$clickElement()
-
-# Selecionar orgao
-orgao &lt;- &quot;0&quot;
-xpath_orgao &lt;- '//select[@id=&quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlAreaJudicial&quot;]/option[@value=&quot;VALORORGAO&quot;]'
-xpath_orgao &lt;- stringr::str_replace(xpath_orgao, &quot;VALORORGAO&quot;, orgao)
-webElem &lt;- remDr$client$findElement(using = &quot;xpath&quot;, value =xpath_orgao)
-webElem$clickElement()
-
-Sys.sleep(3)
-# Datas
-
-## Inicial
-data_inicial &lt;- &quot;20032017&quot;
-webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataInicial&quot;)
-webElem$sendKeysToElement(list(data_inicial))
-
-Sys.sleep(3)
-## Final
-data_final &lt;- &quot;25032017&quot;
-webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataFinal&quot;)
-webElem$sendKeysToElement(list(data_final))
-
-  # Numero de paginas
-  webElem &lt;- remDr$client$findElement(using = &quot;xpath&quot;, value = '//select[@id=&quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlRegistrosPaginas&quot;]/option[@value=&quot;100&quot;]')
-  webElem$clickElement()
-
-Sys.sleep(3)
-# Pesquisar
-webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_btnFiltrar&quot;)
-webElem$clickElement()
-
-Sys.sleep(3)
-
-page_source &lt;- remDr$client$getPageSource()
-
-arquivos &lt;- page_source %&gt;% purrr::pluck(1) %&gt;% xml2::read_html() %&gt;% html_nodes(xpath = '//tr[@class=&quot;LinhaGrid&quot;]/td[@style=&quot;width:35%;&quot;]/a') %&gt;% rvest::html_attr(&quot;id&quot;)
-
-jud_adm &lt;- &quot;Jud&quot;
-
-arquivos &lt;- arquivos[stringr::str_detect(arquivos, jud_adm)]
-
-for(i in 1:length(arquivos)){
-    webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = arquivos[i])
-    webElem$clickElement()
-    webElem &lt;- NULL
-    Sys.sleep(5)
-}
-path &lt;- &quot;/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/just_fed_segunda_regiao/data-raw/&quot;
-
-dje_2regiao &lt;- function(orgao = &quot;0&quot;, data_inicial=&quot;&quot;, data_final=&quot;&quot;, jud_adm=&quot;Jud&quot;, path){
-  url &lt;- &quot;http://dje.trf2.jus.br/DJE/Paginas/Externas/FiltraPesquisaDocumentos.aspx&quot;
-
-  referencedirectory &lt;- path
-  fprof &lt;- makeFirefoxProfile(list(browser.download.dir = referencedirectory,
-                                   browser.download.folderList = 2L, 
-                                   browser.download.manager.showWhenStarting = F,
-                                   browser.helperApps.neverAsk.saveToDisk=&quot;text/xml&quot;,
-                                   browser.tabs.remote.autostart =T,
-                                   browser.tabs.remote.autostart.2 = T,
-                                   browser.tabs.remote.desktopbehavior = T))
-  remDr &lt;- RSelenium::rsDriver(browser = &quot;firefox&quot;, extraCapabilities = fprof)
-  remDr$client$navigate(url)
-
-  webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, 
-                                      value=&quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_rblTipoPesquisa_0&quot;)
-  webElem$clickElement()
-  Sys.sleep(10)
-  
-  # Selecionar orgao
-  orgao &lt;- &quot;0&quot;
-  xpath_orgao &lt;- '//select[@id=&quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlAreaJudicial&quot;]/option[@value=&quot;VALORORGAO&quot;]'
-  xpath_orgao &lt;- stringr::str_replace(xpath_orgao, &quot;VALORORGAO&quot;, orgao)
-  webElem &lt;- remDr$client$findElement(using = &quot;xpath&quot;, value=xpath_orgao)
-  Sys.sleep(1)
-  webElem$clickElement()
-  
-  Sys.sleep(3)
-  # Datas
-
-  ## Inicial
-  data_inicial &lt;- stringr::str_replace_all(data_inicial, &quot;[[:punct:]]&quot;,&quot;&quot;)
-  webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataInicial&quot;)
-  Sys.sleep(1)
-  webElem$sendKeysToElement(list(data_inicial))
-
-  Sys.sleep(3)
-  ## Final
-  data_final &lt;- stringr::str_replace_all(data_final, &quot;[[:punct:]]&quot;,&quot;&quot;)
-  webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_tbxDataFinal&quot;)
-  Sys.sleep(1)
-  webElem$sendKeysToElement(list(data_final))
-  Sys.sleep(3)
-  
-   # Numero de paginas
-  webElem &lt;- remDr$client$findElement(using = &quot;xpath&quot;, value = '//select[@id=&quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_ddlRegistrosPaginas&quot;]/option[@value=&quot;100&quot;]')
-  webElem$clickElement()
-
-  Sys.sleep(3)
-  # Pesquisar
-  webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = &quot;ctl00_ContentPlaceHolder_ctrFiltraPesquisaDocumentos_btnFiltrar&quot;)
-  webElem$clickElement()
-
-  Sys.sleep(3)
-
-  page_source &lt;- remDr$client$getPageSource()
-
-  arquivos &lt;- page_source %&gt;% purrr::pluck(1) %&gt;% xml2::read_html() %&gt;% html_nodes(xpath = '//tr[@class=&quot;LinhaGrid&quot;]/td[@style=&quot;width:35%;&quot;]/a') %&gt;% rvest::html_attr(&quot;id&quot;)
-
-  arquivos &lt;- arquivos[stringr::str_detect(arquivos, jud_adm)]
-  
-  for(i in 1:length(arquivos)){
-    webElem &lt;- remDr$client$findElement(using = &quot;id&quot;, value = arquivos[i])
-    webElem$clickElement()
-    webElem &lt;- NULL
-    Sys.sleep(5)
-  }
-}
-
-dje_2regiao(orgao = &quot;0&quot;, data_inicial = &quot;23/07/2017&quot;, data_final = &quot;27/07/2017&quot;, jud_adm = &quot;Jud&quot;, path = path)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVtRHIgPC0gUlNlbGVuaXVtOjpyc0RyaXZlcihicm93c2VyID0gXCJmaXJlZm94XCIsIGV4dHJhQ2FwYWJpbGl0aWVzID0gZnByb2YpXG5cbmBgYCJ9 -->
+<pre class="r"><code>remDr &lt;- RSelenium::rsDriver(browser = &quot;firefox&quot;, extraCapabilities = fprof)
+</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiY2hlY2tpbmcgU2VsZW5pdW0gU2VydmVyIHZlcnNpb25zOlxuQkVHSU46IFBSRURPV05MT0FEXG5CRUdJTjogRE9XTkxPQURcbkJFR0lOOiBQT1NURE9XTkxPQURcbmNoZWNraW5nIGNocm9tZWRyaXZlciB2ZXJzaW9uczpcbkJFR0lOOiBQUkVET1dOTE9BRFxuQkVHSU46IERPV05MT0FEXG5DcmVhdGluZyBkaXJlY3Rvcnk6IC9ob21lL25hdGhhbmcvLmxvY2FsL3NoYXJlL2Jpbm1hbl9jaHJvbWVkcml2ZXIvbGludXg2NC8yLjM3XG5Eb3dubG9hZGluZyBiaW5hcnk6IGh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL2Rvd25sb2FkL3N0b3JhZ2UvdjEvYi9jaHJvbWVkcml2ZXIvby8yLjM3JTJGY2hyb21lZHJpdmUuLi5cblxuQkVHSU46IFBPU1RET1dOTE9BRFxuY2hlY2tpbmcgZ2Vja29kcml2ZXIgdmVyc2lvbnM6XG5CRUdJTjogUFJFRE9XTkxPQURcbkJFR0lOOiBET1dOTE9BRFxuQkVHSU46IFBPU1RET1dOTE9BRFxuY2hlY2tpbmcgcGhhbnRvbWpzIHZlcnNpb25zOlxuQkVHSU46IFBSRURPV05MT0FEXG5CRUdJTjogRE9XTkxPQURcbkJFR0lOOiBQT1NURE9XTkxPQURcbiJ9 -->
+<pre><code>checking Selenium Server versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking chromedriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+Creating directory: /home/nathang/.local/share/binman_chromedriver/linux64/2.37
+Downloading binary: https://www.googleapis.com/download/storage/v1/b/chromedriver/o/2.37%2Fchromedrive...
+
+BEGIN: POSTDOWNLOAD
+checking geckodriver versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD
+checking phantomjs versions:
+BEGIN: PREDOWNLOAD
+BEGIN: DOWNLOAD
+BEGIN: POSTDOWNLOAD</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29ubmVjdGluZyB0byByZW1vdGUgc2VydmVyXCJcbiRgbW96OnByb2ZpbGVgXG5bMV0gXCIvdG1wL3J1c3RfbW96cHJvZmlsZS5xWlFhSjdtMXRaWFNcIlxuXG4kcm90YXRhYmxlXG5bMV0gRkFMU0VcblxuJHRpbWVvdXRzXG4kdGltZW91dHMkaW1wbGljaXRcblsxXSAwXG5cbiR0aW1lb3V0cyRwYWdlTG9hZFxuWzFdIDMwMDAwMFxuXG4kdGltZW91dHMkc2NyaXB0XG5bMV0gMzAwMDBcblxuXG4kcGFnZUxvYWRTdHJhdGVneVxuWzFdIFwibm9ybWFsXCJcblxuJGBtb3o6aGVhZGxlc3NgXG5bMV0gRkFMU0VcblxuJGBtb3o6YWNjZXNzaWJpbGl0eUNoZWNrc2BcblsxXSBGQUxTRVxuXG4kYG1vejp1c2VOb25TcGVjQ29tcGxpYW50UG9pbnRlck9yaWdpbmBcblsxXSBGQUxTRVxuXG4kYWNjZXB0SW5zZWN1cmVDZXJ0c1xuWzFdIEZBTFNFXG5cbiRicm93c2VyVmVyc2lvblxuWzFdIFwiNTkuMFwiXG5cbiRwbGF0Zm9ybVZlcnNpb25cblsxXSBcIjQuNC4wLTExNi1nZW5lcmljXCJcblxuJGBtb3o6cHJvY2Vzc0lEYFxuWzFdIDg1ODFcblxuJGJyb3dzZXJOYW1lXG5bMV0gXCJmaXJlZm94XCJcblxuJHBsYXRmb3JtTmFtZVxuWzFdIFwibGludXhcIlxuXG4kYG1vejp3ZWJkcml2ZXJDbGlja2BcblsxXSBUUlVFXG5cbiR3ZWJkcml2ZXIucmVtb3RlLnNlc3Npb25pZFxuWzFdIFwiZDcxZjU3ZTctYzI5ZS00YzA5LThlYzQtNDdmZGNhM2QwMjY1XCJcblxuJGlkXG5bMV0gXCJkNzFmNTdlNy1jMjllLTRjMDktOGVjNC00N2ZkY2EzZDAyNjVcIlxuIn0= -->
+<pre><code>[1] &quot;Connecting to remote server&quot;
+$`moz:profile`
+[1] &quot;/tmp/rust_mozprofile.qZQaJ7m1tZXS&quot;
+
+$rotatable
+[1] FALSE
+
+$timeouts
+$timeouts$implicit
+[1] 0
+
+$timeouts$pageLoad
+[1] 300000
+
+$timeouts$script
+[1] 30000
+
+
+$pageLoadStrategy
+[1] &quot;normal&quot;
+
+$`moz:headless`
+[1] FALSE
+
+$`moz:accessibilityChecks`
+[1] FALSE
+
+$`moz:useNonSpecCompliantPointerOrigin`
+[1] FALSE
+
+$acceptInsecureCerts
+[1] FALSE
+
+$browserVersion
+[1] &quot;59.0&quot;
+
+$platformVersion
+[1] &quot;4.4.0-116-generic&quot;
+
+$`moz:processID`
+[1] 8581
+
+$browserName
+[1] &quot;firefox&quot;
+
+$platformName
+[1] &quot;linux&quot;
+
+$`moz:webdriverClick`
+[1] TRUE
+
+$webdriver.remote.sessionid
+[1] &quot;d71f57e7-c29e-4c09-8ec4-47fdca3d0265&quot;
+
+$id
+[1] &quot;d71f57e7-c29e-4c09-8ec4-47fdca3d0265&quot;</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
@@ -382,16 +329,6 @@ dje_2regiao(orgao = &quot;0&quot;, data_inicial = &quot;23/07/2017&quot;, data_f
 <h2>3. Acessando com o httr, porém link diferente de 1 e 2</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICBwdXJycjo6bWFwMihkYWRvcyRsaW5rX2Rvd25sb2FkLCBkYWRvcyRmaWxlX3BkZix+ZG93bmxvYWQuZmlsZSgueCwgZGVzdGZpbGUgPSAueSxtb2RlPVwid2JcIiwgcXVpZXQgPSBUKSlcblxuYGBgIn0= -->
-<pre class="r"><code>  purrr::map2(dados$link_download, dados$file_pdf,~download.file(.x, destfile = .y,mode=&quot;wb&quot;, quiet = T))
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVW5rbm93biBvciB1bmluaXRpYWxpc2VkIGNvbHVtbjogJ2ZpbGVfcGRmJy5cbiJ9 -->
-<pre><code>Unknown or uninitialised column: 'file_pdf'.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoibGlzdCgpXG4ifQ== -->
-<pre><code>list()</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->

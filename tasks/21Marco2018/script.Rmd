@@ -103,3 +103,9 @@ readr::write_excel_csv(tabela_bruta, "tabelas/tabela_bruta.csv")
 readr::write_excel_csv(tabela_criminal, "tabelas/tabela_criminal.csv")
 ```
 
+```{r}
+# Conferindo se os nomes da tabela de referencia estão batento com os obtidos pela tabela bruta
+dplyr::anti_join(tabela_bruta, tabela_referencia, by = c("nome"="Nome")) %>% 
+  select(nome, Nome)
+```
+

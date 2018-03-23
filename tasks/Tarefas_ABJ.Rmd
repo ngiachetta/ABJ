@@ -47,14 +47,14 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) 
 |TRF-2    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-3    |Jurisprudência     |SIM          |SIM         |   |
 |TRF-5    |Jurisprudência     |SIM          |SIM         |   |
-|TRF-1    |Consulta Processual|NÃO          |NÃO         |   |
-|TRF-2    |Consulta Processual|SIM          |SIM*        |Parser de movimentacao feito, porém o de infos gerais em andamento|
+|TRF-1    |Consulta Processual|SIM          |SIM         |   |
+|TRF-2    |Consulta Processual|SIM          |SIM*        |Parser de movimentacao feito, porém o de infos gerais em andamento (Indisponibilidade do sistema SIAPRO no período de 19 a 23 de março)|
 |TRF-3    |Consulta Processual|SIM          |SIM         |   |
 |TRF-5    |Consulta Processual|SIM          |NÃO         |Parser parcial; TRF5 fora do ar (05/03)|
 |TJAL     |Jurisprudência     |SIM          |SIM         |   |
 |TJDFT    |Jurisprudência     |SIM          |SIM         |   |
 |TJSP     |Jurisprudência     |SIM          |SIM         |   |
-|TJRJ     |Jurisprudência     |NÃO          |NÃO         |Problemas na coleta|
+|TJRJ     |Jurisprudência     |SIM          |SIM         |É preciso coletar todos os docs|
 |TJAL     |Consulta Processual|SIM          |SIM         |   |
 |TJDFT    |Consulta Processual|SIM          |SIM         |   |
 |TJSP     |Consulta Processual|SIM          |SIM         |   |
@@ -76,13 +76,17 @@ JFDF: [consulta processual](https://processual.trf1.jus.br/consultaProcessual/) 
 
 Objetivo: Construir scrapers dos diários da primeira instância.
 
-|Tribunais|Scraper feito|Obs|
-|--------:|:-----------:|--:|
-|TJSP     |Pacote DJE   |o pacote está funcionando|
-|TJAL     |Pacote DJE   |o pacote está funcionando|
-|TJRJ     |NÃO          |   |
-|TJDFT    |SIM          |   |
-|JFSP     |NÃO          |Em andamento (Dificuldade para acessar outras paginas)|
-|JFAL     |NÃO          |Em andamento (Problema com uma das consultas)|
-|JFRJ     |SIM          |   |
-|JFDF     |NÃO          |O site apresenta problemas|
+|Tribunais|Scraper feito|Obs                                                         |
+|--------:|:-----------:|-----------------------------------------------------------:|
+|TJSP     |Pacote DJE   |o pacote está funcionando                                   |
+|TJAL     |Pacote DJE   |o pacote está funcionando                                   |
+|TJRJ     |NÃO          |                                                            |
+|TJDFT    |SIM          |                                                            |
+|JFSP     |SIM          |Parser realiado                                             |
+|JFAL     |NÃO          |Em andamento (Requisição ok, porém acesso as informaçes não)|
+|JFRJ     |SIM          |                                                            |
+|JFDF     |NÃO          |O site apresenta problemas                                  |
+
+#### Revisando algumas requests
+
+##### TRF2
