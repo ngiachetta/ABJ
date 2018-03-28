@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" name="viewport" />
+<link rel="shortcut icon" href="/edj/themes/Mirage/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/edj/themes/Mirage/images/apple-touch-icon.png" />
+<meta name="Generator" content="DSpace 3.2" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/../../static/css/discovery/discovery-style.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/reset.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/base.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/helper.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/jquery-ui-1.8.15.custom.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/style.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/authority-control.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/edj/themes/Mirage/lib/css/trf1.css" />
+<link type="text/css" rel="stylesheet" media="handheld" href="/edj/themes/Mirage/lib/css/handheld.css" />
+<link type="text/css" rel="stylesheet" media="print" href="/edj/themes/Mirage/lib/css/print.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/edj/themes/Mirage/lib/css/media.css" />
+<link type="application/opensearchdescription+xml" rel="search" href="http://edj.trf1.jus.br:80/edj/open-search/description.xml" title="DSpace" />
+<script type="text/javascript">
+        //Clear default text of empty text areas on focus
+        function tFocus(element)
+        {
+        if (element.value == ' '){element.value='';}
+        }
+        //Clear default text of empty text areas on submit
+        function tSubmit(form)
+        {
+        var defaultedElements = document.getElementsByTagName("textarea");
+        for (var i=0; i != defaultedElements.length; i++){
+        if (defaultedElements[i].value == ' '){
+        defaultedElements[i].value='';}}
+        }
+        //Disable pressing 'enter' key to submit a form (otherwise pressing 'enter' causes a submission to start over)
+        function disableEnterKey(e)
+        {
+        var key;
+
+        if(window.event)
+        key = window.event.keyCode;     //Internet Explorer
+        else
+        key = e.which;     //Firefox and Netscape
+
+        if(key == 13)  //if "Enter" pressed, then disable!
+        return false;
+        else
+        return true;
+        }
+
+        function FnArray()
+        {
+        this.funcs = new Array;
+        }
+
+        FnArray.prototype.add = function(f)
+        {
+        if( typeof f!= "function" )
+        {
+        f = new Function(f);
+        }
+        this.funcs[this.funcs.length] = f;
+        };
+
+        FnArray.prototype.execute = function()
+        {
+        for( var i=0; i < this.funcs.length; i++ )
+        {
+        this.funcs[i]();
+        }
+        };
+
+        var runAfterJSImports = new FnArray();
+
+
+
+    </script>
+<script xmlns:i18n="http://apache.org/cocoon/i18n/2.1" type="text/javascript" src="/edj/themes/Mirage/lib/js/modernizr-1.7.min.js"> </script>
+<title>Search</title>
+</head><!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+                <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+                <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+                <!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+                <!--[if (gt IE 9)|!(IE)]><!--><body><!--<![endif]-->
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="ds-main">
+<div id="ds-header-wrapper">
+<div class="clearfix" id="ds-header">
+<div id="logo">0</div>
+<a id="ds-header-logo-link" href="/edj/">
+<span id="ds-header-logo"> </span>
+<span id="ds-header-logo-text">mirage</span>
+</a>
+<h1 class="pagetitle visuallyhidden">Search</h1>
+<h2 xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="static-pagetitle visuallyhidden">DSpace/Manakin Repository</h2>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="ds-user-box">
+<p>
+<a href="/edj/login">Login</a>
+</p>
+</div>
+</div>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="hidden" id="no-js-warning-wrapper">
+<div id="no-js-warning">
+<div class="notice failure">JavaScript is disabled for your browser. Some features of this site may not work without it.</div>
+</div>
+</div>
+<div id="ds-content-wrapper">
+<div class="clearfix" id="ds-content">
+<div id="ds-body">
+<h1 class="ds-div-head">Search</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_div_search" class="ds-static-div primary">
+<p id="aspect_discovery_SimpleSearch_p_hidden-fields" class="ds-paragraph hidden">
+<input id="aspect_discovery_SimpleSearch_field_discovery-json-search-url" class="ds-hidden-field" name="discovery-json-search-url" type="hidden" value="https://edj.trf1.jus.br/edj/JSON/discovery/search" />
+<input id="aspect_discovery_SimpleSearch_field_discovery-json-scope" class="ds-hidden-field" name="discovery-json-scope" type="hidden" value="123/5" />
+<input id="aspect_discovery_SimpleSearch_field_contextpath" class="ds-hidden-field" name="contextpath" type="hidden" value="/edj" />
+</p>
+<div id="aspect_discovery_SimpleSearch_div_discovery-search-box" class="ds-static-div discoverySearchBox">
+<form id="aspect_discovery_SimpleSearch_div_general-query" class="ds-interactive-div discover-search-box" action="discover" method="get" onsubmit="javascript:tSubmit(this);">
+<fieldset id="aspect_discovery_SimpleSearch_list_primary-search" class="ds-form-list">
+<ol>
+<li class="ds-form-item">
+<label class="ds-form-label" for="aspect_discovery_SimpleSearch_field_scope">Search:</label>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-form-content">
+<select id="aspect_discovery_SimpleSearch_field_scope" class="ds-select-field" name="scope">
+<option value="/">All of DSpace</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="123/5" selected="selected">e-DJF1 - Diário Eletrônico da Seção Judiciária do Distrito Federal</option>
+<option value="123/31">10ª Vara Criminal - SJDF</option>
+<option value="123/32">11ª Vara de Execução Fiscal - SJDF</option>
+<option value="123/33">12ª Vara Criminal - SJDF</option>
+<option value="123/34">13ª Vara Cível - SJDF</option>
+<option value="123/35">14ª Vara Cível - SJDF</option>
+<option value="123/36">15ª Vara Cível - SJDF</option>
+<option value="123/37">16ª Vara Cível - SJDF</option>
+<option value="123/38">17ª Vara Cível - SJDF</option>
+<option value="123/39">18ª Vara de Execução Fiscal - SJDF</option>
+<option value="123/40">19ª Vara de Execução Fiscal - SJDF</option>
+<option value="123/11">1ª Vara Cível - SJDF</option>
+<option value="123/41">20ª Vara Cível - SJDF</option>
+<option value="123/42">21ª Vara Cível - SJDF</option>
+<option value="123/43">22ª Vara Cível - SJDF</option>
+<option value="123/44">23ª Vara JEF - SJDF</option>
+<option value="123/45">24ª Vara JEF - SJDF</option>
+<option value="123/46">25ª Vara JEF - SJDF</option>
+<option value="123/47">26ª Vara JEF - SJDF</option>
+<option value="123/48">27ª Vara JEF - SJDF</option>
+<option value="123/12">2ª Vara Cível - SJDF</option>
+<option value="123/24">3ª Vara Cível - SJDF</option>
+<option value="123/25">4ª Vara Cível - SJDF</option>
+<option value="123/26">5ª Vara Cível - SJDF</option>
+<option value="123/27">6ª Vara Cível - SJDF</option>
+<option value="123/28">7ª Vara Cível - SJDF</option>
+<option value="123/29">8ª Vara Cível - SJDF</option>
+<option value="123/30">9ª Vara Cível - SJDF</option>
+<option value="123/606">Central de Conciliação - SJDF</option>
+<option value="123/49">Diretoria do Foro - SJDF</option>
+<option value="123/3279">NUCOD - Núcleo de Apoio à Coordenação dos JEFs - SJDF</option>
+<option value="123/10">Secretaria Administrativa - SJDF</option>
+<option value="123/50">Turma Recursal - SJDF</option>
+</select>
+</div>
+</li>
+<li class="ds-form-item">
+<div class="ds-form-content">
+<input id="aspect_discovery_SimpleSearch_field_query" class="ds-text-field" name="query" type="text" value="" />
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_field_submit" class="ds-button-field search-icon" name="submit" type="submit" value="Go" />
+</div>
+</li>
+<li class="ds-form-item last">
+<div class="ds-form-content">
+<a href="display-filters">Add filters</a>
+</div>
+</li>
+</ol>
+</fieldset>
+<p xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_p_hidden-fields" class="ds-paragraph hidden">
+<input id="aspect_discovery_SimpleSearch_field_rpp" class="ds-hidden-field" name="rpp" type="hidden" value="10" />
+</p>
+</form>
+<form id="aspect_discovery_SimpleSearch_div_search-filters" class="ds-interactive-div discover-filters-box hidden" action="discover" method="get" onsubmit="javascript:tSubmit(this);">
+<h2 class="ds-div-head">Filters</h2>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_div_discovery-filters-wrapper" class="ds-static-div">
+<p class="ds-paragraph">Use filters to refine the search results.</p>
+<table xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_table_discovery-filters" class="ds-table discovery-filters">
+<tr id="aspect_discovery_SimpleSearch_row_filter-new-1" class="ds-table-row odd search-filter">
+<td id="aspect_discovery_SimpleSearch_cell_" class="ds-table-cell odd selection">
+<select id="aspect_discovery_SimpleSearch_field_filtertype_1" class="ds-select-field" name="filtertype_1">
+<option value="title">Title</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="author">Author</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="orgao">xmlui.ArtifactBrowser.SimpleSearch.filter.orgao</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="tipo">xmlui.ArtifactBrowser.SimpleSearch.filter.tipo</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="dateIssued">Date issued</option>
+</select>
+</td>
+<td xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_cell_" class="ds-table-cell even selection">
+<select id="aspect_discovery_SimpleSearch_field_filter_relational_operator_1" class="ds-select-field" name="filter_relational_operator_1">
+<option value="contains">Contains</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="equals">Equals</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="authority">ID</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="notcontains">Not Contains</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="notequals">Not Equals</option>
+<option xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" value="notauthority">Not ID</option>
+</select>
+</td>
+<td xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_cell_" class="ds-table-cell odd discovery-filter-input-cell">
+<input id="aspect_discovery_SimpleSearch_field_filter_1" class="ds-text-field discovery-filter-input" name="filter_1" type="text" value="" />
+</td>
+<td id="aspect_discovery_SimpleSearch_cell_filter-controls_1" class="ds-table-cell even filter-controls">
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_field_add-filter_1" class="ds-button-field filter-control filter-add" name="add-filter_1" type="submit" value="Add Filter" />
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_field_remove-filter_1" class="ds-button-field filter-control filter-remove" name="remove-filter_1" type="submit" value="Remove" />
+</td>
+</tr>
+<tr id="aspect_discovery_SimpleSearch_row_filter-controls" class="ds-table-row even apply-filter">
+<td class="ds-table-cell odd" rowspan="1" colspan="4">
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_field_submit_apply_filter" class="ds-button-field discovery-apply-filter-button" name="submit_apply_filter" type="submit" value="Apply" />
+</td>
+</tr>
+</table>
+</div>
+<p id="aspect_discovery_SimpleSearch_p_hidden-fields" class="ds-paragraph hidden">
+<input id="aspect_discovery_SimpleSearch_field_scope" class="ds-hidden-field" name="scope" type="hidden" value="123/5" />
+<input id="aspect_discovery_SimpleSearch_field_rpp" class="ds-hidden-field" name="rpp" type="hidden" value="10" />
+</p>
+</form>
+</div>
+<form id="aspect_discovery_SimpleSearch_div_main-form" class="ds-interactive-div " action="/edj/discover" method="post" onsubmit="javascript:tSubmit(this);">
+<p id="aspect_discovery_SimpleSearch_p_hidden-fields" class="ds-paragraph hidden">
+<input id="aspect_discovery_SimpleSearch_field_query" class="ds-hidden-field" name="query" type="hidden" value="" />
+<input id="aspect_discovery_SimpleSearch_field_rpp" class="ds-hidden-field" name="rpp" type="hidden" value="10" />
+<input id="aspect_discovery_SimpleSearch_field_sort_by" class="ds-hidden-field" name="sort_by" type="hidden" value="score" />
+<input id="aspect_discovery_SimpleSearch_field_order" class="ds-hidden-field" name="order" type="hidden" value="desc" />
+<input id="aspect_discovery_SimpleSearch_field_page" class="ds-hidden-field" name="page" type="hidden" value="376" />
+<input id="aspect_discovery_SimpleSearch_field_redirectUrl" class="ds-hidden-field" name="redirectUrl" type="hidden" value="" />
+</p>
+</form>
+<h2 class="ds-div-head">Showing 10 out of a total of 6123 results for community: e-DJF1 - Diário Eletrônico da Seção Judiciária do Distrito Federal. <span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://apache.org/cocoon/i18n/2.1" class="searchTime">(0.019 seconds)</span>
+</h2>
+<div class="pagination-masked clearfix top">
+<p class="pagination-info">Now showing items 3751-3760 of 6123</p>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="pagination-links">
+<li>
+<a class="previous-page-link" href="discover?scope=123/5&amp;rpp=10&amp;page=375&amp;group_by=none&amp;etal=0">Previous Page</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="first-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=1&amp;group_by=none&amp;etal=0">1</a> . . . </li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=373&amp;group_by=none&amp;etal=0">373</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=374&amp;group_by=none&amp;etal=0">374</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=375&amp;group_by=none&amp;etal=0">375</a>
+</li>
+<li class="current-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=376&amp;group_by=none&amp;etal=0">376</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=377&amp;group_by=none&amp;etal=0">377</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=378&amp;group_by=none&amp;etal=0">378</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=379&amp;group_by=none&amp;etal=0">379</a>
+</li>
+<li>. . .</li>
+<li class="last-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=613&amp;group_by=none&amp;etal=0">613</a>
+</li>
+<li>
+<a class="next-page-link" href="discover?scope=123/5&amp;rpp=10&amp;page=377&amp;group_by=none&amp;etal=0">Next Page</a>
+</li>
+</ul>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_div_search-controls-gear" class="top controls-gear-wrapper">
+<ul id="aspect_discovery_SimpleSearch_list_sort-options" class="ds-simple-list gear-selection">
+<li id="aspect_discovery_SimpleSearch_item_sort-head" class="ds-simple-list-item gear-head first">Sort Options:</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<ul id="aspect_discovery_SimpleSearch_list_sort-selections" class="ds-simple-list">
+<li id="aspect_discovery_SimpleSearch_item_relevance" class="ds-simple-list-item gear-option gear-option-selected">
+<a href="sort_by=score&amp;order=desc">Relevance</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_title_sort" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.title_sort&amp;order=asc">Title Asc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_title_sort" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.title_sort&amp;order=desc">Title Desc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_date_issued_dt" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.date.issued_dt&amp;order=asc">Issue Date Asc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_date_issued_dt" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.date.issued_dt&amp;order=desc">Issue Date Desc</a>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_rpp-head" class="ds-simple-list-item gear-head">Results Per Page:</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<ul id="aspect_discovery_SimpleSearch_list_rpp-selections" class="ds-simple-list">
+<li id="aspect_discovery_SimpleSearch_item_rpp-5" class="ds-simple-list-item gear-option">
+<a href="rpp=5">5</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-10" class="ds-simple-list-item gear-option gear-option-selected">
+<a href="rpp=10">10</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-20" class="ds-simple-list-item gear-option">
+<a href="rpp=20">20</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-40" class="ds-simple-list-item gear-option">
+<a href="rpp=40">40</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-60" class="ds-simple-list-item gear-option">
+<a href="rpp=60">60</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-80" class="ds-simple-list-item gear-option">
+<a href="rpp=80">80</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-100" class="ds-simple-list-item gear-option">
+<a href="rpp=100">100</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="aspect_discovery_SimpleSearch_div_search-results" class="ds-static-div primary">
+<ul class="ds-artifact-list">
+<ul>
+<li class="ds-artifact-item clearfix odd">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294059" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294059">Sentenças - 24ª Vara JEF - SJDF de 2017-11-21</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294059&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-21</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix even">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294071" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294071">Sentenças - 15ª Vara Cível - SJDF de 2017-11-21</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294071&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-21</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix odd">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294180" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294180">Despachos/Decisões - 26ª Vara JEF - SJDF de 2017-11-21</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294180&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-21</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix even">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294221" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294221">Publicações Diversas - Turma Recursal - SJDF de 2017-11-21</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294221&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-21</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix odd">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294344" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294344">Publicações Diversas - 21ª Vara Cível - SJDF de 2017-11-21</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294344&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-21</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix even">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294387" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294387">Despachos/Decisões - 3ª Vara Cível - SJDF de 2017-11-22</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294387&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-22</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix odd">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294518" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294518">Vistas - 3ª Vara Cível - SJDF de 2017-11-22</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294518&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-22</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix even">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/294537" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/294537">Despachos/Decisões - 10ª Vara Criminal - SJDF de 2017-11-22</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F294537&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2017-11-22</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix odd">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/38838" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/38838">Publicações Diversas - 17ª Vara Cível - SJDF de 2015-07-15</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F38838&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2015-07-15</span>)</span>
+</div>
+</div>
+</li>
+<li class="ds-artifact-item clearfix even">
+<div xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/edj/handle/123/50893" class="image-link">
+<img style="height: 80px;" src="/edj/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/edj/handle/123/50893">Publicações Diversas - 17ª Vara Cível - SJDF de 2015-09-03</a>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=https%3A%2F%2Fedj.trf1.jus.br%2Fedj%2Fhandle%2F123%2F50893&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                    ﻿ 
+                </span>
+</div>
+<div class="artifact-info">
+<span class="author">
+<span>Brasil. Tribunal Regional Federal (Região, 1.) (TRF1) Seção Judiciária do Distrito Federal (SJDF)</span>
+</span> <span class="publisher-date">(<span class="date">2015-09-03</span>)</span>
+</div>
+</div>
+</li>
+</ul>
+</ul>
+</div>
+<div class="pagination-masked clearfix bottom">
+<p class="pagination-info">Now showing items 3751-3760 of 6123</p>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="pagination-links">
+<li>
+<a class="previous-page-link" href="discover?scope=123/5&amp;rpp=10&amp;page=375&amp;group_by=none&amp;etal=0">Previous Page</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="first-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=1&amp;group_by=none&amp;etal=0">1</a> . . . </li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=373&amp;group_by=none&amp;etal=0">373</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=374&amp;group_by=none&amp;etal=0">374</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=375&amp;group_by=none&amp;etal=0">375</a>
+</li>
+<li class="current-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=376&amp;group_by=none&amp;etal=0">376</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=377&amp;group_by=none&amp;etal=0">377</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=378&amp;group_by=none&amp;etal=0">378</a>
+</li>
+<li class="page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=379&amp;group_by=none&amp;etal=0">379</a>
+</li>
+<li>. . .</li>
+<li class="last-page-link">
+<a href="discover?scope=123/5&amp;rpp=10&amp;page=613&amp;group_by=none&amp;etal=0">613</a>
+</li>
+<li>
+<a class="next-page-link" href="discover?scope=123/5&amp;rpp=10&amp;page=377&amp;group_by=none&amp;etal=0">Next Page</a>
+</li>
+</ul>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="aspect_discovery_SimpleSearch_div_search-controls-gear" class="bottom controls-gear-wrapper">
+<ul id="aspect_discovery_SimpleSearch_list_sort-options" class="ds-simple-list gear-selection">
+<li id="aspect_discovery_SimpleSearch_item_sort-head" class="ds-simple-list-item gear-head first">Sort Options:</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<ul id="aspect_discovery_SimpleSearch_list_sort-selections" class="ds-simple-list">
+<li id="aspect_discovery_SimpleSearch_item_relevance" class="ds-simple-list-item gear-option gear-option-selected">
+<a href="sort_by=score&amp;order=desc">Relevance</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_title_sort" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.title_sort&amp;order=asc">Title Asc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_title_sort" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.title_sort&amp;order=desc">Title Desc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_date_issued_dt" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.date.issued_dt&amp;order=asc">Issue Date Asc</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_dc_date_issued_dt" class="ds-simple-list-item gear-option">
+<a href="sort_by=dc.date.issued_dt&amp;order=desc">Issue Date Desc</a>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SimpleSearch_item_rpp-head" class="ds-simple-list-item gear-head">Results Per Page:</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<ul id="aspect_discovery_SimpleSearch_list_rpp-selections" class="ds-simple-list">
+<li id="aspect_discovery_SimpleSearch_item_rpp-5" class="ds-simple-list-item gear-option">
+<a href="rpp=5">5</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-10" class="ds-simple-list-item gear-option gear-option-selected">
+<a href="rpp=10">10</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-20" class="ds-simple-list-item gear-option">
+<a href="rpp=20">20</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-40" class="ds-simple-list-item gear-option">
+<a href="rpp=40">40</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-60" class="ds-simple-list-item gear-option">
+<a href="rpp=60">60</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-80" class="ds-simple-list-item gear-option">
+<a href="rpp=80">80</a>
+</li>
+<li id="aspect_discovery_SimpleSearch_item_rpp-100" class="ds-simple-list-item gear-option">
+<a href="rpp=100">100</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+<div id="ds-footer-wrapper">
+<div id="ds-footer">
+<div id="ds-footer-center">
+<address>
+<p>Tribunal Regional Federal da Primeira Região: SAU/SUL Quadra 2, Bloco A - Brasília/DF - Telefone: (61)3314-5225</p>
+</address>
+</div>
+<a class="hidden" href="/edj/htmlmap"> </a>
+</div>
+</div>
+</div>
+<script src="static/js/jquery1.6.min.js" type="text/javascript"> </script>
+<script type="text/javascript">!window.jQuery && document.write('<script type="text/javascript" src="/edj/static/js/jquery-1.6.2.min.js"> <\/script>')</script>
+<script type="text/javascript" />
+<script type="text/javascript" src="/edj/themes/Mirage/lib/js/jquery-ui-1.8.15.custom.min.js"> </script>
+<script type="text/javascript" src="/edj/static/js/discovery/discovery-results.js"> </script>
+<script type="text/javascript" src="/edj/loadJQuery.js"> </script>
+<script type="text/javascript" src="/edj/static/js/discovery/search-controls.js"> </script><!--[if lt IE 7 ]>
+<script type="text/javascript" src="/edj/themes/Mirage/lib/js/DD_belatedPNG_0.0.8a.js?v=1"> </script>
+<script type="text/javascript">DD_belatedPNG.fix('#ds-header-logo');DD_belatedPNG.fix('#ds-footer-logo');$.each($('img[src$=png]'), function() {DD_belatedPNG.fixPng(this);});</script><![endif]-->
+<script type="text/javascript">
+                    runAfterJSImports.execute();
+                </script></body></html>
