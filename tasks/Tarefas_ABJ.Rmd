@@ -80,12 +80,12 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 |--------:|:-----------:|-----------------------------------------------------------:|
 |TJSP     |Pacote DJE   |o pacote está funcionando                                   |
 |TJAL     |Pacote DJE   |o pacote está funcionando                                   |
-|TJRJ     |NÃO          |                                                            |
+|TJRJ     |NÃO          |Tentar apos as 18h                                          |
 |TJDFT    |SIM          |                                                            |
-|JFSP     |SIM          |Parser realiado                                             |
+|JFSP     |SIM          |Parser realizado. Os documentos não são pdf, mas sim HTMLs  |
 |JFAL     |NÃO          |Em andamento (Requisição ok, porém acesso as informaçes não)|
 |JFRJ     |SIM          |                                                            |
-|JFDF     |NÃO          |O site apresenta problemas                                  |
+|JFDF     |SIM          |                                                            |
 
 #### Revisando algumas requests
 
