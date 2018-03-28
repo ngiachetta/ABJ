@@ -185,27 +185,130 @@ library(purrr)</code></pre>
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJsIDwtIFwiaHR0cHM6Ly9lZGoudHJmMS5qdXMuYnIvZWRqL2Rpc2NvdmVyXCJcbnBhdGhfaHRtbCA8LSBcImRhdGEtcmF3L1wiXG5kaXIuY3JlYXRlKHBhdGhfaHRtbCwgRkFMU0UsIFRSVUUpXG4gIHBhdGhfaHRtbCA8LSBub3JtYWxpemVQYXRoKHBhdGhfaHRtbClcbiAgZmlsZSA8LSBzdHJpbmdyOjpzdHJfYyhwYXRoX2h0bWwsIFwiL3BhZ2UxLmh0bWxcIilcbmh0dHI6OkdFVCh1cmwsIGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSwgaHR0cjo6d3JpdGVfZGlzayhmaWxlLCBUUlVFKSlcbmBgYCJ9 -->
-<pre class="r"><code>url &lt;- &quot;https://edj.trf1.jus.br/edj/discover&quot;
-path_html &lt;- &quot;data-raw/&quot;
-dir.create(path_html, FALSE, TRUE)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2J0ZXJfcGF0aCA8LSBmdW5jdGlvbihwYXRoX2h0bWwsIG5hbWVfaHRtbCl7XG4gIGRpci5jcmVhdGUocGF0aF9odG1sLCBGQUxTRSwgVFJVRSlcbiAgcGF0aF9odG1sIDwtIG5vcm1hbGl6ZVBhdGgocGF0aF9odG1sKVxuICBmaWxlIDwtIHN0cmluZ3I6OnN0cl9jKHBhdGhfaHRtbCxcIi9cIixuYW1lX2h0bWwsXCIuaHRtbFwiKSAgXG4gIHJldHVybihmaWxlKVxufVxuXG5vYnRlcl9wYWcgPC0gZnVuY3Rpb24oKXtcbiAgdXJsIDwtIFwiaHR0cHM6Ly9lZGoudHJmMS5qdXMuYnIvZWRqL2Rpc2NvdmVyP3Njb3BlPTEyMyUyRjUmcXVlcnk9JnN1Ym1pdD1Hb1wiXG4gIHVybF9wYWcgPC0gXCJodHRwczovL2Vkai50cmYxLmp1cy5ici9lZGovZGlzY292ZXI/c2NvcGU9MTIzLzUmcnBwPTEwJnBhZ2U9TlVNUEFHJmdyb3VwX2J5PW5vbmUmZXRhbD0wXCJcbiAgcmVxdWVzdCA8LSBodHRyOjpHRVQodXJsLFxuICAgICAgICAgICAgICAgICAgICAgICBodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBGQUxTRSkpXG4gIHNlcV9wYWdlIDwtIHJlcXVlc3QgJT4lIGh0dHI6OmNvbnRlbnQoKSAlPiUgXG4gICAgcnZlc3Q6Omh0bWxfbm9kZSh4cGF0aCA9ICcvL2xpW0BjbGFzcz1cImxhc3QtcGFnZS1saW5rXCJdJykgJT4lIFxuICAgIHJ2ZXN0OjpodG1sX3RleHQodHJpbSA9IFQpICU+JSBhcy5udW1lcmljKCkgJT4lIHNlcSgxLC4sMSkgIFxuICBcbiAgbGluayA8LSBwdXJycjo6bWFwX2NocihzZXFfcGFnZSwgfnN0cmluZ3I6OnN0cl9yZXBsYWNlKHVybF9wYWcsIFwiTlVNUEFHXCIsIGFzLmNoYXJhY3RlcigueCkpKVxuICBwdXJycjo6bWFwMihsaW5rLCBcbiAgICAgICAgICAgICAgc2VxX3BhZ2UsIFxuICAgICAgICAgICAgICB+aHR0cjo6R0VUKC54LFxuICAgICAgICAgICAgICAgICAgICAgICAgIGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICBodHRyOjp3cml0ZV9kaXNrKG9idGVyX3BhdGgocGF0aF9odG1sID0gXCJkYXRhLXJhdy9cIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXMuY2hhcmFjdGVyKC55KSkpKSlcbiAgcmV0dXJuKGxpbmspXG59XG5cbmxpbmtzIDwtIG9idGVyX3BhZygpICMgT2J0ZXIgb3MgaHRtbCBkb3MgZGnDoXJpb3NcbmBgYCJ9 -->
+<pre class="r"><code>obter_path &lt;- function(path_html, name_html){
+  dir.create(path_html, FALSE, TRUE)
   path_html &lt;- normalizePath(path_html)
-  file &lt;- stringr::str_c(path_html, &quot;/page1.html&quot;)
-httr::GET(url, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file, TRUE))</code></pre>
+  file &lt;- stringr::str_c(path_html,&quot;/&quot;,name_html,&quot;.html&quot;)  
+  return(file)
+}
+
+obter_pag &lt;- function(){
+  url &lt;- &quot;https://edj.trf1.jus.br/edj/discover?scope=123%2F5&amp;query=&amp;submit=Go&quot;
+  url_pag &lt;- &quot;https://edj.trf1.jus.br/edj/discover?scope=123/5&amp;rpp=10&amp;page=NUMPAG&amp;group_by=none&amp;etal=0&quot;
+  request &lt;- httr::GET(url,
+                       httr::config(ssl_verifypeer = FALSE))
+  seq_page &lt;- request %&gt;% httr::content() %&gt;% 
+    rvest::html_node(xpath = '//li[@class=&quot;last-page-link&quot;]') %&gt;% 
+    rvest::html_text(trim = T) %&gt;% as.numeric() %&gt;% seq(1,.,1)  
+  
+  link &lt;- purrr::map_chr(seq_page, ~stringr::str_replace(url_pag, &quot;NUMPAG&quot;, as.character(.x)))
+  purrr::map2(link, 
+              seq_page, 
+              ~httr::GET(.x,
+                         httr::config(ssl_verifypeer = FALSE),
+                         httr::write_disk(obter_path(path_html = &quot;data-raw/&quot;,
+                                                     as.character(.y)))))
+  return(link)
+}
+
+links &lt;- obter_pag() # Obter os html dos diários</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmVzcG9uc2UgW2h0dHBzOi8vZWRqLnRyZjEuanVzLmJyL2Vkai9kaXNjb3Zlcl1cbiAgRGF0ZTogMjAxOC0wMy0xNSAxNjoyMVxuICBTdGF0dXM6IDIwMFxuICBDb250ZW50LVR5cGU6IHRleHQvaHRtbDtjaGFyc2V0PXV0Zi04XG4gIFNpemU6IDE1LjEga0JcbjxPTiBESVNLPiAgL2hvbWUvbmF0aGFuZy9Eb2N1bWVudG9zL1NjcmlwdHMgYW5kIERvY3VtZW50cy9FU1RBR0lPX0FCSi9BQkovZGplL2p1ZF9mZWRfcHJpbWVpcmFfcmVnaWFvL2RhdGEtcmF3L3BhZ2UxLmh0bWxcbiJ9 -->
-<pre><code>Response [https://edj.trf1.jus.br/edj/discover]
-  Date: 2018-03-15 16:21
-  Status: 200
-  Content-Type: text/html;charset=utf-8
-  Size: 15.1 kB
-&lt;ON DISK&gt;  /home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/dje/jud_fed_primeira_regiao/data-raw/page1.html</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmlsZSA8LSBkaXIocGF0aCA9IFwiZGF0YS1yYXcvXCIsIHBhdHRlcm4gPSBcIjI0MVwiLCBmdWxsLm5hbWVzID0gVClcbnBhcnNlX2RqZV9qZmRmIDwtIGZ1bmN0aW9uKGZpbGUpe1xuXG4gIG5vZGUgPC0gZmlsZSAlPiUgeG1sMjo6cmVhZF9odG1sKClcbiAgXG4gIHRpdGxlIDwtIG5vZGUgJT4lXG4gICAgcnZlc3Q6Omh0bWxfbm9kZXMoeHBhdGggPSAnLy9kaXZbQGNsYXNzPVwiYXJ0aWZhY3QtZGVzY3JpcHRpb25cIl0vZGl2W0BjbGFzcz1cImFydGlmYWN0LXRpdGxlXCJdL2EnKSAlPiUgXG4gICAgcnZlc3Q6Omh0bWxfdGV4dCh0cmltID0gVClcbiAgXG4gIGxpbmtfdG9fcGRmIDwtIG5vZGUgJT4lIFxuICAgIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2W0BjbGFzcz1cImFydGlmYWN0LWRlc2NyaXB0aW9uXCJdL2RpdltAY2xhc3M9XCJhcnRpZmFjdC10aXRsZVwiXS9hJykgJT4lIFxuICAgIHJ2ZXN0OjpodG1sX2F0dHIoXCJocmVmXCIpICU+JSBcbiAgICBzdHJpbmdyOjpzdHJfYyhcImh0dHBzOi8vZWRqLnRyZjEuanVzLmJyXCIsLilcbiAgXG4gIGF1dGhvciA8LSBub2RlICU+JSBcbiAgICBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2RpdltAY2xhc3M9XCJhcnRpZmFjdC1kZXNjcmlwdGlvblwiXS9kaXZbQGNsYXNzPVwiYXJ0aWZhY3QtaW5mb1wiXS8vKltAY2xhc3M9XCJhdXRob3JcIl0nKSAlPiUgXG4gICAgcnZlc3Q6Omh0bWxfdGV4dCh0cmltID0gVClcbiAgXG4gIHB1Ymxpc2hlcl9kYXRlIDwtIG5vZGUgJT4lIFxuICAgIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2W0BjbGFzcz1cImFydGlmYWN0LWRlc2NyaXB0aW9uXCJdL2RpdltAY2xhc3M9XCJhcnRpZmFjdC1pbmZvXCJdLy8qW0BjbGFzcz1cInB1Ymxpc2hlci1kYXRlXCJdJykgJT4lIFxuICAgIHJ2ZXN0OjpodG1sX3RleHQodHJpbSA9IFQpICU+JSBcbiAgICBzdHJpbmdyOjpzdHJfcmVwbGFjZV9hbGwoXCJcXFxcKHxcXFxcKVwiLCBcIlwiKSAlPiUgXG4gICAgbHVicmlkYXRlOjp5bWQoKVxuICBcbiAgdGFibGUgPC0gdGliYmxlOjp0aWJibGUoXG4gICAgdGl0bGUgPSB0aXRsZSxcbiAgICBsaW5rX3RvX3BkZiA9IGxpbmtfdG9fcGRmLFxuICAgIGF1dGhvciA9IGF1dGhvcixcbiAgICBwdWJsaXNoZXJfZGF0ZT1wdWJsaXNoZXJfZGF0ZVxuICApICU+JSBkcGx5cjo6bXV0YXRlKGZpbGUgPSBmaWxlKVxuICBcbiAgcmV0dXJuKHRhYmxlKVxuXG59XG5cbmZpbGVzIDwtIGRpcihcImRhdGEtcmF3L1wiLCBmdWxsLm5hbWVzID0gVClcbnRhYmVsYSA8LSBwdXJycjo6bWFwX2RmcihmaWxlcywgfnBhcnNlX2RqZV90amRmdCgueCkpXG5yZWFkcjo6d3JpdGVfcmRzKHRhYmVsYSxcImRhdGEtcmF3L3RhYmVsYS5yZHNcIilcbmBgYCJ9 -->
+<pre class="r"><code>file &lt;- dir(path = &quot;data-raw/&quot;, pattern = &quot;241&quot;, full.names = T)
+parse_dje_jfdf &lt;- function(file){
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLUp1c3RpY2EgRmVkZXJhbCBkYSBQcmltZWlyYSBSZWdpYW8iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyIG1lc3NhZ2U9Riwgd2FybmluZz1GQUxTRX0KbGlicmFyeShodHRyKQpsaWJyYXJ5KHJ2ZXN0KQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHB1cnJyKQpgYGAKCmBgYHtyfQp1cmwgPC0gImh0dHBzOi8vZWRqLnRyZjEuanVzLmJyL2Vkai9kaXNjb3ZlciIKcGF0aF9odG1sIDwtICJkYXRhLXJhdy8iCmRpci5jcmVhdGUocGF0aF9odG1sLCBGQUxTRSwgVFJVRSkKICBwYXRoX2h0bWwgPC0gbm9ybWFsaXplUGF0aChwYXRoX2h0bWwpCiAgZmlsZSA8LSBzdHJpbmdyOjpzdHJfYyhwYXRoX2h0bWwsICIvcGFnZTEuaHRtbCIpCmh0dHI6OkdFVCh1cmwsIGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSwgaHR0cjo6d3JpdGVfZGlzayhmaWxlLCBUUlVFKSkKYGBgCgo=</div>
+  node &lt;- file %&gt;% xml2::read_html()
+  
+  title &lt;- node %&gt;%
+    rvest::html_nodes(xpath = '//div[@class=&quot;artifact-description&quot;]/div[@class=&quot;artifact-title&quot;]/a') %&gt;% 
+    rvest::html_text(trim = T)
+  
+  link_to_pdf &lt;- node %&gt;% 
+    rvest::html_nodes(xpath = '//div[@class=&quot;artifact-description&quot;]/div[@class=&quot;artifact-title&quot;]/a') %&gt;% 
+    rvest::html_attr(&quot;href&quot;) %&gt;% 
+    stringr::str_c(&quot;https://edj.trf1.jus.br&quot;,.)
+  
+  author &lt;- node %&gt;% 
+    rvest::html_nodes(xpath = '//div[@class=&quot;artifact-description&quot;]/div[@class=&quot;artifact-info&quot;]//*[@class=&quot;author&quot;]') %&gt;% 
+    rvest::html_text(trim = T)
+  
+  publisher_date &lt;- node %&gt;% 
+    rvest::html_nodes(xpath = '//div[@class=&quot;artifact-description&quot;]/div[@class=&quot;artifact-info&quot;]//*[@class=&quot;publisher-date&quot;]') %&gt;% 
+    rvest::html_text(trim = T) %&gt;% 
+    stringr::str_replace_all(&quot;\\(|\\)&quot;, &quot;&quot;) %&gt;% 
+    lubridate::ymd()
+  
+  table &lt;- tibble::tibble(
+    title = title,
+    link_to_pdf = link_to_pdf,
+    author = author,
+    publisher_date=publisher_date
+  ) %&gt;% dplyr::mutate(file = file)
+  
+  return(table)
+
+}
+
+files &lt;- dir(&quot;data-raw/&quot;, full.names = T)
+tabela &lt;- purrr::map_dfr(files, ~parse_dje_tjdft(.x))
+readr::write_rds(tabela,&quot;data-raw/tabela.rds&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBGdW5jYW8gcmVzcG9uc2F2ZWwgcG9yIGJhaXhhciBvcyBwZGZzXG5vYnRlcl9saW5rIDwtIGZ1bmN0aW9uKGxpbmtfdG9fcGRmLCBwYXRoID0gXCJkYXRhLXJhd19wZGYvXCIpe1xuICBhcnF1aXZvIDwtIGxpbmtfdG9fcGRmICU+JSBzdHJpbmdyOjpzdHJfZXh0cmFjdChcIlswLTldezQsMTB9XCIpXG4gIGRpci5jcmVhdGUocGF0aCwgRkFMU0UsIFRSVUUpXG4gIHBhdGggPC0gbm9ybWFsaXplUGF0aChwYXRoKVxuICBmaWxlIDwtIHN0cmluZ3I6OnN0cl9jKHBhdGgsXCIvXCIsIGFycXVpdm8sXCIucGRmXCIpXG4gIFxuICBub2RlIDwtIGxpbmtfdG9fcGRmICU+JSB4bWwyOjpyZWFkX2h0bWwoKVxuXG4gIGxpbmsgPC0gbm9kZSAlPiUgXG4gICAgcnZlc3Q6Omh0bWxfbm9kZXMoeHBhdGggPSAnLy9kaXZbQGNsYXNzPVwiZmlsZS1tZXRhZGF0YVwiXS8vbGkvL2EnKSAlPiVcbiAgICBydmVzdDo6aHRtbF9hdHRyKCdocmVmJykgJT4lXG4gICAgc3RyaW5ncjo6c3RyX2MoXCJodHRwczovL2Vkai50cmYxLmp1cy5iclwiLC4pICU+JSBcbiAgICB0aWJibGU6OnRpYmJsZShsaW5rX2Rvd25sb2FkID0gLilcbiAgXG4gICMgQWxndW5zIGxpbmtzIHBvc3N1ZW0gbWFpcyBkZSB1bSBwZGYgcG9yIHBhZ2luYSxcbiAgIyBlc3RlIGNvbmRpY2lvbmFsIHNlcnZlIHBhcmEgYXJydW1hciBvIHBkZiBjYXNvIGVsZSB0ZW5oYVxuICAjIG1haXMgZGUgdW1hIHBhZ2luYVxuICBpZihucm93KGxpbmspID4gMSl7XG4gICAgZmlsZXMgPC0gYygpXG4gICAgZm9yKGkgaW4gMTpucm93KGxpbmspKXtcbiAgICAgIGZpbGVzW2ldIDwtIHN0cmluZ3I6OnN0cl9zcGxpdChmaWxlLCBwYXR0ZXJuID0gXCIoLnBkZikkXCIpICU+JSBcbiAgICAgICAgcHVycnI6OnBsdWNrKDEsMSkgJT4lIFxuICAgICAgICBzdHJpbmdyOjpzdHJfYyhcIl9cIiwgYXMuY2hhcmFjdGVyKGkpLCBcIi5wZGZcIilcbiAgICB9XG4gICAgZmlsZXMgPC0gdGliYmxlOjp0aWJibGUoZmlsZXMgPSBmaWxlcylcbiAgICB0YWJfZmlsZXMgPC0gZHBseXI6OmJpbmRfY29scyhmaWxlcywgbGluaylcbiAgfSBlbHNlIHtcbiAgICBmaWxlcyA8LSB0aWJibGU6OnRpYmJsZShmaWxlcyA9IGZpbGUpXG4gICAgdGFiX2ZpbGVzIDwtIGRwbHlyOjpiaW5kX2NvbHMoZmlsZXMsIGxpbmspXG4gIH1cbiAgXG4gIHB1cnJyOjptYXAyKHRhYl9maWxlcyRsaW5rX2Rvd25sb2FkLCB0YWJfZmlsZXMkZmlsZXMsIH5kb3dubG9hZC5maWxlKC54LCBkZXN0ZmlsZSA9IC55LCBtZXRob2QgPSBcImxpYmN1cmxcIikpXG4gIFxuICByZXR1cm4odGFiX2ZpbGVzKVxufVxuXG50YWJlbGEgPC0gcmVhZHI6OnJlYWRfcmRzKFwiZGF0YS1yYXcvdGFiZWxhLnJkc1wiKVxubGlua3NfdG9fZG93bmxvYWQgPC0gcHVycnI6Om1hcF9kZnIodGFiZWxhJGxpbmtfdG9fcGRmLCB+b2J0ZXJfbGluayhsaW5rX3RvX3BkZiA9IC54KSlcbmBgYCJ9 -->
+<pre class="r"><code># Funcao responsavel por baixar os pdfs
+obter_link &lt;- function(link_to_pdf, path = &quot;data-raw_pdf/&quot;){
+  arquivo &lt;- link_to_pdf %&gt;% stringr::str_extract(&quot;[0-9]{4,10}&quot;)
+  dir.create(path, FALSE, TRUE)
+  path &lt;- normalizePath(path)
+  file &lt;- stringr::str_c(path,&quot;/&quot;, arquivo,&quot;.pdf&quot;)
+  
+  node &lt;- link_to_pdf %&gt;% xml2::read_html()
+
+  link &lt;- node %&gt;% 
+    rvest::html_nodes(xpath = '//div[@class=&quot;file-metadata&quot;]//li//a') %&gt;%
+    rvest::html_attr('href') %&gt;%
+    stringr::str_c(&quot;https://edj.trf1.jus.br&quot;,.) %&gt;% 
+    tibble::tibble(link_download = .)
+  
+  # Alguns links possuem mais de um pdf por pagina,
+  # este condicional serve para arrumar o pdf caso ele tenha
+  # mais de uma pagina
+  if(nrow(link) &gt; 1){
+    files &lt;- c()
+    for(i in 1:nrow(link)){
+      files[i] &lt;- stringr::str_split(file, pattern = &quot;(.pdf)$&quot;) %&gt;% 
+        purrr::pluck(1,1) %&gt;% 
+        stringr::str_c(&quot;_&quot;, as.character(i), &quot;.pdf&quot;)
+    }
+    files &lt;- tibble::tibble(files = files)
+    tab_files &lt;- dplyr::bind_cols(files, link)
+  } else {
+    files &lt;- tibble::tibble(files = file)
+    tab_files &lt;- dplyr::bind_cols(files, link)
+  }
+  
+  purrr::map2(tab_files$link_download, tab_files$files, ~download.file(.x, destfile = .y, method = &quot;libcurl&quot;))
+  
+  return(tab_files)
+}
+
+tabela &lt;- readr::read_rds(&quot;data-raw/tabela.rds&quot;)
+links_to_download &lt;- purrr::map_dfr(tabela$link_to_pdf, ~obter_link(link_to_pdf = .x))</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>A função <code>obter_link</code> está funcionando</p>
+<!-- rnb-text-end -->
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLUp1c3RpY2EgRmVkZXJhbCBkYSBQcmltZWlyYSBSZWdpYW8iCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyIG1lc3NhZ2U9Riwgd2FybmluZz1GQUxTRX0KbGlicmFyeShodHRyKQpsaWJyYXJ5KHJ2ZXN0KQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KHB1cnJyKQpgYGAKCmBgYHtyfQpvYnRlcl9wYXRoIDwtIGZ1bmN0aW9uKHBhdGhfaHRtbCwgbmFtZV9odG1sKXsKICBkaXIuY3JlYXRlKHBhdGhfaHRtbCwgRkFMU0UsIFRSVUUpCiAgcGF0aF9odG1sIDwtIG5vcm1hbGl6ZVBhdGgocGF0aF9odG1sKQogIGZpbGUgPC0gc3RyaW5ncjo6c3RyX2MocGF0aF9odG1sLCIvIixuYW1lX2h0bWwsIi5odG1sIikgIAogIHJldHVybihmaWxlKQp9CgpvYnRlcl9wYWcgPC0gZnVuY3Rpb24oKXsKICB1cmwgPC0gImh0dHBzOi8vZWRqLnRyZjEuanVzLmJyL2Vkai9kaXNjb3Zlcj9zY29wZT0xMjMlMkY1JnF1ZXJ5PSZzdWJtaXQ9R28iCiAgdXJsX3BhZyA8LSAiaHR0cHM6Ly9lZGoudHJmMS5qdXMuYnIvZWRqL2Rpc2NvdmVyP3Njb3BlPTEyMy81JnJwcD0xMCZwYWdlPU5VTVBBRyZncm91cF9ieT1ub25lJmV0YWw9MCIKICByZXF1ZXN0IDwtIGh0dHI6OkdFVCh1cmwsCiAgICAgICAgICAgICAgICAgICAgICAgaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpKQogIHNlcV9wYWdlIDwtIHJlcXVlc3QgJT4lIGh0dHI6OmNvbnRlbnQoKSAlPiUgCiAgICBydmVzdDo6aHRtbF9ub2RlKHhwYXRoID0gJy8vbGlbQGNsYXNzPSJsYXN0LXBhZ2UtbGluayJdJykgJT4lIAogICAgcnZlc3Q6Omh0bWxfdGV4dCh0cmltID0gVCkgJT4lIGFzLm51bWVyaWMoKSAlPiUgc2VxKDEsLiwxKSAgCiAgCiAgbGluayA8LSBwdXJycjo6bWFwX2NocihzZXFfcGFnZSwgfnN0cmluZ3I6OnN0cl9yZXBsYWNlKHVybF9wYWcsICJOVU1QQUciLCBhcy5jaGFyYWN0ZXIoLngpKSkKICBwdXJycjo6bWFwMihsaW5rLCAKICAgICAgICAgICAgICBzZXFfcGFnZSwgCiAgICAgICAgICAgICAgfmh0dHI6OkdFVCgueCwKICAgICAgICAgICAgICAgICAgICAgICAgIGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSwKICAgICAgICAgICAgICAgICAgICAgICAgIGh0dHI6OndyaXRlX2Rpc2sob2J0ZXJfcGF0aChwYXRoX2h0bWwgPSAiZGF0YS1yYXcvIiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcy5jaGFyYWN0ZXIoLnkpKSkpKQogIHJldHVybihsaW5rKQp9CgpsaW5rcyA8LSBvYnRlcl9wYWcoKSAjIE9idGVyIG9zIGh0bWwgZG9zIGRpw6FyaW9zCmBgYAoKYGBge3J9CmZpbGUgPC0gZGlyKHBhdGggPSAiZGF0YS1yYXcvIiwgcGF0dGVybiA9ICIyNDEiLCBmdWxsLm5hbWVzID0gVCkKcGFyc2VfZGplX2pmZGYgPC0gZnVuY3Rpb24oZmlsZSl7CgogIG5vZGUgPC0gZmlsZSAlPiUgeG1sMjo6cmVhZF9odG1sKCkKICAKICB0aXRsZSA8LSBub2RlICU+JQogICAgcnZlc3Q6Omh0bWxfbm9kZXMoeHBhdGggPSAnLy9kaXZbQGNsYXNzPSJhcnRpZmFjdC1kZXNjcmlwdGlvbiJdL2RpdltAY2xhc3M9ImFydGlmYWN0LXRpdGxlIl0vYScpICU+JSAKICAgIHJ2ZXN0OjpodG1sX3RleHQodHJpbSA9IFQpCiAgCiAgbGlua190b19wZGYgPC0gbm9kZSAlPiUgCiAgICBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2RpdltAY2xhc3M9ImFydGlmYWN0LWRlc2NyaXB0aW9uIl0vZGl2W0BjbGFzcz0iYXJ0aWZhY3QtdGl0bGUiXS9hJykgJT4lIAogICAgcnZlc3Q6Omh0bWxfYXR0cigiaHJlZiIpICU+JSAKICAgIHN0cmluZ3I6OnN0cl9jKCJodHRwczovL2Vkai50cmYxLmp1cy5iciIsLikKICAKICBhdXRob3IgPC0gbm9kZSAlPiUgCiAgICBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2RpdltAY2xhc3M9ImFydGlmYWN0LWRlc2NyaXB0aW9uIl0vZGl2W0BjbGFzcz0iYXJ0aWZhY3QtaW5mbyJdLy8qW0BjbGFzcz0iYXV0aG9yIl0nKSAlPiUgCiAgICBydmVzdDo6aHRtbF90ZXh0KHRyaW0gPSBUKQogIAogIHB1Ymxpc2hlcl9kYXRlIDwtIG5vZGUgJT4lIAogICAgcnZlc3Q6Omh0bWxfbm9kZXMoeHBhdGggPSAnLy9kaXZbQGNsYXNzPSJhcnRpZmFjdC1kZXNjcmlwdGlvbiJdL2RpdltAY2xhc3M9ImFydGlmYWN0LWluZm8iXS8vKltAY2xhc3M9InB1Ymxpc2hlci1kYXRlIl0nKSAlPiUgCiAgICBydmVzdDo6aHRtbF90ZXh0KHRyaW0gPSBUKSAlPiUgCiAgICBzdHJpbmdyOjpzdHJfcmVwbGFjZV9hbGwoIlxcKHxcXCkiLCAiIikgJT4lIAogICAgbHVicmlkYXRlOjp5bWQoKQogIAogIHRhYmxlIDwtIHRpYmJsZTo6dGliYmxlKAogICAgdGl0bGUgPSB0aXRsZSwKICAgIGxpbmtfdG9fcGRmID0gbGlua190b19wZGYsCiAgICBhdXRob3IgPSBhdXRob3IsCiAgICBwdWJsaXNoZXJfZGF0ZT1wdWJsaXNoZXJfZGF0ZQogICkgJT4lIGRwbHlyOjptdXRhdGUoZmlsZSA9IGZpbGUpCiAgCiAgcmV0dXJuKHRhYmxlKQoKfQoKZmlsZXMgPC0gZGlyKCJkYXRhLXJhdy8iLCBmdWxsLm5hbWVzID0gVCkKdGFiZWxhIDwtIHB1cnJyOjptYXBfZGZyKGZpbGVzLCB+cGFyc2VfZGplX3RqZGZ0KC54KSkKcmVhZHI6OndyaXRlX3Jkcyh0YWJlbGEsImRhdGEtcmF3L3RhYmVsYS5yZHMiKQpgYGAKCmBgYHtyfQojIEZ1bmNhbyByZXNwb25zYXZlbCBwb3IgYmFpeGFyIG9zIHBkZnMKb2J0ZXJfbGluayA8LSBmdW5jdGlvbihsaW5rX3RvX3BkZiwgcGF0aCA9ICJkYXRhLXJhd19wZGYvIil7CiAgYXJxdWl2byA8LSBsaW5rX3RvX3BkZiAlPiUgc3RyaW5ncjo6c3RyX2V4dHJhY3QoIlswLTldezQsMTB9IikKICBkaXIuY3JlYXRlKHBhdGgsIEZBTFNFLCBUUlVFKQogIHBhdGggPC0gbm9ybWFsaXplUGF0aChwYXRoKQogIGZpbGUgPC0gc3RyaW5ncjo6c3RyX2MocGF0aCwiLyIsIGFycXVpdm8sIi5wZGYiKQogIAogIG5vZGUgPC0gbGlua190b19wZGYgJT4lIHhtbDI6OnJlYWRfaHRtbCgpCgogIGxpbmsgPC0gbm9kZSAlPiUgCiAgICBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2RpdltAY2xhc3M9ImZpbGUtbWV0YWRhdGEiXS8vbGkvL2EnKSAlPiUKICAgIHJ2ZXN0OjpodG1sX2F0dHIoJ2hyZWYnKSAlPiUKICAgIHN0cmluZ3I6OnN0cl9jKCJodHRwczovL2Vkai50cmYxLmp1cy5iciIsLikgJT4lIAogICAgdGliYmxlOjp0aWJibGUobGlua19kb3dubG9hZCA9IC4pCiAgCiAgIyBBbGd1bnMgbGlua3MgcG9zc3VlbSBtYWlzIGRlIHVtIHBkZiBwb3IgcGFnaW5hLAogICMgZXN0ZSBjb25kaWNpb25hbCBzZXJ2ZSBwYXJhIGFycnVtYXIgbyBwZGYgY2FzbyBlbGUgdGVuaGEKICAjIG1haXMgZGUgdW1hIHBhZ2luYQogIGlmKG5yb3cobGluaykgPiAxKXsKICAgIGZpbGVzIDwtIGMoKQogICAgZm9yKGkgaW4gMTpucm93KGxpbmspKXsKICAgICAgZmlsZXNbaV0gPC0gc3RyaW5ncjo6c3RyX3NwbGl0KGZpbGUsIHBhdHRlcm4gPSAiKC5wZGYpJCIpICU+JSAKICAgICAgICBwdXJycjo6cGx1Y2soMSwxKSAlPiUgCiAgICAgICAgc3RyaW5ncjo6c3RyX2MoIl8iLCBhcy5jaGFyYWN0ZXIoaSksICIucGRmIikKICAgIH0KICAgIGZpbGVzIDwtIHRpYmJsZTo6dGliYmxlKGZpbGVzID0gZmlsZXMpCiAgICB0YWJfZmlsZXMgPC0gZHBseXI6OmJpbmRfY29scyhmaWxlcywgbGluaykKICB9IGVsc2UgewogICAgZmlsZXMgPC0gdGliYmxlOjp0aWJibGUoZmlsZXMgPSBmaWxlKQogICAgdGFiX2ZpbGVzIDwtIGRwbHlyOjpiaW5kX2NvbHMoZmlsZXMsIGxpbmspCiAgfQogIAogIHB1cnJyOjptYXAyKHRhYl9maWxlcyRsaW5rX2Rvd25sb2FkLCB0YWJfZmlsZXMkZmlsZXMsIH5kb3dubG9hZC5maWxlKC54LCBkZXN0ZmlsZSA9IC55LCBtZXRob2QgPSAibGliY3VybCIpKQogIAogIHJldHVybih0YWJfZmlsZXMpCn0KCnRhYmVsYSA8LSByZWFkcjo6cmVhZF9yZHMoImRhdGEtcmF3L3RhYmVsYS5yZHMiKQpsaW5rc190b19kb3dubG9hZCA8LSBwdXJycjo6bWFwX2Rmcih0YWJlbGEkbGlua190b19wZGYsIH5vYnRlcl9saW5rKGxpbmtfdG9fcGRmID0gLngpKQpgYGAKCkEgZnVuw6fDo28gYG9idGVyX2xpbmtgIGVzdMOhIGZ1bmNpb25hbmRv</div>
 
 
 

@@ -11,11 +11,116 @@ library(purrr)
 ```
 
 ```{r}
-url <- "https://edj.trf1.jus.br/edj/discover"
-path_html <- "data-raw/"
-dir.create(path_html, FALSE, TRUE)
+obter_path <- function(path_html, name_html){
+  dir.create(path_html, FALSE, TRUE)
   path_html <- normalizePath(path_html)
-  file <- stringr::str_c(path_html, "/page1.html")
-httr::GET(url, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file, TRUE))
+  file <- stringr::str_c(path_html,"/",name_html,".html")  
+  return(file)
+}
+
+obter_pag <- function(){
+  url <- "https://edj.trf1.jus.br/edj/discover?scope=123%2F5&query=&submit=Go"
+  url_pag <- "https://edj.trf1.jus.br/edj/discover?scope=123/5&rpp=10&page=NUMPAG&group_by=none&etal=0"
+  request <- httr::GET(url,
+                       httr::config(ssl_verifypeer = FALSE))
+  seq_page <- request %>% httr::content() %>% 
+    rvest::html_node(xpath = '//li[@class="last-page-link"]') %>% 
+    rvest::html_text(trim = T) %>% as.numeric() %>% seq(1,.,1)  
+  
+  link <- purrr::map_chr(seq_page, ~stringr::str_replace(url_pag, "NUMPAG", as.character(.x)))
+  purrr::map2(link, 
+              seq_page, 
+              ~httr::GET(.x,
+                         httr::config(ssl_verifypeer = FALSE),
+                         httr::write_disk(obter_path(path_html = "data-raw/",
+                                                     as.character(.y)))))
+  return(link)
+}
+
+links <- obter_pag() # Obter os html dos diários
 ```
 
+```{r}
+file <- dir(path = "data-raw/", pattern = "241", full.names = T)
+parse_dje_jfdf <- function(file){
+
+  node <- file %>% xml2::read_html()
+  
+  title <- node %>%
+    rvest::html_nodes(xpath = '//div[@class="artifact-description"]/div[@class="artifact-title"]/a') %>% 
+    rvest::html_text(trim = T)
+  
+  link_to_pdf <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="artifact-description"]/div[@class="artifact-title"]/a') %>% 
+    rvest::html_attr("href") %>% 
+    stringr::str_c("https://edj.trf1.jus.br",.)
+  
+  author <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="artifact-description"]/div[@class="artifact-info"]//*[@class="author"]') %>% 
+    rvest::html_text(trim = T)
+  
+  publisher_date <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="artifact-description"]/div[@class="artifact-info"]//*[@class="publisher-date"]') %>% 
+    rvest::html_text(trim = T) %>% 
+    stringr::str_replace_all("\\(|\\)", "") %>% 
+    lubridate::ymd()
+  
+  table <- tibble::tibble(
+    title = title,
+    link_to_pdf = link_to_pdf,
+    author = author,
+    publisher_date=publisher_date
+  ) %>% dplyr::mutate(file = file)
+  
+  return(table)
+
+}
+
+files <- dir("data-raw/", full.names = T)
+tabela <- purrr::map_dfr(files, ~parse_dje_tjdft(.x))
+readr::write_rds(tabela,"data-raw/tabela.rds")
+```
+
+```{r}
+# Funcao responsavel por baixar os pdfs
+obter_link <- function(link_to_pdf, path = "data-raw_pdf/"){
+  arquivo <- link_to_pdf %>% stringr::str_extract("[0-9]{4,10}")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path,"/", arquivo,".pdf")
+  
+  node <- link_to_pdf %>% xml2::read_html()
+
+  link <- node %>% 
+    rvest::html_nodes(xpath = '//div[@class="file-metadata"]//li//a') %>%
+    rvest::html_attr('href') %>%
+    stringr::str_c("https://edj.trf1.jus.br",.) %>% 
+    tibble::tibble(link_download = .)
+  
+  # Alguns links possuem mais de um pdf por pagina,
+  # este condicional serve para arrumar o pdf caso ele tenha
+  # mais de uma pagina
+  if(nrow(link) > 1){
+    files <- c()
+    for(i in 1:nrow(link)){
+      files[i] <- stringr::str_split(file, pattern = "(.pdf)$") %>% 
+        purrr::pluck(1,1) %>% 
+        stringr::str_c("_", as.character(i), ".pdf")
+    }
+    files <- tibble::tibble(files = files)
+    tab_files <- dplyr::bind_cols(files, link)
+  } else {
+    files <- tibble::tibble(files = file)
+    tab_files <- dplyr::bind_cols(files, link)
+  }
+  
+  purrr::map2(tab_files$link_download, tab_files$files, ~download.file(.x, destfile = .y, method = "libcurl"))
+  
+  return(tab_files)
+}
+
+tabela <- readr::read_rds("data-raw/tabela.rds")
+links_to_download <- purrr::map_dfr(tabela$link_to_pdf, ~obter_link(link_to_pdf = .x))
+```
+
+A função `obter_link` está funcionando
