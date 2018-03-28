@@ -10,19 +10,6 @@ library(dplyr)
 library(stringr)
 ```
 
-```{r}
-# Neste site tem como fazer a busca pela primeira e a segunda instancia
-# parece que a busca de segunda instancia tem captcha
-url <- "http://www4.tjrj.jus.br/numeracaoUnica/faces/index.jsp?numProcesso="
-
-tjrj <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJRJ/data-raw/data-raw_rds/exemplo.rds") %>% 
-  dplyr::select(num_proc) %>% dplyr::mutate(url = str_c(url, num_proc))
-
-# tjrj <- tjrj %>% select(num_proc) %>%dplyr::mutate(num_proc = abjutils::clean_id(num_proc)) %>% tidyr::separate(num_proc, into= c("prim_parte", "seg_parte"), sep = "(819)")
-
-head(tjrj$url)
-```
-
 Os links gerados tem pelo menos dois tipos de resultados
 
 1. Tipo 1: Redireciona para página de interesse
@@ -36,3 +23,49 @@ knitr::include_graphics("img/tipo1.png")
 ```{r}
 knitr::include_graphics("img/tipo2.png")
 ```
+
+```{r}
+obter_json <- function(url , path = "data-raw/"){
+  request <- httr::GET(url)
+  
+  if(stringr::str_detect(request$url, "ConsultaProcesso") == FALSE){
+    nAntigo <- request %>%
+      httr::content() %>%
+      rvest::html_nodes(xpath = '//form//li/a') %>% 
+      rvest::html_attr("href") %>%
+      stringr::str_trim() %>% purrr::pluck(2) %>% 
+      stringr::str_extract("(N=).*") %>% 
+      stringr::str_extract("[0-9]+")
+  } else {
+    nAntigo <- request %>% 
+      stringr::str_extract("(N=).*") %>% 
+      stringr::str_extract("[0-9]+")
+  }
+  path <- normalizePath(path)
+  nAntigo <- stringr::str_replace_all(nAntigo, "[[:punct:]]", "")
+  file <- stringr::str_c(path,"/", nAntigo, ".html")
+
+  url_tipo_POST <- "http://www4.tjrj.jus.br/ejud/WS/ConsultaEjud.asmx/DadosProcesso_1"
+
+  query <- list(
+    "nAntigo"= nAntigo,
+    "pCPF"=""
+  )
+
+  httr::POST(url_tipo_POST,
+           body = query,
+           httr::write_disk(file, overwrite = T),
+           encode = "json")
+  return(nAntigo)
+}
+url <- "http://www4.tjrj.jus.br/numeracaoUnica/faces/index.jsp?numProcesso="  
+tjrj <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tjs/jurisprudencia/TJRJ/data-raw/data-raw_rds/exemplo.rds") %>% 
+  dplyr::select(num_proc) %>% dplyr::mutate(url = str_c(url, num_proc))
+
+nAntigos <- purrr::map_chr(tjrj$url, ~obter_json(.x))
+
+files <- dir(path = "data-raw/", full.names = T)
+
+files[1] %>% readLines(encoding = "latin1") %>%  jsonlite::fromJSON()
+```
+
