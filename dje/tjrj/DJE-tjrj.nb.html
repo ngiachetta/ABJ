@@ -175,10 +175,39 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShodHRyKVxubGlicmFyeShydmVzdClcbmxpYnJhcnkoZHBseXIpXG5saWJyYXJ5KHB1cnJyKVxubGlicmFyeShzdHJpbmdyKVxubGlicmFyeShwbmcpXG5saWJyYXJ5KG1hZ2ljaylcbmxpYnJhcnkoYmFzZTY0ZW5jKVxubGlicmFyeShSU2VsZW5pdW0pXG5gYGAifQ== -->
+<pre class="r"><code>library(httr)
+library(rvest)
+library(dplyr)
+library(purrr)
+library(stringr)
+library(png)
+library(magick)
+library(base64enc)
+library(RSelenium)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<div id="testar-depois-das-18h" class="section level1">
+<h1>Testar depois das 18h</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJsIDwtIFwiaHR0cHM6Ly93d3czLnRqcmouanVzLmJyL2NvbnN1bHRhZGplL2NvbnN1bHRhREpFLmFzcHg/ZHRQdWI9MTQvMDMvMjAxOCZjYWRlcm5vPUEmcGFnaW5hPS0xXCJcbmZpbGUgPC0gXCJidXNjYS5odG1sXCJcbnF1ZXJ5IDwtIGxpc3QoXG4gIFwiX19WSUVXU1RBVEVHRU5FUkFUT1JcIj11cmwgJT4lIHJ2ZXN0OjpodG1sX3Nlc3Npb24oaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gVCkpICU+JSBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2Rpdi9pbnB1dFtAaWQ9XCJfX1ZJRVdTVEFURUdFTkVSQVRPUlwiXScpICU+JSBydmVzdDo6aHRtbF9hdHRyKCd2YWx1ZScpXG4pXG5cImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMVwiICU+JVxuICBHRVQoaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpLGh0dHI6OndyaXRlX2Rpc2soZmlsZSwgVFJVRSkpICU+JVxuICByZWFkX2h0bWwoKSAlPiVcbiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFwiLy8qW0BpZD0nY2FwdGNoYUltZyddXCIpICU+JVxuICB4bWxfYXR0cihcInNyY1wiKSAlPiVcbiAgc3RyX3JlbW92ZShcImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxcIikgJT4lXG4gIGJhc2U2NGRlY29kZSgpICU+JVxuICByZWFkUE5HKCkgJT4lXG4gIHdyaXRlUE5HKFwic3RhdGljL2NhcHRjaGEucG5nXCIpXG5gYGAifQ== -->
+<pre class="r"><code>url &lt;- &quot;https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&amp;caderno=A&amp;pagina=-1&quot;
+file &lt;- &quot;busca.html&quot;
+query &lt;- list(
+  &quot;__VIEWSTATEGENERATOR&quot;=url %&gt;% rvest::html_session(httr::config(ssl_verifypeer = T)) %&gt;% rvest::html_nodes(xpath = '//div/input[@id=&quot;__VIEWSTATEGENERATOR&quot;]') %&gt;% rvest::html_attr('value')
+)
+&quot;https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&amp;caderno=A&amp;pagina=-1&quot; %&gt;%
+  GET(httr::config(ssl_verifypeer = FALSE),httr::write_disk(file, TRUE)) %&gt;%
+  read_html() %&gt;%
+  html_nodes(xpath = &quot;//*[@id='captchaImg']&quot;) %&gt;%
+  xml_attr(&quot;src&quot;) %&gt;%
+  str_remove(&quot;data:image/png;base64,&quot;) %&gt;%
+  base64decode() %&gt;%
+  readPNG() %&gt;%
+  writePNG(&quot;static/captcha.png&quot;)</code></pre>
+<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
@@ -202,8 +231,9 @@ Erro:    Summary: UnknownError
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLVRKUkoiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KGh0dHIpCmxpYnJhcnkocnZlc3QpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoc3RyaW5ncikKbGlicmFyeShwbmcpCmxpYnJhcnkobWFnaWNrKQpsaWJyYXJ5KGJhc2U2NGVuYykKbGlicmFyeShSU2VsZW5pdW0pCmBgYAoKYGBge3J9CnVybCA8LSAiaHR0cHM6Ly93d3czLnRqcmouanVzLmJyL2NvbnN1bHRhZGplL2NvbnN1bHRhREpFLmFzcHg/ZHRQdWI9MTQvMDMvMjAxOCZjYWRlcm5vPUEmcGFnaW5hPS0xIgpmaWxlIDwtICJidXNjYS5odG1sIgpxdWVyeSA8LSBsaXN0KAogICJfX1ZJRVdTVEFURUdFTkVSQVRPUiI9dXJsICU+JSBydmVzdDo6aHRtbF9zZXNzaW9uKGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IFQpKSAlPiUgcnZlc3Q6Omh0bWxfbm9kZXMoeHBhdGggPSAnLy9kaXYvaW5wdXRbQGlkPSJfX1ZJRVdTVEFURUdFTkVSQVRPUiJdJykgJT4lIHJ2ZXN0OjpodG1sX2F0dHIoJ3ZhbHVlJykKKQoiaHR0cHM6Ly93d3czLnRqcmouanVzLmJyL2NvbnN1bHRhZGplL2NvbnN1bHRhREpFLmFzcHg/ZHRQdWI9MTQvMDMvMjAxOCZjYWRlcm5vPUEmcGFnaW5hPS0xIiAlPiUKICBHRVQoaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpLGh0dHI6OndyaXRlX2Rpc2soZmlsZSwgVFJVRSkpICU+JQogIHJlYWRfaHRtbCgpICU+JQogIGh0bWxfbm9kZXMoeHBhdGggPSAiLy8qW0BpZD0nY2FwdGNoYUltZyddIikgJT4lCiAgeG1sX2F0dHIoInNyYyIpICU+JQogIHN0cl9yZW1vdmUoImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCwiKSAlPiUKICBiYXNlNjRkZWNvZGUoKSAlPiUKICByZWFkUE5HKCkgJT4lCiAgd3JpdGVQTkcoInN0YXRpYy9jYXB0Y2hhLnBuZyIpCmBgYAoKYGBge3J9CnJlbURyIDwtIFJTZWxlbml1bTo6cnNEcml2ZXIoYnJvd3NlciA9ICJmaXJlZm94IikKcmVtRHIkY2xpZW50JG5hdmlnYXRlKHVybCkKCndlYkVsZW0gPC0gCiAgCiJodHRwczovL3d3dy5ndXJ1OTkuY29tL3NzbC1jZXJ0aWZpY2F0ZS1lcnJvci1oYW5kbGluZy1zZWxlbml1bS5odG1sIzEiICMgc29sdWNhbwpgYGAKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLVRKUkoiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KGh0dHIpCmxpYnJhcnkocnZlc3QpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoc3RyaW5ncikKbGlicmFyeShwbmcpCmxpYnJhcnkobWFnaWNrKQpsaWJyYXJ5KGJhc2U2NGVuYykKbGlicmFyeShSU2VsZW5pdW0pCmBgYAoKIyBUZXN0YXIgZGVwb2lzIGRhcyAxOGgKCmBgYHtyfQp1cmwgPC0gImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIKZmlsZSA8LSAiYnVzY2EuaHRtbCIKcXVlcnkgPC0gbGlzdCgKICAiX19WSUVXU1RBVEVHRU5FUkFUT1IiPXVybCAlPiUgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBUKSkgJT4lIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2L2lucHV0W0BpZD0iX19WSUVXU1RBVEVHRU5FUkFUT1IiXScpICU+JSBydmVzdDo6aHRtbF9hdHRyKCd2YWx1ZScpCikKImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIgJT4lCiAgR0VUKGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSxodHRyOjp3cml0ZV9kaXNrKGZpbGUsIFRSVUUpKSAlPiUKICByZWFkX2h0bWwoKSAlPiUKICBodG1sX25vZGVzKHhwYXRoID0gIi8vKltAaWQ9J2NhcHRjaGFJbWcnXSIpICU+JQogIHhtbF9hdHRyKCJzcmMiKSAlPiUKICBzdHJfcmVtb3ZlKCJkYXRhOmltYWdlL3BuZztiYXNlNjQsIikgJT4lCiAgYmFzZTY0ZGVjb2RlKCkgJT4lCiAgcmVhZFBORygpICU+JQogIHdyaXRlUE5HKCJzdGF0aWMvY2FwdGNoYS5wbmciKQpgYGAKCmBgYHtyfQpyZW1EciA8LSBSU2VsZW5pdW06OnJzRHJpdmVyKGJyb3dzZXIgPSAiZmlyZWZveCIpCnJlbURyJGNsaWVudCRuYXZpZ2F0ZSh1cmwpCgp3ZWJFbGVtIDwtIAogIAoiaHR0cHM6Ly93d3cuZ3VydTk5LmNvbS9zc2wtY2VydGlmaWNhdGUtZXJyb3ItaGFuZGxpbmctc2VsZW5pdW0uaHRtbCMxIiAjIHNvbHVjYW8KYGBgCgo=</div>
 
 
 

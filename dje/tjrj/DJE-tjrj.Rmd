@@ -15,6 +15,8 @@ library(base64enc)
 library(RSelenium)
 ```
 
+# Testar depois das 18h
+
 ```{r}
 url <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1"
 file <- "busca.html"
