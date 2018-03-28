@@ -1,0 +1,24 @@
+---
+title: "28 de Março de 2018"
+output: html_notebook
+---
+
+A. Informações sobre os juízes (histórico):
+
+    1) Lattes/Escavador (ChocoLattes)
+    
+    2) Linkedin (Rlinkedin)
+    
+    3) Facebook (Rfacebook)
+    
+B. Relatório de obtenção das bases/informações
+
+    1) Base de inquérito policial
+    
+    2) Diários oficiais 
+    
+    3) Perfil dos Juízes
+    
+Tratar sobre as dificuldades de obtenção do dado, como foi coletado e quais as fontes utilizadas.
+
+# __Prazo: Começo de Maio__
