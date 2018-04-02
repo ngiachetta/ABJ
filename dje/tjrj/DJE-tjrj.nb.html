@@ -192,48 +192,51 @@ library(RSelenium)</code></pre>
 <h1>Testar depois das 18h</h1>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudXJsIDwtIFwiaHR0cHM6Ly93d3czLnRqcmouanVzLmJyL2NvbnN1bHRhZGplL2NvbnN1bHRhREpFLmFzcHg/ZHRQdWI9MTQvMDMvMjAxOCZjYWRlcm5vPUEmcGFnaW5hPS0xXCJcbmZpbGUgPC0gXCJidXNjYS5odG1sXCJcbnF1ZXJ5IDwtIGxpc3QoXG4gIFwiX19WSUVXU1RBVEVHRU5FUkFUT1JcIj11cmwgJT4lIHJ2ZXN0OjpodG1sX3Nlc3Npb24oaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gVCkpICU+JSBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvL2Rpdi9pbnB1dFtAaWQ9XCJfX1ZJRVdTVEFURUdFTkVSQVRPUlwiXScpICU+JSBydmVzdDo6aHRtbF9hdHRyKCd2YWx1ZScpXG4pXG5cImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMVwiICU+JVxuICBHRVQoaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpLGh0dHI6OndyaXRlX2Rpc2soZmlsZSwgVFJVRSkpICU+JVxuICByZWFkX2h0bWwoKSAlPiVcbiAgaHRtbF9ub2Rlcyh4cGF0aCA9IFwiLy8qW0BpZD0nY2FwdGNoYUltZyddXCIpICU+JVxuICB4bWxfYXR0cihcInNyY1wiKSAlPiVcbiAgc3RyX3JlbW92ZShcImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxcIikgJT4lXG4gIGJhc2U2NGRlY29kZSgpICU+JVxuICByZWFkUE5HKCkgJT4lXG4gIHdyaXRlUE5HKFwic3RhdGljL2NhcHRjaGEucG5nXCIpXG5gYGAifQ== -->
-<pre class="r"><code>url &lt;- &quot;https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&amp;caderno=A&amp;pagina=-1&quot;
-file &lt;- &quot;busca.html&quot;
-query &lt;- list(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucXVlcnkgPC0gbGlzdChcbiAgXCJfX1ZJRVdTVEFURUdFTkVSQVRPUlwiPXVybCAlPiUgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBUKSkgJT4lIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2L2lucHV0W0BpZD1cIl9fVklFV1NUQVRFR0VORVJBVE9SXCJdJykgJT4lIHJ2ZXN0OjpodG1sX2F0dHIoJ3ZhbHVlJylcbilcblxuYGBgIn0= -->
+<pre class="r"><code>query &lt;- list(
   &quot;__VIEWSTATEGENERATOR&quot;=url %&gt;% rvest::html_session(httr::config(ssl_verifypeer = T)) %&gt;% rvest::html_nodes(xpath = '//div/input[@id=&quot;__VIEWSTATEGENERATOR&quot;]') %&gt;% rvest::html_attr('value')
 )
-&quot;https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&amp;caderno=A&amp;pagina=-1&quot; %&gt;%
-  GET(httr::config(ssl_verifypeer = FALSE),httr::write_disk(file, TRUE)) %&gt;%
-  read_html() %&gt;%
-  html_nodes(xpath = &quot;//*[@id='captchaImg']&quot;) %&gt;%
-  xml_attr(&quot;src&quot;) %&gt;%
-  str_remove(&quot;data:image/png;base64,&quot;) %&gt;%
-  base64decode() %&gt;%
-  readPNG() %&gt;%
-  writePNG(&quot;static/captcha.png&quot;)</code></pre>
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gY3VybDo6Y3VybF9mZXRjaF9tZW1vcnkodXJsLCBoYW5kbGUgPSBoYW5kbGUpIDogXG4gIFNTTCBjZXJ0aWZpY2F0ZSBwcm9ibGVtOiBzZWxmIHNpZ25lZCBjZXJ0aWZpY2F0ZSBpbiBjZXJ0aWZpY2F0ZSBjaGFpblxuIn0= -->
+<pre><code>Error in curl::curl_fetch_memory(url, handle = handle) : 
+  SSL certificate problem: self signed certificate in certificate chain</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVtRHIgPC0gUlNlbGVuaXVtOjpyc0RyaXZlcihicm93c2VyID0gXCJmaXJlZm94XCIpXG5yZW1EciRjbGllbnQkbmF2aWdhdGUodXJsKVxuXG53ZWJFbGVtIDwtIFxuICBcblwiaHR0cHM6Ly93d3cuZ3VydTk5LmNvbS9zc2wtY2VydGlmaWNhdGUtZXJyb3ItaGFuZGxpbmctc2VsZW5pdW0uaHRtbCMxXCIgIyBzb2x1Y2FvXG5gYGAifQ== -->
+<pre class="r"><code>remDr &lt;- RSelenium::rsDriver(browser = &quot;firefox&quot;)
+remDr$client$navigate(url)
+
+webElem &lt;- 
+  
+&quot;https://www.guru99.com/ssl-certificate-error-handling-selenium.html#1&quot; # solucao</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVtRHIkY2xpZW50JG5hdmlnYXRlKHVybClcblxuYGBgIn0= -->
-<pre class="r"><code>remDr$client$navigate(url)
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVxdWVzdF8wICU+JSBodHRyOjpjb250ZW50KCkgJT4lIFxuICBydmVzdDo6aHRtbF9ub2Rlcyh4cGF0aCA9ICcvLypbQGlkXScpXG5cbmBgYCJ9 -->
+<pre class="r"><code>request_0 %&gt;% httr::content() %&gt;% 
+  rvest::html_nodes(xpath = '//*[@id]')
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5TZWxlbml1bSBtZXNzYWdlOlxuQnVpbGQgaW5mbzogdmVyc2lvbjogJzMuMTEuMCcsIHJldmlzaW9uOiAnZTU5Y2ZiMycsIHRpbWU6ICcyMDE4LTAzLTExVDIwOjMzOjE1LjMxWidcblN5c3RlbSBpbmZvOiBob3N0OiAnbmF0aGFuZycsIGlwOiAnMTI3LjAuMS4xJywgb3MubmFtZTogJ0xpbnV4Jywgb3MuYXJjaDogJ2FtZDY0Jywgb3MudmVyc2lvbjogJzQuNC4wLTExNi1nZW5lcmljJywgamF2YS52ZXJzaW9uOiAnMS44LjBfMTUxJ1xuRHJpdmVyIGluZm86IGRyaXZlci52ZXJzaW9uOiB1bmtub3duXG5cbkVycm86IFx0IFN1bW1hcnk6IFVua25vd25FcnJvclxuIFx0IERldGFpbDogQW4gdW5rbm93biBzZXJ2ZXItc2lkZSBlcnJvciBvY2N1cnJlZCB3aGlsZSBwcm9jZXNzaW5nIHRoZSBjb21tYW5kLlxuIFx0IGNsYXNzOiBvcmcub3BlbnFhLnNlbGVuaXVtLldlYkRyaXZlckV4Y2VwdGlvblxuXHQgRnVydGhlciBEZXRhaWxzOiBydW4gZXJyb3JEZXRhaWxzIG1ldGhvZFxuIn0= -->
-<pre><code>
-Selenium message:
-Build info: version: '3.11.0', revision: 'e59cfb3', time: '2018-03-11T20:33:15.31Z'
-System info: host: 'nathang', ip: '127.0.1.1', os.name: 'Linux', os.arch: 'amd64', os.version: '4.4.0-116-generic', java.version: '1.8.0_151'
-Driver info: driver.version: unknown
-
-Erro:    Summary: UnknownError
-     Detail: An unknown server-side error occurred while processing the command.
-     class: org.openqa.selenium.WebDriverException
-     Further Details: run errorDetails method</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoie3htbF9ub2Rlc2V0ICg1KX1cblsxXSA8aGVhZCBpZD1cIkhlYWQxXCI+XFxuPG1ldGEgaHR0cC1lcXVpdj1cIkNvbnRlbnQtVHlwZVwiIGNvbnRlbnQ9XCJ0ZXh0L2h0bWw7IGNoYXJzZXQ9VVRGLThcIj5cXG48bCAuLi5cblsyXSA8bGluayB0eXBlPVwidGV4dC9jc3NcIiByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9Db25zdWx0YURKRS9leHRqcy9wYWNrYWdlcy9leHRfdGhlbWVfY3Jpc3AvYiAuLi5cblszXSA8bGluayB0eXBlPVwidGV4dC9jc3NcIiByZWw9XCJzdHlsZXNoZWV0XCIgaHJlZj1cIi9Db25zdWx0YURKRS9leHRuZXQvcmVzb3VyY2VzL2Nzcy9leHRuZXQtYWxsLSAuLi5cbls0XSA8Zm9ybSBuYW1lPVwiZm9ybTFcIiBtZXRob2Q9XCJwb3N0XCIgYWN0aW9uPVwiLi9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0JTJmMDMlMmYyMDE4JmFtcDtjYWRlciAuLi5cbls1XSA8aW5wdXQgdHlwZT1cImhpZGRlblwiIG5hbWU9XCJfX1ZJRVdTVEFURUdFTkVSQVRPUlwiIGlkPVwiX19WSUVXU1RBVEVHRU5FUkFUT1JcIiB2YWx1ZT1cIjdFRDg4QUNDXCI+XG4ifQ== -->
+<pre><code>{xml_nodeset (5)}
+[1] &lt;head id=&quot;Head1&quot;&gt;\n&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;\n&lt;l ...
+[2] &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/ConsultaDJE/extjs/packages/ext_theme_crisp/b ...
+[3] &lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/ConsultaDJE/extnet/resources/css/extnet-all- ...
+[4] &lt;form name=&quot;form1&quot; method=&quot;post&quot; action=&quot;./consultaDJE.aspx?dtPub=14%2f03%2f2018&amp;amp;cader ...
+[5] &lt;input type=&quot;hidden&quot; name=&quot;__VIEWSTATEGENERATOR&quot; id=&quot;__VIEWSTATEGENERATOR&quot; value=&quot;7ED88ACC&quot;&gt;</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLVRKUkoiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KGh0dHIpCmxpYnJhcnkocnZlc3QpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoc3RyaW5ncikKbGlicmFyeShwbmcpCmxpYnJhcnkobWFnaWNrKQpsaWJyYXJ5KGJhc2U2NGVuYykKbGlicmFyeShSU2VsZW5pdW0pCmBgYAoKIyBUZXN0YXIgZGVwb2lzIGRhcyAxOGgKCmBgYHtyfQp1cmwgPC0gImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIKZmlsZSA8LSAiYnVzY2EuaHRtbCIKcXVlcnkgPC0gbGlzdCgKICAiX19WSUVXU1RBVEVHRU5FUkFUT1IiPXVybCAlPiUgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBUKSkgJT4lIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2L2lucHV0W0BpZD0iX19WSUVXU1RBVEVHRU5FUkFUT1IiXScpICU+JSBydmVzdDo6aHRtbF9hdHRyKCd2YWx1ZScpCikKImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIgJT4lCiAgR0VUKGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSxodHRyOjp3cml0ZV9kaXNrKGZpbGUsIFRSVUUpKSAlPiUKICByZWFkX2h0bWwoKSAlPiUKICBodG1sX25vZGVzKHhwYXRoID0gIi8vKltAaWQ9J2NhcHRjaGFJbWcnXSIpICU+JQogIHhtbF9hdHRyKCJzcmMiKSAlPiUKICBzdHJfcmVtb3ZlKCJkYXRhOmltYWdlL3BuZztiYXNlNjQsIikgJT4lCiAgYmFzZTY0ZGVjb2RlKCkgJT4lCiAgcmVhZFBORygpICU+JQogIHdyaXRlUE5HKCJzdGF0aWMvY2FwdGNoYS5wbmciKQpgYGAKCmBgYHtyfQpyZW1EciA8LSBSU2VsZW5pdW06OnJzRHJpdmVyKGJyb3dzZXIgPSAiZmlyZWZveCIpCnJlbURyJGNsaWVudCRuYXZpZ2F0ZSh1cmwpCgp3ZWJFbGVtIDwtIAogIAoiaHR0cHM6Ly93d3cuZ3VydTk5LmNvbS9zc2wtY2VydGlmaWNhdGUtZXJyb3ItaGFuZGxpbmctc2VsZW5pdW0uaHRtbCMxIiAjIHNvbHVjYW8KYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiREpFLVRKUkoiCm91dHB1dDogaHRtbF9ub3RlYm9vawotLS0KCmBgYHtyfQpsaWJyYXJ5KGh0dHIpCmxpYnJhcnkocnZlc3QpCmxpYnJhcnkoZHBseXIpCmxpYnJhcnkocHVycnIpCmxpYnJhcnkoc3RyaW5ncikKbGlicmFyeShwbmcpCmxpYnJhcnkobWFnaWNrKQpsaWJyYXJ5KGJhc2U2NGVuYykKbGlicmFyeShSU2VsZW5pdW0pCmBgYAoKIyBUZXN0YXIgZGVwb2lzIGRhcyAxOGgKCmBgYHtyfQp1cmwgPC0gImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIKZmlsZSA8LSAiYnVzY2EuaHRtbCIKcXVlcnkgPC0gbGlzdCgKICAiX19WSUVXU1RBVEVHRU5FUkFUT1IiPXVybCAlPiUgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBGKSkgJT4lIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vZGl2L2lucHV0W0BpZD0iX19WSUVXU1RBVEVHRU5FUkFUT1IiXScpICU+JSBydmVzdDo6aHRtbF9hdHRyKCd2YWx1ZScpCikKImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSIgJT4lCiAgR0VUKGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSxodHRyOjp3cml0ZV9kaXNrKGZpbGUsIFRSVUUpKSAlPiUKICByZWFkX2h0bWwoKSAlPiUKICBodG1sX25vZGVzKHhwYXRoID0gIi8vKltAaWQ9J2NhcHRjaGFJbWcnXSIpICU+JQogIHhtbF9hdHRyKCJzcmMiKSAlPiUKICBzdHJfcmVtb3ZlKCJkYXRhOmltYWdlL3BuZztiYXNlNjQsIikgJT4lCiAgYmFzZTY0ZGVjb2RlKCkgJT4lCiAgcmVhZFBORygpICU+JQogIHdyaXRlUE5HKCJzdGF0aWMvY2FwdGNoYS5wbmciKQoKcmVxdWVzdCA8LSBodHRyOjpHRVQoImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURpYXJpby5hc3B4P2R0UHViPTE0LzAzLzIwMTgmY2FkZXJubz1BJnBhZ2luYT0tMSZwZXNxdWlzYT0maW50cmFuZXQ9UyZfZGM9MTUyMjY3NTI5MTc3NCIsIGh0dHI6OmNvbmZpZyhzc2xfdmVyaWZ5cGVlciA9IEZBTFNFKSkKc2NyYXByOjpodG1sX3ZpZXcocmVxdWVzdCkKYGBgCgpgYGB7cn0KcmVtRHIgPC0gUlNlbGVuaXVtOjpyc0RyaXZlcihicm93c2VyID0gImZpcmVmb3giKQpyZW1EciRjbGllbnQkbmF2aWdhdGUodXJsKQoKd2ViRWxlbSA8LSAKICAKImh0dHBzOi8vd3d3Lmd1cnU5OS5jb20vc3NsLWNlcnRpZmljYXRlLWVycm9yLWhhbmRsaW5nLXNlbGVuaXVtLmh0bWwjMSIgIyBzb2x1Y2FvCmBgYAoKYGBge3J9CnVybF9xbnRkX3BhZ2luYXMgPC0gImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jYWRlcm5vLmFzbXgvQ29uc3VsdGFyUXVhbnRpZGFkZVBhZ2luYXMiCnF1ZXJ5X3Bvc3QgPC0gbGlzdCgKICAiY29kQ2FkZXJubyI9IkEiLAogICJkdFB1YiI9IjE0LzAzLzIwMTgiCikKIyBlaCBwcmVjaXNvIG9idGVyIG8gX2RjIG1hcyBlc3RhIGRpZmljaWwKdXJsXzAgPC0gImh0dHBzOi8vd3d3My50anJqLmp1cy5ici9jb25zdWx0YWRqZS9jb25zdWx0YURKRS5hc3B4IgpkYXRlX3N0cmluZyA8LSAiMTQvMDMvMjAxOCIKY2FkZXJubyA8LSAiQSIKcGFnaW5hIDwtIDUKcXVlcnlfMCA8LSBsaXN0KAogICJkdFB1YiI9ZGF0ZV9zdHJpbmcsCiAgImNhZGVybm8iPWNhZGVybm8sCiAgInBhZ2luYSI9cGFnaW5hLAogICJwZXNxdWlzYSI9IiIsCiAgIl9kYyI9IiIKICApCnJlcXVlc3RfMCA8LSBodHRyOjpHRVQodXJsXzAsIHF1ZXJ5ID0gcXVlcnlfMCwgaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpKSAKcmVxdWVzdF8wICU+JSBodHRyOjpjb250ZW50KCkgJT4lIAogIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vKltAaWRdJykgJT4lIAogIHJ2ZXN0OjpodG1sX2F0dHIoImFjdGlvbiIpCm9idGVyX2xpbmtQREYgPC0gZnVuY3Rpb24oZGF0ZV9zdHJpbmcsIGNhZGVybm8sIHBhZ2luYSwgZGMgPSAxNTIyNjc1MjkyNjk0KXsKICAKICBxdWVyeV8xIDwtIGxpc3QoCiAgImR0UHViIj1kYXRlX3N0cmluZywKICAiY2FkZXJubyI9Y2FkZXJubywKICAicGFnaW5hIj1wYWdpbmEsCiAgIl9kYyI9ZGMKICApCiAgIyB1cmxfZG93bmxvYWQgZWggdW0gbGluayBxdWUgZGlyZWNpb25hIHBhcmEgbyBsaW5rIGRvIHBkZiBzZW0gcHJlY2lzYXIgcGFzc2FyIHBlbG8gY2FwdGNoYQogIHVybF9kb3dubG9hZCA8LSAiaHR0cHM6Ly93d3czLnRqcmouanVzLmJyL2NvbnN1bHRhZGplL3BkZi5hc3B4IgoKICByZXF1ZXN0IDwtIGh0dHI6OkdFVCh1cmxfZG93bmxvYWQsIHF1ZXJ5ID0gcXVlcnlfMSwgaHR0cjo6Y29uZmlnKHNzbF92ZXJpZnlwZWVyID0gRkFMU0UpKSAgCiAgCiAgcmV0dXJuKHJlcXVlc3QkdXJsKQp9CgpvYnRlcl9saW5rUERGKGRhdGVfc3RyaW5nID0gIjE0LzAzLzIwMTgiLCBjYWRlcm5vID0gIkEiLCBwYWdpbmEgPSA1KQpgYGAKCg==</div>
 
 
 

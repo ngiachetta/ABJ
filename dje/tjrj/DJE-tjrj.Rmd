@@ -21,7 +21,7 @@ library(RSelenium)
 url <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1"
 file <- "busca.html"
 query <- list(
-  "__VIEWSTATEGENERATOR"=url %>% rvest::html_session(httr::config(ssl_verifypeer = T)) %>% rvest::html_nodes(xpath = '//div/input[@id="__VIEWSTATEGENERATOR"]') %>% rvest::html_attr('value')
+  "__VIEWSTATEGENERATOR"=url %>% rvest::html_session(httr::config(ssl_verifypeer = F)) %>% rvest::html_nodes(xpath = '//div/input[@id="__VIEWSTATEGENERATOR"]') %>% rvest::html_attr('value')
 )
 "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1" %>%
   GET(httr::config(ssl_verifypeer = FALSE),httr::write_disk(file, TRUE)) %>%
@@ -32,6 +32,9 @@ query <- list(
   base64decode() %>%
   readPNG() %>%
   writePNG("static/captcha.png")
+
+request <- httr::GET("https://www3.tjrj.jus.br/consultadje/consultaDiario.aspx?dtPub=14/03/2018&caderno=A&pagina=-1&pesquisa=&intranet=S&_dc=1522675291774", httr::config(ssl_verifypeer = FALSE))
+scrapr::html_view(request)
 ```
 
 ```{r}
@@ -41,5 +44,46 @@ remDr$client$navigate(url)
 webElem <- 
   
 "https://www.guru99.com/ssl-certificate-error-handling-selenium.html#1" # solucao
+```
+
+```{r}
+url_qntd_paginas <- "https://www3.tjrj.jus.br/consultadje/caderno.asmx/ConsultarQuantidadePaginas"
+query_post <- list(
+  "codCaderno"="A",
+  "dtPub"="14/03/2018"
+)
+# eh preciso obter o _dc mas esta dificil
+url_0 <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx"
+date_string <- "14/03/2018"
+caderno <- "A"
+pagina <- 5
+query_0 <- list(
+  "dtPub"=date_string,
+  "caderno"=caderno,
+  "pagina"=pagina,
+  "pesquisa"="",
+  "_dc"=""
+  )
+request_0 <- httr::GET(url_0, query = query_0, httr::config(ssl_verifypeer = FALSE)) 
+request_0 %>% httr::content() %>% 
+  rvest::html_nodes(xpath = '//*[@id]') %>% 
+  rvest::html_attr("action")
+obter_linkPDF <- function(date_string, caderno, pagina, dc = 1522675292694){
+  
+  query_1 <- list(
+  "dtPub"=date_string,
+  "caderno"=caderno,
+  "pagina"=pagina,
+  "_dc"=dc
+  )
+  # url_download eh um link que direciona para o link do pdf sem precisar passar pelo captcha
+  url_download <- "https://www3.tjrj.jus.br/consultadje/pdf.aspx"
+
+  request <- httr::GET(url_download, query = query_1, httr::config(ssl_verifypeer = FALSE))  
+  
+  return(request$url)
+}
+
+obter_linkPDF(date_string = "14/03/2018", caderno = "A", pagina = 5)
 ```
 
