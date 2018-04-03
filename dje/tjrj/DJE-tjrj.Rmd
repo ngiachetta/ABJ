@@ -9,65 +9,58 @@ library(rvest)
 library(dplyr)
 library(purrr)
 library(stringr)
-library(png)
-library(magick)
-library(base64enc)
-library(RSelenium)
-```
-
-# Testar depois das 18h
-
-```{r}
-url <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1"
-file <- "busca.html"
-query <- list(
-  "__VIEWSTATEGENERATOR"=url %>% rvest::html_session(httr::config(ssl_verifypeer = F)) %>% rvest::html_nodes(xpath = '//div/input[@id="__VIEWSTATEGENERATOR"]') %>% rvest::html_attr('value')
-)
-"https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx?dtPub=14/03/2018&caderno=A&pagina=-1" %>%
-  GET(httr::config(ssl_verifypeer = FALSE),httr::write_disk(file, TRUE)) %>%
-  read_html() %>%
-  html_nodes(xpath = "//*[@id='captchaImg']") %>%
-  xml_attr("src") %>%
-  str_remove("data:image/png;base64,") %>%
-  base64decode() %>%
-  readPNG() %>%
-  writePNG("static/captcha.png")
-
-request <- httr::GET("https://www3.tjrj.jus.br/consultadje/consultaDiario.aspx?dtPub=14/03/2018&caderno=A&pagina=-1&pesquisa=&intranet=S&_dc=1522675291774", httr::config(ssl_verifypeer = FALSE))
-scrapr::html_view(request)
 ```
 
 ```{r}
-remDr <- RSelenium::rsDriver(browser = "firefox")
-remDr$client$navigate(url)
-
-webElem <- 
-  
-"https://www.guru99.com/ssl-certificate-error-handling-selenium.html#1" # solucao
-```
-
-```{r}
-url_qntd_paginas <- "https://www3.tjrj.jus.br/consultadje/caderno.asmx/ConsultarQuantidadePaginas"
-query_post <- list(
-  "codCaderno"="A",
-  "dtPub"="14/03/2018"
-)
-# eh preciso obter o _dc mas esta dificil
-url_0 <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx"
-date_string <- "14/03/2018"
-caderno <- "A"
-pagina <- 5
-query_0 <- list(
-  "dtPub"=date_string,
-  "caderno"=caderno,
-  "pagina"=pagina,
-  "pesquisa"="",
-  "_dc"=""
+qntd_paginas <- function(caderno = "A", dtPub){
+  url_qntd_paginas <- "https://www3.tjrj.jus.br/consultadje/caderno.asmx/ConsultarQuantidadePaginas"  
+  query_post <- list(
+    "codCaderno"=caderno,
+    "dtPub"=dtPub
   )
-request_0 <- httr::GET(url_0, query = query_0, httr::config(ssl_verifypeer = FALSE)) 
-request_0 %>% httr::content() %>% 
-  rvest::html_nodes(xpath = '//*[@id]') %>% 
-  rvest::html_attr("action")
+  request_qntd_pg <- httr::POST(url_qntd_paginas,
+                                body = query_post,
+                                httr::config(ssl_verifypeer = FALSE),
+                                encode = "json")
+
+  num_paginas <- request_qntd_pg %>% 
+    httr::content() %>% 
+    unlist() %>% 
+    as.numeric() %>% 
+    seq(1, ., 1)
+  
+  return(num_paginas)
+}
+#qntd_paginas(caderno = "S", dtPub = "09/03/2018")
+
+# eh preciso obter o _dc mas esta dificil
+# url_0 <- "https://www3.tjrj.jus.br/consultadje/consultaDJE.aspx"
+# 
+# date_string <- "14/03/2018"
+# caderno <- "A"
+# pagina <- -1
+# 
+# query_0 <- list(
+#   "dtPub"=date_string,
+#   "caderno"=caderno,
+#   "pagina"=pagina
+#   )
+# 
+# request_0 <- httr::GET(url_0, query = query_0, httr::config(ssl_verifypeer = FALSE),
+#                        handle = httr::handle("https://www3.tjrj.jus.br/consultadje/consultaDiario.aspx?dtPub=14/03/2018&caderno=A&pagina=-1&pesquisa=&intranet=N&_dc=1522709860256"))
+# request_0$url %>% 
+#   rvest::html_session(httr::config(ssl_verifypeer = FALSE)) %>% 
+#   rvest::html_form()
+
+# request_0 %>% httr::content() %>% 
+#   rvest::html_nodes(xpath = '//form') %>% 
+#   rvest::html_attr("action") %>% 
+#   stringr::str_replace_all("^.", "") %>% 
+#   stringr::str_c("https://www3.tjrj.jus.br/consultadje", .) %>% 
+#   httr::POST(httr::config(ssl_verifypeer = FALSE)) %>% 
+#   httr::content() %>% 
+#   rvest::html_nodes(xpath = '//iframe')
+
 obter_linkPDF <- function(date_string, caderno, pagina, dc = 1522675292694){
   
   query_1 <- list(
@@ -84,6 +77,25 @@ obter_linkPDF <- function(date_string, caderno, pagina, dc = 1522675292694){
   return(request$url)
 }
 
-obter_linkPDF(date_string = "14/03/2018", caderno = "A", pagina = 5)
+#obter_linkPDF(date_string = "09/03/2018", caderno = "S", pagina = 1, dc = 1522710519786)
+# Quando o arquivo não existe volta uma url sem a query GEDID
+
+linkPDF <- function(date_string = "09/03/2018", caderno = "S", dc = 1522710519786){
+  
+  paginas <- qntd_paginas(caderno = caderno, dtPub = date_string)
+  
+  links <- purrr::map_chr(paginas, ~obter_linkPDF(date_string = date_string, caderno = caderno, pagina = .x, dc = dc))
+  
+  lista_links <- list(date_string = links)
+  
+  return(lista_links)
+}
+datas <- c("06/03/2018", "07/03/2018")
+
+teste <- purrr::map(datas, ~linkPDF(date_string = .x))
+
+teste <- linkPDF()
+
+head(oi)
 ```
 

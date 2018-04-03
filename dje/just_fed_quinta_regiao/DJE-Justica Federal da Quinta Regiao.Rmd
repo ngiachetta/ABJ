@@ -121,4 +121,94 @@ for(i in 1:length(webElems)){
   Sys.sleep(5)
 }
 ```
+```{r}
+library(tidyverse)
+
+get_state <- function(r) {
+  r %>% 
+    httr::content("text") %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = "//input[@id='javax.faces.ViewState']") %>% 
+    rvest::html_attr("value")
+}
+
+get_jid <- function(r) {
+  r %>% 
+    httr::content("text") %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = "//input[@type='submit']") %>% 
+    rvest::html_attr("id")
+}
+
+pag_inicial <- function(orgao = "80", edicao = "1", periodo = "2017", meses = "02") {
+  u0 <- "https://www4.trf5.jus.br/diarioeletinternet/index.jsp"
+  u <- "https://www4.trf5.jus.br/diarioeletinternet/paginas/consultas/consultaDiario.faces"
+  r <- httr::GET(u0, httr::config(ssl_verifypeer = FALSE))
+  
+  l_stj <- list('frmVisao:orgao' = orgao,
+                'frmVisao:edicao' = edicao,
+                'frmVisao:periodo' = periodo,
+                'frmVisao:meses' = "",
+                'frmVisao' = 'frmVisao',
+                'autoScroll' = '',
+                'javax.faces.ViewState' = get_state(r))
+  
+  # request inicial para carregar os meses
+  jid <- get_jid(r)
+  l_stj[[jid]] <- jid
+  l_stj[["AJAXREQUEST"]] <- "_viewRoot"
+  httr::POST(u, body = l_stj, httr::config(ssl_verifypeer = FALSE), 
+             encode = "form")
+  
+  # request final para pegar a primeira pagina
+  jid <- get_jid(r)
+  l_stj[[jid]] <- "Pesquisar"
+  l_stj[["AJAXREQUEST"]] <- NULL
+  l_stj[["frmVisao:meses"]] <- meses
+  l_stj[['frmPesquisa:quantidadeRegistros']] <- '100'
+  r_post_first <- httr::POST(u, body = l_stj, 
+                             httr::config(ssl_verifypeer = FALSE),
+                             encode = "form")
+  
+  r
+}
+
+
+paginar <- function(r_post) {
+  u <- "https://www4.trf5.jus.br/diarioeletinternet/paginas/consultas/consultaDiario.faces"
+  l_stj <- list('AJAXREQUEST' = '_viewRoot',
+                'frmPesquisa:pagina' = 1,
+                'frmPesquisa:quantidadeRegistros' = '10',
+                'frmPesquisa' = 'frmPesquisa',
+                'autoScroll' = '',
+                'javax.faces.ViewState' = get_state(r_post))
+  jid <- get_jid(r_post)
+  l_stj[[jid]] <- jid
+  
+  r_post_pag <- httr::POST(u, body = l_stj, 
+                           httr::config(ssl_verifypeer = FALSE),
+                           encode = "form")
+  
+  l_stj <- list('frmPesquisa:pagina' = 1,
+                'frmPesquisa:quantidadeRegistros' = '100',
+                'frmPesquisa' = 'frmPesquisa',
+                'autoScroll' = '',
+                'javax.faces.ViewState' = get_state(r_post))
+
+  jid <- get_jid(r_post)
+  l_stj[[jid]] <- "Pesquisar"
+
+  r_post_pag <- httr::POST(u, body = l_stj,
+                           httr::config(ssl_verifypeer = FALSE),
+                           encode = "form")
+  
+  r_post_pag
+}
+
+
+inicial <- pag_inicial()
+pag <- paginar(inicial)
+
+scrapr::html_view(pag)
+```
 
