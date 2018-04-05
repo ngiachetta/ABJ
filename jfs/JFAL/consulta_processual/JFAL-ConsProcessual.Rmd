@@ -7,14 +7,42 @@ output: html_notebook
 library(RSelenium)
 library(rvest)
 library(dplyr)
+library(decryptr)
+library(httr)
+library(purrr)
 ```
 
 ```{r}
-#Abrindo o browser
-remDr <- RSelenium::rsDriver()
-# Acessando a pagina
-remDr$client$navigate("https://jef.jfal.jus.br/cretainternetal/consulta/processo/pesquisar2.wsp")
-# Acessando a busca por numero do processo
-webElem <- remDr$client$findElement()
+# Url para acessar os dados
+url <- "https://jef.jfal.jus.br/cretainternetal/consulta/processo/pesquisar.wsp"
+
+# Processo de exemplo
+exemplo <- "05000962320054058013"
+
+# Tipo de requisição: POST
+## Queries
+# "tmp.acao"=pesquisar
+# "tmp.processo_judicial.alterar"=""
+# "tmp.processo.cd_localidade"=""	
+# "tmp.processo.cd_localidade.texto"="Todas"
+# "tmp.processo.nm_autor"=""	
+# "tmp.processo.nr_cpf"=""	
+# "tmp.processo.nr_processo"="0500096-23.2005.4.05.8013"
+# "tmp.valorcaptcha"="36zm"
+# "wi.page.prev"="consulta/processo/pesquisar2"
+# "wi.token"="9F0Y55SOUXKFH09K4QEB"
+
+# input de interesse das Queries
+## "tmp.processo.cd_localidade.texto" - Input do usuario
+## "tmp.processo.nr_processo" - Input do usuario
+## "wi.token" - Obtido no HTML
+
+get_wi.token <- function(url){
+  url %>% 
+    #httr::content("text") %>% 
+    rvest::html_session(httr::config(ssl_verifypeer = FALSE)) %>% 
+    rvest::html_nodes(xpath = '//*[@id="wi.token"]') %>% 
+    rvest::html_attr("value")
+}
 ```
 

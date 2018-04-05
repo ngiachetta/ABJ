@@ -7,113 +7,113 @@ output: html_notebook
 library(dplyr)
 library(httr)
 library(rvest)
-library(RSelenium)
 library(stringr)
 library(tidyr)
 ```
 
+# Função para obter os dados
+
 ```{r}
-# path <- "data-raw/TRF2/busca_v2/"
-# query <- list(
-#   "access"="p",
-#   "adv"="1",
-#   "as_q"="",
-#   "base"="JP-TRF",
-#   "client"="v2_index",
-#   "entqr"="3",
-#   "entqrm"="0",
-#   "entsp"="a",
-#   "filter"="0",
-#   "getfields"="*",
-#   "ie"="UTF-8",
-#   "lr"="lang_pt",
-#   "oe"="UTF-8",
-#   "proxystylesheet"="v2_index",
-#   "q"="",
-#   "requiredfields"="DescrRecursoFinal:INQUÉRITO+POLICIAL.(-sin_proces_sigilo_judici:s).(-sin_sigilo_judici:s)",
-#   "site"="v2_jurisprudencia",
-#   "sort"="date:D:S:d1",
-#   "start"="0",
-#   "ud"="1",
-#   "ulang"="",
-#   "wc"="200",
-#   "wc_mc"=""
-# )
-# 
-# url <- "http://www10.trf2.jus.br/consultas/"
-# 
-# dir.create(path, FALSE, TRUE)
-# path <- normalizePath(path)
-# file <- stringr::str_c(path, "/page1.html")
-# page1 <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE),
-#                       httr::write_disk(file, TRUE))
-
-# visualizar a ementa
-abrir_texto_completo <- function(){
-  webElem <- remDr$client$findElements(using = "xpath", value = '//span[@class="span_ementa ver-ementa"]')
-  if(length(webElem) == 0){
-    print("Pagina sem 'esconder texto'")
-  } else{
-     for(i in 1:length(webElem)){
-      webElem[[i]]$clickElement()
-    }   
-  }
-}
-
-#Obter todas as paginas
-obter_paginas <- function(node){
-  # Iterador
-  ultima_pag <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
-    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
-    stringr::str_extract("(start=)[0-9]+") %>% 
-    stringr::str_extract("[0-9]+")
-  paginas <- as.character(seq(0, ultima_pag, 10))
-  # Url de acesso
-  url_acesso <- node %>% rvest::html_nodes(xpath = '//*[@class="pagination-control"]/a') %>%
-    rvest::html_attr("href") %>% purrr::pluck(2) %>% 
-    stringr::str_replace("(start=)[0-9]+", "start=ALTERAAQUI") %>% 
-    stringr::str_c("http://www10.trf2.jus.br/consultas/", .)
-  paginas <- purrr::map_chr(paginas, ~stringr::str_replace(url_acesso, "(ALTERAAQUI)", .x))
-  return(paginas)
-}
-
-  obtem_source <- function(pages_url){
-    proc_pages <- list()
-    for (i in 1:length(pages_url)){
-      remDr$client$navigate(pages_url[i])
-      abrir_texto_completo()
-      page_n <- remDr$client$getPageSource()
-      proc_pages <- append(proc_pages, page_n)
-      Sys.sleep(1)
-      
-    }
-    return(proc_pages)
-  }
-
-url <- "http://www10.trf2.jus.br/consultas/?q=&site=v2_jurisprudencia&client=v2_index&proxystylesheet=v2_index&filter=0&getfields=*&lr=lang_pt&oe=UTF-8&ie=UTF-8&output=xml_no_dtd&requiredfields=DescrRecursoFinal%3AINQU%C3%89RITO+POLICIAL&sort=date%3AD%3AS%3Ad1&adv=1&base=JP-TRF&entsp=a&wc=200&wc_mc=0&ud=1"
-
-remDr <- RSelenium::rsDriver(browser = "firefox")
-remDr$client$navigate(url)
-# Pegar a primeira pagina para obter os principais informacoes
-page <- remDr$client$getPageSource()
-node <- page %>% purrr::pluck(1) %>% xml2::read_html()
-
-pages_url <- obter_paginas(node)
-
-paginas_brutas <- obtem_source(pages_url)
+build_query_trf2 <- function(q = "", classe = "INQUÉRITO POLICIAL", daterange = c("01-01-2003", "04-04-2018"), path = getwd()){
+  url <- "http://www10.trf2.jus.br/consultas/"  
   
-readr::write_rds(paginas_brutas, "data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
+  if(classe != ""){
+    classe <- stringr::str_c("DescrRecursoFinal:",classe)  
+  }
+  
+  if(daterange != ""){
+    daterange <- lubridate::dmy(daterange) %>% lubridate::ymd() %>% as.character()
+    daterange <- stringr::str_c(daterange[1], "..", daterange[2])
+    daterange <- stringr::str_c("inmeta:DataDecisao:daterange:",daterange)  
+  }
+  
+  query <- list(
+    "output"="xml_no_dtd",
+    "proxystylesheet"="v2_index",
+    "getfields"="*",
+    "entqr"=3,
+    "lr"="lang_pt",
+    "ie"="UTF-8",
+    "oe"="UTF-8",
+    "requiredfields"=classe,
+    "sort"="date:D:S:d1",
+    "entsp"="a",
+    "adv"=1,
+    "base"="JP-TRF",
+    "ulang"="",
+    "access"="p",
+    "entqrm"=0,
+    "wc"=200,
+    "wc_mc"=0,
+    "ud"=1,
+    "client"="v2_index",
+    "filter"=0,
+    "as_q"=daterange,
+    "q"=q,
+    "start"=0,
+    "site"="v2_jurisprudencia"
+  )
+
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/page1.html")
+
+  request <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE),
+                       httr::write_disk(file, overwrite = T))
+
+  node <- httr::content(request, as = "parsed")
+
+  ultima_pagina <- node %>% 
+    rvest::html_nodes(xpath = '//a[@class="pagination-link no_mobile"]') %>%
+    rvest::html_attr('href') %>%
+    stringr::str_extract("(start=)[0-9]+") %>%
+    stringr::str_extract("[0-9]+") %>% 
+    as.numeric() %>%
+    sort(decreasing = F) %>%
+    dplyr::last()
+  # Caso o html tenha apenas uma pagina o objeto ultima_pagina
+  # retornara NA
+
+  # iterador para obter todas as paginas
+  if(is.na(ultima_pagina)==F){
+    vetor_paginas <- seq(0, ultima_pagina, 10)
+    for (i in 1:length(vetor_paginas)){
+      query$start <- vetor_paginas[i]
+      path <- normalizePath(path)
+      file <- stringr::str_c(path, "/page", i, ".html")
+      request <- httr::GET(url, query = query,
+                           httr::config(ssl_verifypeer = FALSE),
+                           httr::write_disk(file, TRUE))
+      Sys.sleep(1)
+    }  
+  }
+} 
+
+#build_query_trf2(q = "", daterange = "", path = "data-raw/TRF2/busca_v3/")
+
+# obter_paginas <- function(request){
+#   ultima_pagina <- request %>% 
+#     httr::content(as = "text") %>% 
+#     xml2::read_html() %>% 
+#     rvest::html_nodes(xpath = '//span[@class="pagination-control"]/a') %>% 
+#     rvest::html_attr('href') %>% 
+#     stringr::str_extract("(start=)[0-9]+") %>%
+#     stringr::str_extract("[0-9]+") %>% 
+#     as.numeric() %>% 
+#     sort(decreasing = F) %>% 
+#     dplyr::last()
+#   paginas <- seq(10, ultima_pagina, 10) 
+#   
+#   paginas
+# }
+# 
+# paginas <- obter_paginas(request)
 ```
 
-```{r}
-#node <- dados_brutos_trf2[3] %>% purrr::pluck(1) %>%  xml2::read_html() 
+# Funções para parsear
 
-trf2 <- readr::read_rds("data-raw/TRF2/busca_v2/dados_brutos_trf2.rds")
-node <- trf2[[1]] %>% xml2::read_html()
-
-# Tipo do documento
-tipo_doc <- node %>% rvest::html_nodes(xpath = '//span[@title="Ementas"]|//span[@title="Decisões"]|//span[@title="Inteiro Teor"]') %>% html_text()
-
+```{r Parsing}
+files <- dir("data-raw/TRF2/busca_v3/", pattern = "page", full.names = T)
 
 # Ementa_versao 1
 obter_ementa_v1 <- function(node){
@@ -167,13 +167,21 @@ wrapup_info <- function(node){
   tabela <- dplyr::bind_cols(infos, ementa_v2, ementa_v1)
   return(tabela)
 }
+wrapup_info(node)
 
+trf2 <- purrr::map(files, ~.x %>%  xml2::read_html()) %>% 
+  purrr::map_dfr(., ~wrapup_info(.x))
 
-nodes <- purrr::map(trf2, ~.x %>% purrr::pluck(1) %>%  xml2::read_html())
+trf2 <- trf2 %>% 
+  dplyr::mutate(dataDecisao = stringr::str_extract(datas_relator, "(Data de decisão)[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]") %>% 
+           stringr::str_extract("[^Data de decisão].*"),
+         dataDisponib = stringr::str_extract(datas_relator, "(Data de disponibilização)[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]") %>% 
+           stringr::str_extract("[^Data de disponibilização].*"),
+         relator = stringr::str_extract(datas_relator, "(Relator).*") %>% 
+           stringr::str_extract("[^Relator].*")) %>% 
+  dplyr::select(-datas_relator)
 
-trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
-
-readr::write_rds(trf2, "data-raw/rds_data/trf2.rds")
+readr::write_rds(trf2, "data-raw/rds_data/trf2_v2.rds")
 ```
 
 Errata:

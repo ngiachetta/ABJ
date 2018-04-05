@@ -12,7 +12,7 @@ output:
 
 Como descrito no projeto inicial de pesquisa, o presente estudo contará com uma lista de processos judiciais, obtidos diretamente dos tribunais e através da leitura automática de DJEs. Este projeto possue como recorte a obtenção de dados em quatro estados, sendo eles, São Paulo, Alagoas, Rio de Janeiro e Distrito Federal. 
 
-No que diz respeito a obtenção diretamente dos tribunais, estruturou-se uma estratégia para coletar informações dos Tribunais de Justiça, das Justiças Federais e dos Tribunais Regionais Federais dos respectivos estados citados. Além disso, a coleta teve foco nos processos categorizados dentro da classe __inquérito policial__ e nas suas respectivas Jurisprudências e Consultas Processuais, para permitir uma coleta completa dos dados. 
+No que diz respeito a obtenção diretamente dos tribunais, estruturou-se uma estratégia para coletar informações dos Tribunais de Justiça, das Justiças Federais [SE O PROJETO SE RESTRINGE SOMENTE A SEGUNDA INSTANCIA JF SAI] e dos Tribunais Regionais Federais dos respectivos estados citados. Além disso, a coleta teve foco nos processos categorizados dentro da classe __inquérito policial__ e nas suas respectivas Jurisprudências e Consultas Processuais, para permitir uma coleta completa dos dados. 
 
 Cabe destacar que a coleta manual não seria tão ágil devido a quantidade de processos e consequentemente o tempo atribuido a sua coleta, sendo assim, automatizamos o processo por meio de uma técnica conhecida como _"web scraping"_, que compreende a coleta automatizada, também chamada de raspagem, de informações disponíveis em arquivos HTML das quais todos os tribunais possuem, uma vez que o site de acesso para eles são estruturados neste tipo de arquivo.
 
@@ -34,6 +34,63 @@ head(base_sp_2) %>% knitr::kable(format = "latex") %>% kableExtra::kable_styling
 
 
 A obtenção da lista de processos judiciais através da leitura automática de DJEs, assim como argumentada no projeto inicial é mais difícil, uma vez que muitos destes documentos são obtidos no formato PDF. Logo, para obter estas informações foi necessário contruir "rôbos" para fazer a raspagem dos sites HTML dos diários, estas raspagens então são capazes de obter o download dos diários que posteriormente irão passar por uma estruturação capaz de permitir análises consistentes dos dados.
+
+Nas seções seguintes apresentaremos mais detalhadamente sobre como foram realizadas as coletas, bem como os sites visitados para obtenção das bases. As seções serão divididas pelo tipo de coleta, isto é, a listagem dos processos através dos tribunais e pelos DJEs.
+
+## Listagem dos processos (Tribunais)
+
+A tabela abaixo apresenta quais tribunais foram foco de coleta e o andamento delas até então. A coluna `Tipo do tribunal` apresenta o tribunal foco da coleta, a `Tipo do scraper` é para indicar qual foi a coleta realizada, a `Implementado` é para sinalizar se o algoritimo para obter os dados foi realizado.
+
+```{r echo = FALSE}
+library(knitr)
+library(kableExtra)
+library(tibble)
+
+tibble(
+  tipo_tribunal = c(rep(c("TRF-1", "TRF-2", "TRF-3", "TRF-5"), 2),
+                     rep(c("TJAL", "TJSP", "TJRJ", "TJDFT"), 2),
+                     "JFAL", "JFSP", "JFRJ", "JFDF"),
+  tipo_scraper = c(rep("Jurisprudência", 4),
+                    rep("Consulta Processual", 4),
+                    rep("Jurisprudência", 4),
+                    rep("Consulta Processual", 8)),
+  robo_feito = rep("SIM", 20)
+) %>% 
+  dplyr::arrange(tipo_tribunal) %>% 
+  kable(format = "latex", 
+        col.names = c("Tipo do tribunal", 
+                      "Tipo do scraper", 
+                      "Implementado"), 
+        caption = "Relação de tribunais coletados") %>% 
+  collapse_rows(columns = 1:2) %>% 
+  kable_styling(bootstrap_options = "striped", position = "center")
+```
+
+A coleta foi realizada nos sites oficiais dos tribunais[^1]. Sites como o de São Paulo e Alagoas, por possuirem sistemas semelhantes (e-SAJ), tiveram rotina parecida de coleta. Além disso, para o caso de São Paulo especificamente, foi utilizado o pacote `esaj` desenvolvido pela ABJ para uso na linguagem R.
+
+[^1]: Os links utilizados para acessar os sites estão no Anexo. [TALVEZ ISSO MUDE PARA SEÇÃO 2.2]
+
+## Listagem dos processos (DJE)
+
+A coleta de dados dos Diários de Justiça Estaduais segue os passos da listagem anterior, isto é, é preciso utilizar a técnica de _web scraping_ para coletar informações sobre os diários, que normalmente são disponibilizados em PDF, após a coleta destas informações e download dos arquivos, é preciso também transformá-las em arquivos que permitem uma análise consistente.
+
+A tarefa relacionada com a coleta dos dados está na sua etapa final, uma vez que a maioria dos diários já possui algoritmos para obter os arquivos em PDF. Sendo assim, ao terminar a última coleta poderemos dar início a estruturação dos arquivos. A tabela abaixo mostra os trabalhos realizados até então.
+
+```{r echo = FALSE}
+tibble(
+  tipo_tribunal = c("TJAL", "TJSP", "TJRJ", "TJDFT",
+                     "JFAL", "JFSP", "JFRJ", "JFDF"),
+  coleta_inicial = c("SIM", "SIM", "SIM", "SIM",
+                      "NÃO", "SIM", "SIM", "SIM"),
+  estruturacao = c(rep("NÃO", 8))) %>% 
+  kable(format = "latex", 
+        col.names = c("Tipo do tribunal", 
+                      "Implementado", 
+                      "Estruturação do PDF"), 
+        caption = "Relação de DJEs coletados e estruturados") %>% 
+  kable_styling(bootstrap_options = "striped", position = "center")
+
+```
 
 
 

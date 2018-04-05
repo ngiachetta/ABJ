@@ -200,15 +200,33 @@ paginar <- function(r_post) {
 
   r_post_pag <- httr::POST(u, body = l_stj,
                            httr::config(ssl_verifypeer = FALSE),
-                           encode = "form")
+                           encode = "form", httr::write_disk("teste.html", overwrite = T))
   
   r_post_pag
+  
 }
-
+r_post <- inicial
 
 inicial <- pag_inicial()
 pag <- paginar(inicial)
 
 scrapr::html_view(pag)
+
+###
+
+pag %>% 
+  httr::content(as = "text") %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//center/a') %>% 
+  rvest::html_attr("onclick") %>% 
+  stringr::str_extract(",'(frmPesquisa.*[0-9])") %>% 
+  stringr::str_replace_all(",'", "")
+```
+
+```{r}
+    "https://www4.trf5.jus.br/diarioeletinternet/paginas/consultas/consultaDiario.faces" %>%
+      httr::GET(query = list(
+        "frmPesquisa"="frmPesquisa:tDiarios:10:j_id67"
+      ), httr::config(ssl_verifypeer = FALSE), encode = "form") %>% scrapr::html_view()
 ```
 

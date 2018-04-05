@@ -87,6 +87,28 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 |JFRJ     |SIM          |                                                            |
 |JFDF     |SIM          |                                                            |
 
-#### Revisando algumas requests
+#### Locais dos arquivos
 
-##### TRF2
+|Tribunais|Tipo_Scraper       |path_RMD                                              |path_RDS|
+|:-------:|:------------------|-----------------------------------------------------:|-------:|
+|TRF-1    |Jurisprudência     |trfs/jurisprudencia/trf1-jurisprudencia.Rmd           |        |
+|TRF-2    |Jurisprudência     |trfs/jurisprudencia/trf2-jurisprudencia.Rmd           |        |
+|TRF-3    |Jurisprudência     |trfs/jurisprudencia/trf3-jurisprudencia.Rmd           |        |
+|TRF-5    |Jurisprudência     |trfs/jurisprudencia/TRFs-jurisprudencia.Rmd           |        |
+|TRF-1    |Consulta Processual|trfs/consulta_processual/TRF1/trf1-ConsProcessual.Rmd |        |
+|TRF-2    |Consulta Processual|trfs/consulta_processual/TRF2/trf2-ConsProcessual.Rmd |        |
+|TRF-3    |Consulta Processual|trfs/consulta_processual/TRF3/trf3-ConsProcessual.Rmd |        |
+|TRF-5    |Consulta Processual|trfs/consulta_processual/TRF5/trf5-ConsProcessual.Rmd |        |
+|TJAL     |Jurisprudência     |tjs/jurisprudencia/TJAL/TJAL-Juris.Rmd                |        |
+|TJDFT    |Jurisprudência     |tjs/jurisprudencia/TJDFTL/jurisprudencia-TJDFT.Rmd    |        |
+|TJSP     |Jurisprudência     |tjs/jurisprudencia/TJSP/TJSP-Juris.Rmd                |        |
+|TJRJ     |Jurisprudência     |tjs/jurisprudencia/TJRJ/jurisprudencia-TJRJ.Rmd       |        |
+|TJAL     |Consulta Processual|tjs/consulta_processual/TJAL/TJAL-ConsProcessual.Rmd  |        |
+|TJDFT    |Consulta Processual|tjs/consulta_processual/TJDFT/TJDFT-ConsProcessual.Rmd|        |
+|TJSP     |Consulta Processual|tjs/consulta_processual/TJSP/TJSP-ConsProcessual.Rmd  |        |
+|TJRJ     |Consulta Processual|tjs/consulta_processual/TJRJ/ConsProcessual-TJRJ.Rmd  |        |
+|JFSP     |Consulta Processual|jfs/JFSP/notasJFSP.Rmd                                |        |
+|JFAL     |Consulta Processual|                                                      |        |
+|JFRJ     |Consulta Processual|jfs/JFRJ_Selenium.R                                   |        |
+|JFDF     |Consulta Processual|                                                      |        |
+

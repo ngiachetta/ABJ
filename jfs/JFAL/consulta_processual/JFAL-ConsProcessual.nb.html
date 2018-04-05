@@ -175,128 +175,35 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShSU2VsZW5pdW0pXG5saWJyYXJ5KHJ2ZXN0KVxubGlicmFyeShkcGx5cilcbmBgYCJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShSU2VsZW5pdW0pXG5saWJyYXJ5KHJ2ZXN0KVxubGlicmFyeShkcGx5cilcbmxpYnJhcnkoZGVjcnlwdHIpXG5saWJyYXJ5KGh0dHIpXG5saWJyYXJ5KHB1cnJyKVxuYGBgIn0= -->
 <pre class="r"><code>library(RSelenium)
 library(rvest)
-library(dplyr)</code></pre>
+library(dplyr)
+library(decryptr)
+library(httr)
+library(purrr)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI0FicmluZG8gbyBicm93c2VyXG5yZW1EciA8LSBSU2VsZW5pdW06OnJzRHJpdmVyKClcblxuYGBgIn0= -->
-<pre class="r"><code>#Abrindo o browser
-remDr &lt;- RSelenium::rsDriver()
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuICB1cmwgJT4lIFxuICAgICNodHRyOjpjb250ZW50KFwidGV4dFwiKSAlPiUgXG4gICAgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBGQUxTRSkpXG5cbmBgYCJ9 -->
+<pre class="r"><code>  url %&gt;% 
+    #httr::content(&quot;text&quot;) %&gt;% 
+    rvest::html_session(httr::config(ssl_verifypeer = FALSE))
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiY2hlY2tpbmcgU2VsZW5pdW0gU2VydmVyIHZlcnNpb25zOlxuQkVHSU46IFBSRURPV05MT0FEXG5CRUdJTjogRE9XTkxPQURcbkJFR0lOOiBQT1NURE9XTkxPQURcbmNoZWNraW5nIGNocm9tZWRyaXZlciB2ZXJzaW9uczpcbkJFR0lOOiBQUkVET1dOTE9BRFxuQkVHSU46IERPV05MT0FEXG5CRUdJTjogUE9TVERPV05MT0FEXG5jaGVja2luZyBnZWNrb2RyaXZlciB2ZXJzaW9uczpcbkJFR0lOOiBQUkVET1dOTE9BRFxuQkVHSU46IERPV05MT0FEXG5CRUdJTjogUE9TVERPV05MT0FEXG5jaGVja2luZyBwaGFudG9tanMgdmVyc2lvbnM6XG5CRUdJTjogUFJFRE9XTkxPQURcbkJFR0lOOiBET1dOTE9BRFxuQkVHSU46IFBPU1RET1dOTE9BRFxuIn0= -->
-<pre><code>checking Selenium Server versions:
-BEGIN: PREDOWNLOAD
-BEGIN: DOWNLOAD
-BEGIN: POSTDOWNLOAD
-checking chromedriver versions:
-BEGIN: PREDOWNLOAD
-BEGIN: DOWNLOAD
-BEGIN: POSTDOWNLOAD
-checking geckodriver versions:
-BEGIN: PREDOWNLOAD
-BEGIN: DOWNLOAD
-BEGIN: POSTDOWNLOAD
-checking phantomjs versions:
-BEGIN: PREDOWNLOAD
-BEGIN: DOWNLOAD
-BEGIN: POSTDOWNLOAD</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQ29ubmVjdGluZyB0byByZW1vdGUgc2VydmVyXCJcbiRhcHBsaWNhdGlvbkNhY2hlRW5hYmxlZFxuWzFdIEZBTFNFXG5cbiRyb3RhdGFibGVcblsxXSBGQUxTRVxuXG4kbW9iaWxlRW11bGF0aW9uRW5hYmxlZFxuWzFdIEZBTFNFXG5cbiRuZXR3b3JrQ29ubmVjdGlvbkVuYWJsZWRcblsxXSBGQUxTRVxuXG4kY2hyb21lXG4kY2hyb21lJGNocm9tZWRyaXZlclZlcnNpb25cblsxXSBcIjIuMzUuNTI4MTM5ICg0N2VhZDc3Y2IzNWFkMmE5YTgzMjQ4YjI5MjE1MTQ2MmE2NmNkODgxKVwiXG5cbiRjaHJvbWUkdXNlckRhdGFEaXJcblsxXSBcIi90bXAvLm9yZy5jaHJvbWl1bS5DaHJvbWl1bS5GUklKMkZcIlxuXG5cbiR0YWtlc0hlYXBTbmFwc2hvdFxuWzFdIFRSVUVcblxuJHBhZ2VMb2FkU3RyYXRlZ3lcblsxXSBcIm5vcm1hbFwiXG5cbiRkYXRhYmFzZUVuYWJsZWRcblsxXSBGQUxTRVxuXG4kaGFuZGxlc0FsZXJ0c1xuWzFdIFRSVUVcblxuJGhhc1RvdWNoU2NyZWVuXG5bMV0gRkFMU0VcblxuJHZlcnNpb25cblsxXSBcIjYyLjAuMzIwMi45NFwiXG5cbiRwbGF0Zm9ybVxuWzFdIFwiTGludXhcIlxuXG4kYnJvd3NlckNvbm5lY3Rpb25FbmFibGVkXG5bMV0gRkFMU0VcblxuJG5hdGl2ZUV2ZW50c1xuWzFdIFRSVUVcblxuJGFjY2VwdFNzbENlcnRzXG5bMV0gRkFMU0VcblxuJGFjY2VwdEluc2VjdXJlQ2VydHNcblsxXSBGQUxTRVxuXG4kbG9jYXRpb25Db250ZXh0RW5hYmxlZFxuWzFdIFRSVUVcblxuJHdlYlN0b3JhZ2VFbmFibGVkXG5bMV0gVFJVRVxuXG4kYnJvd3Nlck5hbWVcblsxXSBcImNocm9tZVwiXG5cbiR0YWtlc1NjcmVlbnNob3RcblsxXSBUUlVFXG5cbiRqYXZhc2NyaXB0RW5hYmxlZFxuWzFdIFRSVUVcblxuJGNzc1NlbGVjdG9yc0VuYWJsZWRcblsxXSBUUlVFXG5cbiRzZXRXaW5kb3dSZWN0XG5bMV0gVFJVRVxuXG4kdW5leHBlY3RlZEFsZXJ0QmVoYXZpb3VyXG5bMV0gXCJcIlxuXG4kd2ViZHJpdmVyLnJlbW90ZS5zZXNzaW9uaWRcblsxXSBcIjhmYWYzOTdjMzk4NzBkMDdlM2UwYmZiY2M4YWI1NGMyXCJcblxuJGlkXG5bMV0gXCI4ZmFmMzk3YzM5ODcwZDA3ZTNlMGJmYmNjOGFiNTRjMlwiXG4ifQ== -->
-<pre><code>[1] &quot;Connecting to remote server&quot;
-$applicationCacheEnabled
-[1] FALSE
-
-$rotatable
-[1] FALSE
-
-$mobileEmulationEnabled
-[1] FALSE
-
-$networkConnectionEnabled
-[1] FALSE
-
-$chrome
-$chrome$chromedriverVersion
-[1] &quot;2.35.528139 (47ead77cb35ad2a9a83248b292151462a66cd881)&quot;
-
-$chrome$userDataDir
-[1] &quot;/tmp/.org.chromium.Chromium.FRIJ2F&quot;
-
-
-$takesHeapSnapshot
-[1] TRUE
-
-$pageLoadStrategy
-[1] &quot;normal&quot;
-
-$databaseEnabled
-[1] FALSE
-
-$handlesAlerts
-[1] TRUE
-
-$hasTouchScreen
-[1] FALSE
-
-$version
-[1] &quot;62.0.3202.94&quot;
-
-$platform
-[1] &quot;Linux&quot;
-
-$browserConnectionEnabled
-[1] FALSE
-
-$nativeEvents
-[1] TRUE
-
-$acceptSslCerts
-[1] FALSE
-
-$acceptInsecureCerts
-[1] FALSE
-
-$locationContextEnabled
-[1] TRUE
-
-$webStorageEnabled
-[1] TRUE
-
-$browserName
-[1] &quot;chrome&quot;
-
-$takesScreenshot
-[1] TRUE
-
-$javascriptEnabled
-[1] TRUE
-
-$cssSelectorsEnabled
-[1] TRUE
-
-$setWindowRect
-[1] TRUE
-
-$unexpectedAlertBehaviour
-[1] &quot;&quot;
-
-$webdriver.remote.sessionid
-[1] &quot;8faf397c39870d07e3e0bfbcc8ab54c2&quot;
-
-$id
-[1] &quot;8faf397c39870d07e3e0bfbcc8ab54c2&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiPHNlc3Npb24+IGh0dHBzOi8vamVmLmpmYWwuanVzLmJyL2NyZXRhaW50ZXJuZXRhbC9jb25zdWx0YS9wcm9jZXNzby9wZXNxdWlzYXIud3NwXG4gIFN0YXR1czogMjAwXG4gIFR5cGU6ICAgdGV4dC9odG1sO2NoYXJzZXQ9SVNPLTg4NTktMVxuICBTaXplOiAgIDE5OTNcbiJ9 -->
+<pre><code>&lt;session&gt; https://jef.jfal.jus.br/cretainternetal/consulta/processo/pesquisar.wsp
+  Status: 200
+  Type:   text/html;charset=ISO-8859-1
+  Size:   1993</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiSkZBTC1Db25zUHJvY2Vzc3VhbCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoUlNlbGVuaXVtKQpsaWJyYXJ5KHJ2ZXN0KQpsaWJyYXJ5KGRwbHlyKQpgYGAKCmBgYHtyfQojQWJyaW5kbyBvIGJyb3dzZXIKcmVtRHIgPC0gUlNlbGVuaXVtOjpyc0RyaXZlcigpCiMgQWNlc3NhbmRvIGEgcGFnaW5hCnJlbURyJGNsaWVudCRuYXZpZ2F0ZSgiaHR0cHM6Ly9qZWYuamZhbC5qdXMuYnIvY3JldGFpbnRlcm5ldGFsL2NvbnN1bHRhL3Byb2Nlc3NvL3Blc3F1aXNhcjIud3NwIikKIyBBY2Vzc2FuZG8gYSBidXNjYSBwb3IgbnVtZXJvIGRvIHByb2Nlc3NvCndlYkVsZW0gPC0gcmVtRHIkY2xpZW50JGZpbmRFbGVtZW50KCkKYGBgCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSkZBTC1Db25zUHJvY2Vzc3VhbCIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKYGBge3J9CmxpYnJhcnkoUlNlbGVuaXVtKQpsaWJyYXJ5KHJ2ZXN0KQpsaWJyYXJ5KGRwbHlyKQpsaWJyYXJ5KGRlY3J5cHRyKQpsaWJyYXJ5KGh0dHIpCmxpYnJhcnkocHVycnIpCmBgYAoKYGBge3J9CiMgVXJsIHBhcmEgYWNlc3NhciBvcyBkYWRvcwp1cmwgPC0gImh0dHBzOi8vamVmLmpmYWwuanVzLmJyL2NyZXRhaW50ZXJuZXRhbC9jb25zdWx0YS9wcm9jZXNzby9wZXNxdWlzYXIud3NwIgoKIyBQcm9jZXNzbyBkZSBleGVtcGxvCmV4ZW1wbG8gPC0gIjA1MDAwOTYyMzIwMDU0MDU4MDEzIgoKIyBUaXBvIGRlIHJlcXVpc2nDp8OjbzogUE9TVAojIyBRdWVyaWVzCiMgInRtcC5hY2FvIj1wZXNxdWlzYXIKIyAidG1wLnByb2Nlc3NvX2p1ZGljaWFsLmFsdGVyYXIiPSIiCiMgInRtcC5wcm9jZXNzby5jZF9sb2NhbGlkYWRlIj0iIgkKIyAidG1wLnByb2Nlc3NvLmNkX2xvY2FsaWRhZGUudGV4dG8iPSJUb2RhcyIKIyAidG1wLnByb2Nlc3NvLm5tX2F1dG9yIj0iIgkKIyAidG1wLnByb2Nlc3NvLm5yX2NwZiI9IiIJCiMgInRtcC5wcm9jZXNzby5ucl9wcm9jZXNzbyI9IjA1MDAwOTYtMjMuMjAwNS40LjA1LjgwMTMiCiMgInRtcC52YWxvcmNhcHRjaGEiPSIzNnptIgojICJ3aS5wYWdlLnByZXYiPSJjb25zdWx0YS9wcm9jZXNzby9wZXNxdWlzYXIyIgojICJ3aS50b2tlbiI9IjlGMFk1NVNPVVhLRkgwOUs0UUVCIgoKIyBpbnB1dCBkZSBpbnRlcmVzc2UgZGFzIFF1ZXJpZXMKIyMgInRtcC5wcm9jZXNzby5jZF9sb2NhbGlkYWRlLnRleHRvIiAtIElucHV0IGRvIHVzdWFyaW8KIyMgInRtcC5wcm9jZXNzby5ucl9wcm9jZXNzbyIgLSBJbnB1dCBkbyB1c3VhcmlvCiMjICJ3aS50b2tlbiIgLSBPYnRpZG8gbm8gSFRNTAoKZ2V0X3dpLnRva2VuIDwtIGZ1bmN0aW9uKHVybCl7CiAgdXJsICU+JSAKICAgICNodHRyOjpjb250ZW50KCJ0ZXh0IikgJT4lIAogICAgcnZlc3Q6Omh0bWxfc2Vzc2lvbihodHRyOjpjb25maWcoc3NsX3ZlcmlmeXBlZXIgPSBGQUxTRSkpICU+JSAKICAgIHJ2ZXN0OjpodG1sX25vZGVzKHhwYXRoID0gJy8vKltAaWQ9IndpLnRva2VuIl0nKSAlPiUgCiAgICBydmVzdDo6aHRtbF9hdHRyKCJ2YWx1ZSIpCn0KYGBgCgo=</div>
 
 
 

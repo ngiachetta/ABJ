@@ -127,8 +127,17 @@ trf1 <- purrr::map_dfr(trf1, ~parse_info_trf1(.x))
 readr::write_rds(trf1, "data-raw/rds_data/trf1.rds")
 ```
 
+# Padronização do nome das variáveis
+
+```{r}
+trf1 <- readr::read_rds("data-raw/rds_data/trf1.rds")
+
+dplyr::glimpse(trf1)
+```
+
+
 ```{r Analises}
-trf1 <- readr::read_rds("trfs/jurisprudencia/data-raw/rds_data/trf1.rds")
+trf1 <- readr::read_rds("data-raw/rds_data/trf1.rds")
 
 head(trf1)
 
