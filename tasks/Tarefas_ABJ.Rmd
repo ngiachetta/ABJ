@@ -92,7 +92,7 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 |Tribunais|Tipo_Scraper       |path_RMD                                              |path_RDS|
 |:-------:|:------------------|-----------------------------------------------------:|-------:|
 |TRF-1    |Jurisprudência     |trfs/jurisprudencia/trf1-jurisprudencia.Rmd           |        |
-|TRF-2    |Jurisprudência     |trfs/jurisprudencia/trf2-jurisprudencia.Rmd           |        |
+|TRF-2    |Jurisprudência     |trfs/jurisprudencia/trf2-jurisprudencia.Rmd           |data-raw/rds_data/trf2_v2.rds|
 |TRF-3    |Jurisprudência     |trfs/jurisprudencia/trf3-jurisprudencia.Rmd           |        |
 |TRF-5    |Jurisprudência     |trfs/jurisprudencia/TRFs-jurisprudencia.Rmd           |        |
 |TRF-1    |Consulta Processual|trfs/consulta_processual/TRF1/trf1-ConsProcessual.Rmd |        |
