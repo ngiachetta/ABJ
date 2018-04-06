@@ -151,7 +151,7 @@ obter_outra_info <- function(node){
   
   num_processo <- node %>% html_nodes('.number_link') %>% rvest::html_text(trim = T)
   
-  tipo_doc <- node %>% rvest::html_nodes(xpath = '//span[@title="Ementas"]|//span[@title="Decisões"]|//span[@title="Inteiro Teor"]') %>%
+  tipo_doc <- node %>% rvest::html_nodes(xpath = '//span[@title="Ementas"]|//span[@title="Decisões"]|//span[@title="Inteiro Teor"]|//span[@class="img_base img_decisao"]') %>%
     html_text()
   
   tabela <- tibble(num_processo = num_processo, classe = classe, orgao_julgador = orgao, datas_relator = datas_relator, tipo_documento = tipo_doc)
@@ -167,10 +167,9 @@ wrapup_info <- function(node){
   tabela <- dplyr::bind_cols(infos, ementa_v2, ementa_v1)
   return(tabela)
 }
-wrapup_info(node)
 
-trf2 <- purrr::map(files, ~.x %>%  xml2::read_html()) %>% 
-  purrr::map_dfr(., ~wrapup_info(.x))
+nodes <- purrr::map(files, ~.x %>%  xml2::read_html())
+trf2 <- purrr::map_dfr(nodes, ~wrapup_info(.x))
 
 trf2 <- trf2 %>% 
   dplyr::mutate(dataDecisao = stringr::str_extract(datas_relator, "(Data de decisão)[0-9][0-9]\\/[0-9][0-9]\\/[0-9][0-9][0-9][0-9]") %>% 
