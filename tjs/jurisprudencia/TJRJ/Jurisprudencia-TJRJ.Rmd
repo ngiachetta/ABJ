@@ -29,7 +29,7 @@ query <- list(
   "partialfields"="(ctd:1|ctd:2)",
   "processType"="cnj",
   "proxystylesheet"="juris",
-  "q"="Inquérito+policial",
+  "q"="Inquérito policial",
   "site"="juris",
   "sort"="date:D:S:d1",
   "start"="0",
@@ -71,7 +71,7 @@ obter_html <- function(seq_pag, path = "data-raw/"){
     "partialfields"="(ctd:1|ctd:2)",
     "processType"="cnj",
     "proxystylesheet"="juris",
-    "q"="Inquérito+policial",
+    "q"="Inquérito policial",
     "site"="juris",
     "sort"="date:D:S:d1",
     "start"="0",
@@ -87,6 +87,7 @@ obter_html <- function(seq_pag, path = "data-raw/"){
                      query = query, 
                      httr::config(ssl_verifypeer = FALSE),
                      httr::write_disk(file, TRUE))
+    Sys.sleep(2)
   }
 }
 obter_html(seq_pag = seq_pag)
