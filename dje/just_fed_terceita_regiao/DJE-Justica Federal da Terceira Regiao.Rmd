@@ -10,34 +10,12 @@ library(purrr)
 ```
 
 ```{r}
-# Obtendo a primeira pagina
-url <- "http://web.trf3.jus.br/diario/Consulta/ResultadoPesquisa/"
-
-url_1 <- stringr::str_c(url, "1")
-
-query <- list(
-  "FiltroPesquisaPublicacao.CodigoOrgao"=2,	# 2 eh SJSP
-  "FiltroPesquisaPublicacao.CodigoTipoPublicacao"=1, # Vai de 1 a 9
-  "FiltroPesquisaPublicacao.CodigoUnidade"="",
-  "FiltroPesquisaPublicacao.DataInicial"="10/04/2011",
-  "FiltroPesquisaPublicacao.DataFinal"="16/05/2011",
-  "FiltroPesquisaPublicacao.DocumentosPagina"="100",
-  "FiltroPesquisaPublicacao.IdSerie"="",	
-  "FiltroPesquisaPublicacao.NomeLocalidade"="",
-  "FiltroPesquisaPublicacao.NumeroOab"="",
-  "FiltroPesquisaPublicacao.NumeroProcesso"=""
-)
-
-path <- "data-raw/"
-dir.create(path, FALSE, TRUE)
-path <- normalizePath(path)
-file <- stringr::str_c(path, "/page1.html")
 request_POST_GET <- function(method = "POST", url, query = NULL, file){
   if (is.null(query) == T & method == "POST"){
     request <- httr::POST(url, 
            httr::config(ssl_verifypeer = FALSE),
            httr::write_disk(file, TRUE))
-  }else if( is.null(query) == F & method == "POST"){
+  }else if(is.null(query) == F & method == "POST"){
     request <- httr::POST(url, body = query, 
            httr::config(ssl_verifypeer = FALSE),
            httr::write_disk(file, TRUE))    
@@ -53,23 +31,78 @@ request_POST_GET <- function(method = "POST", url, query = NULL, file){
 
   return(request)
 }
-request <- request_POST_GET(method = "POST", url_1, query = query,file = file)
 
-node <- request %>% xml2::read_html()
-
-total_pag <- node %>% html_node(xpath = '//form/label') %>% html_text() %>% stringr::str_extract("[0-9]+$") %>% as.numeric()
-
-qnt_percorrer <- 2:ceiling(total_pag/100)
-
-urls <- list()
-files <- list()
-for(i in 1:length(qnt_percorrer)){
-  urls[[i]] <- stringr::str_c(url, qnt_percorrer[i])
-  files[[i]] <- stringr::str_c(path, "/page", qnt_percorrer[i], ".html")
+change_date_format <- function(seqDateStringr, sep = "/"){
+  seqDateStringr %>% lubridate::as_date() %>% lubridate::ymd() %>% {
+  dia <- lubridate::day(.) %>% as.character()
+  mes <- lubridate::month(.) %>% as.character()
+  ano <- lubridate::year(.) %>% as.character()
+  tibble(dia = dia, mes = mes, ano = ano)
+} %>% 
+  dplyr::mutate(dia = stringr::str_c("0", dia) %>% 
+                  ifelse(stringr::str_length(.) == 3, stringr::str_replace(., "0", ""), .),
+                mes = stringr::str_c("0", mes) %>% 
+                  ifelse(stringr::str_length(.) == 3, stringr::str_replace(., "0", ""), .),
+                data = stringr::str_c(dia, mes, ano, sep = sep)) %>% 
+    select(data) %>% purrr::pluck(1)
 }
 
 
-purrr::map2(urls, files,~request_POST_GET(method = "GET", .x, file = .y, query = query))
+# Obtendo a primeira pagina
+obter_dje_jfsp <- function(orgao = 2, tipoPublicacao = 1, dataInicialYMD = "2013-01-01", dataFinalYMD = "2016-12-31", path = "data-raw/data-raw_html/"){
+  
+  dates <- as.character(seq(as.Date(dataInicialYMD), as.Date(dataFinalYMD), by = "day"))
+  dates <- change_date_format(dates, sep = "/")
+  
+  url <- "http://web.trf3.jus.br/diario/Consulta/ResultadoPesquisa/"  
+  
+  url_1 <- stringr::str_c(url, "1")
+  
+  queries_by_date <- list()
+  for(i in 1:length(dates)){
+    queries_by_date[[i]] <- list(
+    "FiltroPesquisaPublicacao.CodigoOrgao"=orgao,	# 2 eh SJSP
+    "FiltroPesquisaPublicacao.CodigoTipoPublicacao"=tipoPublicacao, # Vai de 1 a 9
+    "FiltroPesquisaPublicacao.CodigoUnidade"="",
+    "FiltroPesquisaPublicacao.DataInicial"=dates[i],
+    "FiltroPesquisaPublicacao.DataFinal"=dates[i],
+    "FiltroPesquisaPublicacao.DocumentosPagina"="100",
+    "FiltroPesquisaPublicacao.IdSerie"="",	
+    "FiltroPesquisaPublicacao.NomeLocalidade"="",
+    "FiltroPesquisaPublicacao.NumeroOab"="",
+    "FiltroPesquisaPublicacao.NumeroProcesso"=""
+    )
+  }
+  
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/page1.html")
+  
+  request <- request_POST_GET(method = "POST",
+                              url = url_1,
+                              query = queries_by_date,
+                              file = file)
+  
+  node <- request %>% xml2::read_html()
+
+  total_pag <- node %>% html_node(xpath = '//form/label') %>% html_text() %>%
+    stringr::str_extract("[0-9]+$") %>% as.numeric()
+  
+  qnt_percorrer <- 2:ceiling(total_pag/100)
+
+  urls <- list()
+  files <- list()
+  for(i in 1:length(qnt_percorrer)){
+    urls[[i]] <- stringr::str_c(url, qnt_percorrer[i])
+    files[[i]] <- stringr::str_c(path, "/page", qnt_percorrer[i], ".html")
+  }
+  
+  purrr::map2(urls, files,~request_POST_GET(method = "GET", .x, file = .y, query = query))
+}
+
+obter_dje_jfsp()
+
+
 
 files_path <- dir(path = "data-raw/", pattern = "page", full.names = T)
 

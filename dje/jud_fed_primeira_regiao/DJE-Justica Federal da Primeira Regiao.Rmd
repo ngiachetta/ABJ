@@ -120,6 +120,8 @@ obter_link <- function(link_to_pdf, path = "data-raw_pdf/"){
 }
 
 tabela <- readr::read_rds("data-raw/tabela.rds")
+tabela <- tabela %>% 
+  dplyr::mutate(id = stringr::str_extract(link_to_pdf, "[0-9]{4,10}"))
 links_to_download <- purrr::map_dfr(tabela$link_to_pdf, ~obter_link(link_to_pdf = .x))
 ```
 

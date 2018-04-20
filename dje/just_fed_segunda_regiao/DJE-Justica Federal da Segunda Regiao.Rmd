@@ -309,7 +309,7 @@ obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path
   # iterador para obter todas as paginas
   if(is.na(ultima_pagina)==F){
     vetor_paginas <- seq(0, ultima_pagina, 10)
-    for (i in 1:length(vetor_paginas)+1){
+    for (i in 1:length(vetor_paginas)){
       query$start <- vetor_paginas[i]
       path_html <- normalizePath(path_html)
       file <- stringr::str_c(path_html, "/page", i, ".html")
@@ -319,7 +319,7 @@ obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path
       Sys.sleep(1)
     }  
   }
-  files <- dir("data-raw/",full.names = TRUE, pattern = "page")
+  files <- dir(path_html,full.names = TRUE, pattern = "page")
   dados <- purrr::map_dfr(files, ~parse_pages(.x))
   
   dados <- dados %>% 
@@ -329,13 +329,13 @@ obter_diarios <- function(orgao = "SJRJ", data_pub_inicial, data_pub_final, path
   file_pdf <- purrr::map_chr(dados$id_pdf, ~stringr::str_c(path_pdf,"/", .x ,".pdf")) %>% tibble::tibble(file_path_pdf = .)
   dados <- dados %>% dplyr::bind_cols(file_pdf)
   
-  purrr::map2(dados$link_download, dados$file_path_pdf,~download.file(.x, destfile = .y,mode="wb", quiet = T))
+  #purrr::map2(dados$link_download, dados$file_path_pdf,~download.file(.x, destfile = .y,mode="wb", quiet = T))
   
   return(dados)
 }
 
-diarios <- obter_diarios(data_pub_inicial = "04-05-2015",data_pub_final = "22-05-2015", path_html = "data-raw/", path_pdf = "data-raw/data-raw_pdf/")
+diarios <- obter_diarios(data_pub_inicial = "01-01-2013",data_pub_final = "31-12-2016", path_html = "data-raw/data-raw_html/", path_pdf = "data-raw/data-raw_pdf/")
 
-
+readr::write_rds(dados, "data-raw/rds_data/jfrj.rds")
 ```
 

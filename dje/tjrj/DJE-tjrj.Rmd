@@ -12,11 +12,11 @@ library(stringr)
 ```
 
 ```{r}
-qntd_paginas <- function(caderno = "A", dtPub){
+qntd_paginas <- function(caderno, date_string){
   url_qntd_paginas <- "https://www3.tjrj.jus.br/consultadje/caderno.asmx/ConsultarQuantidadePaginas"  
   query_post <- list(
     "codCaderno"=caderno,
-    "dtPub"=dtPub
+    "dtPub"=date_string
   )
   request_qntd_pg <- httr::POST(url_qntd_paginas,
                                 body = query_post,
@@ -26,8 +26,13 @@ qntd_paginas <- function(caderno = "A", dtPub){
   num_paginas <- request_qntd_pg %>% 
     httr::content() %>% 
     unlist() %>% 
-    as.numeric() %>% 
-    seq(1, ., 1)
+    as.numeric() %>% {
+      if(. == 0){
+        0
+      } else{
+        seq(1, ., 1)
+      }
+    }
   
   return(num_paginas)
 }
@@ -82,20 +87,32 @@ obter_linkPDF <- function(date_string, caderno, pagina, dc = 1522675292694){
 
 linkPDF <- function(date_string = "09/03/2018", caderno = "S", dc = 1522710519786){
   
-  paginas <- qntd_paginas(caderno = caderno, dtPub = date_string)
+  paginas <- qntd_paginas(caderno = caderno, date_string = date_string)
   
   links <- purrr::map_chr(paginas, ~obter_linkPDF(date_string = date_string, caderno = caderno, pagina = .x, dc = dc))
   
-  lista_links <- list(date_string = links)
+  lista_links <- tibble::tibble(date_string = rep(date_string, length(links)), link = links, page = paginas)
   
   return(lista_links)
 }
-datas <- c("06/03/2018", "07/03/2018")
 
-teste <- purrr::map(datas, ~linkPDF(date_string = .x))
+cadernos <- c(Judicial2instancia = "S", Judicial1instanciaCapital = "C", Judicial1instanciaInteriror = "I")
+datas <- seq(as.Date("2013-01-01"), as.Date("2017-01-01"), by = 1)
+tab_datas <- tibble::tibble(datas = datas) %>% 
+  dplyr::mutate(dia_semana = lubridate::wday(datas, label = T)) %>% 
+  tidyr::separate(datas, into = c("ano", "mes", "dia"), sep = "-") %>% 
+  dplyr::mutate(datas_padrao = stringr::str_c(dia, mes, ano, sep = "/"))
 
-teste <- linkPDF()
+coleta1_S <- purrr::map_dfr(tab_datas$datas_padrao[1:200],~linkPDF(date_string = .x, caderno = "S"))
 
-head(oi)
+coleta1_S$link -> vetor_link
+coleta1_S -> dataframe
+obter_pdf <- function(dataframe, path){
+  df_filter <- dataframe %>% dplyr::mutate(flag = stringr::str_detect(link, "(default.aspx)")) %>% 
+    dplyr::filter(flag == T)
+  vetor_pdf <- df_filter %>% 
+    select(link) %>% purrr::pluck(1)
+  
+}
 ```
 
