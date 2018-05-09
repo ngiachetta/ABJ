@@ -53,9 +53,8 @@ file <- dir(path = "data-raw/", full.names = T)
 node <- file[1] %>% read_html()
 
 # Movimentacao
-mov_parse <- function(file){
-  node <- file %>% read_html()
-  
+parse_movimentacao <- function(node, file){
+  print(file)
   mov_node <- node %>%
     html_table(fill = T) %>% 
     .[6:length(.)]
@@ -78,16 +77,106 @@ mov_parse <- function(file){
 
   return(movimentacao)
 }
-
+movimentacao <- parse_movimentacao(node, file[4])
+movimentacao$movimentacao
 # Informacoes gerais
-proc <- node %>% 
-  html_node(xpath = '/html/body/p[2]') %>%
-  html_text() %>% 
-  stringr::str_replace_all("[^0-9]", "")
+# proc <- node %>% 
+#   html_node(xpath = '/html/body/p[2]') %>%
+#   html_text() %>% 
+#   stringr::str_replace_all("[^0-9]", "")
 
-info_node <- node %>%
-  html_table(fill = T) %>% 
-  .[1:5]
+# info_node <- node %>%
+#   html_table(fill = T) %>% 
+#   .[1:5]
+
+# Informacoes gerais 26/04/2018
+
+#TABELA 1
+parse_info_proc <- function(node){
+  proc <- node %>% 
+    html_node(xpath = '/html/body/p[2]') %>%
+    html_text() %>% 
+    stringr::str_replace_all("[^0-9]", "")
+  node %>% 
+    html_nodes(xpath = '//table[1]//tr/td') %>%
+    purrr::map_chr(., ~html_text(.x)) %>% 
+    stringr::str_trim() %>%
+    stringr::str_to_lower() %>%
+    .[!stringr::str_detect(.,"(autuado)|(inquérito \\(inq)|(ação penal)|(apelação criminal)|(agravo \\()")] %>%
+    tibble(key = .) %>% 
+    tidyr::separate(key, c("key", "val"), sep = ":") %>% 
+    mutate(key = stringr::str_to_lower(key),
+           key = stringr::str_replace_all(key, "[[:punct:]]",""),
+           key = abjutils::rm_accent(key),
+           key = stringr::str_replace_all(key, " +", "_"),
+           processo = proc) %>% 
+    tidyr::spread(key, val)
+}
+parse_info_proc(node)
+
+# TABELA 3
+parse_partes <- function(node){
+  node %>% 
+    html_nodes(xpath = '//table[3]//tr/td') %>%
+    purrr::map_chr(., ~html_text(.x)) %>% 
+    stringr::str_trim() %>% 
+    tibble(key = .) %>% 
+    tibble::rownames_to_column(var = "flag") %>% 
+    mutate(flag = sjmisc::is_even(as.numeric(flag))) %>% {
+      key <- filter(., flag == FALSE)
+      val <- filter(., flag != FALSE)
+      bind_cols(key,val)
+      } %>% select(-dplyr::matches("(flag)")) %>% {
+        if (ncol(.)==2){
+          magrittr::set_names(., c("key", "val"))
+          }
+        } %>% 
+    mutate(key = stringr::str_to_lower(key),
+           key = stringr::str_replace_all(key, "[[:punct:]]",""),
+           key = abjutils::rm_accent(key),
+           key = stringr::str_replace_all(key, " +", "_"),
+           val = stringr::str_replace_all(val, ":|\\t", ""))%>% 
+    group_by(key) %>% #Como lidar com dados duplicados
+    summarise(val = glue::collapse(val, sep = "@@@")) %>%
+    ungroup() %>%
+    tidyr::spread(key, val) %>% 
+    tidyr::nest(.key = "Partes")
+}
+parse_partes(node)
+
+# TABELA 4
+parse_peticoes <- function(node){
+ node %>% 
+    html_nodes(xpath = '//table[4]//tr/td') %>%
+    purrr::map_chr(., ~html_text(.x)) %>% 
+    stringr::str_trim() %>% tibble(key = .) %>% 
+    tidyr::nest(.key = "Peticoes")
+}
+parse_peticoes(node)  
+
+# Juntando tudo
+
+parse_trf5 <- function(file){
+  node <- file %>% read_html()
+  verificador <- node %>% html_nodes(xpath = '//*[@title="Nova Consulta"]') %>% html_text()
+  
+  if(purrr::is_empty(verificador)){
+      movimentacao <- parse_movimentacao(node, file)
+    info_proc <- parse_info_proc(node)
+    partes <- parse_partes(node)
+    peticoes <- parse_peticoes(node)
+    tab <- dplyr::bind_cols(info_proc,
+                            movimentacao,
+                            partes,
+                            peticoes)
+  } else {
+    tab <- tibble(file = file, result = "error")
+  }
+  return(tab)
+}
+purrr::map_dfr(file,~parse_trf5(.x))
+
+# --------------------------------------------------------------#
 
 info_1 <- info_node %>% purrr::pluck(1) %>% select_(., colnames(.) %>% dplyr::first()) %>% 
   magrittr::set_names("key") %>% 
@@ -119,5 +208,7 @@ info_2 <- info_node %>% purrr::pluck(3) %>%
   tidyr::spread(key, val)
 
 parse_table <- dplyr::bind_cols(info_1, info_2, movimentacao)
+
+
 ```
 

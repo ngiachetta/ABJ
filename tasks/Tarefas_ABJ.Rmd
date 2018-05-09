@@ -112,3 +112,4 @@ Objetivo: Construir scrapers dos diários da primeira instância.
 |JFRJ     |Consulta Processual|jfs/JFRJ_Selenium.R                                   |        |
 |JFDF     |Consulta Processual|                                                      |        |
 
+

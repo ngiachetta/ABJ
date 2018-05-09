@@ -1,0 +1,40 @@
+---
+title: "Consulta Processual"
+output: html_notebook
+---
+
+## Inicio das coletas
+
+Este arquivo refere-se ao acompanhamento das coletas de consulta processual a partir dos `lawsuits.rds`. Em cada pasta dos arquivos referentes aos tribunais será criado uma pasta chamada `lawsuits_<TRIBUNAL>`, por exemplo `lawsuits_tjrj`.
+
+- JF
+
+    - jfal []
+    
+    - jfdf []
+    
+    - jfrj []
+    
+    - jfsp []
+    
+- TJ
+
+    - tjal [em andamento]
+    
+Adaptação do código para obter resultados também na primeira instância.
+    
+    - tjdft []
+    
+    - tjrj []
+    
+    - tjsp []
+    
+- TRF
+
+    - trf1 []
+    
+    - trf2 []
+    
+    - trf3 []
+    
+    - trf5 []

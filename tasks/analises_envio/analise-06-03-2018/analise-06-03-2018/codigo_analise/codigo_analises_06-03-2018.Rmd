@@ -123,7 +123,7 @@ tx_trf3 <- trf3_2 %>%
 ### TRF-5
 
 ```{r}
-trf5 <- readr::read_rds("data-raw/trf5.rds")
+trf5 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/databases/listagem_tribunais/jurisprudencia/trfs/trf5/trf5.rds")
 ```
 
 ```{r}

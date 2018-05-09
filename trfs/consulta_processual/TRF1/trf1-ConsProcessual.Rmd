@@ -47,12 +47,22 @@ parse_distribuicao <- function(node, processo){
 
 # aba-peticoes
 parse_peticoes <- function(node, processo){
-  node %>% 
-    rvest::html_node(xpath = '//div[@id="aba-peticoes"]/table') %>%
-    rvest::html_table(fill = T) %>%
-    #dplyr::mutate(processo = processo) %>%
-    #dplyr::group_by(processo) %>% 
-    tidyr::nest(.key = "peticoes")  
+  node <- node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-peticoes"]/table')
+  
+    if(is.na(node)){
+      tibble()
+    }else{
+      tab <- node %>% rvest::html_table(fill = T) 
+      if(is.null(tab)){
+         tab %>% tidyr::nest(.key = "peticoes")   
+      }
+      #dplyr::mutate(processo = processo) %>%
+      #dplyr::group_by(processo) %>% 
+      
+      }
+
+  
 }
 
 obter_trf1_cp <- function(processo, path){
@@ -73,12 +83,12 @@ obter_trf1_cp <- function(processo, path){
   
   teste_node <- request %>% content(as="parsed") %>% rvest::html_node('error span-18 last clear')
   stopifnot(is.na(teste_node))
-  
+
   # Parseando o arquivo
   node <- request %>% content(as="parsed")
-  
-  processo_info <-node %>% 
-    parse_processo() %>% 
+
+  processo_info <-node %>%
+    parse_processo() %>%
     dplyr::bind_cols(
       parse_mov(node, processo),
       parse_peticoes(node, processo),
@@ -88,9 +98,9 @@ obter_trf1_cp <- function(processo, path){
 }
 
 # Exemplo
-processo <- "00494459420154010000"
-path <- "data-raw/"
-obter_trf1_cp(processo, path)
+# processo <- "00494459420154010000"
+# path <- "data-raw/"
+# obter_trf1_cp(processo, path)
 
 # Reproduzindo para os processos obtidos na consulta de jurisprudencia
 trf1 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/tasks/analises_envio/analise-06-03-2018/analise-06-03-2018/codigo_analise/data-raw/trf1.rds")
@@ -103,20 +113,41 @@ processos <- trf1 %>%
 
 
 path <- "data-raw/"
-purrr::map_dfr(processos, ~obter_trf1_cp(.x, path = path))
+purrr::map(processos, ~obter_trf1_cp(.x, path = path))
 
-files <- dir(path = "data-raw/", full.names = T)
-node <- files[182] %>% xml2::read_html()
-processo <- "01174656520004010000"
-node <- files %>% xml2::read_html()
+files <- dir(path = "data-raw/", full.names = T, pattern = "(.html)")
+# node <- files[182] %>% xml2::read_html()
+# processo <- "01174656520004010000"
+# node <- files %>% xml2::read_html()
+# 
+# parse_peticoes(node, processo)
+# 
+# for (i in 1:length(files)){
+#   node <- files[i] %>% xml2::read_html()
+#   processo <- ""
+#   parse_peticoes(node, processo)
+#   print(i)
+# }
 
-parse_peticoes(node, processo)
-
-for (i in 1:length(files)){
-  node <- files[i] %>% xml2::read_html()
-  processo <- ""
-  parse_peticoes(node, processo)
-  print(i)
+parse <- function(file, processo){
+  node <- file %>% xml2::read_html()
+  processo_info <-node %>% 
+    parse_processo() %>%
+    dplyr::bind_cols(
+      parse_mov(node, processo),
+      parse_peticoes(node, processo),
+      parse_distribuicao(node, processo)
+    ) %>% 
+    dplyr::mutate(file_path = file)
+  #print(file)
+  return(processo_info)
 }
+
+file <- dir("data-raw/", pattern = "00008821219914010000", full.names = T)
+
+processo <- "00008821219914010000"
+trf1 <- purrr::map2_dfr(files,files %>% stringr::str_extract("[0-9].*[0-9].html") %>% #esse regex precisa ser generalizado, pois nao funciona para casos como por exemplo, 1232134//data-raw//1232142.html
+              stringr::str_extract(".*[0-9]"),~parse(file = .x, processo = .y))
+readr::write_rds(trf1, "data-raw/rds_file/trf1_v3.rds")
 ```
 

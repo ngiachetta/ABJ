@@ -12,8 +12,18 @@ library(stringr)
 ```
 
 ```{r}
-trf2_processos <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf2.rds") %>% 
-  dplyr::select(inteiro_teor) %>% pluck(1)
+trf2_processos <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf2_v2.rds") %>% 
+  dplyr::select(num_processo) %>% unlist
+controlador <- stringr::str_detect(trf2_processos, "^\\(")
+for(i in 1:length(trf2_processos)){
+  if(controlador[i] == FALSE){
+    trf2_processos[i] <- stringr::str_extract(trf2_processos[i], "[0-9].*\\(") %>% 
+      stringr::str_replace_all("\\(", "") %>% stringr::str_trim()
+  }else{
+    trf2_processos[i] <- stringr::str_replace_all(trf2_processos[i], "(\\(TRF2)|\\)", "") %>%
+      stringr::str_trim()
+  }
+}
 ```
 
 ```{r}
@@ -55,14 +65,20 @@ obter_pag <- function(path){
     
     regex2 <- stringr::str_replace(pagina_pattern, "pagina_replace", as.character(pagina_replace)) %>% regex()
     
+    obterquery <- function(x, regex1, regex2){
+      x <- x %>% xml2::read_html() %>%
+        rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
+        rvest::html_attr('href') %>% 
+        .[stringr::str_detect(., "(seqi=)")] %>% 
+        .[stringr::str_detect(., regex1)] %>%
+        .[stringr::str_detect(., regex2)] %>%
+        stringr::str_c("http://www.trf2.gov.br",.)
+      Sys.sleep(3)
+      return(x)
+    }
+    
     # Extrai os link para movimentos posteriores
-    proxima_pagina <- purrr::map_chr(files, ~.x %>% xml2::read_html() %>%
-                                      rvest::html_nodes(xpath = '//p[@class="sem_indent"]/a') %>%
-                                      rvest::html_attr('href') %>% 
-                                      .[stringr::str_detect(., "(seqi=)")] %>% 
-                                      .[stringr::str_detect(., regex1)] %>%
-                                      .[stringr::str_detect(., regex2)] %>%
-                                      stringr::str_c("http://www.trf2.gov.br",.)) %>% 
+    proxima_pagina <- purrr::map_chr(files, ~obterquery(.x, regex1, regex2)) %>% 
       .[stringr::str_detect(.,"[0-9]{4,}")]
     
     # Obtem o numero do processo originario
@@ -70,15 +86,21 @@ obter_pag <- function(path){
     #   .[!is.na(.)]
     # Obtem o numero do processo cnj
     
+    obter_proxima <- function(x){
+      x <- x %>% 
+        xml2::read_html() %>% 
+        rvest::html_node(xpath = '/html/body/div/div/div/p[1]') %>% 
+        rvest::html_text() %>% 
+        stringr::str_extract(.,"[0-9].*") %>% 
+        stringr::str_replace_all(., "[[:space:]].+","") %>% 
+        stringr::str_trim() %>% 
+        abjutils::clean_id()
+      Sys.sleep(2)
+      return(x)
+    }
+    
     if(purrr::is_empty(proxima_pagina) == F){
-      query <- purrr::map_chr(proxima_pagina, ~.x %>% 
-                                xml2::read_html() %>% 
-                                rvest::html_node(xpath = '/html/body/div/div/div/p[1]') %>% 
-                                rvest::html_text() %>% 
-                                stringr::str_extract(.,"[0-9].*") %>% 
-                                stringr::str_replace_all(., "[[:space:]].+","") %>% 
-                                stringr::str_trim() %>% 
-                                abjutils::clean_id())
+      query <- purrr::map_chr(proxima_pagina, ~obter_proxima(.x))
                           
       proc <- purrr::map_chr(query, ~stringr::str_replace_all(.x, "[[:punct:]]", "") %>%
                                stringr::str_c(.,"_",as.character(i+1),".html"))
@@ -86,10 +108,11 @@ obter_pag <- function(path){
       path <- normalizePath(path)
       file <- stringr::str_c(path, "/")
       PathFile <- purrr::map_chr(proc , ~stringr::str_c(file, .x))
-                      
+      
       purrr::map2(proxima_pagina,PathFile,~httr::GET(.x, 
                                                      httr::config(ssl_verifypeer = FALSE),
-                                                     write_disk(.y, overwrite = T)))                          
+                                                     write_disk(.y, overwrite = T)))  
+      
     }
     i = i + 1
     pagina_replace <- pagina_replace + 40
@@ -97,7 +120,7 @@ obter_pag <- function(path){
   }
 }
 
-obter_pag(path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/consulta_processual/TRF2/data-raw/")
+obter_pag(path = "/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/consulta_processual/TRF2/data-raw/") # Rodar quando chegar em casa
 ```
 
 
@@ -150,10 +173,104 @@ movimentacao_proc <- function(node){
 
 ```{r}
 pattern <- "(processo)"
-tabela_movimentacao <- purrr::map(trf2_processos, ~stringr::str_replace(pattern, "processo", .x) %>% regex()) %>%
-  purrr::map(.,~dir(path = "data-raw/", pattern = .x, full.names = T)) %>% unlist() %>% 
-  purrr::map_dfr(., ~xml2::read_html(.x) %>% movimentacao_proc() %>% mutate(files = .x)) %>% 
-  group_by(processo) %>% tidyr::nest(.key = "movimentacao")
-readr::write_rds(tabela_movimentacao, "data-raw_rds/movimentacao.rds")
+
+trf2_processos <- unname(trf2_processos) %>% abjutils::clean_id()
+
+tabela_movimentacao <- purrr::map(trf2_processos, 
+                                  ~stringr::str_replace(pattern, "processo", .x) %>%
+                                    regex()) %>%
+  purrr::map(.,
+             ~dir(path = "data-raw/",
+                  pattern = .x, full.names = T)) %>% 
+  unlist() %>% 
+  purrr::map_dfr(.,
+                 ~xml2::read_html(.x) %>%
+                   movimentacao_proc() %>%
+                   mutate(files = .x)) %>% 
+  group_by(processo) %>% 
+  tidyr::nest(.key = "movimentacao")
+
+readr::write_rds(tabela_movimentacao, "data-raw_rds/movimentacao_v2.rds")
+```
+
+# Obtendo as partes
+
+```{r}
+proc_mov <- readr::read_rds("data-raw_rds/movimentacao_v2.rds")
+# Rodar o segundo chunk
+
+files <- dir(path = "data-raw/", pattern = "(_1.html)", full.names = T)
+
+file <- files[1]
+
+obter_partes <- function(file){
+  print(file)
+  node <- file %>% xml2::read_html()
+
+  link <- node %>%
+    rvest::html_nodes(xpath = '//div[@id="conteudo_total_consulta"]/p/a') %>%
+    rvest::html_attr('href') %>% 
+    .[stringr::str_detect(., "(todpart)")] %>% {
+      if(purrr::is_empty(.)){
+        print("Sem partes")
+      } else {
+        stringr::str_c("http://www.trf2.gov.br",.)
+      }
+    }
+  
+  info_proc <- node %>% rvest::html_nodes(xpath = '//div[@id="conteudo_total_consulta"]/p') %>% 
+    rvest::html_text() %>% .[stringr::str_detect(.,"(PROC. ORIGI)")] %>% {
+      if(purrr::is_empty(.)){
+        tibble::tibble()
+      } else {
+        stringr::str_replace_all(.,".*\\s\\s\\s\\s\\s\\s\\s","") %>% 
+          stringr::str_split(.,"\\s\\s\\s", n = 3) %>% purrr::pluck(1) %>% 
+          tibble::tibble(val = .) %>% {
+            if(nrow(.) == 3){
+              key <- tibble::tibble(key = c("orgao", "local", "vara"))
+              dplyr::bind_cols(key,.) %>% 
+                tidyr::spread(key, val)
+            }
+          }
+      }
+    }
+    
+    
+  
+  if(link == "Sem partes"){
+    tab_vazia <- tibble::tibble()
+    return(tab_vazia)
+  } else {
+    r_link <- link %>% xml2::read_html()
+    
+    num_proc <- r_link %>% 
+      rvest::html_node(xpath = '//div[@id="conteudo_total_consulta"]//a[@href="#"]') %>% 
+      rvest::html_text() %>% 
+      stringr::str_extract("([0-9].*\\s\\()") %>% 
+      stringr::str_extract(".*[0-9]") %>% 
+      abjutils::clean_id()
+
+    tab_ok <- r_link %>% rvest::html_nodes(xpath = '//div[@id="conteudo_total_consulta"]//table//tr') %>% 
+      rvest::html_text() 
+    
+        if(purrr::is_empty(tab_ok)){
+          tab_ok <- tibble::tibble(num_proc = num_proc,
+                         file = file)
+        } else{
+          tab_ok <- tab_ok %>% tibble::tibble(key = .) %>% 
+            tidyr::separate(col = "key", into = c("key", "val"), sep = ":") %>% 
+            tibble::rowid_to_column(var = "id") %>% tidyr::unite("key", c("key", "id")) %>% 
+            tidyr::spread(key, val) %>%
+            tidyr::nest(.key = "partes") %>% 
+            dplyr::mutate(num_proc = num_proc,
+                          file = file) %>% 
+            dplyr::bind_cols(info_proc)
+        }
+      
+    return(tab_ok)
+  }
+}
+
+tab <- purrr::map_dfr(files, ~obter_partes(.x))
 ```
 

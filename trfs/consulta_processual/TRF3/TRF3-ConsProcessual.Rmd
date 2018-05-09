@@ -105,11 +105,13 @@ parse_infos <- function(node){
 ```{r}
 trf3 <- readr::read_rds("/home/nathang/Documentos/Scripts and Documents/ESTAGIO_ABJ/ABJ/trfs/jurisprudencia/data-raw/rds_data/trf3.rds")
 
-processos <- trf3$inteiro_teor
+processos <- trf3$processo
+
+processos <- processos %>% stringr::str_extract("\\s+\\S*$") %>% stringr::str_trim()
 
 processos_obtidos <- purrr::map(processos, ~obter_processo(.x))
 
-readr::write_rds(processos_obtidos, "data-raw/arquivo_bruto_processos.rds")
+readr::write_rds(processos_obtidos, "data-raw/arquivo_bruto_processos2.rds")
 ```
 
 ```{r}

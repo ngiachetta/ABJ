@@ -14,7 +14,7 @@ library(stringr)
 ```{r}
 query <- list(
   "access"="p",
-  "as_q"="+",
+  "as_q"="",
   "btnG"="Pesquisar",
   "client"="juris",
   "entqr"="3",
@@ -29,7 +29,7 @@ query <- list(
   "partialfields"="(ctd:1|ctd:2)",
   "processType"="cnj",
   "proxystylesheet"="juris",
-  "q"="Inquérito policial",
+  "q"="Inquérito",
   "site"="juris",
   "sort"="date:D:S:d1",
   "start"="0",
@@ -37,7 +37,9 @@ query <- list(
   "ulang"="en"
   )
 
-obter_numpag <- function(url = "http://www.tjrj.jus.br/search", query = query){
+obter_numpag <- function(url = "http://www.tjrj.jus.br/search", query = query, datai, dataf){
+  string <- stringr::str_c("inmeta:dtm:daterange:", as.character(datai), "..", dataf)
+  query$as_q <- string
   request <- httr::GET(url, 
                      query = query, 
                      httr::config(ssl_verifypeer = FALSE))
@@ -46,17 +48,19 @@ obter_numpag <- function(url = "http://www.tjrj.jus.br/search", query = query){
     rvest::html_nodes(xpath = '//span[@class="infoPesquisa"]/b[3]') %>%
     rvest::html_text() %>% 
     as.numeric()
-  seq_pag <- seq(0, num_pag, 10)
+  if(purrr::is_empty(num_pag)){
+    seq_pag <- 0
+  } else{
+    seq_pag <- seq(0, num_pag, 10) 
+  }
   return(seq_pag)
 }
 
-seq_pag <- obter_numpag(query = query)
-
-obter_html <- function(seq_pag, path = "data-raw/"){
+obter_html <- function(seq_pag, path = "data-raw/data-raw_v2/", datai, dataf){
   url <- "http://www.tjrj.jus.br/search"
   query <- list(
     "access"="p",
-    "as_q"="+",
+    "as_q"="",
     "btnG"="Pesquisar",
     "client"="juris",
     "entqr"="3",
@@ -71,7 +75,7 @@ obter_html <- function(seq_pag, path = "data-raw/"){
     "partialfields"="(ctd:1|ctd:2)",
     "processType"="cnj",
     "proxystylesheet"="juris",
-    "q"="Inquérito policial",
+    "q"="Inquérito",
     "site"="juris",
     "sort"="date:D:S:d1",
     "start"="0",
@@ -80,52 +84,169 @@ obter_html <- function(seq_pag, path = "data-raw/"){
     )
   dir.create(path, FALSE, TRUE)
   path <- normalizePath(path)
+  string <- stringr::str_c("inmeta:dtm:daterange:", datai, "..", dataf)
+  query$as_q <- string
+  datai <- stringr::str_replace_all(as.character(datai), "[[:punct:]]", "")
+  dataf <- stringr::str_replace_all(as.character(dataf), "[[:punct:]]", "")
+  #arquivos_erro <- c()
+  if(length(seq_pag)==1 & seq_pag[1]==0){
+    seq_pag[1] <- 1
+  }
   for(i in 1:length(seq_pag)){
-    file <- stringr::str_c(path, "/page" ,as.character(i), ".html")
+    file <- stringr::str_c(path, "/", datai,"-",dataf,"_page" ,as.character(i), ".html")
     query$start <- seq_pag[i]
     request <- httr::GET(url, 
                      query = query, 
                      httr::config(ssl_verifypeer = FALSE),
                      httr::write_disk(file, TRUE))
-    Sys.sleep(2)
+    Sys.sleep(0.5)
+    # request %>% httr::content(as = "text", encoding = "UTF-8") %>% xml2::read_html() %>% 
+    #   html_nodes(xpath = '/html/body/div[2]/div/div/span') %>% rvest::html_text(trim = T) %>% {
+    #     if(purrr::is_empty(.)){
+    #       print(i)
+    #     } else if(stringr::str_detect(., "não encontrou nenhum documento correspondente.")==T){
+    #      arquivos_erro <<- append(arquivos_erro, file) 
+    #      paste("pagina", i, "removida")
+    #     }
+    #   }
+    # request %>% httr::content(as = "text", encoding = "UTF-8") %>% xml2::read_html() %>% 
+    #   rvest::html_nodes(xpath = '/html/body') %>% html_text(trim = T)%>% {
+    #     if(stringr::str_detect(., "An unknown error occurred.")==T){
+    #      arquivos_erro <<- append(arquivos_erro, file) 
+    #     }
+    #   }
+    
+    ############# Deixar inativo caso precise rodar arquivos com erro
+    # ctype <- function(node){
+    #   node %>%
+    #     rvest::html_nodes(xpath = '//span[@class="b"]/a') %>%
+    #     rvest::html_attr("ctype") %>%
+    #     dplyr::last()
+    # }
+    # 
+    # node <- request %>%
+    #   httr::content(as="text", encoding = "UTF-8") %>%
+    #   xml2::read_html()
+    # file <- dir("data-raw/data-raw_v2/", pattern = "20130701-20130801_page2", full.names = T)
+    # node <- file %>% xml2::read_html()
+    # if(rvest::html_text(node, trim = T) == "An unknown error occurred."){
+    #   print("Apareceu a pagina 'An unknown error occurred.'")
+    # } else if(rvest::html_text(node, trim = T) != "An unknown error occurred." & ctype(node) != "nav.next"|is.na(ctype(node))==T){
+    #   break()
+    # } else{
+    #   print("continuando")
+    # }
+    #############  
+    # node <- request %>% httr::content(as="text", encoding = "UTF-8") %>% xml2::read_html() %>% 
+    #   rvest::html_nodes(xpath = '//span[@class="b"]/a') %>% rvest::html_attr("ctype") %>% dplyr::last()
+    # 
+    # if(node != "nav.next"|is.na(node)==T){
+    #   break()
+    # }else{
+    #   print("continuando")
+    # }
+    # 
+    # print(i)
+    #   if(as.character(i) == as.character(pararem)){
+    #     break()
+    #   }else{
+    #     print("continuando")
+    #   }
+    
   }
 }
-obter_html(seq_pag = seq_pag)
 
-files <- dir(path = "data-raw/", pattern = "page", full.names = T)
+## As datas dizem respeito a data de decisao
+# Criando um vetor com datas
+seqDate <- seq.Date(as.Date('1986-01-01'),as.Date('2018-02-01'), by = "month")
+not_even <- c()
+even <- c()
+for(i in 1:length(seqDate)){
+  if(sjmisc::is_even(i)==F){
+    not_even <- append(not_even, seqDate[i])
+  }else{
+    even <- append(even, seqDate[i]) 
+  }
+}
+seqDate <- tibble(datai = not_even, dataf=even)
+# datai <- seqDate$datai[132]
+# dataf <- seqDate$dataf[132]
+# Aplicando cada data na query para obter o numero de paginas
+seq_pag <- purrr::map2(seqDate$datai, seqDate$dataf, ~obter_numpag(query= query, datai = .x, dataf = .y))
+#seq_pag <- obter_numpag(query = query)
+
+arg <- list(
+  seq_pag,
+  as.list(seqDate$datai),
+  as.list(seqDate$dataf)
+)
+
+# Obtendo os html
+purrr::pmap(list(
+  seq_pag,
+  as.list(seqDate$datai),
+  as.list(seqDate$dataf)
+), ~obter_html(seq_pag = ..1, datai = ..2, dataf = ..3, path = "data-raw/data-raw_v2/"))
+
+# DATA 20130701-20130801 ERRO
+# DATA 20150501-20150601 ERRO
+# DATA 20140901-20141001 ERRO
+# DATA 20141101-20141201 ERRO
+# DATA 20140501-20140601 ERRO
+# DATA 20140601-20140701 ERRO
+# DATA 20140101-20140201 ERRO
+# DATA 20131101-20131201 ERRO
+
+## Dando continuidade a partir de onde se deu o erro
+purrr::pmap(list(
+  seq_pag[166:length(seq_pag)],
+  as.list(seqDate$datai[166:nrow(seqDate)]),
+  as.list(seqDate$dataf[166:nrow(seqDate)])
+), purrr::possibly(~obter_html(seq_pag = ..1, datai = ..2, dataf = ..3, path = "data-raw/data-raw_v2/"), otherwise = "Erro para obter o dado"))
+
+## Algumas paginas obtiveram erro, sendo assim, irei adapta-los para obter o restante
+datas_erro <- c("2013-07-01", "2015-05-01", "2014-09-01","2014-11-01","2014-05-01","2014-06-01", "2014-01-01","2013-11-01")
+index <- which(as.character(seqDate$datai) %in% datas_erro)
+
+purrr::pmap(list(
+  seq_pag[index],
+  as.list(seqDate$datai[index]),
+  as.list(seqDate$dataf[index])
+), purrr::possibly(~obter_html(seq_pag = ..1, datai = ..2, dataf = ..3, path = "data-raw/data-raw_v2/"), otherwise = "Erro para obter o dado"))
 
 parse_tjrj <- function(file){
+  print(file)
   node <- file %>%
     xml2::read_html()
 
   node_proc <- node %>%
-    rvest::html_nodes(xpath = '//table[@id="table_resultado"]')
-
+    rvest::html_node(xpath = '//table[@id="table_resultado"]')
+  
   # Informações 1
   node_proc_primcol <- node_proc %>%
     rvest::html_nodes(xpath = '//td[@class="larguraPrimColuna"]')
-
   ## Tipo documento
-  tipo_documento <- node_proc_primcol %>%
+  tipo_documento <- node_proc_primcol %>% # Iterar no node_proc_primcol
     rvest::html_nodes('b') %>%
     rvest::html_text() %>%
     tibble::tibble(tipo_documento = .)
-
   ## Numero do processo
-  num_proc <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')%>% 
+  node_num_proc <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')
+  num_proc <- node_num_proc %>% 
     rvest::html_text() %>%
     tibble::tibble(num_proc = .)
-
   ## Link para consulta processual
-  link_cons_proc <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')%>%
+  node_link_cons_proc <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/a')
+  link_cons_proc <- node_link_cons_proc %>%
     rvest::html_attr('href') %>%
     tibble::tibble(link_cons_proc = .)
 
   ## Classe do processo
-  classe <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/span')%>% 
+  node_classe <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td/span[@class="numero_processo clear"]/span')
+  classe <- node_classe %>% 
     rvest::html_text() %>%
     stringr::str_replace_all("-", "") %>%
     stringr::str_trim() %>%
@@ -147,37 +268,115 @@ parse_tjrj <- function(file){
     tibble::tibble(relator=.)
 
   ### Orgao
-  orgao <- node_relator_orgao %>%
-    purrr::map_chr(.,~purrr::pluck(.x,2)) %>%
-    tibble::tibble(orgao=.)
-
+  # orgao <- node_relator_orgao %>%
+  #   purrr::map_chr(.,~purrr::pluck(.x,2)) %>%
+  #   tibble::tibble(orgao=.)
+  orgao <- c()
+  if(purrr::is_empty(node_relator_orgao)!=T){
+      for(i in 1:length(node_relator_orgao)){
+        if(is.na(node_relator_orgao[[i]][2])){
+          orgao[i] <- NA
+        }else{
+          orgao[i] <- node_relator_orgao[[i]][2]
+        }
+      }
+      orgao <- tibble::tibble(orgao=orgao)
+  }else{
+    orgao <- tibble()
+  }
   # Informações 3
   ## Ementa
+  
   ementa <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td[@id="ementaRes"]') %>%
+    rvest::html_nodes(xpath = '//td[@id="ementaRes"]|//td/span[@class="numero_processo clear"]/a') %>%
     rvest::html_text() %>%
     stringr::str_replace_all("(Ocultar ementa)|(Ver ementa completa)", "") %>%
-    tibble::tibble(ementa = .)
-
+    tibble::tibble(ementa = .) %>% 
+    dplyr::mutate(flag_detection_E = stringr::str_detect(ementa, "^[0-9]{4,}"))
+  corte <- c()
+  if(nrow(ementa) != 0){
+    for(i in 1:nrow(ementa)){
+      if(ementa$flag_detection_E[i] == ementa$flag_detection_E[i+1] & i != nrow(ementa)){
+        corte[i] <- i+1
+      } else if(purrr::is_empty(ementa$flag_detection_E[i] == ementa$flag_detection_E[i-1]) == FALSE & i == nrow(ementa)){
+        if(ementa$flag_detection_E[i] == ementa$flag_detection_E[i-1]){
+         corte[i] <- i+1 
+        }else if(ementa$flag_detection_E[i] == TRUE){
+          corte[i] <- i+1 
+        }
+      }
+    }
+    corte <- unique(corte[!is.na(corte)])
+    if(purrr::is_empty(corte) == F){
+      for(i in 1:length(corte)){
+        costura <- tibble::tibble(ementa = NA)
+        if(corte[i]-1 == nrow(ementa)){
+          ementa <- dplyr::bind_rows(ementa, costura)
+        }else{
+          parte1 <- ementa[1:corte[i]-1,]
+          parte2 <- ementa[corte[i]:nrow(ementa),]
+      
+          ementa <- dplyr::bind_rows(parte1, costura, parte2) 
+        }
+      }
+        ementa <- ementa %>% filter(flag_detection_E %in% c(FALSE, NA)) %>% select(ementa)
+    } else {
+      ementa <- tibble()
+    }
+  }
+  
   # Informações 4
   ## Data de julgamento
-  data_julgamento <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td[@colspan="3"]') %>%
-    html_text() %>%
-    .[stringr::str_detect(.,"(Data de julgamento)")] %>%
-    tibble::tibble(key = .) %>%
-    tidyr::separate(key, into = c("key", "data_julgamento"), sep = ":") %>%
-    dplyr::select(data_julgamento)
+  # data_julgamento <- node_proc_primcol %>%
+  #   rvest::html_nodes(xpath = '//td[@colspan="3"]') %>% 
+  #   html_text() %>% 
+  #   .[stringr::str_detect(.,"(Data de julgamento)")] %>%
+  #   tibble::tibble(key = .) %>%
+  #   tidyr::separate(key, into = c("key", "data_julgamento"), sep = ":") %>%
+  #   dplyr::select(data_julgamento)
 
+## parsear para cada @table_resultado
   ## Data de publicação
-  data_publicacao <- node_proc_primcol %>%
-    rvest::html_nodes(xpath = '//td[@colspan="3"]') %>% html_text() %>% 
-    .[stringr::str_detect(.,"(Data de publica)")] %>%
+  data <- node_proc_primcol %>%
+    rvest::html_nodes(xpath = '//td[@colspan="3"]/b') %>% xml2::xml_parent() %>% html_text() %>% 
+    .[stringr::str_detect(.,"(Data de publica)|(Data de julga)|(Ement)")] %>% stringr::str_trim() %>% 
     tibble::tibble(key = .) %>% 
-    tidyr::separate(key, into = c("key", "data_publicacao"), sep = ":") %>%
-    dplyr::select(data_publicacao) %>%
-    dplyr::mutate(data_publicacao = str_replace(data_publicacao, "\\n", ""))
-
+    tidyr::separate(key, into = c("key", "datas"), sep = ":")  %>%
+    dplyr::mutate(datas = str_replace(datas, "\\n", ""),
+                  group = NA,
+                  flag_detection = stringr::str_detect(key, "(Ement)"))
+  
+  if(nrow(data)==0){
+    print("pagina em branco")
+  } else{
+    contador <- 0
+    for(i in 1:nrow(data)){
+      if(data$flag_detection[i] == TRUE){
+        data$group[i] <- contador
+        contador <- contador + 1
+      } else{
+        data$group[i] <- contador
+        }
+    }
+  }
+  
+  if(length(data$group) == length(is.na(data$group)) & nrow(data) != 0){
+    data <- data %>% filter(flag_detection == F) %>% select(-flag_detection) %>% 
+          tidyr::spread(key, datas) %>% dplyr::select(-group) %>% {
+          colunas_nomes <- colnames(.)
+          colunas_qtd <- ncol(.)
+          if(colunas_nomes[1]=="Data de julgamento" & colunas_qtd == 2){
+            magrittr::set_names(.,c("data_julgamento", "data_publicacao"))
+          } else if(colunas_nomes[1]=="Data de julgamento" & colunas_qtd == 1){
+            magrittr::set_names(., c("data_julgamento"))
+          } else if(colunas_nomes[1]!="Data de julgamento" & colunas_qtd == 1){
+              magrittr::set_names(., c("data_publicacao"))
+          }else{
+              magrittr::set_names(.,c("data_publicacao","data_julgamento"))
+            }
+          }
+        }
+  
   # Tabela final
   tabela <- dplyr::bind_cols(
     num_proc,
@@ -186,16 +385,39 @@ parse_tjrj <- function(file){
     relator,
     orgao,
     ementa,
-    data_julgamento,
-    data_publicacao,
+    #data_julgamento,
+    #data_publicacao,
+    data,
     link_cons_proc
     )
   tabela <- tabela %>% mutate(file = file)
   return(tabela)
 }
 
-exemplo <- purrr::map_dfr(files, ~parse_tjrj(file = .x))
+file <- dir(path = "data-raw/data-raw_v2/", full.names = T)
 
-readr::write_rds(exemplo, "data-raw/data-raw_rds/exemplo.rds")
+exemplo <- purrr::map_dfr(file, ~parse_tjrj(file = .x))
+
+#limpeza manual necessaria
+tjrj_v3 <- exemplo %>% select(-flag_detection, -group, -key, -flag_detection_E, -datas)
+
+readr::write_rds(exemplo, "data-raw/data-raw_rds/tjrj_v2.rds")
+readr::write_rds(tjrj_v3, "data-raw/data-raw_rds/tjrj_v3.rds") #TEM PROCESSOS REPETIDOS
+# tjrj.rds foi feito pela busca inquerito policial
+# tjrj_v2.rds foi feito pela busca inquerito
+```
+
+```{r}
+autocomplete <- "http://portaltj.tjrj.jus.br/search-master/autocomplete"
+query <- list(
+  "callback"="buscaTJRJ",
+  "q"="Inqu",
+  "b"="assuntos",
+  "s"=15,
+  "_"=1523373940444
+)
+request <- httr::GET(autocomplete, query = query)
+request %>% httr::content(as = "text") %>% stringr::str_extract("[\\[\\]].*\\]") %>% jsonlite::fromJSON() %>% select(values) %>% .[[1]] %>% readr::write_rds("assuntotjrj2.rds")
+
 ```
 

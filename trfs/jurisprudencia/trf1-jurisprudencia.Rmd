@@ -184,3 +184,19 @@ inquerito_trf1 %>%
   tidyr::spread(rejeitar_denuncia, n)
 ```
 
+```{r}
+# url <- "https://jurisprudencia.trf1.jus.br/busca/resultado.jsp"
+# query <- list(
+#   "as_q"="",	
+#   "client"="f",
+#   "num"=10,
+#   "partialfields"="",
+#   "q"="",	
+#   "requiredfields"="sco:11",
+#   "site"="a",
+#   "start"=0
+# )
+# request <- httr::POST(url, body = query, encode = "form", httr::write_disk("oi.xhr",T))
+# scrapr::html_view(request)
+```
+

@@ -1,0 +1,248 @@
+---
+title: "TJAL-Juris_2"
+output: html_notebook
+---
+
+No site `http://www.tjal.jus.br/?pag=jurisprudencia` informa as seguintes informações:
+
+> Consulta Jurisprudencial\n Jurisprudências Atuais\n Jurisprudências Antigas (1996-2006)\n Jurisprudências Históricas (em construção)
+
+O que significa que o arquivo `TJAL-Juris.Rmd` pega apenas jurisprudências atuais. Iremos portanto pegar informações do link `http://www.jurisprudencia.tjal.jus.br/`
+
+```{r}
+library(dplyr)
+library(rvest)
+library(purrr)
+library(stringr)
+library(RSelenium)
+```
+
+# Solução `httr`
+
+O problema com esta solução é a passagem para próxima página, em que o "btnPesquisar" não é requisitado porém não funciona.
+
+```{r}
+url <- "http://www.jurisprudencia.tjal.jus.br/Default.aspx"
+
+query_POST <- list(
+  "__EVENTARGUMENT"="PBN",
+  "__EVENTTARGET"="ASPxPagerResultado",
+  "__EVENTVALIDATION"	= url %>% rvest::html_session() %>% rvest::html_node("#__EVENTVALIDATION") %>% rvest::html_attr('value'),
+  "__VIEWSTATE" = url %>% rvest::html_session() %>% rvest::html_node("#__VIEWSTATE") %>% rvest::html_attr('value'),
+  "__VIEWSTATEGENERATOR"= url %>% rvest::html_session() %>% rvest::html_node("#__VIEWSTATEGENERATOR") %>% rvest::html_attr('value'),
+  "btnPesquisar"="Pesquisar",
+  "cboOrgaoJulgador"="Todos",
+  "ToolkitScriptManager1_HiddenField"="",	
+  "txtClasse"="inquérito+policial",
+  "txtComarca"="",
+  "txtEmenta"="",
+  "txtNumero"="",	
+  "txtPartes"="",	
+  "txtPesquisaLivre"="",
+  "txtRelator"=""
+)
+
+request <- httr::POST(url, body = query_POST)
+
+scrapr::html_view(request)
+```
+
+# Solução `RSelenium`
+
+```{r}
+#### Obtendo os dados
+url <- "http://www.jurisprudencia.tjal.jus.br/Default.aspx"
+
+remDr <- RSelenium::rsDriver()
+
+remDr$client$navigate(url)
+
+# Acessando a classe
+webElem <- remDr$client$findElement(using = 'id', value = 'txtClasse')
+
+webElem$sendKeysToElement(list("inquérito policial"))
+
+#Clicando em pesquisar
+webElem <- remDr$client$findElement(using = 'id', value = 'btnPesquisar')
+
+webElem$clickElement()
+
+# Coletando o conteudo da primeira pagina
+page1 <- remDr$client$getPageSource() 
+
+# Acessando a segunda pagina
+webElem <- remDr$client$findElement(using = 'xpath', value = '//td[@class="dxpPageNumber_BlackGlass"]')
+
+webElem$clickElement()
+
+# Coletando o conteudo da primeira pagina
+page2 <- remDr$client$getPageSource()
+
+###########################################
+
+### Parseando
+node <- page1 %>% 
+  purrr::pluck(1) %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//span[@id="listResultado"]/span')  
+
+# Obtendo os link
+link_node <- node %>% rvest::html_nodes(xpath = '//div[@id="link"]')
+## link do acordao
+xpath <- '//a[@id="listResultado_ctlNUMERO_linkAcordao"]'
+qntd <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+xpath_por_proc <- purrr::map_chr(qntd,~stringr::str_replace(xpath, "NUMERO", .x))
+acordao <-  purrr::map_chr(xpath_por_proc,~link_node %>% 
+  rvest::html_nodes(xpath = .x) %>% rvest::html_attr('href') %>% stringr::str_c("http://www.jurisprudencia.tjal.jus.br/", .))
+
+## link do inteiro teor
+xpath <- '//a[@id="listResultado_ctlNUMERO_linkInteiroTeor"]'
+qntd <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+xpath_por_proc <- purrr::map_chr(qntd,~stringr::str_replace(xpath, "NUMERO", .x))
+inteiro_teor <-  purrr::map_chr(xpath_por_proc,~link_node %>% 
+  rvest::html_nodes(xpath = .x) %>% rvest::html_attr('href') %>% stringr::str_c("http://www.jurisprudencia.tjal.jus.br/", .))
+
+# Obtendo as infos
+## Obtendo coluna1
+info_col1_node <-  node %>% rvest::html_nodes('#coluna1')
+xpaths_col1 <- c('//span[@id="listResultado_ctlALTERA_lblNumero"]',
+            '//span[@id="listResultado_ctlALTERA_lblClasse"]',
+            '//span[@id="listResultado_ctlALTERA_lblRelator"]',
+            '//span[@id="listResultado_ctlALTERA_lblOrgaoJulgador"]')
+qntd <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+
+lista_proc <- list()
+for(i in 1:length(xpaths_col1)){
+  lista_proc[[i]]<- purrr::map_chr(qntd, ~stringr::str_replace(xpaths_col1[i], "ALTERA", .x))
+}
+
+infos <- lista_proc
+for (i in 1:length(lista_proc)){
+  for (l in 1:length(lista_proc[[i]])){
+    obj <- link_node %>% 
+      rvest::html_nodes(xpath = lista_proc[[i]][l]) %>%
+      rvest::html_text()
+    infos[[i]][l] <- obj
+  }
+}
+
+nomes <- c("numero", "classe", "relator", "orgao_julgador")
+names(infos) <- nomes 
+page1_tab_c1 <- data.frame(infos)
+
+## Obtendo coluna2
+info_col2_node <-  node %>% rvest::html_nodes('#coluna2')
+xpaths_col2 <- c('//span[@id="listResultado_ctlALTERA_lblComarca"]',
+            '//span[@id="listResultado_ctlALTERA_lblPartes"]',
+            '//span[@id="listResultado_ctlALTERA_lblEmenta"]')
+qntd <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+
+lista_proc <- list()
+for(i in 1:length(xpaths_col2)){
+  lista_proc[[i]]<- purrr::map_chr(qntd, ~stringr::str_replace(xpaths_col2[i], "ALTERA", .x))
+}
+
+infos <- lista_proc
+for (i in 1:length(lista_proc)){
+  for (l in 1:length(lista_proc[[i]])){
+    obj <- link_node %>% 
+      rvest::html_nodes(xpath = lista_proc[[i]][l]) %>%
+      rvest::html_text()
+    infos[[i]][l] <- obj
+  }
+}
+
+nomes <- c("comarca", "partes", "ementa")
+names(infos) <- nomes 
+page1_tab_c2 <- data.frame(infos)
+
+page1_tab <- dplyr::bind_cols(page1_tab_c1, page1_tab_c2)
+```
+
+Generalizando o código em uma função
+
+```{r}
+parse_tjal <- function(page, qntd){
+  node <- page %>% 
+  purrr::pluck(1) %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//span[@id="listResultado"]/span')  
+  
+  # Obtendo os link
+  link_node <- node %>% rvest::html_nodes(xpath = '//div[@id="link"]')
+  ## link do acordao
+  xpath <- '//a[@id="listResultado_ctlNUMERO_linkAcordao"]'
+  
+  xpath_por_proc <- purrr::map_chr(qntd,~stringr::str_replace(xpath, "NUMERO", .x))
+  acordao <-  purrr::map_chr(xpath_por_proc,~link_node %>% 
+                               rvest::html_nodes(xpath = .x) %>% rvest::html_attr('href') %>%
+                               stringr::str_c("http://www.jurisprudencia.tjal.jus.br/", .))
+  ## link do inteiro teor
+  xpath <- '//a[@id="listResultado_ctlNUMERO_linkInteiroTeor"]'
+  xpath_por_proc <- purrr::map_chr(qntd,~stringr::str_replace(xpath, "NUMERO", .x))
+  inteiro_teor <-  purrr::map_chr(xpath_por_proc,~link_node %>% 
+                                    rvest::html_nodes(xpath = .x) %>% 
+                                    rvest::html_attr('href') %>%
+                                    stringr::str_c("http://www.jurisprudencia.tjal.jus.br/", .))
+  # Obtendo as infos
+  ## Obtendo coluna1
+  info_col1_node <-  node %>% rvest::html_nodes('#coluna1')
+  xpaths_col1 <- c('//span[@id="listResultado_ctlALTERA_lblNumero"]',
+                   '//span[@id="listResultado_ctlALTERA_lblClasse"]',
+                   '//span[@id="listResultado_ctlALTERA_lblRelator"]',
+                   '//span[@id="listResultado_ctlALTERA_lblOrgaoJulgador"]')
+  
+  lista_proc <- list()
+  for(i in 1:length(xpaths_col1)){
+    lista_proc[[i]]<- purrr::map_chr(qntd, ~stringr::str_replace(xpaths_col1[i], "ALTERA", .x))
+  }
+
+  infos <- lista_proc
+  for (i in 1:length(lista_proc)){
+    for (l in 1:length(lista_proc[[i]])){
+      obj <- link_node %>% 
+        rvest::html_nodes(xpath = lista_proc[[i]][l]) %>%
+        rvest::html_text()
+      infos[[i]][l] <- obj
+    }
+  }
+
+  nomes <- c("numero", "classe", "relator", "orgao_julgador")
+  names(infos) <- nomes 
+  page_tab_c1 <- data.frame(infos, stringsAsFactors = F)
+  
+  ## Obtendo coluna2
+  info_col2_node <-  node %>% rvest::html_nodes('#coluna2')
+  xpaths_col2 <- c('//span[@id="listResultado_ctlALTERA_lblComarca"]',
+                   '//span[@id="listResultado_ctlALTERA_lblPartes"]',
+                   '//span[@id="listResultado_ctlALTERA_lblEmenta"]')
+  
+  lista_proc <- list()
+  for(i in 1:length(xpaths_col2)){
+    lista_proc[[i]]<- purrr::map_chr(qntd, ~stringr::str_replace(xpaths_col2[i], "ALTERA", .x))
+  }
+
+  infos <- lista_proc
+  for (i in 1:length(lista_proc)){
+    for (l in 1:length(lista_proc[[i]])){
+      obj <- link_node %>% 
+        rvest::html_nodes(xpath = lista_proc[[i]][l]) %>%
+        rvest::html_text()
+      infos[[i]][l] <- obj
+    }
+  }
+
+  nomes <- c("comarca", "partes", "ementa")
+  names(infos) <- nomes 
+  page_tab_c2 <- data.frame(infos, stringsAsFactors = F)
+
+  page_tab <- dplyr::bind_cols(page_tab_c1, page_tab_c2)
+  
+  return(page_tab)
+}
+
+qntd <- c("01", "02", "03", "04", "05", "06", "07", "08", "09", "10")
+tabela_tjal <- purrr::map2_dfr(list(page1,page2),list(qntd, qntd[1:5]),~parse_tjal(.x, .y))
+readr::write_rds(tabela_tjal, "data-raw_al/data_rds/d_cjsg_2.rds")
+```
+
