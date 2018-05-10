@@ -1,0 +1,102 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Parser JFRJ
+
+```{r}
+library(rvest)
+library(dplyr)
+library(stringr)
+library(purrr)
+```
+
+
+### Movimentação
+
+```{r}
+url <- "http://procweb.jfrj.jus.br/portal/consulta/resinfomov2.asp?CodDoc=78298623"
+
+node <- xml2::read_html(url)
+
+parse_movimentacao <- function(node){
+  node %>% 
+    html_nodes(xpath = '//table//table//table') %>%
+    rvest::html_table(header = F, fill = T) %>% 
+    dplyr::first() %>% select(1:2) %>% 
+    magrittr::set_names(c("data", "descr_movimentacao")) %>% 
+    dplyr::filter(!str_detect(data, "([Dd]ata)|([Mm]ovimento)")) %>% 
+    tidyr::separate(data, into = c("data", "hora"), sep = " ") %>% 
+    dplyr::mutate(data = lubridate::dmy(data), 
+                  descr_movimentacao = stringr::str_to_lower(descr_movimentacao)) %>% 
+    tidyr::nest(.key = "movimentacao")
+}
+
+```
+
+### Partes
+
+```{r}
+url <- "http://procweb.jfrj.jus.br/portal/consulta/resinfopartes2.asp?CodDoc=78298623"
+
+node <- xml2::read_html(url)
+parse_partes <- function(node){
+  node %>% 
+    html_nodes(xpath = '//table//table//table') %>% 
+    html_table(header = T, fill = T) %>%
+    purrr::pluck(1) %>% {
+      if(ncol(.) == 2){
+        magrittr::set_names(., c("key", "val"))
+        }
+      } %>% 
+    mutate(key = stringr::str_to_lower(key),
+           key = stringr::str_replace_all(key, "[[:punct:]]",""),
+           key = abjutils::rm_accent(key),
+           key = stringr::str_replace_all(key, " +", "_"),
+           val = stringr::str_replace_all(val, ":|\\t", ""))%>% 
+    group_by(key) %>% #Como lidar com dados duplicados
+    summarise(val = glue::collapse(val, sep = "@@@")) %>%
+    ungroup() %>%
+    tidyr::spread(key, val) %>% 
+    tidyr::nest(.key = "Partes")  
+}
+
+parse_partes(node)  
+```
+
+### Dados basicos
+
+```{r}
+url <- "http://procweb.jfrj.jus.br/portal/consulta/resinfoproc.asp?CodDoc=78298623&IDNumConsProc=503709070&CodUsuWeb="
+
+node <- xml2::read_html(url)
+parse_dados_basicos <- function(node){
+ node %>% 
+    rvest::html_nodes(xpath = '//textarea[@id="Resumo"]') %>%
+    html_text(trim = T) %>%
+    stringr::str_split("\n") %>% 
+    purrr::pluck(1) %>%
+    .[stringr::str_detect(., "\\t|([Mm]agistrad)")] %>% 
+    .[stringr::str_detect(., ":[^0-9]|(^\t[Mm]agistrad)")] %>%
+    stringr::str_trim() %>% {
+      for(i in 1:length(.)){
+        if(stringr::str_detect(.[i], ":") == FALSE){
+          .[i] <- stringr::str_replace(.[i], " ", ":")
+        }
+        }
+      . # ESSE PONTO É IMPORTANTE (NAO RETIRAR)
+      } %>% 
+    tibble(key = .) %>% 
+    tidyr::separate(key, into = c("key", "val"), sep = ":") %>% 
+    mutate(key = stringr::str_to_lower(key),
+           key = stringr::str_trim(key),
+           key = stringr::str_replace_all(key, "[[:punct:]]",""),
+           key = abjutils::rm_accent(key),
+           key = stringr::str_replace_all(key, " +", "_"),
+           val = stringr::str_replace_all(val, ":|\\t", "")) %>% 
+    tidyr::spread(key, val) 
+}
+parse_dados_basicos(node)
+```
+

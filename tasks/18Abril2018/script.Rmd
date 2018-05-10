@@ -1,0 +1,126 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#install.packages("genderBR")
+library(genderBR)
+library(purrr)
+library(dplyr)
+library(readxl)
+library(xlsx)
+```
+
+```{r}
+delegados_path <- "tasks/18Abril2018/data-raw/originais/Delegados.xlsx"
+delegados_AL <- readxl::read_excel(delegados_path, sheet = "AL")
+delegados_DF <- readxl::read_excel(delegados_path, sheet = "DF")
+delegados_RJ <- readxl::read_excel(delegados_path, sheet = "RJ")
+delegados_SP <- readxl::read_excel(delegados_path, sheet = "SP")
+
+juizes_path <- "tasks/18Abril2018/data-raw/originais/Juizes_Tribunais_criminais.xlsx"
+juizes_AL <- readxl::read_excel(juizes_path, sheet = "AL")
+juizes_DF <- readxl::read_excel(juizes_path, sheet = "DF")
+juizes_RJ <- readxl::read_excel(juizes_path, sheet = "RJ")
+juizes_SP <- readxl::read_excel(juizes_path, sheet = "SP")
+
+procuradores_path <- "tasks/18Abril2018/data-raw/originais/Procuradores.xlsx"
+procuradores_AL <- readxl::read_excel(procuradores_path, sheet = "AL")
+procuradores_DF <- readxl::read_excel(procuradores_path, sheet = "DF")
+procuradores_RJ <- readxl::read_excel(procuradores_path, sheet = "RJ")
+procuradores_SP <- readxl::read_excel(procuradores_path, sheet = "SP")
+```
+
+Muitos nomes tem como sufixo as palvras Dr/DR, Dra/DRA ou  DFP. Sendo assim, antes de verificarmos qual o sexo dos nomes, iremos limpardos estas informações. A função abaixo limpa os dados e retorna o sexo do primeiro nome.
+
+```{r}
+obter_sexo <- function(vetor){
+    primeiro_nome <- vetor %>% stringr::str_to_lower() %>% 
+    stringr::str_replace_all("(^Dr.)|(^Dr)|(^DR.)|(^DR)|(^dr.)|(^Dra.)|(^Dra)|(^DRa.)|(^DRa)|(^DRA)|(^dra.)|(^dra)|\\.|(^dpf)|(^DPF)", "") %>% 
+    stringr::str_trim() %>% 
+    stringr::str_split(pattern = " ", n = 2) %>% purrr::map(., ~purrr::pluck(.x,1)) %>% unlist()
+    sexo <- purrr::map_chr(primeiro_nome, ~genderBR::get_gender(.x))
+    tab <- tibble::tibble(primeiro_nome = primeiro_nome, sexo = sexo)
+    return(tab)
+}
+```
+
+Obtendo um vetor com o nome de cada um dos casos
+
+```{r}
+nomes_delegados_AL <- delegados_AL$Nome
+nomes_delegados_DF <- delegados_DF$Nome
+nomes_delegados_RJ <- delegados_RJ$Nome
+nomes_delegados_SP <- delegados_SP$Nome
+
+nomes_juiz_AL <- juizes_AL$juiz
+nomes_juiz_DF <- juizes_DF$juiz
+nomes_juiz_RJ <- juizes_RJ$juiz
+nomes_juiz_SP <- juizes_SP$juiz
+
+nomes_procuradores_AL <- procuradores_AL$Nome
+nomes_procuradores_DF <- procuradores_DF$Nome
+nomes_procuradores_RJ <- procuradores_RJ$Nome
+nomes_procuradores_SP <- procuradores_SP$Nome
+```
+
+Aplicando a funcao em cada caso
+```{r}
+sexo_delegados_AL <- obter_sexo(nomes_delegados_AL)
+sexo_delegados_DF <- obter_sexo(nomes_delegados_DF)
+sexo_delegados_RJ <- obter_sexo(nomes_delegados_RJ)
+sexo_delegados_SP <- obter_sexo(nomes_delegados_SP)
+
+sexo_juiz_AL <- obter_sexo(nomes_juiz_AL)
+sexo_juiz_DF <- obter_sexo(nomes_juiz_DF)
+sexo_juiz_RJ <- obter_sexo(nomes_juiz_RJ)
+sexo_juiz_SP <- obter_sexo(nomes_juiz_SP)
+
+sexo_procuradores_AL <- obter_sexo(nomes_procuradores_AL)
+sexo_procuradores_DF <- obter_sexo(nomes_procuradores_DF)
+sexo_procuradores_RJ <- obter_sexo(nomes_procuradores_RJ)
+sexo_procuradores_SP <- obter_sexo(nomes_procuradores_SP)
+```
+
+Juntar cada caso com a tabela raiz
+```{r}
+delegados_AL <- dplyr::bind_cols(delegados_AL, sexo_delegados_AL)
+delegados_DF <- dplyr::bind_cols(delegados_DF, sexo_delegados_DF)
+delegados_RJ <- dplyr::bind_cols(delegados_RJ, sexo_delegados_RJ)
+delegados_SP <- dplyr::bind_cols(delegados_SP, sexo_delegados_SP)
+delegados <- list(delegados_AL, delegados_DF, delegados_RJ, delegados_SP)
+
+juizes_AL <- dplyr::bind_cols(juizes_AL, sexo_juiz_AL)
+juizes_DF <- dplyr::bind_cols(juizes_DF, sexo_juiz_DF)
+juizes_RJ <- dplyr::bind_cols(juizes_RJ, sexo_juiz_RJ)
+juizes_SP <- dplyr::bind_cols(juizes_SP, sexo_juiz_SP)
+juizes <- list(juizes_AL, juizes_DF, juizes_RJ, juizes_SP)
+
+procuradores_AL <- dplyr::bind_cols(procuradores_AL, sexo_procuradores_AL)
+procuradores_DF <- dplyr::bind_cols(procuradores_DF, sexo_procuradores_DF)
+procuradores_RJ <- dplyr::bind_cols(procuradores_RJ, sexo_procuradores_RJ)
+procuradores_SP <- dplyr::bind_cols(procuradores_SP, sexo_procuradores_SP)
+procurador <- list(procuradores_AL,procuradores_DF,procuradores_RJ,procuradores_SP)
+```
+
+Salvando os dados em planilhas
+
+```{r}
+escrever_xlsx <- function(data, file, sheetName, append){
+  xlsx::write.xlsx(data, 
+                   file = file, 
+                   sheetName = sheetName,
+                   append = append,
+                   showNA = F)
+}
+sheetnames <- c("AL", "DF", "RJ", "SP")
+appends <- c(F, T, T, T)
+
+purrr::pmap(list(delegados, sheetnames, appends), ~escrever_xlsx(data = ..1,file = "tasks/18Abril2018/data-raw/alterados/Delegados.xlsx", sheetName = ..2, append = ..3))
+
+purrr::pmap(list(juizes, sheetnames, appends), ~escrever_xlsx(data = ..1,file = "tasks/18Abril2018/data-raw/alterados/Juizes.xlsx", sheetName = ..2, append = ..3))
+
+purrr::pmap(list(procurador, sheetnames, appends), ~escrever_xlsx(data = ..1,file = "tasks/18Abril2018/data-raw/alterados/Procuradores.xlsx", sheetName = ..2, append = ..3))
+```
+

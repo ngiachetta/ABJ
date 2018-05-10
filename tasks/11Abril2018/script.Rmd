@@ -1,0 +1,61 @@
+---
+title: "Reunião 11 de Abril de 2018"
+output: html_notebook
+---
+
+```{r}
+library(rvest)
+library(dplyr)
+library(purrr)
+library(pdftools)
+library(magrittr)
+library(stringr)
+library(tabulizer)
+```
+
+# Coleta dos agentes judiciários
+
+### 1. Polícia Civil do Estado do Rio de Janeiro
+
+```{r}
+url <- "http://www.policiacivil.rj.gov.br/delegacia.asp"
+
+node <- url %>% xml2::read_html()
+
+table_title <- node %>%
+  rvest::html_nodes(xpath = '//p[@class="tituloComum"]') %>% 
+  html_text() %>%
+  .[2:length(.)]
+
+table <- node %>% rvest::html_table(header = T) %>% .[2:length(.)]
+
+tabela <- purrr::map2(table,table_title, ~.x %>% dplyr::mutate(tipotabela = .y)) %>% 
+  purrr::map_dfr(., ~magrittr::set_names(.x, c("Delegacia_Orgaos", "Delegadotitular_Diretor", "Telefones", "TipoTabela"))) %>% dplyr::mutate(Delegacia_Orgaos = stringr::str_replace_all(Delegacia_Orgaos,"(\\u0096)|\n|\t", ""))
+
+readr::write_rds(tabela, "data_raw/1/tabela_1.rds")
+readr::write_excel_csv(tabela, "data_raw/1/tabela_1.csv")
+```
+
+### 2. Lista Antiguidade Procuradores RJ
+
+```{r}
+pdf <- "data_raw/2/lista_antiguidade_procuradores.pdf"
+tabela <- tabulizer::extract_tables(pdf, method = "stream") %>% 
+  purrr::map_dfr(., ~as.data.frame(.x))
+
+readr::write_rds(tabela, "data_raw/2/tabela_2.rds")
+readr::write_excel_csv(tabela, "data_raw/2/tabela_2.csv")
+```
+
+### 3. Lista Antiguidade Procuradores SP
+
+```{r}
+pdf <- "data_raw/3/lista_antiguidade_procuradoresSP.pdf"
+texto <- pdftools::pdf_text(pdf) %>% stringr::str_trim()
+
+tabela <- texto %>% stringr::str_replace_all(".*\\s.*antiguidade\n|.*\\s.*JUSTIÇA|\n$", "") %>% stringr::str_replace("[0-9]$", "") %>% stringr::str_trim() %>% stringr::str_split(pattern = "\n") %>% unlist() %>% data.frame(data = .) %>% tidyr::separate(data, into = c("posicao", "nome"), sep = "\\.\\s")
+
+readr::write_rds(tabela, "data_raw/3/tabela_3.rds")
+readr::write_excel_csv(tabela, "data_raw/3/tabela_3.csv")
+```
+
