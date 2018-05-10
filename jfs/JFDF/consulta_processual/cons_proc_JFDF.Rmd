@@ -1,0 +1,117 @@
+---
+title: "JFDF"
+output: html_notebook
+---
+
+```{r}
+library(httr)
+library(dplyr)
+library(rvest)
+```
+
+```{r}
+url <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+
+query <- list(
+  "secao"="DF",
+  "enviar"="Pesquisar",
+  "pg"=2,
+  "proc"="0036535-45.2000.4.01.3400"
+)
+
+request <- httr::GET(url, query = query, httr::config(ssl_verifypeer = FALSE))
+
+request %>% httr::content() %>% 
+  rvest::html_table()
+
+# Problema para obter as partes
+```
+```{r}
+# Funcao para obter o html do processo
+obter_jfdf <- function(proc, path){
+  url_mov_proc <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+  url_partes <- "https://processual.trf1.jus.br/consultaProcessual/arquivo/partes.php"
+  proc <- abjutils::build_id(proc)
+  
+  query_mov_proc <- list(
+    "secao"="DF",
+    "enviar"="Pesquisar",
+    "pg"=1,
+    "proc"=proc
+    )
+  
+    query_partes <- list(
+    "secao"="DF",
+    "origem"="processual",
+    "proc"=proc
+    )
+    
+   dir.create(path, FALSE, TRUE)
+   path <- normalizePath(path)
+   file_mov_proc <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_movimentacao.html")
+   file_partes <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_partes.html")
+    
+  request_mov_proc <- httr::GET(url_mov_proc, query = query_mov_proc, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_mov_proc, T))
+  request_partes <- httr::GET(url_partes, query = query_partes, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_partes, T))
+  
+  request <- list(movimentacao = request_mov_proc,
+                  partes = request_partes)
+  
+  return(request)
+}
+proc <- "0036535-45.2000.4.01.3400"
+obter_jfdf(proc = proc, path ="data-raw/")
+
+# Funcao para parsear informacoes do processo
+parser_jfdf <- function(file){
+  node <- file %>% xml2::read_html()
+  
+  #aba-processo
+  aba_processo <- node %>%
+    rvest::html_node(xpath = '//div[@id="aba-processo"]//table') %>% 
+    rvest::html_table(fill = T) %>% 
+    magrittr::set_names(c("key", "val")) %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace(key, ":", ""),
+                  key = stringr::str_replace_all(key, " +", "_")) %>% 
+    tidyr::spread(key, val)
+
+  #aba-movimentacao
+  aba_movimentacao <- node %>%
+    rvest::html_node(xpath = '//div[@id="aba-movimentacao"]//table') %>%
+    rvest::html_table() %>% {
+      if(ncol(.) == 4){
+        magrittr::set_names(., c("data", "cod", "decricao","complemento"))
+        } else if(ncol(.) == 3){
+          magrittr::set_names(., c("data", "cod", "decricao"))
+          }
+      } %>% 
+    tidyr::separate(data, into = c("data", "hora"), sep = " +") %>% 
+    dplyr::mutate(data = lubridate::dmy(data)) %>% 
+    tidyr::nest(.key = "movimentacao") %>% 
+    dplyr::mutate(file = file)
+  
+  tab <- dplyr::bind_cols(aba_processo, aba_movimentacao)
+  return(tab)
+}
+file <- dir("data-raw/", full.names = T)
+
+parser_jfdf(file)
+
+```
+Para 03 de Maio
+
+Fluxo antes da segunda instancia
+
+Recurso - Um caso com maximo possivel de recurso (o tempo mais longo, ex. Maluf)
+
+Ter foro ou não
+
+Quais casos/Quantos casos foram acelerados
+
+FORO TEM SIGILO? QUAL O GRAU DELE
+
+#####
+
+Receber os dados do Matheus para categarozi-las por nome masculino e feminino [SEXO] (PACOTE genderBR)
