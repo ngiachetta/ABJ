@@ -93,7 +93,25 @@ files <- files %>% stringr::str_replace_all("[^0-9]", "")
 query2 <- query[-which(query %in% files)]
 purrr::map(query2 , ~obter_proc(.x, path))
 
-# Pergunta sobre base
+###
+files <- dir("data-raw/", full.names = T)
+files <- files %>% stringr::str_replace_all("[^0-9]", "")
+
+query3 <- query[-which(query %in% files)]
+purrr::map(query3 , ~obter_proc(.x, path))
+###
+files <- dir("data-raw/", full.names = T)
+files <- files %>% stringr::str_replace_all("[^0-9]", "")
+
+query4 <- query[-which(query %in% files)]
+purrr::map(query4 , ~obter_proc(.x, path))
+###
+files <- dir("data-raw/", full.names = T)
+files <- files %>% stringr::str_replace_all("[^0-9]", "")
+
+query5 <- query[-which(query %in% files)]
+purrr::map(query5 , ~obter_proc(.x, path))
+
 ```
 
 ## Parseando os dados
