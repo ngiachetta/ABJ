@@ -152,13 +152,13 @@ parse_dados_proc <- function(files_cposg){
   
   dados_proc <- dados_proc %>% 
     #select(-contains("decisao"), -contains("notas_taq"), - contains("andamento")) %>% 
-    tidyr::nest(.key = "dados_processo") %>% 
+    #tidyr::nest(.key = "dados_processo") %>% 
     mutate(file = files_cposg[1])
   
   return(dados_proc)
 }
 
-dados_proc_tab <- map(files_cposg, parse_dados_proc) %>%  dplyr::bind_rows()
+dados_proc_tab_2 <- map(files_cposg, parse_dados_proc) %>%  dplyr::bind_rows()
 
 readr::write_rds(dados_proc_tab, "data-raw/dados_proc/dados_proc_tab.rds")
 ```

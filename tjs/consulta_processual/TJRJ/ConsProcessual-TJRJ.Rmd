@@ -66,6 +66,23 @@ nAntigos <- purrr::map_chr(tjrj$url, ~obter_json(.x))
 
 files <- dir(path = "data-raw/", full.names = T)
 
-files[1] %>% readLines(encoding = "latin1") %>%  jsonlite::fromJSON()
+json_arq <- files[1] %>% readLines(encoding = "latin1") %>%  jsonlite::fromJSON()
+
+json_arq <- json_arq$d
+
+list_to_df <- list()
+names_to_df <- c()
+for(i in 1:length(json_arq)){
+  if(typeof(json_arq[[i]]) == "character"){
+    list_to_df <- append(list_to_df,json_arq[[i]])
+    names_to_df[i] <- append(names_to_df,names(json_arq[i]))
+  }
+}
+names(lista) <- nomes
+
+## Código para arrumar as datas atuação
+# dados %>% 
+#   dplyr::mutate(dt = as.numeric(stringr::str_extract(data_autuacao, "[0-9]+")) / 1000) %>% 
+#   dplyr::mutate(dt = lubridate::as_datetime(dt))
 ```
 

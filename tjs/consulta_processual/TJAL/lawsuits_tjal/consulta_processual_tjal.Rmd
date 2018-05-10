@@ -1,0 +1,237 @@
+---
+title: ""
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(httr)
+library(rvest)
+library(stringr)
+```
+
+```{r}
+tjal <- read_rds("lawsuits.rds")
+```
+
+A principio iremos obter todos os números cnj presente. 
+
+## Obter os dados
+
+Boa parte dos dados são da primeira instância sendo assim, tenho que adaptar o código!
+
+```{r Codigo de coleta}
+# Primeira Instancia 
+primeira_instancia <- function(query, path){
+  url <- "https://www2.tjal.jus.br/cpopg/search.do"
+  Sys.sleep(2)
+  query_GET <- list(
+    "conversationId"="",
+    "dadosConsulta.localPesquisa.cdLocal"="-1",
+    "cbPesquisa"="NUMPROC",
+    "dadosConsulta.tipoNuProcesso"="UNIFICADO",
+    "dadosConsulta.valorConsultaNuUnificado"= query,
+    "dadosConsulta.valorConsulta"=""
+    )
+  
+  proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_PRIMEIRA.html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url, query = query_GET,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+# Segunda instancia
+segunda_instancia <- function(query, path){
+  url <- "https://www2.tjal.jus.br/cposg5/search.do"
+  Sys.sleep(2)
+  # Preenchendo o formulário
+  query_GET <- list(`conversationId`="",
+                    `cbPesquisa`="NUMPROC",
+                    `tipoNuProcesso`="UNIFICADO",
+                    `dePesquisaNuUnificado` = query,
+                    `uuidCaptcha`="",
+                    `chNmCompleto`="true",
+                    `pbEnviar`="Pesquisar")
+
+  proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_SEGUNDA.html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url, query = query_GET,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+obter_proc <- function(query, path){
+  primeira_instancia(query, path)
+  segunda_instancia(query, path)
+}
+```
+
+
+```{r Coleta dos htmls}
+path <- "data-raw/"
+
+query <- tjal %>% 
+  select(cnj) %>% 
+  distinct(cnj) %>% 
+  purrr::as_vector()
+
+tabela_verificacao <- purrr::map(query, ~obter_proc(.x, path))
+
+# Arquivos deram erros entao vamos continuar filtrando os casos
+files <- dir("data-raw/", full.names = T)
+files <- files %>% stringr::str_replace_all("[^0-9]", "")
+
+query2 <- query[-which(query %in% files)]
+purrr::map(query2 , ~obter_proc(.x, path))
+
+# Pergunta sobre base
+```
+
+## Parseando os dados
+
+Focar em coletar os assuntos
+
+```{r}
+# Parseando CPOSG
+files_to_parse <- dir("data-raw/", full.names = TRUE, pattern = "07109114520138020001_PRIMEIRA")
+file.size(files_to_parse)
+# MOVIMENTACAO
+node <- files_to_parse[1] %>% xml2::read_html()
+
+parse_mov <- function(node){
+ mov <- node %>% rvest::html_nodes('#tabelaTodasMovimentacoes')
+
+ mov <- mov %>% 
+   html_nodes(xpath = '//tr[@class="fundoClaro"]|//tr[@class="fundoEscuro"]') %>%
+   html_text() %>%
+   stringr::str_trim() %>%
+   stringr::str_replace("\\n", "quebralinhaaqui") %>%
+   as_tibble()  %>%
+   tidyr::separate(value, into= c("data", "movimento"), sep = "(quebralinhaaqui)") %>%
+   tidyr::drop_na()
+ 
+  mov <- mov[stringr::str_detect(mov$data, "[0-9]"),] 
+  
+  mov <- mov %>% 
+    dplyr::mutate(movimento = stringr::str_trim(movimento),
+                  movimento = stringr::str_replace_all(movimento,"\\n|\\t", "")) %>% 
+    tidyr::nest(.key = movimentacao)
+  
+  return(mov)
+}
+
+# DADOS DO PROCESSO
+parse_data_prc <- function(node){
+  
+  prc <- node %>%
+  rvest::html_nodes('.secaoFormBody') %>%
+  rvest::html_table(fill = T) %>% 
+  dplyr::last() %>% 
+  magrittr::set_names(c("key", "val", "delete")) %>% 
+  tidyr::drop_na(val) %>% 
+  select(-delete) %>% 
+  mutate(key = stringr::str_trim(key),
+         key = stringr::str_replace_all(key, "[[:punct:]]", ""),
+         key = stringr::str_replace_all(key, " +", "_"),
+         key = stringr::str_to_lower(key),
+         key = abjutils::rm_accent(key)) %>% 
+  tidyr::spread(key, val) #%>% 
+  #tidyr::unite(ultima_carga, V1, ultima_carga, sep = " \n")
+  
+  prc <- prc %>% tidyr::nest(.key = dados_processo)
+  
+  return(prc)
+}
+
+# PARTES
+
+parse_partes <- function(node){
+  key <- node %>% 
+    rvest::html_nodes(xpath = '//table[@id="tablePartesPrincipais"]//td//span') %>%
+    rvest::html_text() %>% stringr::str_trim() %>% 
+    stringr::str_replace_all("(:).*", "") %>% 
+    stringr::str_to_lower()
+  
+  value <- node %>% 
+    rvest::html_nodes(xpath = '//table[@id="tablePartesPrincipais"]//td//text()') %>%
+    rvest::html_text() %>% stringr::str_trim() %>% 
+    stringr::str_replace_all("(:).*", "") %>%
+    stringr::str_to_lower()
+  
+  value <- value[!(value %in% key)] %>% .[.!= ""]
+  
+  tabela <- tibble(key = key, value = value) %>% 
+    mutate(key = dplyr::case_when(stringr::str_detect(key, "(autora)|(autor)") ~ "autor",
+                                  stringr::str_detect(key, "(advogado)|(advogada)") ~ "advogado",
+                                  T ~ key),
+           key = stringr::str_trim(key),
+         key = stringr::str_replace_all(key, "[[:punct:]]", ""),
+         key = stringr::str_replace_all(key, " +", "_"),
+         key = stringr::str_to_lower(key),
+         key = abjutils::rm_accent(key)) %>% 
+    tidyr::spread(key, value) %>% 
+    tidyr::nest(.key = partes)
+  
+  return(tabela)
+}
+
+# JULGAMENTO
+
+parse_julgamento <- function(node){
+  
+  julgamento <- node %>% rvest::html_nodes(xpath ='(//td[@class="esajCelulaConteudoServico"]//table)[last()-1]') %>%
+    rvest::html_table(fill = T) %>% 
+    dplyr::bind_rows() %>% 
+    magrittr::set_names(c("data", "situacao_julgamento", "decisao")) 
+  
+  julgamento <- julgamento %>% tidyr::nest(.key = julgamento)
+  
+  return(julgamento)
+}
+files <- files_to_parse[1]
+parse_tjal <- function(files){
+  number_proc <- files %>% 
+    stringr::str_extract("data-raw.*") %>% 
+    stringr::str_replace_all("[^0-9]","") %>% 
+    tibble(cnj = .)
+  node <- xml2::read_html(files, enconding = "UTF-8")
+  
+  proc <- parse_data_prc(node)
+  partes <- parse_partes(node)
+  movimentacao <- parse_mov(node)
+  julgamento <- parse_julgamento(node)
+  
+  tab <- dplyr::bind_cols(number_proc,proc, partes, movimentacao, julgamento)
+}
+
+data <- tibble()
+for (i in 1:length(files_to_parse)){
+  node <- xml2::read_html(files_cposg[i], enconding = "UTF-8")
+  
+  proc <- parse_data_prc(node)
+  partes <- parse_partes(node)
+  movimentacao <- parse_mov(node)
+  julgamento <- parse_julgamento(node)
+  
+  data <- dplyr::bind_cols(as_tibble(files_cposg[i]), proc, partes, movimentacao, julgamento) %>% 
+    dplyr::bind_rows(data)
+}
+```
+```{r}
+node %>% rvest::html_nodes(xpath = '//table[@class="secaoFormBody"]//td[@id=""]') %>% rvest::html_text() %>% stringr::str_trim()
+teste <- node %>% rvest::html_nodes(xpath = '//table[@class="secaoFormBody"]//td//span[@class="labelClass"]')
+xml2::xml_siblings(teste)
+node %>% rvest::html_nodes(xpath = '//table[@class="secaoFormBody"]//td//span[@class]') %>% rvest::html_text() %>% stringr::str_trim()
+
+node %>% rvest::html_nodes(xpath = '//table') %>% rvest::html_table(fill = T)
+```
+

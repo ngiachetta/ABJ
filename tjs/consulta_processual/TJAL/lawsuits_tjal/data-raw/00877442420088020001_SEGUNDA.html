@@ -1,0 +1,12664 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+	
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	
+
+
+
+
+
+
+
+
+	<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/sajcas/verificarLogin.js?script=1525878559780"></script>
+
+	<script language="javascript">
+		if(window.sajcas && window.sajcas.usuarioLogadoNoCasServer) {
+			var urlRetornoSistema = '';
+			if(urlRetornoSistema === '') {
+				urlRetornoSistema = window.location.href;
+			}
+
+			if(urlRetornoSistema.lastIndexOf('?') != -1) {
+				urlRetornoSistema += '&';
+			} else {
+				urlRetornoSistema += '?';
+			}
+			urlRetornoSistema+= 'gateway=true';
+			window.location.href = urlRetornoSistema;
+		}
+	</script>
+
+
+	<title>Portal de Serviços e-SAJ</title>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Includes do spw -->
+<link rel="stylesheet" href="/cposg5/css/spw/spwConcatenado.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/esaj.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/saj/saj-captcha.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/saj/saj-popup-modal.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/cpo.css" type="text/css"/>	
+<link rel="stylesheet" href="/cposg5/css/formulario.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/tarjaDoProcesso.css" type="text/css"/>	
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.min.js?n=9fc0cbbd-fc47-4bc3-8839-918e9f5caab0"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.func_toggle.js?n=6942ef9b-d3d8-4a9f-9717-a698953aec6a"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.blockUI.min.js?n=c67abeb5-e46a-4622-8056-44af381fe012"></script>
+<script language="javascript" type="text/javascript" src="/cposg5/js/jquery/jquery.browser.min.js?n=ec06f862-0bd0-4244-8413-dfa848a64922"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-web-2.2.41-4.js?n=5c4a7c13-c3f7-4583-a8b3-bd543f7418c3"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-tooltip.js?n=a1a5566e-4eaf-4066-afcf-cb1e74d5e8b1"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-browser.js?n=3f132628-bd6a-4f03-b2c1-4545276f01d7"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-mascara-input.js?n=c3d4360c-fe8d-43dc-be2f-9be0d3a14a1e"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-numeroProcesso.js?n=02321463-0544-4914-b853-19afbb8d9634"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-popup-modal-1.0.0-1.js?n=ec4a1083-1b30-4882-af47-331f6a32a119"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-popup.js?n=35827283-fc02-437b-b55b-63fab076e893"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/spw/spwConcatenado.js?n=0e0aa4ea-2243-444f-8ebc-73b94cda048f"></script>
+
+ 
+<script>
+	window.saj = window.saj || {};
+	window.saj.env = window.saj.env || {};
+	window.saj.env.root = '/cposg5';
+	window.saj.env.css = '/cposg5/css';
+	window.saj.env.js = '/cposg5/js';
+	window.saj.env.imagens = '/cposg5/imagens';
+
+	window.saj.cpo = window.saj.cpo || {};
+	// transfere variavel se cpo esta rodando para totem
+	window.saj.cpo.totem = 'false' == 'true';
+
+	window.saj.cpo.instanciaConsulta = {
+		SG5: 'true' == 'true',
+		SG5TJ: 'false' == 'true',
+		SG5CR: 'true' == 'true',
+		value: 'SG5CR'
+	}; 
+</script>
+
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj-cpo-cbpesquisa.js?n=3431705058"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/formulario.js?n=541251654"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/acessibilidade/acessibilidade.js?n=4482e7dd-4129-4601-b33c-48e334a1459b"></script>
+	
+
+
+
+
+<script>
+	(function($){
+		$(function(){
+			var intervalo = 115000;
+			$.saj.manterSessao('/cposg5/manterSessao.do', intervalo);
+		});
+				
+	})(jQuery);
+</script>
+
+
+
+
+	
+  	
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+<script>
+	window.saj.cpo = window.saj.cpo || {};
+	window.saj.cpo.urlBaseAcessoRecursoProcessoParaUsuario = '/cposg5/autorizarAcessoRecursoProcessoParaUsuario.do?processoPK.cdProcesso=P000014JQ0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0087744-24.2008.8.02.0001&cdVara=6';
+	window.saj.cpo.urlBaseAcessoRecursoMidiaAudienciaProcessoParaUsuario= '/cposg5/autorizarAcessoRecursoAudienciaGravada.do?processoPK.cdProcesso=P000014JQ0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0087744-24.2008.8.02.0001&cdVara=6';
+	window.saj.cpo.urlBaseAcessoRecursoProcessoComSenha = '/cposg5/autorizarAcessoRecursoProcessoPorSenha.do?processoPK.cdProcesso=P000014JQ0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0087744-24.2008.8.02.0001';
+	window.saj.cpo.abrirAutorizarAcessoRecursoProcessoPorSenha = '/cposg5/abrirAutorizarAcessoRecursoProcessoPorSenha.do?processoPK.cdProcesso=P000014JQ0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0087744-24.2008.8.02.0001';
+</script>
+
+	<script language="javascript" type="text/JavaScript" src="/cposg5/js/acessoRecurso-2.10.2-0.js?n=2841686858"></script>
+	<script language="javascript" type="text/JavaScript" src="/cposg5/js/acessoProcesso-2.10.2-0.js?n=4061028617"></script>
+	
+
+
+
+
+
+
+<script>
+	(function($){
+		$(function(){
+			var intervalo = 50000;
+			$.saj.manterSessao('/cposg5/manterSessao.do', intervalo);
+		});
+				
+	})(jQuery);
+</script>
+
+
+
+
+
+  
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/esajComum.css" rel="stylesheet" type="text/css" />
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/esajLayout.css" rel="stylesheet" type="text/css" />
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/css/esajLayoutAL.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+<!--
+/* botao default means o mais claro, que seria o "botï¿½o principal" */
+.spwBotaoDefault, .spwBotaoDefault-o { 
+	background-image: url(https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/fundoBotaoDefault.gif);
+}
+/* o botao secundario, menos provavel de ser clicado, mais escuro */
+.spwBotao, .spwBotao-o { 
+	background-image: url(https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/fundoBotao.gif);
+}
+-->
+</style>
+
+
+<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/esaj/tema/padrao/js/menu.js?n=2553626853"></script>
+
+<link rel="shortcut icon" href="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/favicon.ico" type="image/x-icon" />
+
+
+	
+
+
+  
+
+	<!-- Correção temporária do alinhamento do divisor de seção de formulário do SPW -->
+	<script type="text/javascript">
+		$(function(){$('td[background$="spw/fundo_subtitulo2.gif"]').attr('valign', 'top')});
+	</script>
+</head>
+
+  
+  <script language="javascript" type="text/JavaScript">
+	$.saj.getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+		}
+	};
+  </script>
+
+  <body>
+  <div class="div-conteudo">
+  	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaCabecalhoCliente" summary=" ">
+	<tr>
+		<td><a href="http://www.tjal.jus.br"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/cabecalhoLogo.jpg" width="433" height="58" alt="Tribunal de Justiça de Alagoas" /></a></td>
+		<td align="right" valign="top"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/cabecalhoImagem.jpg" alt=" " width="353" height="58" /></td>
+	</tr>
+</table>
+	
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+<!-- cabecalho e-Saj -->
+<table width="100%" cellpadding="0" cellspacing="0" class="esajTabelaCabecalhoServico" summary=" ">
+	<tr>
+		<td class="esajCelulaCabecalhoServicoLogo">
+
+
+
+
+<a href="https://www2.tjal.jus.br/esaj/index.jsp"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/eSajServico.gif" title="Voltar para página inicial do e-SAJ" alt="Voltar para página inicial do e-SAJ" width="255" height="53" border="0" /></a><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/eSajServicoInf.gif" alt=" " width="255" height="28" border="0" /></td>
+		<td class="esajCelulaCabecalhoServicoMenu">
+		    <table width="100%" border="0" cellpadding="0" cellspacing="0" summary=" ">
+				<tr>
+					<td align="right">
+
+
+
+
+
+
+
+
+<!-- Devido ao alinhamento inline das imagens, elas não podem ter nenhum tipo de espaçamento entre elas, portanto é necessário finalizar a linha iniciando um comentário e fechar o comentário imediatamente antes da abertura da nova tag-->
+<img height="24" width="47" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/inicioMenuSup.jpg"/><a href="https://www2.tjal.jus.br/caixapostal"><!--
+--><img height="24" width="83" border="0" alt="Caixa postal" src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/caixaPostal.gif"/></a><!--
+--><img height="24" width="4" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSeparador.jpg"/><a href="https://www2.tjal.jus.br/esaj/cadastro.do"><!--
+--><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/cadastro.gif" alt="Cadastro" width="81" height="24" border="0" /></a><!--
+
+
+    --><img height="24" width="4" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSeparador.jpg"/><a target="blank" href="https://www2.tjal.jus.br/WebHelp/"><!--
+    --><img height="24" width="61" border="0" alt="Ajuda do e-Saj" src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/ajuda.gif"/></a><!--
+
+
+--></td>
+				</tr>
+				<tr>
+					<td class="esajCelulaIdentificacaoServico" >
+
+
+
+
+<style>
+
+    td.esajCelulaIdentificacao, td.esajCelulaIdentificacaoServico {
+        position: relative;
+    }
+
+    button.escolhaBeta {
+        border: solid 1px #aeaeae;
+        background: #aeaeae;
+        color: #fff;
+        margin-right: 5px;
+        font-family: verdana;
+        font-size: 10px;
+        height: 21px;
+        text-transform: uppercase;
+        line-height: 20px;
+        border-radius: 10px;
+        text-shadow: 1px 1px 1px #797979;
+        position: absolute;
+        top: 33px;
+        right: 3px;
+        padding: 0 19px;
+
+        letter-spacing: 1px;
+    }
+
+    button.escolhaBeta:hover {
+        background-color: #6c6c6c;
+    }
+
+</style>
+
+<span id="identificacao"></span>
+
+<button style="display: none" class="escolhaBeta"></button>
+
+
+
+
+    
+    
+        <script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/sajcas/conteudoIdentificacao?script=1523836554347"></script>
+    
+
+</td>
+				</tr>
+				<tr>
+					<td class="esajCelulaCabecalhoServicoCaminho" >
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<a href="" class="esajCaminhoLink"></a>
+
+ &gt;
+
+
+<a href="https://www2.tjal.jus.br/esaj/portal.do?servico=740000" class="esajCaminhoLink">Bem-vindo</a>
+
+ &gt;
+
+
+<a href="https://www2.tjal.jus.br/esaj/portal.do?servico=190090" class="esajCaminhoLink">Consultas Processuais</a>
+
+ &gt;
+
+
+
+Consulta de Processos de 2º Grau
+</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- CONTEUDO -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaTitulo">
+	<tr>
+		<td class="esajCelulaMenuSuspenso">
+		<a href="#" onclick="return showMenuSuspenso()"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSuspenso.gif" alt="Menu de servi&ccedil;os" width="243" height="21" style="display:block" /></a>
+		<div id="layerMenu" style="display:none">
+			
+
+<!-- MENU -->
+<ul id="esajMenuArea">
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas Processuais</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas de 1º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/abrirConsultaCustas.do">Consulta de Custas</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=1&flTipoCusta=0&cdServicoCalculoCusta=690003">Custas Iniciais</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=15&flTipoCusta=5&cdServicoCalculoCusta=690004">Atos Avulsos</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=10&flTipoCusta=1&cdServicoCalculoCusta=690005">Custas de Preparo/ Apelação</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=14&flTipoCusta=0&cdServicoCalculoCusta=690006">Custas Juizado Especial - Recurso Inominado</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=3&flTipoCusta=1&cdServicoCalculoCusta=690009">Custas Intermediárias</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas de 2º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/abrirConsultaCustasSg.do">Consulta de Custas SG</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustasSg.do?cdServicoCalculoCusta=690205&flTipoCusta=0&cdTipoCusta=1">Custas Iniciais SG</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consultas Processuais</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cpopg/open.do">Consulta de Processos de 1º Grau</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consulta de Ordem de Processos</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cop/abrirConsultaDeOrdemDeJulgamentoPg.do">Consulta de processos de Ordem de julgamento do 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cop/abrirConsultaDeOrdemDeAtoPg.do">Consulta de Ordem de Publicação e Cumprimento de Atos</a></li>
+</ul>
+  </li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cposg5/open.do">Consulta de Processos de 2º Grau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consulta de Temas de Repercussão Geral e Casos Repetitivos</a>
+<ul>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consultas de Jurisprudência</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cjsg/consultaSimples.do">Consulta Simples</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cjsg/consultaCompleta.do">Consulta Completa</a></li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cdje">Diário da Justiça Eletrônico</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Push</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushpg">Push - Primeiro Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushsg3">Push - Segundo Grau - Físico</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushsg5">Push - Segundo Grau - Digital</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Certidões</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Certidões de 1º grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirCadastro.do">Cadastro de Pedido de Certidão de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirConferencia.do">Conferência de Certidão de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirDownload.do">Download de Certidão de 1º Grau</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Conferência de Documento Digital</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pastadigital/pg/abrirConferenciaDocumento.do">Conferência de Documento Digital do 1ºGrau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pastadigital/sg/abrirConferenciaDocumento.do">Conferência de Documento Digital do 2ºGrau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Intimações e Citações On-line</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/intimacoesweb/abrirConsultaAtosRecebidos.do">Consulta de Intimações Recebidas</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/intimacoesweb/abrirConsultaAtosNaoRecebidos.do">Recebimento de Intimações Eletrônicas</a></li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cpoesajsg/pcpoOrgaosJulgadores.jsp">Consulta da Pauta de Julgamento - Cível</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de 1º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirNovaPeticaoInicial.do">Peticionamento Inicial de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirVerificacaoRequisitosPet.do">Verificação de Requisitos</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirConsultaPeticoes.do">Consulta de Petições de 1º Grau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de Turmas Recursais / Plantão (2º Grau)/ Precatórios</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirNovaPeticaoInicial.do">Peticionamento Inicial - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirConsultaPeticoes.do">Consulta de Petições - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de 2º Grau (Tribunal de Justiça)</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirNovaPeticaoInicial.do">Peticionamento Inicial de 2º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário de 2º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirConsultaPeticoes.do">Consulta de Petições de 2º Grau</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cposg5pauta/pcpoOrgaosJulgadores.jsp">Consulta da Pauta de Julgamento - Criminal</a></li>
+</ul>
+
+		</div>
+		</td>
+		<td class="esajCelulaTituloServico"><h1 class="esajTituloPagina">Consulta de Processos de 2º Grau</h1></td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" summary=" ">
+	<tr>
+		<td class="esajCelulaConteudoServico" >
+		
+	
+
+
+  
+
+
+
+        	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="consultarProcessoForm" method="GET" action="/cposg5/search.do" autocomplete="off" enctype="" onsubmit="return applySubmit(this, eval('function spwSubmit(t, e){decodificaInputMulSelOnSubmit();if (!IS_enableSubmit) return false; return BENV_isCamposValidos(t); } spwSubmit(this, event);'));" id="formularioConsulta" target="">
+	<input type="hidden" name="conversationId" value="">
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+		
+			
+		
+		
+	
+	
+	<div class="">
+		
+			<br/>
+			
+			
+				
+				
+					
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+				
+					<h2 class="subtitle">
+						Dados para Pesquisa
+						
+					</h2>
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+				
+			
+			<br/>
+		
+		<table id="secaoFormConsulta" class="secaoFormBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+			
+			
+			
+			
+			<input type="hidden" name="paginaConsulta" value="0">
+			
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="cbPesquisa" class="" style="text-align:right;font-weight:bold;;">Pesquisar por:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+				
+
+
+
+
+
+
+
+
+
+<select name="cbPesquisa" id="cbPesquisa"><option value="NUMPROC" selected="selected">Número do Processo</option>	
+	
+ 		<option value="NMPARTE">Nome da parte</option>	
+	
+ 		<option value="DOCPARTE">Documento da Parte</option>	
+	
+ 		<option value="NMADVOGADO">Nome do Advogado</option>	
+	
+ 		<option value="NUMOAB">OAB</option></select>
+
+			
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+			
+			
+				
+					
+						
+							
+							
+								
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+	 
+		
+	
+	 
+		
+	
+	
+	
+	
+	
+	
+		<script>$.saj.numeroProcesso.desabilitarNumeroOculto = false;</script>	
+	
+	
+		
+	
+
+	
+		
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			if($.browser.msie){
+				$('.grupoRadio').find('input:radio:visible:enabled').attr('aria-required','');
+				return;
+			}
+			$('.grupoRadio').attr('aria-required','').attr('required','');
+		});
+	})(jQuery);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				<fieldset class="grupoRadio" style="margin:0;padding:0;border:none" >
+					<legend style="display:block;font-size:0;">
+						Tipo do número
+					</legend>
+					
+			   <input type="radio" name="tipoNuProcesso" value="UNIFICADO" checked="checked" id="radioNumeroUnificado"><label for="radioNumeroUnificado">Unificado</label>
+			   <input type="radio" name="tipoNuProcesso" value="SAJ" id="radioNumeroAntigo"><label for="radioNumeroAntigo">Outros</label>
+			
+				</fieldset>				
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NUMPROC" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="" style="text-align:right;font-weight:bold;;">Número do Processo:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="linhaProcessoUnificado">
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+ 
+<input type="text" name="numeroDigitoAnoUnificado" maxlength="25" size="20" value="" formatType="TEXT" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" id="numeroDigitoAnoUnificado">
+<input type="text" id="JTRNumeroUnificado" size="3" disabled="disabled" value="8.02"/>
+<input type="text" name="foroNumeroUnificado" maxlength="4" size="3" value="" formatType="TEXT" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" id="foroNumeroUnificado">
+<input type="hidden" name="dePesquisaNuUnificado" value="00877442420088020001" id="nuProcessoUnificadoFormatado">
+
+
+<script>
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var mascaraNumeroUnificado = saj.mascaraNumeroUnificado;
+			var $campoNumeroDigitoAnoUnificado = $('#numeroDigitoAnoUnificado');
+			var $campoForoNumeroUnificado = $('#foroNumeroUnificado');
+			var $campoJTRNumeroUnificado = $('#JTRNumeroUnificado');
+			saj.configurarMascaraInput($campoForoNumeroUnificado, '0000');
+			saj.configurarMascaraInput($campoNumeroDigitoAnoUnificado, mascaraNumeroUnificado, $campoForoNumeroUnificado,{
+				afterPaste: afterPaste			
+			});
+			saj.bindCamposNumeroProcesso('');
+			
+				var conteudoToolTip = '';
+				if(!conteudoToolTip){
+					conteudoToolTip = '<div style="width: 500px;" ><div><b>Número de Processo Unificado</b></div><div>O sistema disponibiliza facilidades no preenchimento do número unificado, seu formato é NNNNNNN-DD.AAAA.J.TR.OOOO:</div><div style="padding-top: 3px;"><b>NNNNNNN</b>: Caso o número possua zeros à esquerda o sistema preenche-os automaticamente, basta informar o número e o dígito "-" ou ".". Exemplo: ao informar "310-" o sistema irá preencher "0000310-".</div><div><b>DD</b>     : Deve ser preenchido pelo usuário.</div><div><b>AAAA</b>   : Ao informar dois dígitos para o ano o sistema completa o mesmo, basta pressionar a tecla Tab. Exemplo: ao informar "08" e "Tab" o sistema irá preencher "2008".</div><div><b>J.TR</b>    : São números fixos preenchidos pelo sistema.Exemplo: 8.99.</div><div><b>OOOO</b>   : Caso o número possua zeros à esquerda o sistema preenche-os automaticamente, basta informar o número pressionar a tecla Tab. Exemplo: ao informar "10" e "Tab" o sistema irá preencher "0010".</div></div>';
+				}
+				$('#numeroDigitoAnoUnificado, #foroNumeroUnificado').registrarTooltip({
+					conteudoTooltip: conteudoToolTip,
+					localImagensTooltip: '/cposg5/imagens/saj',
+					offsetHorizontalExtra: '',
+					offsetVertficalExtra: '',
+					urlConteudoTooltip: '',
+					posicaoTooltip: '',
+					objReferenciaPosicaoTooltip:$campoForoNumeroUnificado
+				});
+			
+		});		
+		
+		var afterPaste = function(textoOriginal) {
+			var texto = getDigits(textoOriginal);
+			if (!texto || texto.length < 16) {
+				return;
+			}
+			
+			var jtr = $('#JTRNumeroUnificado').val();
+			jtr = getDigits(jtr);
+			var jtrDigitado = texto.substring(13,16);
+			var foroUnificado;
+			//pega os 4 ultimos digitos, e caso o jtr colado for o mesmo, coloca os 4 no campo de foro unificado
+			//se o jtr for diferente nao coloca nada no campo de foro unificado
+			if (jtr == jtrDigitado) {
+				foroUnificado = texto.substring(16,texto.length);
+			} else {
+				foroUnificado = '';
+			}
+			
+			var numeroDigitoAno = texto.substring(0,13);
+			var $numeroDigitoAno = $('#numeroDigitoAnoUnificado');
+			$numeroDigitoAno.val(numeroDigitoAno);
+			
+			var $foroNumeroUnificado = $('#foroNumeroUnificado');
+			$foroNumeroUnificado.val(foroUnificado);
+			$foroNumeroUnificado.trigger('blur');
+			$foroNumeroUnificado.focus();
+		};
+		
+		var getDigits = function(texto) {
+			return texto.replace(/[^0-9]/g, '');
+		};
+		$('#numeroDigitoAnoUnificado').attr('aria-label','Número do processo. Informe os treze primeiros dígitos do número do processo.');
+		$('#foroNumeroUnificado').attr('aria-label','Informe os quatro últimos dígitos do número do processo.');
+	})(jQuery);
+	
+</script>
+
+	
+	
+	
+	    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'nuProcessoAntigoFormatado';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="linhaProcessoAntigo">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="25" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="nuProcessoAntigoFormatado" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+					
+				
+				
+			
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+		
+	
+
+							
+						
+					
+					
+					
+				
+			
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NMPARTE" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="dePesquisaNmParte" class="" style="text-align:right;font-weight:bold;;">Nome da parte:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+											
+							<label for="campo_NMPARTE" style="display:block;font-size:0;">Nome da parte</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NMPARTE';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled spwCampoTexto" id="campo_NMPARTE" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+<span id="">
+	<label for="id_tag.checkbox.nomecompleto.rotulo">
+		<input type="checkbox" name="chNmCompleto" value="true" checked="checked" disabled="disabled" style="vertical-align:middle;" id="id_tag.checkbox.nomecompleto.rotulo">
+		Pesquisar por nome completo
+	</label>
+</span>
+
+							
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+					
+					
+				
+			
+				
+					
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="DOCPARTE" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="chNmCompleto" class="" style="text-align:right;font-weight:bold;;">Documento da Parte:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+							<label for="campo_DOCPARTE" style="display:block;font-size:0;">Documento da Parte</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_DOCPARTE';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="campo_DOCPARTE" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+						
+					
+				
+			
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NMADVOGADO" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="dePesquisaNmParte" class="" style="text-align:right;font-weight:bold;;">Nome do Advogado:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+											
+							<label for="campo_NMADVOGADO" style="display:block;font-size:0;">Nome do Advogado</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NMADVOGADO';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled spwCampoTexto" id="campo_NMADVOGADO" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+<span id="">
+	<label for="id_tag.checkbox.nomecompleto.rotulo">
+		<input type="checkbox" name="chNmCompleto" value="true" checked="checked" disabled="disabled" style="vertical-align:middle;" id="id_tag.checkbox.nomecompleto.rotulo">
+		Pesquisar por nome completo
+	</label>
+</span>
+
+							
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+					
+					
+				
+			
+				
+					
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NUMOAB" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="chNmCompleto" class="" style="text-align:right;font-weight:bold;;">OAB:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+							<label for="campo_NUMOAB" style="display:block;font-size:0;">OAB</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NUMOAB';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="campo_NUMOAB" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+						
+					
+				
+			
+			
+			
+			
+		  	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input id="uuidCaptcha" type="hidden" name="uuidCaptcha" value=""/>
+
+
+
+	
+		</table>
+	</div>
+	
+	
+	
+
+
+  	
+
+
+
+
+
+
+
+
+
+
+
+	<table id="" class="secaoBotoesBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+		<tr>
+ 			
+ 				<td width="150">&nbsp;</td>
+ 			
+			<td align="">
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<input type="submit" name="pbEnviar" value="Pesquisar" onclick="" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" class="spwBotaoDefault " id="botaoPesquisar">
+
+		  	
+  	
+			</td>
+		</tr>
+	</table>
+
+		
+  	
+  	<script>
+		$(function(){
+			$('input#botaoPesquisar').bind('click', function(){
+				$('input[name="paginaConsulta"]').val(1);
+			});
+		});  	
+  	</script>
+
+</form>
+
+
+
+
+		
+	   
+		
+			
+				
+					
+			  		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+<script type="text/javascript">
+	(function($) {
+		$(function(){
+			var captcha = $.saj.getUrlParameter('uuidCaptcha');
+			var url = $('.processoPrinc').attr('href');
+			$('.processoPrinc').attr('href', url+'&uuidCaptcha='+captcha);
+		})
+	})(jQuery);
+</script>
+
+<input type="hidden" name="cdProcesso" value="P000014JQ0000"/>
+
+<!-- pasta digital -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+		
+			
+		
+		
+	
+	
+	<div class="">
+		
+			<br/>
+			
+			
+				
+				
+					
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+				
+					<h2 class="subtitle">
+						Dados do Processo
+						
+					</h2>
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+				
+			
+			<br/>
+		
+		<table id="" class="secaoFormBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+			
+
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Processo:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+			<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<span id="" class="">0087744-24.2008.8.02.0001</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+-->
+			
+
+
+
+<!-- Atributos -->
+
+
+
+
+
+
+
+	
+
+
+
+	
+	
+		<span class="">
+			0087744-24.2008.8.02.0001
+		</span>
+		<span class="" >
+			(020.12.008415-1)
+		</span>
+	
+
+
+			
+				<span style="color: red;">Baixado</span>
+			
+			
+		
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Classe:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<span id="" class="">Apelação</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+		
+			
+			
+		
+	
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Área :</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+		Criminal
+	
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Assunto:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Crimes do Sistema Nacional de Armas</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Origem:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Comarca de Maceió / Foro de Maceió / 6ª Vara Criminal da Capital</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="nuOrigem" class="labelClass" style="text-align:right;font-weight:bold;;">Números de origem:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+		0087744-24.2008.8.02.0001 
+		
+	
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Distribuição:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Presidência</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Relator:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">DES. WASHINGTON LUIZ D. FREITAS</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Revisor:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">DES. JOÃO LUIZ AZEVEDO LESSA</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Volume / Apenso:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">2 / 0</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Outros números:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">0087744-24.2008.8.02.0001, 2012.008415-1</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Última carga:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+			<span class="labelClass">Origem:</span> DAAJUC / DAAJUC.&nbsp;
+			<span class="labelClass">Remessa:</span> 18/06/2015
+		
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+			<span class="labelClass">Destino:</span> Foro de Origem / Maceió.&nbsp;
+			<span class="labelClass">Recebimento:</span> 18/06/2015 
+		
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+	
+			
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+
+		</table>
+	</div>
+	
+	
+	
+
+
+
+			  	
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Apensos / Vinculados
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+	<!--  Tabela de (apensos) -->
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+		
+			
+			
+				<tr>
+					 <td colspan="3" align="left" >Não há processos apensos ou vinculados para este processo.</td> 
+				</tr>
+			
+		
+	</table>
+	<!-- Tabela de (apensos) -->
+	
+
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Números de 1ª Instância
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+
+<table  style="margin-left:15px; margin-top:1px;"  align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+  
+  	
+  	
+  		<tr>
+			<td colspan="3" align="left" >Não há números de 1ª instância para este processo.</td> 
+		</tr>
+  	
+  
+</table>
+
+
+
+<table style="margin-left:15px; margin-top:1px;"  align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+			
+</table>
+
+			  	
+			  	
+			
+	  	
+			
+				
+				
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Partes do Processo
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+
+<!--  cabecalho da tabela de lista (partes) -->
+
+
+<!--  dados da lista partes principais (partes) -->
+<table id="tablePartesPrincipais" style="margin-left:15px; margin-top:1px;" align="center" border="0" cellPadding="0" cellSpacing="0" width="98%">
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Apelante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Cícero Paes Ferro
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Bruno Soriano Cardoso<input type="hidden" value="7040AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Apelado:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Ministério Público
+	     
+      
+ 	  
+	  
+      
+  	 </td>
+</tr> 
+
+	
+</table>	
+
+
+
+			  	
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+		  			
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+		
+		
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Movimentações
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+	<div id="divLinksTituloBlocoMovimentacoes">
+		
+
+
+
+
+
+
+
+
+
+
+
+<input id="mensagemNaoExibidamovimentacoes" type="hidden" value="Exibindo todas as movimentações." />  
+<input id="linkNaoExibidomovimentacoes" type="hidden" value="Listar somente as 5 últimas." />  
+	
+<span id="mensagensExibindomovimentacoes" class="mensagemExibindo">Exibindo 5 últimas.</span> &nbsp; <a id="linkmovimentacoes" href="javascript:" class="linkNaoSelecionado" ><span id="setasDireitamovimentacoes" class="setasDireita" >&gt;&gt;</span>Listar todas as movimentações.</a>
+
+<script>
+	$(function() {
+		var controlarLink = function() {
+			var $linkNaoExibido = $('input#linkNaoExibidomovimentacoes');
+			var conteudoLinkNaoApresentado = $linkNaoExibido.val();
+			var $link = $('a#linkmovimentacoes');
+			
+			$linkNaoExibido.val($link.html());
+			$link.html(conteudoLinkNaoApresentado);
+		};
+
+		var controlarMensagem = function() {
+			var $mensagemNaoExibida = $('input#mensagemNaoExibidamovimentacoes');
+			var $spanMensagem = $('span#mensagensExibindomovimentacoes');
+			var mensagemExibida = $spanMensagem.html();
+			var mensagemNaoExibida = $mensagemNaoExibida.val();
+			
+			$spanMensagem.html(mensagemNaoExibida);
+			$mensagemNaoExibida.val(mensagemExibida);
+		};
+
+		var controlarMensagemLink = function() {
+			controlarMensagem();
+			controlarLink();
+		};
+		
+		var esconderElementosExtrasMostrarDefault = function() {
+			$('#tabelaTodasMovimentacoes').hide();
+			$('#tabelaUltimasMovimentacoes').show();
+		};
+
+		var mostrarElementosExtrasEsconderDefault = function() {
+			$('#tabelaUltimasMovimentacoes').hide();
+			$('#tabelaTodasMovimentacoes').show();
+		};
+
+		var initPagina = function() {
+			var setasDireita = '<span id="setasDireitamovimentacoes" class="setasDireita">&gt;&gt;</span>';
+			var $linkEscondido = $('input#linkNaoExibidomovimentacoes');
+			$linkEscondido.val(setasDireita+$linkEscondido.val());
+		};
+
+		var bindLink = function() {
+			var $link = $('a#linkmovimentacoes');
+			$link.funcToggle('click', mostrarElementosExtrasEsconderDefault, esconderElementosExtrasMostrarDefault);
+			$link.bind('click', controlarMensagemLink);
+		};
+
+		initPagina();
+		bindLink();
+		esconderElementosExtrasMostrarDefault();
+	});
+</script>
+
+	</div> 
+
+ 
+	
+
+<table  style="margin-left:15px; margin-top:1px;" align="center" border="0" cellPadding="0" cellSpacing="0" width="98%">
+	
+		
+			<thead>
+				<tr> 
+				  <th width="120" class="label" style="vertical-align: bottom">Data</th>
+				  <th vAlign="middle" width="20" aria-hidden="true">&nbsp;</th>
+				  <th vAlign="middle"  class="label">Movimento</th>
+				</tr>
+				<tr class="fundoEscuro" height="2" aria-hidden="true">
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+
+			
+			<tbody id="tabelaUltimasMovimentacoes">
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Baixa a 6&ordf; Vara Criminal da Capital/ Macei&oacute;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Vara de Origem - Baixa Definitiva
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Baixa a 6&ordf; Vara Criminal da Capital/ Macei&oacute;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta da PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+			</tbody>
+			
+			
+			<tbody style="display: none;" id="tabelaTodasMovimentacoes">
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Baixa a 6&ordf; Vara Criminal da Capital/ Macei&oacute;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Vara de Origem - Baixa Definitiva
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Baixa a 6&ordf; Vara Criminal da Capital/ Macei&oacute;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta da PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Vista / Intimação à PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria da Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Encaminhado para Secretaria da Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/04/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; 2015.00600486-5 Agravo de Instrumento em Recurso Especial</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				26/03/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Disponibilizada decis&atilde;o de p&aacute;ginas 501-503 no DJE de 16/03/2015.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				02/03/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Decisão ou Despacho Não-Admissão
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				02/03/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				26/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=122" name="M" cdDocumento="122">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=122" name="M" cdDocumento="122">
+	        			Recurso Especial não admitido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Tribunal de Justi&ccedil;a Gabinete da Presid&ecirc;ncia Recurso Especial em Apela&ccedil;&atilde;o n.&ordm; 0087744-24.2008.8.02.0001 Recorrente: C&iacute;cero Paes FerroAdvogado: Bruno Soriano Cardoso (OAB: 7040/AL)Recorrido: Minist&eacute;rio P&uacute;blico DECIS&Atilde;O Trata-se de Recurso Especial interposto por C&iacute;cero Paes Ferro (fls. 174/187), com fundamento no art. 105, III, al&iacute;nea a, da Constitui&ccedil;&atilde;o Federal, o qual se insurge contra decis&atilde;o proferida pela C&acirc;mara Criminal desta Corte. O Recorrente, no bojo de suas raz&otilde;es impugnativas, afirma que houve viola&ccedil;&atilde;o ao artigo 44, I e II, do C&oacute;digo Penal, bem como a tese supralegal de excludente de culpabilidade pela incid&ecirc;ncia de inexigibilidade de conduta diversa. Apresentadas as contrarraz&otilde;es por parte do Recorrido, este pugna, primeiramente, pelo seu n&atilde;o conhecimento e, no m&eacute;rito, por seu improvimento (fls. 495/498). Logo ap&oacute;s, voltaram-me os autos conclusos para ju&iacute;zo de admissibilidade. &Eacute; o relat&oacute;rio. Fundamento e decido. Cumpre notar, de pronto, o preenchimento dos requisitos gen&eacute;ricos, objetivos e subjetivos de admissibilidade do presente Recurso Especial, porquanto comprovada sua tempestividade, cabimento, regularidade formal, legitimidade das partes, interesse de agir e inexist&ecirc;ncia de fato impeditivo ou extintivo do poder de recorrer. Al&eacute;m disso, nos termos do entendimento do Superior Tribunal de Justi&ccedil;a, em respeito ao princ&iacute;pio da ampla defesa, o presente recurso n&atilde;o est&aacute; sujeito a deser&ccedil;&atilde;o por aus&ecirc;ncia de preparo (Processo HC 98065/MA. Relator(a) Ministro JORGE MUSSI (1138) &Oacute;rg&atilde;o Julgador T5 - QUINTA TURMA Data do Julgamento 21/09/2010). N&atilde;o obstante, como &eacute; cedi&ccedil;o, a interposi&ccedil;&atilde;o dos recursos excepcionais pressup&otilde;e o esgotamento das vias ordin&aacute;rias. Assim sendo, os Recursos Extraordin&aacute;rio e Especial implicam a exist&ecirc;ncia de um julgado contra o qual j&aacute; foram esgotadas as possibilidades de impugna&ccedil;&atilde;o na inst&acirc;ncia ordin&aacute;ria, requisito que se encontra preenchido no caso. Seguindo com as exig&ecirc;ncias legais, exige-se a demonstra&ccedil;&atilde;o da incid&ecirc;ncia de uma das hip&oacute;teses constitucionais de cabimento autorizadoras de seu manejo, no caso, o art. 105, III, al&iacute;nea a, da Constitui&ccedil;&atilde;o do Brasil. Passemos a analis&aacute;-la. O Recorrente alega viola&ccedil;&atilde;o ao artigo 44, I e II, do CP, referente a possibilidade de substitui&ccedil;&atilde;o da pena privativa de liberdade por restritiva de direito, todavia, esta tese n&atilde;o foi discutida em sede do recurso de apela&ccedil;&atilde;o, portanto, resta ausente o pressuposto do prequestionamento. Entendimento contr&aacute;rio representaria afronta ao que disp&otilde;e o art. 105, III, da Constitui&ccedil;&atilde;o, o qual prev&ecirc; a compet&ecirc;ncia do Superior Tribunal de Justi&ccedil;a para &quot;'julgar, em recurso especial, as causas decididas, em &uacute;nica ou &uacute;ltima inst&acirc;ncia[...]&quot;. Interessante mencionar que o Supremo Tribunal Federal, tratando de Recurso Extraordin&aacute;rio, j&aacute; sumulou este entendimento (S&uacute;mula 282. &Eacute; inadmiss&iacute;vel o recurso extraordin&aacute;rio, quando n&atilde;o ventilada, na decis&atilde;o recorrida, a quest&atilde;o federal suscitada), e o Superior Tribunal de Justi&ccedil;a j&aacute; decidiu que esta S&uacute;mula se aplicaria aos Recursos Especiais, inclusive quanto &agrave; hip&oacute;tese do diss&iacute;dio jurisprudencial (AgRg no REsp 954.083/SE, Rel. Ministro ARNALDO ESTEVES LIMA, PRIMEIRA TURMA, julgado em 24/08/2010, DJe 01/09/2010). Quanto a tese de excludente de culpabilidade pela incid&ecirc;ncia de inexigibilidade de conduta diversa, compulsando os autos, percebe-se que o Recorrente n&atilde;o indicou quais dispositivos de lei federal o Ac&oacute;rd&atilde;o guerreado teria violado, cometendo defici&ecirc;ncia fundamental do pleito recursal. Nesse sentido, &eacute; aplic&aacute;vel a esp&eacute;cie a S&uacute;mula 284, do Superior Tribunal Federal, a teor: &quot;&Eacute; inadmiss&iacute;vel o recurso extraordin&aacute;rio, quando a defici&ecirc;ncia na sua fundamenta&ccedil;&atilde;o n&atilde;o permitir a exata compreens&atilde;o da controv&eacute;rsia&quot;. Corroborando com os argumentos acima, segue recente julgado do pr&oacute;prio Superior Tribunal de Justi&ccedil;a, in verbis: ADMINISTRATIVO. PROCESSUAL CIVIL. AUS&Ecirc;NCIA DE INDICA&Ccedil;&Atilde;O DE INFRA&Ccedil;&Atilde;O A DISPOSITIVO LEGAL. S&Uacute;MULA 284/STF. REVIS&Atilde;O DOS DANOS MORAIS E DO QUANTUM INDENIZAT&Oacute;RIO. IMPOSSIBILIDADE. S&Uacute;MULA 7/STJ. 1. Na hip&oacute;tese dos autos, a recorrente deixou de particularizar o dispositivo de lei infraconstitucional tido por violado, o que caracteriza a defici&ecirc;ncia na fundamenta&ccedil;&atilde;o do recurso interposto com fulcro na al&iacute;nea &quot;a&quot; do permissivo constitucional, raz&atilde;o pela qual o conhecimento do apelo especial encontra &oacute;bice na S&uacute;mula 284 do Supremo Tribunal Federal. 2. Ademais o Tribunal de origem afirmou que a CEDAE n&atilde;o se desincumbiu do &ocirc;nus de comprovar a higidez do servi&ccedil;o por ela prestado de modo a justificar a cobran&ccedil;a de tarifa. Dessa forma, o reexame dos fundamentos da inst&acirc;ncia ordin&aacute;ria encontra &oacute;bice na S&uacute;mula 7/STJ, em raz&atilde;o da necessidade de revis&atilde;o do conjunto f&aacute;tico-probat&oacute;rio dos autos. Agravo regimental improvido. (AgRg no AREsp 421.167/RJ, Rel. Ministro HUMBERTO MARTINS, SEGUNDA TURMA, julgado em 11/02/2014, DJe 20/02/2014). Dessa forma, os requisitos essenciais do art. 105, inciso III, al&iacute;nea a, da CF/88 n&atilde;o foram cumpridos e, portanto, imp&otilde;e-se o ju&iacute;zo de inadmissibilidade do presente Recurso Especial. Transitada em julgado a presente decis&atilde;o, remetam-se os autos &agrave; Vara de Origem para que adotem as provid&ecirc;ncias cab&iacute;veis. Publique-se. Intimem-se. Macei&oacute;, 10 de fevereiro de 2015. Des. Washington Luiz D. Freitas Presidente</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Washington Luiz D. Freitas</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=119" name="M" cdDocumento="119">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=119" name="M" cdDocumento="119">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Recurso Especial em Apela&ccedil;&atilde;o n&ordm; 0087744-24.2008.8.02.0001 Relator: Des. Washington Luiz D. Freitas Recorrente : C&iacute;cero Paes FerroAdvogado: Bruno Soriano Cardoso (OAB: 7040/AL)Recorrido : Minist&eacute;rio P&uacute;blico CONCLUS&Atilde;O Fa&ccedil;o estes autos conclusos ao Excelent&iacute;ssimo Senhor Desembargador Desembargador Washington Luiz Damasceno Freitas - Presidente. Macei&oacute;, 6 de fevereiro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntado protocolo n&ordm; 2015.00600167-6, referente ao processo 0087744-24.2008.8.02.0001/90005 - Contrarraz&otilde;es</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/02/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta da PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Vista / Intimação à PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=113" name="M" cdDocumento="113">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=113" name="M" cdDocumento="113">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">VISTA Fa&ccedil;o vista destes autos &agrave; Procuradoria Geral de Justi&ccedil;a do Estado de Alagoas, contendo 2 volumes com 492 folhas, para ci&ecirc;ncia do despacho de fl. 490. Macei&oacute;, 27 de janeiro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios Fernanda Luiza de Albuquerque Brasil Lins T&eacute;cnica Judici&aacute;ria</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				26/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Disponibilizado despacho de fl. 190 no DJE de 26/01/2015.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				23/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Despacho
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">&quot;Intime-se o Recorrido para apresentar contrarraz&otilde;es...&quot;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				23/01/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=108" name="M" cdDocumento="108">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=108" name="M" cdDocumento="108">
+	        			Proferido despacho de mero expediente
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Recurso Especial em Apela&ccedil;&atilde;o n&ordm; 0087744-24.2008.8.02.0001 Recorrente: C&iacute;cero Paes FerroAdvogado: Bruno Soriano Cardoso (OAB: 7040/AL)Recorrido: Minist&eacute;rio P&uacute;blico DESPACHO Intime-se o Recorrido para apresentar contrarraz&otilde;es ao Recurso Especial, observado o prazo legal, na conformidade do disposto pelo artigo 508 c/c o artigo 542, ambos do C&oacute;digo de Processo Civil. Deixo de abrir vista ao Minist&eacute;rio P&uacute;blico face o exposto na Resolu&ccedil;&atilde;o n.&ordm; 16 do Conselho Nacional do Minist&eacute;rio P&uacute;blico. Publique-se e intime-se. Macei&oacute;, 17 de dezembro de 2014. Des. Jos&eacute; Carlos Malta Marques Presidente do Tribunal de Justi&ccedil;a do Estado de Alagoas</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				11/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Jos&eacute; Carlos Malta Marques</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=105" name="M" cdDocumento="105">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=105" name="M" cdDocumento="105">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Fa&ccedil;o estes autos conclusos ao Excelent&iacute;ssimo Senhor Desembargador Jos&eacute; Carlos Malta Marques - Presidente. Macei&oacute;, 4 de dezembro de 2014 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios Jo&atilde;o Alves da Silva Analista Judici&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Interposto Recurso Especial
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Recurso Especial interposto em 27/11/14</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/12/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=101" name="M" cdDocumento="101">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=101" name="M" cdDocumento="101">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTID&Atilde;O/REMESSA Certifico para os devidos fins, que houve interposi&ccedil;&atilde;o de Recurso Especial ou (protocolado sob n&ordm; 2014.00603266-1 271114 1159 36) ao Ac&oacute;rd&atilde;o de 05 de novembro de 2014,disponibilizado no D.J.E de 12.11.2014, &agrave;s p&aacute;ginas 116-128, em favor do recorrente C&Iacute;CERO PAES FERRO, &agrave;s p&aacute;gs.174-187. Certifico mais, que nesta data, fa&ccedil;o remessa dos autos em ep&iacute;grafe &agrave; DAAJUC, contendo 188 p&aacute;ginas. Macei&oacute;, 3 de dezembro de 2014 Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntado protocolo n&ordm; 2014.00603266-1, referente ao processo 0087744-24.2008.8.02.0001/90004 - Recurso Especial Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				26/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada do Of. 2463/2014 do Procurador Geral de Justi&ccedil;a</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				14/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				13/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				13/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=96" name="M" cdDocumento="96">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=96" name="M" cdDocumento="96">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO que no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do Estado de Alagoas de 12.11.2014, &agrave;s p&aacute;gs. 116 &agrave; 128, foi disponibilizado a conclus&atilde;o do venerando Ac&oacute;rd&atilde;o de 05.11.2014, Conferido em 05.11.2014, em conformidade com o art. 506 inciso III do C&oacute;digo de Processo Civil. c/c o art. 4&ordm; da Lei 11.419. O referido &eacute; verdade, dou f&eacute;.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				11/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=95" name="M" cdDocumento="95">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=95" name="M" cdDocumento="95">
+	        			Ofício Expedido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Of&iacute;cio TJ/SCC N&ordm;.2463 Macei&oacute;, 11 de novembro de 2014 Ref. Apela&ccedil;&atilde;o n&ordm; 0087744-24.2008.8.02.0001 (f&iacute;sico) A Sua Excel&ecirc;ncia o Senhor Doutor Dilmar Lopes Camerino Procurador de Justi&ccedil;a Assunto: Ci&ecirc;ncia do Ac&oacute;rd&atilde;o. Sess&atilde;o Ordin&aacute;ria: 05/11/14 Senhor Procurador, De ordem do(a) Excelent&iacute;ssimo(a) Des. Fernando Tourinho de Omena Souza, dou ci&ecirc;ncia a Vossa Excel&ecirc;ncia do inteiro teor do venerando Ac&oacute;rd&atilde;o, proferido nos autos do Apela&ccedil;&atilde;o n&ordm;.0087744-24.2008.8.02.0001 da Comarca de Foro de Macei&oacute;, em que figuram como Apelante: C&iacute;cero Paes Ferro e como Apelado: Minist&eacute;rio P&uacute;blico, cuja c&oacute;pia segue anexa.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=92" name="M" cdDocumento="92">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=92" name="M" cdDocumento="92">
+	        			Conhecido o recurso de
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CONCLUS&Atilde;O: Vistos, relatados e discutidos estes autos de Apela&ccedil;&atilde;o Criminal, ACORDAM os Desembargadores componentes da C&acirc;mara Criminal do Tribunal de Justi&ccedil;a do Estado de Alagoas, &agrave; unanimidade de votos, em CONHECER, parcialmente do presente recurso, reconhecendo a falta de interesse recursal da pretens&atilde;o atinente ao concurso material entre condutas para, no m&eacute;rito, por id&ecirc;ntica vota&ccedil;&atilde;o, NEGAR-LHE PROVIMENTO, mantendo inc&oacute;lume a Senten&ccedil;a combatida. Participaram do julgamento os Desembargadores mencionados na respectiva certid&atilde;o. Macei&oacute;, 05 de novembro de 2014 Fernando Tourinho de Omena Souza Desembargador-Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=94" name="M" cdDocumento="94">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=94" name="M" cdDocumento="94">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que a C&acirc;mara Criminal, em sess&atilde;o Ordin&aacute;ria hoje realizada, julgou os presentes autos, tendo decidido: Retorno de vista do Des. Jo&atilde;o Luiz Azevedo Lessa - sess&atilde;o 11.09.2014, o qual nesta sess&atilde;o declarou acompanhar o voto do relator. Tendo a C&acirc;mara Criminal decidido: &agrave; unanimidade de votos, em conhecer parcialmente do presente recurso, reconhecendo a falta de interesse recursal da pretens&atilde;o atinente ao concurso material entre condutas para, no m&eacute;rito, por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento, mantendo inc&oacute;lume a Senten&ccedil;a combatida. O Exmo, Sr. Des. Ot&aacute;vio Le&atilde;o Praxedes impedido de funcionar neste julgamento, raz&atilde;o pela qual funcionou convocado o Exmo. Sr. Des. F&aacute;bio Jos&eacute; Bittencourt de Ara&uacute;jo.Tomaram parte no julgamento:Des. Fernando Tourinho de Omena Souza, Des. Jo&atilde;o Luiz Azevedo Lessa, Des. Sebasti&atilde;o Costa Filho, Des. Ot&aacute;vio Le&atilde;o Praxedes e Des. F&aacute;bio Jos&eacute; Bittencourt Ara&uacute;jo. Presidiu a sess&atilde;o o Exmo. Senhor Des. Fernando Tourinho de Omena Souza. Para constar lavro a presente certid&atilde;o, do que dou f&eacute;. Macei&oacute;, 05 de novembro de 2014. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=91" name="M" cdDocumento="91">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=91" name="M" cdDocumento="91">
+	        			Voto - Vista
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">VOTO VISTA Trata-se de apela&ccedil;&atilde;o criminal, interposta por C&iacute;cero Paes Ferro, irresignado com a senten&ccedil;a que o condenou a 03 (tr&ecirc;s) anos de reclus&atilde;o, a ser cumprida no regime aberto, e a pena pecuni&aacute;ria de 50 (cinquenta) dias-multa, &agrave; raz&atilde;o de 1/30 (um trig&eacute;simo) do sal&aacute;rio m&iacute;nimo vigente &agrave; &eacute;poca do fato, devidamente corrigido. Adoto o relat&oacute;rio j&aacute; produzido pelo relator. Passo a votar. Inicialmente, cumpre-me esclarecer que o pedido de vista foi formulado a fim de estudar a mat&eacute;ria com mais afinco. Dessa forma, ap&oacute;s bem analisar o caso concreto, entendo que a irresigna&ccedil;&atilde;o recursal n&atilde;o deve prosperar, tendo em vista que, em primeiro plano, n&atilde;o h&aacute; se falar em concurso de crimes, j&aacute; que o Ju&iacute;zo de piso afastou sua incid&ecirc;ncia. No que remanesce, com rela&ccedil;&atilde;o as causas supra legais de exclus&atilde;o da culpabilidade, n&atilde;o comungo com o pensamento do apelante. Ora, n&atilde;o &eacute; com arsenal composto por 07 (sete) armas (duas pistolas de uso restrito e tr&ecirc;s escopetas, sendo uma sem numera&ccedil;&atilde;o aparente), com carregadores e cartuchos, que se pretender&aacute; proteger, de amea&ccedil;as e atentados, sua vida e de seus familiares. Aqui a razoabilidade restou extrapolada. Assim, sob minha &oacute;tica, a expectativa do perigo alegado pelo recorrente n&atilde;o autoriza o porte em desacordo com as determina&ccedil;&otilde;es da legisla&ccedil;&atilde;o. Outrossim, sendo o crime em tela de mera conduta e de perigo abstrato, vejo que o eminente relator abordou com parcim&ocirc;nia todos os meandros da contenda, motivo pelo qual, por quest&atilde;o de coer&ecirc;ncia no julgados, acompanho o relator. &Agrave; titulo de complementa&ccedil;&atilde;o, colaciono os seguintes julgados a respeito das alega&ccedil;&otilde;es do recorrente: PENAL. AGRAVO REGIMENTAL EM AGRAVO EM RECURSO ESPECIAL. PORTE ILEGAL DE ARMA DE FOGO. CONDUTA T&Iacute;PICA. CRIME DE MERA CONDUTA OU DE PERIGO ABSTRATO. AC&Oacute;RD&Atilde;O A QUO EM CONSON&Acirc;NCIA COM A JURISPRUD&Ecirc;NCIA DESTE TRIBUNAL. S&Uacute;MULA 83/STJ. 1. &Eacute; irrelevante estar a arma desmuniciada ou aferir sua efic&aacute;cia para configura&ccedil;&atilde;o do tipo penal de porte ilegal de arma de fogo, por se tratar de delito de mera conduta e de perigo abstrato, cujo objeto imediato &eacute; a seguran&ccedil;a coletiva. Precedentes. 2. Agravo regimental improvido. (STJ - AgRg no AREsp: 473457 SP 2014/0032180-9, Relator: Ministro SEBASTI&Atilde;O REIS J&Uacute;NIOR, Data de Julgamento: 13/05/2014, T6 - SEXTA TURMA, Data de Publica&ccedil;&atilde;o: DJe 02/06/2014) RECURSO ORDIN&Aacute;RIO EM HABEAS CORPUS. CONSTITUCIONAL. PENAL. PORTE ILEGAL DE ARMA DE FOGO. JULGADO DO SUPERIOR TRIBUNAL DE JUSTI&Ccedil;A EM CONSON&Acirc;NCIA COM A JURISPRUD&Ecirc;NCIA DO SUPREMO TRIBUNAL FEDERAL. ARMA DESMUNICIADA. TIPICIDADE DA CONDUTA. PRECEDENTES. 1. O crime de porte ilegal de arma de fogo de uso permitido &eacute; de mera conduta e de perigo abstrato, ou seja, consuma-se independentemente da ocorr&ecirc;ncia de efetivo preju&iacute;zo para a sociedade, e a probabilidade de vir a ocorrer algum dano &eacute; presumida pelo tipo penal. Al&eacute;m disso, o objeto jur&iacute;dico tutelado n&atilde;o &eacute; a incolumidade f&iacute;sica, mas a seguran&ccedil;a p&uacute;blica e a paz social, sendo irrelevante o fato de estar a arma de fogo municiada ou n&atilde;o. Precedentes. 2. Recurso ao qual se nega provimento. (STF - RHC: 116666 ES , Relator: Min. C&Aacute;RMEN L&Uacute;CIA, Data de Julgamento: 25/06/2013, Segunda Turma, Data de Publica&ccedil;&atilde;o: DJe-156 DIVULG 09-08-2013 PUBLIC 12-08-2013) Ademais, a douta Procuradoria Geral de Justi&ccedil;a opinou pelo improvimento do apelo, em parecer de n. 1023/2013, do qual passo a transcrever trecho elucidativo: O Minist&eacute;rio P&uacute;blico de 1&ordm; grau, pugna pela manuten&ccedil;&atilde;o da condena&ccedil;&atilde;o, destacando no seu arrazoado a n&atilde;o incid&ecirc;ncia, no caso, da tese defensiva, o que merece transcri&ccedil;&atilde;o: &quot;Demais, a inaceitabilidade de tal tese se agiganta quando se verifica que o r&eacute;u, &agrave; &eacute;poca dos fatos ensejadores deste processo, gozava de not&aacute;vel prote&ccedil;&atilde;o estatal, com v&aacute;rios policiais militares ao seu dispor. Essa circunst&acirc;ncia foi atestada pelo r&eacute;u e pelas testemunhas ouvidas em ju&iacute;zo, as quais, inclusive, contavam entre os policiais que faziam a prote&ccedil;&atilde;o estatal predita&quot; (fls. 325). [...] Em verdade a tese da inexigibilidade de conduta diversa, como causa supra legal de exclus&atilde;o da culpabilidade, por ser pol&ecirc;mica, s&oacute; excepcionalmente tem sido admitida pelos Tribunais, sendo a regra, a sua inadmissibilidade. Assim, tendo o desembargador relator tratado com maestria todos os temas trazidos a aprecia&ccedil;&atilde;o, nada tenho a reparar em seu judicioso voto. Amparado em meu posicionamento no julgamento anterior (ac&oacute;rd&atilde;o de fls. 408/415), no posicionamento da douta Procuradoria Geral de Justi&ccedil;a (fls. 396/397) e dos votos que me antecederam (fl. 458), acompanho o relator em sua totalidade, pelo IMPROVIMENTO do apelo, mantendo inc&oacute;lume a senten&ccedil;a vergastada. &Eacute; como voto. Macei&oacute;, 05 de novembro de 2014 Jo&atilde;o Luiz Azevedo Lessa Desembargador</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo para a Mesa
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/11/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo Julgado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Retorno de vista do  des. Jo&atilde;o Luiz Azevedo Lessa - sess&atilde;o 11.09.2014, o qual nesta sess&atilde;o declarou acompanhar o voto do relator. Tendo a C&acirc;mara Criminal decidido: &agrave; unanimidade de votos, em CONHECER, parcialmente do presente recurso, reconhecendo a falta de interesse recursal da pretens&atilde;o atinente ao concurso material entre condutas para, no m&eacute;rito, por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento, mantendo inc&oacute;lume a Senten&ccedil;a combatida. O Exmo, Sr. Des. Ot&aacute;vio Le&atilde;o Praxedes impedido de funcionar neste julgamento, raz&atilde;o pela qual funcionou convocado o Exmo. Sr. Des. F&aacute;bio Jos&eacute; Bittencourt de Ara&uacute;jo.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=88" name="M" cdDocumento="88">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=88" name="M" cdDocumento="88">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">TERMO DE CERTID&Atilde;O Certifico que, nos termos do Ato Normativo n&ordm; 01/2012, o presente processo foi inclu&iacute;do na pauta de julgamento do dia 5 de novembro 2014, disponibilizado no Di&aacute;rio de Justi&ccedil;a Eletr&ocirc;nico no dia 30 de outubro 2014, &agrave;s p&aacute;gs. 77-80, tendo sido a mesma afixada no mural informativo jurisdicional desta Corte de Justi&ccedil;a. Macei&oacute;, 30 de outubro de 2014 Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=85" name="M" cdDocumento="85">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=85" name="M" cdDocumento="85">
+	        			Despacho do Magistrado que pediu vista - pedindo dia para julgamento
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">D E S P A C H O Estando o processo em ordem, pe&ccedil;o inclus&atilde;o na pauta de julgamento subsequente. Macei&oacute;, 29 de outubro de 2014 Jo&atilde;o Luiz Azevedo Lessa Desembargador</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete - Vista
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Jo&atilde;o Luiz Azevedo Lessa</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				11/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete - Vista
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				11/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=81" name="M" cdDocumento="81">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=81" name="M" cdDocumento="81">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que a C&acirc;mara Criminal, em sess&atilde;o hoje realizada, os presentes autos, teve o julgamento suspenso em virtude do PEDIDO DE VISTA do Exmo. Sr. Des. Jo&atilde;o Luiz Azevedo Lessa, ap&oacute;s o lan&ccedil;ado voto do Exmo. Sr. Relator, nos seguintes temos: em tomar conhecimento em parte do recurso, para no m&eacute;rito por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento. O Exmo. Sr. Des. F&aacute;bio Jos&eacute; Bittencourt de Ara&uacute;jo, acompanhou o voto do relator Des. Fernando Tourinho de Omena Souza, que em sess&atilde;o plen&aacute;ria acolheu a sugest&atilde;o do Des. Convocado. Impedidos para funcionar neste feito os Exmos. Srs. Des. Sebasti&atilde;o Costa Filho e Des. Ot&aacute;vio Le&atilde;o Praxedes. Tomaram parte no julgamento:Des. Fernando Tourinho de Omena Souza, Des. Jo&atilde;o Luiz Azevedo Lessa. Presidiu a sess&atilde;o o Exmo. Senhor. Para constar lavro a presente certid&atilde;o, do que dou f&eacute;. Macei&oacute;, 10 de setembro de 2014. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Adiado Por Vista
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Julgamento suspenso em virtude do PEDIDO DE VISTA do Exmo. Sr. Des. Jo&atilde;o Luiz Azevedo Lessa, ap&oacute;s o lan&ccedil;ado voto do Exmo. Sr. Relator, nos seguintes temos: em tomar conhecimento em parte do recurso , para no m&eacute;rito por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento. O Exmo. Sr. Des. Fabio Jos&eacute; Bittencourt de Ara&uacute;jo, acompanhou o voto do relator Des. Fernando Tourinho de Omena Souza, que em sess&atilde;o plen&aacute;ria acolheu a sugest&atilde;o do Des. Convocado. Impedidos para funcionar neste julgamento os Exmos. Srs. Des. Sebasti&atilde;o Costa Filho e Des. Ot&aacute;vio Le&atilde;o Praxedes. Pr&oacute;xima pauta: 05/11/2014 09:00</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=79" name="M" cdDocumento="79">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=79" name="M" cdDocumento="79">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">TERMO DE CERTID&Atilde;O Certifico que, nos termos do Ato Normativo n&ordm; 01/2012, o presente processo foi inclu&iacute;do na pauta de julgamento do dia 10 de setembro de 2014, disponibilizado no Di&aacute;rio de Justi&ccedil;a Eletr&ocirc;nico no dia 4 de setembro de 2014, &agrave;s p&aacute;gs. 106-108, tendo sido a mesma afixada no mural informativo jurisdicional desta Corte de Justi&ccedil;a. Macei&oacute;, 4 de setembro de 2014 Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incluído em pauta
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Para 10/09/2014</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/08/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/08/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/08/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/08/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=74" name="M" cdDocumento="74">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=74" name="M" cdDocumento="74">
+	        			Determinada Requisição de Informações
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DESPACHO 01. Evidenciado &agrave; fl. 401 que o presente processo j&aacute; foi submetido ao procedimento de revis&atilde;o, remetam-se os autos &agrave; Secretaria da C&acirc;mara Criminal para fins de inclus&atilde;o em pauta de julgamento. 02. Cumpra-se. Macei&oacute;, 28 de agosto de 2014 Fernando Tourinho de Omena Souza Desembargador-Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/07/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Fernando Tourinho de Omena Souza</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/07/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				15/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				13/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/02/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Fernando Tourinho de Omena Souza</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/02/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/02/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/02/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta da PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				31/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				31/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Vista / Intimação à PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				14/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Fernando Tourinho de Omena Souza</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				14/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				14/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; 2014.00600129-0 Embargos de Declara&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				13/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">OF. TJ/SCC N&ordm; 003/2014, com o ciente do Procurador em 10/01/2014.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				09/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=57" name="M" cdDocumento="57">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=57" name="M" cdDocumento="57">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO que no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do Estado de Alagoas de 08/01/2014, &agrave;s p&aacute;gs. 24/38, foi disponibilizado a conclus&atilde;o do venerando Ac&oacute;rd&atilde;o de 18/12/2013, em conformidade com o art. 506 inciso III do C&oacute;digo de Processo Civil. c/c o art. 4&ordm; da Lei 11.419. O referido &eacute; verdade, dou f&eacute;. Macei&oacute;, 09 de janeiro de 2014.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=56" name="M" cdDocumento="56">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=56" name="M" cdDocumento="56">
+	        			Ofício Expedido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Of&iacute;cio TJ/SCC N&ordm; 003/2014 Macei&oacute;, 7 de janeiro de 2014 Ref. Apela&ccedil;&atilde;o n&ordm; 0087744-24.2008.8.02.0001 A Sua Excel&ecirc;ncia o Senhor Doutor Dilmar Lopes Camerino Procurador de Justi&ccedil;a Criminal Assunto: Ci&ecirc;ncia do Ac&oacute;rd&atilde;o. Sess&atilde;o Ordin&aacute;ria: 18.12.2013 Senhor Procurador, De ordem do(a) Excelent&iacute;ssimo(a) Des. Fernando Tourinho de Omena Souza, dou ci&ecirc;ncia a Vossa Excel&ecirc;ncia do inteiro teor do venerando Ac&oacute;rd&atilde;o, proferido nos autos do Apela&ccedil;&atilde;o n&ordm;.0087744-24.2008.8.02.0001 da 6&ordf; Vara Criminal da Capital, em que figura como Apelante: C&iacute;cero Paes Ferro, cuja c&oacute;pia segue anexa. Respeitosamente, Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;rio (a)C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/01/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=55" name="M" cdDocumento="55">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=55" name="M" cdDocumento="55">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que a C&acirc;mara Criminal, em sess&atilde;o Ordin&aacute;ria hoje realizada, julgou os presentes autos, tendo decidido: &Agrave; unanimidade de votos, em conhecer do recurso, para no m&eacute;rito por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento, mantendo inc&oacute;lume a Senten&ccedil;a combatida, nos termos do voto do Relator. Funcionou convocado para compor o quorum da C&acirc;mara neste julgamento o Exmo. Sr. Des. Tutm&eacute;s Airan de Albuquerque Melo, em virtude do impedimento do Exmo. Sr. Des. Ot&aacute;vio Le&atilde;o Praxedes, bem como da suspei&ccedil;&atilde;o declarada pelo Exmo. Sr. Des. Sebasti&atilde;o Costa Filho. Tomaram parte no julgamento:Des. Fernando Tourinho de Omena Souza, Des. Jo&atilde;o Luiz Azevedo Lessa e Des. Tutm&eacute;s Airan de Albuquerque Melo, convocadopara compor o quorum neste julgamento. Presidiu a sess&atilde;o o Exmo. Senhor Des. Fernando Tourinho de Omena Souza. Para constar lavro a presente certid&atilde;o, do que dou f&eacute;. Macei&oacute;, 18 de dezembro de 2013. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=53" name="M" cdDocumento="53">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=53" name="M" cdDocumento="53">
+	        			Conhecido o recurso de
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Apela&ccedil;&atilde;o n.&ordm; 0087744-24.2008.8.02.0001 Crimes do Sistema Nacional de Armas C&acirc;mara Criminal Relator:Des. Fernando Tourinho de Omena Souza Apelante: C&iacute;cero Paes FerroAdvogado: Bruno Soriano Cardoso (OAB: 7040/AL)Apelado: Minist&eacute;rio P&uacute;blico</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo Julgado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">&Agrave; unanimidade de votos, em conhecer do recurso, para no m&eacute;rito por id&ecirc;ntica vota&ccedil;&atilde;o, negar-lhe provimento, mantendo inc&oacute;lume a Senten&ccedil;a combatida, nos termos do voto do Relator. Funcionou convocado para compor o quorum da C&acirc;mara neste julgamento , o Exmo. Sr. Des. Tutm&eacute;s Airan de Albuquerque Melo, em virtude do impedimento do Exmo. Sr. Des. Ot&aacute;vio Le&atilde;o Praxedes, bem como da suspei&ccedil;&atilde;o declarada pelo Exmo. Sr. Des. Sebasti&atilde;o Costa Filho.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incluído em pauta
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Para 18/12/2013</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				11/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Retirado de Pauta
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">RETIRADO DE PAUTA  a pedido do Relator, em virtude da declarada supei&ccedil;&atilde;o do Exmo. Sr. Des. Sebasti&atilde;o Costa Filho, bem como do impedimento do Exmo. Sr. Des. Ot&aacute;vio Le&atilde;o Praxedes.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=49" name="M" cdDocumento="49">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=49" name="M" cdDocumento="49">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico para os devidos fins, que o julgamento dos autos em ep&iacute;grafe foi ADIADO para a sess&atilde;o &agrave; realizar-se no dia 11.12.2013, atendendo o pedido do caus&iacute;dico Bruno Soriano Cardoso. Certifico mais, que fa&ccedil;o juntada aos autos do requerimento interposto pelo representante legal da parte apelante. Para constar lavro a presente certid&atilde;o, do que dou f&eacute;. Macei&oacute;, 04 de dezembro de 2013. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				04/12/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Adiado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Julgamento  ADIADO, a pedido da defesa do apelante, o qual deferido pelo Relator. Por uanimidade  de votos, ficou desigando o julgamento deste feito para a pauta  &agrave; realizar-se no dia 11.12.2013. Pr&oacute;xima pauta: 11/12/2013 09:00</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=47" name="M" cdDocumento="47">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=47" name="M" cdDocumento="47">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que, nos termos do Ato Normativo n&ordm; 01/2012, o presente processo foi inclu&iacute;do na pauta de julgamento do dia 04 de dezembro 2013, disponibilizado no Di&aacute;rio de Justi&ccedil;a Eletr&ocirc;nico no dia 28 de novembro 2013, tendo sido a mesma afixada no mural informativo jurisdicional desta Corte de Justi&ccedil;a.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incluído em pauta
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Para 04/12/2013</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Pautar
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=43" name="M" cdDocumento="43">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=43" name="M" cdDocumento="43">
+	        			Solicitação de dia para Julgamento - Revisor
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DESPACHO: 1. Concordo com o relat&oacute;rio. 2. Pe&ccedil;o dia para julgamento. 25 de novembro de 2013 Des. Jo&atilde;o Luiz Azevedo Lessa Revisor (a)</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				22/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Revisor
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Jo&atilde;o Luiz Azevedo Lessa</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				22/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Revisor
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				22/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=40" name="M" cdDocumento="40">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=40" name="M" cdDocumento="40">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Nesta data fa&ccedil;o concluso os presentes autos, ao Excelent&iacute;ssimo Senhor Desembargador Revisor Jo&atilde;o Luiz Azevedo Lessa , contendo 02 (dois) volumes, com 402 p&aacute;ginas. Macei&oacute;, 21 de novembro de 2013 Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;riA C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				21/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Encaminhar ao Revisor
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remessa para Secretaria de Câmara Encaminhar ao Revisor
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/11/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=37" name="M" cdDocumento="37">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=37" name="M" cdDocumento="37">
+	        			Relatório
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">RELAT&Oacute;RIO 01. Trata-se de recurso apelat&oacute;rio interposto por C&iacute;cero Paes Ferro contra senten&ccedil;a proferida pelo Ju&iacute;zo da 6&ordf; Vara Criminal da Capital (fls. 339/346), que o condenou pela pr&aacute;tica do crime preconizado no art. 16, par&aacute;grafo &uacute;nico, inciso IV, da Lei n&ordm; 10.826/03, &agrave; pena privativa de liberdade de 3 (tr&ecirc;s) anos de reclus&atilde;o, a ser cumprida no regime aberto, mais pena pecuni&aacute;ria de 50 (cinquenta) dias-multa, &agrave; raz&atilde;o de 1/30 (um trig&eacute;simo) do sal&aacute;rio m&iacute;nimo vigente &agrave; &eacute;poca do fato, devidamente corrigido. 02. Em suas raz&otilde;es de fls. 376/385, o r&eacute;u suscitou a tese supralegal de inexigibilidade de conduta diversa, como excludente de culpabilidade; a impossibilidade de condena&ccedil;&atilde;o em concurso material entre porte e posse ilegal de arma de fogo; e a n&atilde;o confronta&ccedil;&atilde;o das provas colhidas em sede de instru&ccedil;&atilde;o processual com as produzidas no inqu&eacute;rito policial. 03. Devidamente intimado, o Minist&eacute;rio P&uacute;blico apresentou suas contrarraz&otilde;es de fl. 388, ratificando o entendimento esposado em sede de alega&ccedil;&otilde;es finais, em que havia pugnado pela condena&ccedil;&atilde;o do r&eacute;u nos termos da den&uacute;ncia. 04. Remetidos os autos &agrave; Procuradoria Geral de Justi&ccedil;a, foi ofertado o Parecer n&ordm; 1023/2013 (fls. 396/397), opinando pelo conhecimento e n&atilde;o provimento do apelo. 05. &Eacute;, em s&iacute;ntese, o Relat&oacute;rio. 06. Remetam-se os autos ao Desembargador-Revisor. Macei&oacute;, 20 de novembro de 2013 Fernando Tourinho de Omena Souza Desembargador-Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Fernando Tourinho de Omena Souza</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=33" name="M" cdDocumento="33">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=33" name="M" cdDocumento="33">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">JUNTADA E CONCLUS&Atilde;O Junto aos presentes autos o parecer da Procuradoria Geral de Justi&ccedil;a n&ordm; 1.023/2013, e os fa&ccedil;o conclusos nesta data ao Excelent&iacute;ssimo Senhor Des. Fernando Tourinho de Omena Souza - Relator, contendo 02(dois) volume(s), com 400 folhas. Macei&oacute;,19 de agosto de 2013. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;ria da C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta da PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Vista / Intimação à PGJ
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=29" name="M" cdDocumento="29">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=29" name="M" cdDocumento="29">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Em cumprimento ao Despacho p&aacute;gs. 393, fa&ccedil;o vista destes autos &agrave; Procuradoria Geral de Justi&ccedil;a do Estado de Alagoas, contendo 2 volumes, com 394 folhas.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=26" name="M" cdDocumento="26">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=26" name="M" cdDocumento="26">
+	        			Proferido despacho de mero expediente
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DESPACHO 01. Em conson&acirc;ncia com o disposto nos arts. 368 e 369 do Regimento Interno deste Tribunal de Justi&ccedil;a, d&ecirc;-se vista dos autos &agrave; Procuradoria de Justi&ccedil;a, para emiss&atilde;o de parecer, no prazo legal. 02. Transcorrido o prazo ou prestada a devida manifesta&ccedil;&atilde;o, retornem-me os autos conclusos, com urg&ecirc;ncia. Macei&oacute;, 07 de agosto de 2013 Fernando Tourinho de Omena Souza Desembargador Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				06/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">
+Des. Fernando Tourinho de Omena Souza</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para o Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=23" name="M" cdDocumento="23">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=23" name="M" cdDocumento="23">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">REMESSA Nesta data, fa&ccedil;o remessa destes autos ao Exmo. Des. Fernando Tourinho de Omena Souza - Relator, contendo 02 (dois) volumes, com 392 folhas. Macei&oacute;, 5 de agosto de 2013. Bel&ordf;. Maria Laura de Almeida Albuquerque Calheiros Secret&aacute;rio(a) C&acirc;mara Criminal</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/08/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Volta do Foro de Origem
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/02/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebidos os autos
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/02/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Encaminhado à Vara de Origem em Diligência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">6&ordf; Vara Criminal da Capital</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/02/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=18" name="M" cdDocumento="18">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=18" name="M" cdDocumento="18">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada das raz&otilde;es de apela&ccedil;&atilde;o em favor de C&Iacute;CERO PAES FERRO, e fa&ccedil;o remessa em Dilig&ecirc;ncia nesta data estes autos, ao Exmo(a). Sr(a). Dr(a). Juiz(a) da 6&ordf; Vara Criminal da Capital, contendo 02 (dois) volumes, com 386 p&aacute;ginas.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/02/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntado protocolo n&ordm; 2013.00600065-7, referente ao processo 0087744-24.2008.8.02.0001/90000 - Peti&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/02/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria de Câmara para Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				23/01/2013
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remetido para a Secretaria de Câmara Cumprir
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">EM VIRTUDE DA APRESENTA&Ccedil;&Atilde;O DAS RAZ&Otilde;ES PELO ADVOGADO EM 11.01.2013</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				22/11/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Vista ao advogado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Bruno Soriano Cardoso</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				22/11/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Ato Ordinátório
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Ato Ordinat&oacute;rio do Chefe de Gabinete: &quot;Intime-se o Apelante para apresentar as raz&otilde;es de recurso. A seguir voltem os autos ao Ju&iacute;zo de origem para que seja intimado o Minist&eacute;rio P&uacute;blico a fim de apresentar as contrarraz&otilde;es&quot;. (Disponibilizado no DJE do dia 16/11/12, &agrave;s fls. 74/75) </span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/11/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pela Secretaria
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/11/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remessa à Secretaria
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				07/11/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Recebido pelo Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				31/10/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Remessa ao Gabinete do Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/10/2012
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo distribuído por sorteio
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+			</tbody>
+
+		
+		
+	
+</table>
+			  	
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+		  			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Incidentes, ações incidentais, recursos e execuções de sentenças
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+	
+		
+		    <tr class="label" >
+		    	<th width="140" style="text-align:left">
+					Recebido em
+				</th>
+				
+				<th width="*" >Classe</th>
+		    </tr>
+		    <tr class="fundoEscuro" height="2" aria-hidden="true">
+		    	
+				<td></td><td></td>
+			</tr>
+			
+				<tr class="fundoClaro">
+					<td width="140"  style="text-align:left">
+						13/01/2014
+					</td>
+					
+
+
+
+
+
+
+<td width="*">
+	<a href="/cposg5/show.do?processo.codigo=P000014JQ12KW&uuidCaptcha=&processo.foro=900" target="_top">
+		Embargos de Declaração
+		
+			 - 50000
+		
+		
+	</a>
+</td>
+
+				</tr>        
+			
+				<tr class="fundoEscuro">
+					<td width="140"  style="text-align:left">
+						07/04/2015
+					</td>
+					
+
+
+
+
+
+
+<td width="*">
+	<a href="/cposg5/show.do?processo.codigo=P000014JQ12KX&uuidCaptcha=&processo.foro=900" target="_top">
+		Agravo de Instrumento em Recurso Especial
+		
+			 - 50001
+		
+		
+	</a>
+</td>
+
+				</tr>        
+			
+		
+		
+	
+</table>
+<!--  incidentes -->
+
+
+			  	
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+		  			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Petições diversas
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<!--  Tabela de petições diversas -->
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+	
+		
+			<thead>
+			    <tr class="label" > 
+			      <th width="140"  style="text-align:left">Data</th>
+			      <th width="*" >Tipo</th>
+			    </tr>
+			    <tr class="fundoEscuro" height="2" aria-hidden="true">
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							11/01/2013
+						</td>
+						<td width="*">
+							Petição<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoEscuro"> 
+						<td width="140"  style="text-align:left">
+							16/08/2013
+						</td>
+						<td width="*">
+							Petição<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							10/12/2013
+						</td>
+						<td width="*">
+							Petição<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoEscuro"> 
+						<td width="140"  style="text-align:left">
+							27/11/2014
+						</td>
+						<td width="*">
+							Recurso Especial Criminal<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							05/02/2015
+						</td>
+						<td width="*">
+							Contrarrazões<br/>
+							
+						</td>
+					</tr>
+				
+			</tbody>
+		
+		
+	
+</table>
+<!--  Tabela de petições diversas -->
+
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Composição do Julgamento
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+	
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		<tr class="label"> 
+		  <td width="140">Participação</td>
+		  <td >Magistrado</td>
+		</tr>
+		<tr class="fundoEscuro" height="2">
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	
+	
+	
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      1º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Desembargador Fernando Tourinho de Omena Souza&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      Revisor
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. João Luiz Azevedo Lessa&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      2º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Sebastião Costa Filho&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      3º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Otávio Leão Praxedes&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      4º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Fábio José Bittencourt Araújo&nbsp;
+		    </td>
+		  </tr>
+		
+	</table>
+	
+
+
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Julgamentos
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+  
+  	
+	  <tr class="label"> 
+	    <td align="left" valign="top" width="150" >Data</td>
+		<td align="left" valign="top" width="220" >Situação do julgamento</td>
+		<td align="left" valign="top" width="*" >Decisão</td>
+	  </tr>
+	  <tr class="fundoEscuro" height="2">
+		<td></td>
+		<td></td>
+		<td></td>
+	  </tr>
+  	
+  	
+  
+</table>
+
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		
+		  <tr class="fundoClaro"> 
+		    <td valign="top" align="left" valign="top" width="150">
+		      05/11/2014
+			</td>
+			<td align="left" valign="top" width="220"">
+		      Julgado
+		    </td>
+			<td align="left" valign="top" width="*">
+		      Retorno de vista do  des. João Luiz Azevedo Lessa - sessão 11.09.2014, o qual nesta sessão declarou acompanhar o voto do relator. Tendo a Câmara Criminal decidido: à unanimidade de votos, em CONHECER, parcialmente do presente recurso, reconhecendo a falta de interesse recursal da pretensão atinente ao concurso material entre condutas para, no mérito, por idêntica votação, negar-lhe provimento, mantendo incólume a Sentença combatida. O Exmo, Sr. Des. Otávio Leão Praxedes impedido de funcionar neste julgamento, razão pela qual funcionou convocado o Exmo. Sr. Des. Fábio José Bittencourt de Araújo.
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro"> 
+		    <td valign="top" align="left" valign="top" width="150">
+		      18/12/2013
+			</td>
+			<td align="left" valign="top" width="220"">
+		      Julgado
+		    </td>
+			<td align="left" valign="top" width="*">
+		      À unanimidade de votos, em conhecer do recurso, para no mérito por idêntica votação, negar-lhe provimento, mantendo incólume a Sentença combatida, nos termos do voto do Relator. Funcionou convocado para compor o quorum da Câmara neste julgamento , o Exmo. Sr. Des. Tutmés Airan de Albuquerque Melo, em virtude do impedimento do Exmo. Sr. Des. Otávio Leão Praxedes, bem como da suspeição declarada pelo Exmo. Sr. Des. Sebastião Costa Filho.
+		    </td>
+		  </tr>
+		
+</table>
+
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+	  	<br/>
+	  	<br/>
+	  	
+	
+	
+		
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<table id="" class="secaoBotoesBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+		<tr>
+ 			
+			<td align="center">
+			 
+	<input type="button" name="" value="Voltar para os resultados da pesquisa" onclick="javascript:history.go(-1);" disabled="disabled" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" class="disabled">
+	
+	
+
+			</td>
+		</tr>
+	</table>
+
+
+ 
+		
+	
+	
+	
+        
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaRodape" summary=" ">
+    <tr>
+        <td class="esajCelulaRodapeCentro">
+            Desenvolvido pela Softplan em parceria com o Tribunal de Justiça de Alagoas
+            
+        </td>
+    </tr>
+</table>
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/saj-popup-modal.css" rel="stylesheet" type="text/css">
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/popup-beta.css" rel="stylesheet" type="text/css">
+
+
+
+<script>
+    appEsajLayout = {
+        botaoNovaVersao: 'Nova versão',
+        botaoVersaoAnterior: 'Versão anterior',
+        tituloNovaVersao: 'Nova versão do Portal e-SAJ!',
+        tituloVersaoAnterior: 'Versão anterior',
+        tituloCertificadoDigital: 'Certificado digital',
+        cliente: 'AL',
+
+        emailParaContato: '',
+        utilizarBotaoContato: 'false',
+        contexto: 'https://www2.tjal.jus.br/esaj'
+    };
+    if(window.jQuery) {
+        jQuery.saj = jQuery.saj || {};
+        jQuery.saj.certificado = jQuery.saj.certificado || {};
+        jQuery.saj.certificado.cliente = 'AL';
+        jQuery.saj.certificado.tituloCertificadoDigital = 'Certificado digital';
+        jQuery.saj.certificado.tituloProblemasAoAssinar = 'Falha de comunicação com o dispositivo de assinatura digital';
+        jQuery.saj.certificado.urlConteudoAjudaWebSigner = appEsajLayout.contexto + '/ajudaWebSigner.do';
+        jQuery.saj.certificado.licenca = 'AqYAKi5zYWphZG0udGpzcC5qdXMuYnIsKi5zZWEuc2MuZ292LmJyLCouc29mdHBsYW4uY29tLmJyLCoudGphYy5qdXMuYnIsKi50amFsLmp1cy5iciwqLnRqYW0uanVzLmJyLCoudGpjZS5qdXMuYnIsKi50am1zLmp1cy5iciwqLnRqcHIuanVzLmJyLCoudGpzYy5qdXMuYnIsKi50anNwLmp1cy5ickMAaXA0OjEwLjAuMC4wLzgsaXA0OjEyNy4wLjAuMC84LGlwNDoxNzIuMTYuMC4wLzEyLGlwNDoxOTIuMTY4LjAuMC8xNggAU3RhbmRhcmQAAAABcfpZUu/QD3s2bqedB8v9T7MiMQxcHNu0pUzGzO+7Ta++o+BbAVgPau7lzj6IUFI7RPFkPSnm0ZbCFAVBnKrqinyvE8MwEvmQhFcjlhGK+FfVV5mhVkkxSC3khDEUR8gsAPVvFncyyW2vTU2ODkyGdU0S/g62wHFtSwfGP6OFqlWpZTqbxbEGd1vfe9yHHulTYI7RcsGxaTMD6XgtPlStbOn9DxSYhN3S+4oTtIq7pUR6ETavPqYlXh5hwkxIpTe3Sf4awQucSigQ95sS9g7QpcGyVUVscm0J/rah9YwPCnHShzsttWA9aCmKrNdgFSTTo8TUOmESEP93TH6Z3dss+A==';
+    }
+
+</script>
+<script src="https://www2.tjal.jus.br/esaj/js/app-bundle.js?n=2924815508"></script>
+<script language="javascript" type="text/JavaScript" src="https://websigner.softplan.com.br/Content/js/softplan-websigner-2.5.0.js?n=2b0c4201-19e0-45c1-85b5-cd0b950183bb"></script>
+
+<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/esaj/js/saj-certificado.js?n=38201218"></script>
+
+
+
+<div id="webSignerNaoInstalado" style="display: none;">
+    <p>Para utilização do certificado digital no Portal e-SAJ é necessário a instalação do plug-in Web Signer. Por favor, realize a instalação antes de continuar.</p>
+    <div class="footer_certificado">
+        <button id="redirecionarParaPaginaInstalacao" class="actionPrincipal spwBotaoDefault">Instalar</button>
+        <button class="fecharModalInstalacao spwBotao">Cancelar</button>
+        <button class="spwBotao" onclick="window.open('https://www2.tjal.jus.br/WebHelp//#id_instalacao_lacuna.htm','_blank')">Ajuda</button>
+    </div>
+</div>
+
+<div id="webSignerNaoSuportado" style="display: none;">
+    <p>O navegador utilizado não é compatível com a tecnologia (Web Signer) necessária para utilização do certificado digital. Por favor, utilize um dos navegadores homologados. Em caso de dúvidas, efetue a validação de requisitos <a href="https://www2.tjal.jus.br/petpg/abrirVerificacaoRequisitosPet.do" target="_blank">aqui</a>.</p>
+    <div class="footer_certificado">
+        <button class="fecharModalInstalacao spwBotaoDefault actionPrincipal">OK</button>
+    </div>
+</div>
+	
+
+
+  
+	
+	
+
+
+
+	
+
+
+	
+	
+	
+	</div>	
+	</body>
+
+</html>
+
+

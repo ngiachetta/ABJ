@@ -1,0 +1,10599 @@
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+	
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+	
+
+
+
+
+
+
+
+
+	<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/sajcas/verificarLogin.js?script=1525923021518"></script>
+
+	<script language="javascript">
+		if(window.sajcas && window.sajcas.usuarioLogadoNoCasServer) {
+			var urlRetornoSistema = '';
+			if(urlRetornoSistema === '') {
+				urlRetornoSistema = window.location.href;
+			}
+
+			if(urlRetornoSistema.lastIndexOf('?') != -1) {
+				urlRetornoSistema += '&';
+			} else {
+				urlRetornoSistema += '?';
+			}
+			urlRetornoSistema+= 'gateway=true';
+			window.location.href = urlRetornoSistema;
+		}
+	</script>
+
+
+	<title>Portal de Serviços e-SAJ</title>
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Includes do spw -->
+<link rel="stylesheet" href="/cposg5/css/spw/spwConcatenado.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/esaj.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/saj/saj-captcha.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/saj/saj-popup-modal.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/cpo.css" type="text/css"/>	
+<link rel="stylesheet" href="/cposg5/css/formulario.css" type="text/css"/>
+<link rel="stylesheet" href="/cposg5/css/tarjaDoProcesso.css" type="text/css"/>	
+
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.min.js?n=9fc0cbbd-fc47-4bc3-8839-918e9f5caab0"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.func_toggle.js?n=6942ef9b-d3d8-4a9f-9717-a698953aec6a"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/jquery/jquery.blockUI.min.js?n=c67abeb5-e46a-4622-8056-44af381fe012"></script>
+<script language="javascript" type="text/javascript" src="/cposg5/js/jquery/jquery.browser.min.js?n=ec06f862-0bd0-4244-8413-dfa848a64922"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-web-2.2.41-4.js?n=5c4a7c13-c3f7-4583-a8b3-bd543f7418c3"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-tooltip.js?n=a1a5566e-4eaf-4066-afcf-cb1e74d5e8b1"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-browser.js?n=3f132628-bd6a-4f03-b2c1-4545276f01d7"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-mascara-input.js?n=c3d4360c-fe8d-43dc-be2f-9be0d3a14a1e"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-numeroProcesso.js?n=02321463-0544-4914-b853-19afbb8d9634"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-popup-modal-1.0.0-1.js?n=ec4a1083-1b30-4882-af47-331f6a32a119"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/saj-popup.js?n=35827283-fc02-437b-b55b-63fab076e893"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/spw/spwConcatenado.js?n=0e0aa4ea-2243-444f-8ebc-73b94cda048f"></script>
+
+ 
+<script>
+	window.saj = window.saj || {};
+	window.saj.env = window.saj.env || {};
+	window.saj.env.root = '/cposg5';
+	window.saj.env.css = '/cposg5/css';
+	window.saj.env.js = '/cposg5/js';
+	window.saj.env.imagens = '/cposg5/imagens';
+
+	window.saj.cpo = window.saj.cpo || {};
+	// transfere variavel se cpo esta rodando para totem
+	window.saj.cpo.totem = 'false' == 'true';
+
+	window.saj.cpo.instanciaConsulta = {
+		SG5: 'true' == 'true',
+		SG5TJ: 'false' == 'true',
+		SG5CR: 'true' == 'true',
+		value: 'SG5CR'
+	}; 
+</script>
+
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj-cpo-cbpesquisa.js?n=3431705058"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/formulario.js?n=541251654"></script>
+<script language="javascript" type="text/JavaScript" src="/cposg5/js/saj/acessibilidade/acessibilidade.js?n=4482e7dd-4129-4601-b33c-48e334a1459b"></script>
+	
+
+
+
+
+<script>
+	(function($){
+		$(function(){
+			var intervalo = 115000;
+			$.saj.manterSessao('/cposg5/manterSessao.do', intervalo);
+		});
+				
+	})(jQuery);
+</script>
+
+
+
+
+	
+  	
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+<script>
+	window.saj.cpo = window.saj.cpo || {};
+	window.saj.cpo.urlBaseAcessoRecursoProcessoParaUsuario = '/cposg5/autorizarAcessoRecursoProcessoParaUsuario.do?processoPK.cdProcesso=P00001SYI0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0801507-44.2014.8.02.0000&cdVara=6';
+	window.saj.cpo.urlBaseAcessoRecursoMidiaAudienciaProcessoParaUsuario= '/cposg5/autorizarAcessoRecursoAudienciaGravada.do?processoPK.cdProcesso=P00001SYI0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0801507-44.2014.8.02.0000&cdVara=6';
+	window.saj.cpo.urlBaseAcessoRecursoProcessoComSenha = '/cposg5/autorizarAcessoRecursoProcessoPorSenha.do?processoPK.cdProcesso=P00001SYI0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0801507-44.2014.8.02.0000';
+	window.saj.cpo.abrirAutorizarAcessoRecursoProcessoPorSenha = '/cposg5/abrirAutorizarAcessoRecursoProcessoPorSenha.do?processoPK.cdProcesso=P00001SYI0000&processoPK.cdForo=900&processoPK.tpOrigemProcesso=2&processoPK.flOrigem=S&processoPK.aliasDaBase=SG5TJ&numeroProcesso=0801507-44.2014.8.02.0000';
+</script>
+
+	<script language="javascript" type="text/JavaScript" src="/cposg5/js/acessoRecurso-2.10.2-0.js?n=2841686858"></script>
+	<script language="javascript" type="text/JavaScript" src="/cposg5/js/acessoProcesso-2.10.2-0.js?n=4061028617"></script>
+	
+
+
+
+
+
+
+<script>
+	(function($){
+		$(function(){
+			var intervalo = 50000;
+			$.saj.manterSessao('/cposg5/manterSessao.do', intervalo);
+		});
+				
+	})(jQuery);
+</script>
+
+
+
+
+
+  
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+<meta http-equiv="pragma" content="no-cache"/>
+<meta http-equiv="cache-control" content="no-cache"/>
+<meta http-equiv="expires" content="0"/>
+
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/esajComum.css" rel="stylesheet" type="text/css" />
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/esajLayout.css" rel="stylesheet" type="text/css" />
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/css/esajLayoutAL.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+<!--
+/* botao default means o mais claro, que seria o "botï¿½o principal" */
+.spwBotaoDefault, .spwBotaoDefault-o { 
+	background-image: url(https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/fundoBotaoDefault.gif);
+}
+/* o botao secundario, menos provavel de ser clicado, mais escuro */
+.spwBotao, .spwBotao-o { 
+	background-image: url(https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/fundoBotao.gif);
+}
+-->
+</style>
+
+
+<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/esaj/tema/padrao/js/menu.js?n=2553626853"></script>
+
+<link rel="shortcut icon" href="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/favicon.ico" type="image/x-icon" />
+
+
+	
+
+
+  
+
+	<!-- Correção temporária do alinhamento do divisor de seção de formulário do SPW -->
+	<script type="text/javascript">
+		$(function(){$('td[background$="spw/fundo_subtitulo2.gif"]').attr('valign', 'top')});
+	</script>
+</head>
+
+  
+  <script language="javascript" type="text/JavaScript">
+	$.saj.getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)), sURLVariables = sPageURL.split('&'), sParameterName, i;
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+		}
+	};
+  </script>
+
+  <body>
+  <div class="div-conteudo">
+  	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaCabecalhoCliente" summary=" ">
+	<tr>
+		<td><a href="http://www.tjal.jus.br"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/cabecalhoLogo.jpg" width="433" height="58" alt="Tribunal de Justiça de Alagoas" /></a></td>
+		<td align="right" valign="top"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/clientes/AL/imagens/layout/cabecalhoImagem.jpg" alt=" " width="353" height="58" /></td>
+	</tr>
+</table>
+	
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+<!-- cabecalho e-Saj -->
+<table width="100%" cellpadding="0" cellspacing="0" class="esajTabelaCabecalhoServico" summary=" ">
+	<tr>
+		<td class="esajCelulaCabecalhoServicoLogo">
+
+
+
+
+<a href="https://www2.tjal.jus.br/esaj/index.jsp"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/eSajServico.gif" title="Voltar para página inicial do e-SAJ" alt="Voltar para página inicial do e-SAJ" width="255" height="53" border="0" /></a><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/eSajServicoInf.gif" alt=" " width="255" height="28" border="0" /></td>
+		<td class="esajCelulaCabecalhoServicoMenu">
+		    <table width="100%" border="0" cellpadding="0" cellspacing="0" summary=" ">
+				<tr>
+					<td align="right">
+
+
+
+
+
+
+
+
+<!-- Devido ao alinhamento inline das imagens, elas não podem ter nenhum tipo de espaçamento entre elas, portanto é necessário finalizar a linha iniciando um comentário e fechar o comentário imediatamente antes da abertura da nova tag-->
+<img height="24" width="47" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/inicioMenuSup.jpg"/><a href="https://www2.tjal.jus.br/caixapostal"><!--
+--><img height="24" width="83" border="0" alt="Caixa postal" src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/caixaPostal.gif"/></a><!--
+--><img height="24" width="4" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSeparador.jpg"/><a href="https://www2.tjal.jus.br/esaj/cadastro.do"><!--
+--><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/cadastro.gif" alt="Cadastro" width="81" height="24" border="0" /></a><!--
+
+
+    --><img height="24" width="4" alt=" " src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSeparador.jpg"/><a target="blank" href="https://www2.tjal.jus.br/WebHelp/"><!--
+    --><img height="24" width="61" border="0" alt="Ajuda do e-Saj" src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/ajuda.gif"/></a><!--
+
+
+--></td>
+				</tr>
+				<tr>
+					<td class="esajCelulaIdentificacaoServico" >
+
+
+
+
+<style>
+
+    td.esajCelulaIdentificacao, td.esajCelulaIdentificacaoServico {
+        position: relative;
+    }
+
+    button.escolhaBeta {
+        border: solid 1px #aeaeae;
+        background: #aeaeae;
+        color: #fff;
+        margin-right: 5px;
+        font-family: verdana;
+        font-size: 10px;
+        height: 21px;
+        text-transform: uppercase;
+        line-height: 20px;
+        border-radius: 10px;
+        text-shadow: 1px 1px 1px #797979;
+        position: absolute;
+        top: 33px;
+        right: 3px;
+        padding: 0 19px;
+
+        letter-spacing: 1px;
+    }
+
+    button.escolhaBeta:hover {
+        background-color: #6c6c6c;
+    }
+
+</style>
+
+<span id="identificacao"></span>
+
+<button style="display: none" class="escolhaBeta"></button>
+
+
+
+
+    
+    
+        <script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/sajcas/conteudoIdentificacao?script=1523836554347"></script>
+    
+
+</td>
+				</tr>
+				<tr>
+					<td class="esajCelulaCabecalhoServicoCaminho" >
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+<a href="" class="esajCaminhoLink"></a>
+
+ &gt;
+
+
+<a href="https://www2.tjal.jus.br/esaj/portal.do?servico=740000" class="esajCaminhoLink">Bem-vindo</a>
+
+ &gt;
+
+
+<a href="https://www2.tjal.jus.br/esaj/portal.do?servico=190090" class="esajCaminhoLink">Consultas Processuais</a>
+
+ &gt;
+
+
+
+Consulta de Processos de 2º Grau
+</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<!-- CONTEUDO -->
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaTitulo">
+	<tr>
+		<td class="esajCelulaMenuSuspenso">
+		<a href="#" onclick="return showMenuSuspenso()"><img src="https://www2.tjal.jus.br/esaj/tema/padrao/imagens/layout/menuSuspenso.gif" alt="Menu de servi&ccedil;os" width="243" height="21" style="display:block" /></a>
+		<div id="layerMenu" style="display:none">
+			
+
+<!-- MENU -->
+<ul id="esajMenuArea">
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas Processuais</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas de 1º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/abrirConsultaCustas.do">Consulta de Custas</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=1&flTipoCusta=0&cdServicoCalculoCusta=690003">Custas Iniciais</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=15&flTipoCusta=5&cdServicoCalculoCusta=690004">Atos Avulsos</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=10&flTipoCusta=1&cdServicoCalculoCusta=690005">Custas de Preparo/ Apelação</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=14&flTipoCusta=0&cdServicoCalculoCusta=690006">Custas Juizado Especial - Recurso Inominado</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustas.do?cdTipoCusta=3&flTipoCusta=1&cdServicoCalculoCusta=690009">Custas Intermediárias</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Custas de 2º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/abrirConsultaCustasSg.do">Consulta de Custas SG</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/ccpweb/iniciarCalculoDeCustasSg.do?cdServicoCalculoCusta=690205&flTipoCusta=0&cdTipoCusta=1">Custas Iniciais SG</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consultas Processuais</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cpopg/open.do">Consulta de Processos de 1º Grau</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consulta de Ordem de Processos</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cop/abrirConsultaDeOrdemDeJulgamentoPg.do">Consulta de processos de Ordem de julgamento do 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cop/abrirConsultaDeOrdemDeAtoPg.do">Consulta de Ordem de Publicação e Cumprimento de Atos</a></li>
+</ul>
+  </li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cposg5/open.do">Consulta de Processos de 2º Grau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consulta de Temas de Repercussão Geral e Casos Repetitivos</a>
+<ul>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Consultas de Jurisprudência</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cjsg/consultaSimples.do">Consulta Simples</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/cjsg/consultaCompleta.do">Consulta Completa</a></li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cdje">Diário da Justiça Eletrônico</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Push</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushpg">Push - Primeiro Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushsg3">Push - Segundo Grau - Físico</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pushsg5">Push - Segundo Grau - Digital</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Certidões</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Certidões de 1º grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirCadastro.do">Cadastro de Pedido de Certidão de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirConferencia.do">Conferência de Certidão de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/sco/abrirDownload.do">Download de Certidão de 1º Grau</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Conferência de Documento Digital</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pastadigital/pg/abrirConferenciaDocumento.do">Conferência de Documento Digital do 1ºGrau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/pastadigital/sg/abrirConferenciaDocumento.do">Conferência de Documento Digital do 2ºGrau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Intimações e Citações On-line</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/intimacoesweb/abrirConsultaAtosRecebidos.do">Consulta de Intimações Recebidas</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/intimacoesweb/abrirConsultaAtosNaoRecebidos.do">Recebimento de Intimações Eletrônicas</a></li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cpoesajsg/pcpoOrgaosJulgadores.jsp">Consulta da Pauta de Julgamento - Cível</a></li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico</a>
+<ul>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de 1º Grau</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirNovaPeticaoInicial.do">Peticionamento Inicial de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirVerificacaoRequisitosPet.do">Verificação de Requisitos</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário de 1º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petpg/abrirConsultaPeticoes.do">Consulta de Petições de 1º Grau</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de Turmas Recursais / Plantão (2º Grau)/ Precatórios</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirNovaPeticaoInicial.do">Peticionamento Inicial - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petcr/abrirConsultaPeticoes.do">Consulta de Petições - Turmas Recursais / Plantão (2º Grau)/ Precatórios</a></li>
+</ul>
+  </li>
+	<li class="esajMenuFechado"><a href="#" onclick="return esajMenu(this)">Peticionamento Eletrônico de 2º Grau (Tribunal de Justiça)</a>
+<ul>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirNovaPeticaoInicial.do">Peticionamento Inicial de 2º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirNovaPeticaoIntermediaria.do">Peticionamento Intermediário de 2º Grau</a></li>
+  <li class="esajMenuItem"><a href="https://www2.tjal.jus.br/petsg/abrirConsultaPeticoes.do">Consulta de Petições de 2º Grau</a></li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="esajMenuFechado"><a href="https://www2.tjal.jus.br/cposg5pauta/pcpoOrgaosJulgadores.jsp">Consulta da Pauta de Julgamento - Criminal</a></li>
+</ul>
+
+		</div>
+		</td>
+		<td class="esajCelulaTituloServico"><h1 class="esajTituloPagina">Consulta de Processos de 2º Grau</h1></td>
+	</tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0" summary=" ">
+	<tr>
+		<td class="esajCelulaConteudoServico" >
+		
+	
+
+
+  
+
+
+
+        	
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="consultarProcessoForm" method="GET" action="/cposg5/search.do" autocomplete="off" enctype="" onsubmit="return applySubmit(this, eval('function spwSubmit(t, e){decodificaInputMulSelOnSubmit();if (!IS_enableSubmit) return false; return BENV_isCamposValidos(t); } spwSubmit(this, event);'));" id="formularioConsulta" target="">
+	<input type="hidden" name="conversationId" value="">
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+		
+			
+		
+		
+	
+	
+	<div class="">
+		
+			<br/>
+			
+			
+				
+				
+					
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+				
+					<h2 class="subtitle">
+						Dados para Pesquisa
+						
+					</h2>
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+				
+			
+			<br/>
+		
+		<table id="secaoFormConsulta" class="secaoFormBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+			
+			
+			
+			
+			<input type="hidden" name="paginaConsulta" value="0">
+			
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="cbPesquisa" class="" style="text-align:right;font-weight:bold;;">Pesquisar por:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+				
+
+
+
+
+
+
+
+
+
+<select name="cbPesquisa" id="cbPesquisa"><option value="NUMPROC" selected="selected">Número do Processo</option>	
+	
+ 		<option value="NMPARTE">Nome da parte</option>	
+	
+ 		<option value="DOCPARTE">Documento da Parte</option>	
+	
+ 		<option value="NMADVOGADO">Nome do Advogado</option>	
+	
+ 		<option value="NUMOAB">OAB</option></select>
+
+			
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+			
+			
+				
+					
+						
+							
+							
+								
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+	
+	 
+		
+	
+	 
+		
+	
+	
+	
+	
+	
+	
+		<script>$.saj.numeroProcesso.desabilitarNumeroOculto = false;</script>	
+	
+	
+		
+	
+
+	
+		
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			if($.browser.msie){
+				$('.grupoRadio').find('input:radio:visible:enabled').attr('aria-required','');
+				return;
+			}
+			$('.grupoRadio').attr('aria-required','').attr('required','');
+		});
+	})(jQuery);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				<fieldset class="grupoRadio" style="margin:0;padding:0;border:none" >
+					<legend style="display:block;font-size:0;">
+						Tipo do número
+					</legend>
+					
+			   <input type="radio" name="tipoNuProcesso" value="UNIFICADO" checked="checked" id="radioNumeroUnificado"><label for="radioNumeroUnificado">Unificado</label>
+			   <input type="radio" name="tipoNuProcesso" value="SAJ" id="radioNumeroAntigo"><label for="radioNumeroAntigo">Outros</label>
+			
+				</fieldset>				
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NUMPROC" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="" style="text-align:right;font-weight:bold;;">Número do Processo:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="linhaProcessoUnificado">
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+ 
+<input type="text" name="numeroDigitoAnoUnificado" maxlength="25" size="20" value="" formatType="TEXT" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" id="numeroDigitoAnoUnificado">
+<input type="text" id="JTRNumeroUnificado" size="3" disabled="disabled" value="8.02"/>
+<input type="text" name="foroNumeroUnificado" maxlength="4" size="3" value="" formatType="TEXT" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" id="foroNumeroUnificado">
+<input type="hidden" name="dePesquisaNuUnificado" value="08015074420148020000" id="nuProcessoUnificadoFormatado">
+
+
+<script>
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var mascaraNumeroUnificado = saj.mascaraNumeroUnificado;
+			var $campoNumeroDigitoAnoUnificado = $('#numeroDigitoAnoUnificado');
+			var $campoForoNumeroUnificado = $('#foroNumeroUnificado');
+			var $campoJTRNumeroUnificado = $('#JTRNumeroUnificado');
+			saj.configurarMascaraInput($campoForoNumeroUnificado, '0000');
+			saj.configurarMascaraInput($campoNumeroDigitoAnoUnificado, mascaraNumeroUnificado, $campoForoNumeroUnificado,{
+				afterPaste: afterPaste			
+			});
+			saj.bindCamposNumeroProcesso('');
+			
+				var conteudoToolTip = '';
+				if(!conteudoToolTip){
+					conteudoToolTip = '<div style="width: 500px;" ><div><b>Número de Processo Unificado</b></div><div>O sistema disponibiliza facilidades no preenchimento do número unificado, seu formato é NNNNNNN-DD.AAAA.J.TR.OOOO:</div><div style="padding-top: 3px;"><b>NNNNNNN</b>: Caso o número possua zeros à esquerda o sistema preenche-os automaticamente, basta informar o número e o dígito "-" ou ".". Exemplo: ao informar "310-" o sistema irá preencher "0000310-".</div><div><b>DD</b>     : Deve ser preenchido pelo usuário.</div><div><b>AAAA</b>   : Ao informar dois dígitos para o ano o sistema completa o mesmo, basta pressionar a tecla Tab. Exemplo: ao informar "08" e "Tab" o sistema irá preencher "2008".</div><div><b>J.TR</b>    : São números fixos preenchidos pelo sistema.Exemplo: 8.99.</div><div><b>OOOO</b>   : Caso o número possua zeros à esquerda o sistema preenche-os automaticamente, basta informar o número pressionar a tecla Tab. Exemplo: ao informar "10" e "Tab" o sistema irá preencher "0010".</div></div>';
+				}
+				$('#numeroDigitoAnoUnificado, #foroNumeroUnificado').registrarTooltip({
+					conteudoTooltip: conteudoToolTip,
+					localImagensTooltip: '/cposg5/imagens/saj',
+					offsetHorizontalExtra: '',
+					offsetVertficalExtra: '',
+					urlConteudoTooltip: '',
+					posicaoTooltip: '',
+					objReferenciaPosicaoTooltip:$campoForoNumeroUnificado
+				});
+			
+		});		
+		
+		var afterPaste = function(textoOriginal) {
+			var texto = getDigits(textoOriginal);
+			if (!texto || texto.length < 16) {
+				return;
+			}
+			
+			var jtr = $('#JTRNumeroUnificado').val();
+			jtr = getDigits(jtr);
+			var jtrDigitado = texto.substring(13,16);
+			var foroUnificado;
+			//pega os 4 ultimos digitos, e caso o jtr colado for o mesmo, coloca os 4 no campo de foro unificado
+			//se o jtr for diferente nao coloca nada no campo de foro unificado
+			if (jtr == jtrDigitado) {
+				foroUnificado = texto.substring(16,texto.length);
+			} else {
+				foroUnificado = '';
+			}
+			
+			var numeroDigitoAno = texto.substring(0,13);
+			var $numeroDigitoAno = $('#numeroDigitoAnoUnificado');
+			$numeroDigitoAno.val(numeroDigitoAno);
+			
+			var $foroNumeroUnificado = $('#foroNumeroUnificado');
+			$foroNumeroUnificado.val(foroUnificado);
+			$foroNumeroUnificado.trigger('blur');
+			$foroNumeroUnificado.focus();
+		};
+		
+		var getDigits = function(texto) {
+			return texto.replace(/[^0-9]/g, '');
+		};
+		$('#numeroDigitoAnoUnificado').attr('aria-label','Número do processo. Informe os treze primeiros dígitos do número do processo.');
+		$('#foroNumeroUnificado').attr('aria-label','Informe os quatro últimos dígitos do número do processo.');
+	})(jQuery);
+	
+</script>
+
+	
+	
+	
+	    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'nuProcessoAntigoFormatado';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="linhaProcessoAntigo">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="25" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="nuProcessoAntigoFormatado" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+					
+				
+				
+			
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+		
+	
+
+							
+						
+					
+					
+					
+				
+			
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NMPARTE" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="dePesquisaNmParte" class="" style="text-align:right;font-weight:bold;;">Nome da parte:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+											
+							<label for="campo_NMPARTE" style="display:block;font-size:0;">Nome da parte</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NMPARTE';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled spwCampoTexto" id="campo_NMPARTE" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+<span id="">
+	<label for="id_tag.checkbox.nomecompleto.rotulo">
+		<input type="checkbox" name="chNmCompleto" value="true" checked="checked" disabled="disabled" style="vertical-align:middle;" id="id_tag.checkbox.nomecompleto.rotulo">
+		Pesquisar por nome completo
+	</label>
+</span>
+
+							
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+					
+					
+				
+			
+				
+					
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="DOCPARTE" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="chNmCompleto" class="" style="text-align:right;font-weight:bold;;">Documento da Parte:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+							<label for="campo_DOCPARTE" style="display:block;font-size:0;">Documento da Parte</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_DOCPARTE';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="campo_DOCPARTE" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+						
+					
+				
+			
+				
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NMADVOGADO" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="dePesquisaNmParte" class="" style="text-align:right;font-weight:bold;;">Nome do Advogado:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+											
+							<label for="campo_NMADVOGADO" style="display:block;font-size:0;">Nome do Advogado</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NMADVOGADO';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled spwCampoTexto" id="campo_NMADVOGADO" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+<span id="">
+	<label for="id_tag.checkbox.nomecompleto.rotulo">
+		<input type="checkbox" name="chNmCompleto" value="true" checked="checked" disabled="disabled" style="vertical-align:middle;" id="id_tag.checkbox.nomecompleto.rotulo">
+		Pesquisar por nome completo
+	</label>
+</span>
+
+							
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+					
+					
+				
+			
+				
+					
+					
+					
+						
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				
+				<tr id="NUMOAB" class="">
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="chNmCompleto" class="" style="text-align:right;font-weight:bold;;">OAB:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+							<label for="campo_NUMOAB" style="display:block;font-size:0;">OAB</label>
+							
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+	
+
+
+<style>
+	/* remove borda vermelha de elementos required */
+	input:invalid {
+		box-shadow:none;
+	}
+</style>
+
+<script type="text/javascript">
+	(function($){
+		$(function() {
+			var saj = $.saj;
+			var id = 'campo_NUMOAB';
+			var idObjetoReferencia = '#' + id;
+			if ('' !== '' && !false) {
+				$(idObjetoReferencia).registrarTooltip({
+					conteudoTooltip: '',
+					posicaoTooltip: 'direita',
+					objReferenciaPosicaoTooltip:$(idObjetoReferencia)
+				});
+			}
+			//remove comportamento de exibir mensagem de erro típica do html5
+			$('form:visible').attr('novalidate','');
+			if (''){
+				$(idObjetoReferencia).attr('aria-required','true').attr('required','');
+			}
+		});		
+	})(jQuery);
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<input type="text" name="dePesquisa" size="" value="" formatType="TEXT" formato="100" obrigatorio="" rotulo="" onkeypress="CT_KPS(this, event);" onblur="CT_BLR(this);" onkeydown="CT_KDN(this, event);" onmousemove="CT_MMOV(this, event);" onmouseout="CT_MOUT(this, event);" onmouseover="CT_MOV(this, event);" onfocus="C_OFC(this, event);" disabled="disabled" style="" class="spwCampoTexto disabled " id="campo_NUMOAB" title="" alt="">
+		
+	
+	
+	
+		
+	    
+    
+	
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+
+						
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+						
+					
+				
+			
+			
+			
+			
+		  	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<input id="uuidCaptcha" type="hidden" name="uuidCaptcha" value=""/>
+
+
+
+	
+		</table>
+	</div>
+	
+	
+	
+
+
+  	
+
+
+
+
+
+
+
+
+
+
+
+	<table id="" class="secaoBotoesBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+		<tr>
+ 			
+ 				<td width="150">&nbsp;</td>
+ 			
+			<td align="">
+			
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	<input type="submit" name="pbEnviar" value="Pesquisar" onclick="" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" class="spwBotaoDefault " id="botaoPesquisar">
+
+		  	
+  	
+			</td>
+		</tr>
+	</table>
+
+		
+  	
+  	<script>
+		$(function(){
+			$('input#botaoPesquisar').bind('click', function(){
+				$('input[name="paginaConsulta"]').val(1);
+			});
+		});  	
+  	</script>
+
+</form>
+
+
+
+
+		
+	   
+		
+			
+				
+					
+			  		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+<script type="text/javascript">
+	(function($) {
+		$(function(){
+			var captcha = $.saj.getUrlParameter('uuidCaptcha');
+			var url = $('.processoPrinc').attr('href');
+			$('.processoPrinc').attr('href', url+'&uuidCaptcha='+captcha);
+		})
+	})(jQuery);
+</script>
+
+<input type="hidden" name="cdProcesso" value="P00001SYI0000"/>
+
+<!-- pasta digital -->
+
+	<table width="100%" border="0" cellspacing="0" cellpadding="1">
+	  <tr>
+	    <td align="left" valign="middle" style="padding-left: 5px;">
+  			
+       		<a class="linkPasta" title="Pasta Digital" href="#" name="P">
+		        <img src="/cposg5/imagens/icoPeticionamento.gif" border="0" style="vertical-align: -60%"/>
+		        Este processo é digital. Clique aqui para visualizar os autos.
+	      	</a>
+	    </td>
+	  </tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+		
+			
+		
+		
+	
+	
+	<div class="">
+		
+			<br/>
+			
+			
+				
+				
+					
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+				
+					<h2 class="subtitle">
+						Dados do Processo
+						
+					</h2>
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+				
+			
+			<br/>
+		
+		<table id="" class="secaoFormBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+			
+
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Processo:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+			<!--
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<span id="" class="">0801507-44.2014.8.02.0000</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+-->
+			
+
+
+
+<!-- Atributos -->
+
+
+
+
+
+
+
+
+
+	
+	
+		<span class="">
+			0801507-44.2014.8.02.0000
+		</span>
+		<span class="" >
+			
+		</span>
+	
+
+
+			
+				<span style="color: red;">Julgado</span>
+			
+			
+		
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Classe:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+	
+	
+	
+	
+	
+		<span id="">
+		
+	
+	
+	<span id="" class="">Mandado de Segurança</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+		
+	
+	
+	
+	
+		</span>
+	
+
+
+
+
+		
+	
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Área :</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<table cellpadding="0" cellspacing="0" border="0" width="">
+		<tr>
+			<td>
+				
+				
+				
+		Cível
+	
+				
+			</td>
+		</tr>
+	  </table>
+	
+	
+	
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+		
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Assunto:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Teto Salarial</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Origem:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Comarca de Maceió / Foro de Maceió</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Distribuição:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">Presidência</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Relator:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">DES. WASHINGTON LUIZ D. FREITAS</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Volume / Apenso:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">1 / 0</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+	
+	
+		
+		
+			
+				<tr class="">
+				
+			
+		
+		
+		
+		  <td id="" width="150" valign="">
+			
+			  
+		  	  
+		      
+				
+		  	    <label for="" class="labelClass" style="text-align:right;font-weight:bold;;">Valor da ação:</label>
+		      
+		    
+		  </td>
+		
+		
+		
+		  
+		  
+		    <td valign="">
+		  
+		
+			
+	
+	
+	
+	
+	
+	<span id="" class="">1.000,00</span>
+	
+	
+	
+	    
+	    
+    
+    
+	
+	
+	
+		
+		</td>
+		
+			</tr>
+		
+	
+	
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+	
+			
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+		
+	
+
+
+
+
+
+
+
+	
+
+		</table>
+	</div>
+	
+	
+	
+
+
+
+			  	
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Apensos / Vinculados
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+	<!--  Tabela de (apensos) -->
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+		
+			
+			
+				<tr>
+					 <td colspan="3" align="left" >Não há processos apensos ou vinculados para este processo.</td> 
+				</tr>
+			
+		
+	</table>
+	<!-- Tabela de (apensos) -->
+	
+
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Números de 1ª Instância
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+
+<table  style="margin-left:15px; margin-top:1px;"  align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+  
+  	
+  	
+  		<tr>
+			<td colspan="3" align="left" >Não há números de 1ª instância para este processo.</td> 
+		</tr>
+  	
+  
+</table>
+
+
+
+<table style="margin-left:15px; margin-top:1px;"  align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+			
+</table>
+
+			  	
+			  	
+			
+	  	
+			
+				
+				
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+		
+		
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Partes do Processo
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+	<div id="divLinksTituloBlocoPartes">
+		
+
+
+
+
+
+
+
+
+
+
+
+<input id="mensagemNaoExibidapartes" type="hidden" value="Exibindo todas as partes." />  
+<input id="linkNaoExibidopartes" type="hidden" value="Exibir somente as partes principais." />  
+	
+<span id="mensagensExibindopartes" class="mensagemExibindo">Exibindo Somente as principais partes.</span> &nbsp; <a id="linkpartes" href="javascript:" class="linkNaoSelecionado" ><span id="setasDireitapartes" class="setasDireita" >&gt;&gt;</span>Exibir todas as partes.</a>
+
+<script>
+	$(function() {
+		var controlarLink = function() {
+			var $linkNaoExibido = $('input#linkNaoExibidopartes');
+			var conteudoLinkNaoApresentado = $linkNaoExibido.val();
+			var $link = $('a#linkpartes');
+			
+			$linkNaoExibido.val($link.html());
+			$link.html(conteudoLinkNaoApresentado);
+		};
+
+		var controlarMensagem = function() {
+			var $mensagemNaoExibida = $('input#mensagemNaoExibidapartes');
+			var $spanMensagem = $('span#mensagensExibindopartes');
+			var mensagemExibida = $spanMensagem.html();
+			var mensagemNaoExibida = $mensagemNaoExibida.val();
+			
+			$spanMensagem.html(mensagemNaoExibida);
+			$mensagemNaoExibida.val(mensagemExibida);
+		};
+
+		var controlarMensagemLink = function() {
+			controlarMensagem();
+			controlarLink();
+		};
+		
+		var esconderElementosExtrasMostrarDefault = function() {
+			$('#tableTodasPartes').hide();
+			$('#tablePartesPrincipais').show();
+		};
+
+		var mostrarElementosExtrasEsconderDefault = function() {
+			$('#tablePartesPrincipais').hide();
+			$('#tableTodasPartes').show();
+		};
+
+		var initPagina = function() {
+			var setasDireita = '<span id="setasDireitapartes" class="setasDireita">&gt;&gt;</span>';
+			var $linkEscondido = $('input#linkNaoExibidopartes');
+			$linkEscondido.val(setasDireita+$linkEscondido.val());
+		};
+
+		var bindLink = function() {
+			var $link = $('a#linkpartes');
+			$link.funcToggle('click', mostrarElementosExtrasEsconderDefault, esconderElementosExtrasMostrarDefault);
+			$link.bind('click', controlarMensagemLink);
+		};
+
+		initPagina();
+		bindLink();
+		esconderElementosExtrasMostrarDefault();
+	});
+</script>
+
+	</div> 
+
+
+<!--  cabecalho da tabela de lista (partes) -->
+
+
+<!--  dados da lista partes principais (partes) -->
+<table id="tablePartesPrincipais" style="margin-left:15px; margin-top:1px;" align="center" border="0" cellPadding="0" cellSpacing="0" width="98%">
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Ivaldo Buarque Barbosa
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Procurador:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Procuradoria Geral de Justiça
+	     
+      
+ 	  
+	  
+      
+  	 </td>
+</tr> 
+
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrado:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Mesa Diretora da Assembléia Legislativa do Estado de Alagoas
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Diógenes Tenório de Albuquerque Júnior<input type="hidden" value="4262AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+	
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">LitsPassiv:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Estado de Alagoas
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Marcelo Teixeira Cavalcante<input type="hidden" value="924AL">&nbsp;
+   	 	 
+      
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Thales Francisco Amaral Cabral<input type="hidden" value="10131AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+	
+</table>	
+
+
+	<!--  dados da lista todas as partes (partes) -->
+	<table id="tableTodasPartes" style="margin-left:15px; margin-top:1px; display: none; " align="center" width="98%" border="0" cellspacing="0" cellpadding="0"  >
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Ivaldo Buarque Barbosa
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Aristeu Jose Lopes Cavalcante
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     José Robson Dos Santos Rocha
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Maria Augusta Passos Leite
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrante:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Nilton Pradines Leite
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Advogado:&nbsp</span>Diego Malta Brandão<input type="hidden" value="11688AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Procurador:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Procuradoria Geral de Justiça
+	     
+      
+ 	  
+	  
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">Impetrado:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Mesa Diretora da Assembléia Legislativa do Estado de Alagoas
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Diógenes Tenório de Albuquerque Júnior<input type="hidden" value="4262AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+			
+
+
+
+
+
+
+<tr class="fundoClaro"> 
+    <td valign="top" align="right" width="141" style="padding-bottom: 5px">
+      <span class="mensagemExibindo">LitsPassiv:&nbsp;</span>
+    </td>
+    <td width="*" align="left" style="padding-bottom: 5px">
+	  
+	     Estado de Alagoas
+	     
+      
+ 	  
+	  
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Marcelo Teixeira Cavalcante<input type="hidden" value="924AL">&nbsp;
+   	 	 
+      
+   	 	 <br/><span class="mensagemExibindo">Procurador:&nbsp</span>Thales Francisco Amaral Cabral<input type="hidden" value="10131AL">&nbsp;
+   	 	 
+      
+      
+  	 </td>
+</tr> 
+
+		
+	</table>
+
+
+			  	
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+		  			
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+		
+		
+		
+		
+	
+
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Movimentações
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+
+	<div id="divLinksTituloBlocoMovimentacoes">
+		
+
+
+
+
+
+
+
+
+
+
+
+<input id="mensagemNaoExibidamovimentacoes" type="hidden" value="Exibindo todas as movimentações." />  
+<input id="linkNaoExibidomovimentacoes" type="hidden" value="Listar somente as 5 últimas." />  
+	
+<span id="mensagensExibindomovimentacoes" class="mensagemExibindo">Exibindo 5 últimas.</span> &nbsp; <a id="linkmovimentacoes" href="javascript:" class="linkNaoSelecionado" ><span id="setasDireitamovimentacoes" class="setasDireita" >&gt;&gt;</span>Listar todas as movimentações.</a>
+
+<script>
+	$(function() {
+		var controlarLink = function() {
+			var $linkNaoExibido = $('input#linkNaoExibidomovimentacoes');
+			var conteudoLinkNaoApresentado = $linkNaoExibido.val();
+			var $link = $('a#linkmovimentacoes');
+			
+			$linkNaoExibido.val($link.html());
+			$link.html(conteudoLinkNaoApresentado);
+		};
+
+		var controlarMensagem = function() {
+			var $mensagemNaoExibida = $('input#mensagemNaoExibidamovimentacoes');
+			var $spanMensagem = $('span#mensagensExibindomovimentacoes');
+			var mensagemExibida = $spanMensagem.html();
+			var mensagemNaoExibida = $mensagemNaoExibida.val();
+			
+			$spanMensagem.html(mensagemNaoExibida);
+			$mensagemNaoExibida.val(mensagemExibida);
+		};
+
+		var controlarMensagemLink = function() {
+			controlarMensagem();
+			controlarLink();
+		};
+		
+		var esconderElementosExtrasMostrarDefault = function() {
+			$('#tabelaTodasMovimentacoes').hide();
+			$('#tabelaUltimasMovimentacoes').show();
+		};
+
+		var mostrarElementosExtrasEsconderDefault = function() {
+			$('#tabelaUltimasMovimentacoes').hide();
+			$('#tabelaTodasMovimentacoes').show();
+		};
+
+		var initPagina = function() {
+			var setasDireita = '<span id="setasDireitamovimentacoes" class="setasDireita">&gt;&gt;</span>';
+			var $linkEscondido = $('input#linkNaoExibidomovimentacoes');
+			$linkEscondido.val(setasDireita+$linkEscondido.val());
+		};
+
+		var bindLink = function() {
+			var $link = $('a#linkmovimentacoes');
+			$link.funcToggle('click', mostrarElementosExtrasEsconderDefault, esconderElementosExtrasMostrarDefault);
+			$link.bind('click', controlarMensagemLink);
+		};
+
+		initPagina();
+		bindLink();
+		esconderElementosExtrasMostrarDefault();
+	});
+</script>
+
+	</div> 
+
+ 
+	
+
+<table  style="margin-left:15px; margin-top:1px;" align="center" border="0" cellPadding="0" cellSpacing="0" width="98%">
+	
+		
+			<thead>
+				<tr> 
+				  <th width="120" class="label" style="vertical-align: bottom">Data</th>
+				  <th vAlign="middle" width="20" aria-hidden="true">&nbsp;</th>
+				  <th vAlign="middle"  class="label">Movimento</th>
+				</tr>
+				<tr class="fundoEscuro" height="2" aria-hidden="true">
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+
+			
+			<tbody id="tabelaUltimasMovimentacoes">
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=83" name="M" cdDocumento="83">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=83" name="M" cdDocumento="83">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTID&Atilde;O Certifico, para os devidos fins, que foram interpostos Agravos em Recurso Especial e Extraordin&aacute;rio da Decis&atilde;o de p&aacute;ginas 241-248 que inadmitiu os Recursos. Macei&oacute;, 24 de novembro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;aDiretora Adjunta Especial de Assuntos Judici&aacute;rios</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; WTRJ.1570022946-3 Agravo de Instrumento em Recurso Extraordin&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incidente Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Seq.: 50 - Agravo de Instrumento em Recurso Extraordin&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; WTRJ.1570022944-7 Agravo de Instrumento em Recurso Especial</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incidente Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Seq.: 50 - Agravo de Instrumento em Recurso Especial</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+			</tbody>
+			
+			
+			<tbody style="display: none;" id="tabelaTodasMovimentacoes">
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=83" name="M" cdDocumento="83">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=83" name="M" cdDocumento="83">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTID&Atilde;O Certifico, para os devidos fins, que foram interpostos Agravos em Recurso Especial e Extraordin&aacute;rio da Decis&atilde;o de p&aacute;ginas 241-248 que inadmitiu os Recursos. Macei&oacute;, 24 de novembro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;aDiretora Adjunta Especial de Assuntos Judici&aacute;rios</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; WTRJ.1570022946-3 Agravo de Instrumento em Recurso Extraordin&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incidente Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Seq.: 50 - Agravo de Instrumento em Recurso Extraordin&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; WTRJ.1570022944-7 Agravo de Instrumento em Recurso Especial</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incidente Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Seq.: 50 - Agravo de Instrumento em Recurso Especial</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=78" name="M" cdDocumento="78">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=78" name="M" cdDocumento="78">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTID&Atilde;O Certifico que, o Minist&eacute;rio P&uacute;blico, foi intimado eletronicamente, nesta data, para ci&ecirc;ncia da Decis&atilde;o de p&aacute;ginas 241-248. Macei&oacute;, 10 de novembro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios Fernanda Luiza de Albuquerque Brasil Lins T&eacute;cnica Judici&aacute;ria</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=77" name="M" cdDocumento="77">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=77" name="M" cdDocumento="77">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO, que foi disponibilizada no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do Tribunal de Justi&ccedil;a de Alagoas em 10/11/2015 a decis&atilde;o de p&aacute;ginas 241-248 e considerada publicada em 11/11/2015, nos termos do Artigo 4&ordm;, &sect; 3&ordm;, da Lei n&ordm; 11.419/2006. Macei&oacute;, 10 de novembro de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios Fernanda Luiza de Albuquerque Brasil Lins T&eacute;cnica Judici&aacute;ria</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Disponibilizada Decis&atilde;o de p&aacute;ginas 241-248 no DJE de 10/11/2015.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Decisão ou Despacho Não-Admissão
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				09/11/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Encaminhado para Secretaria da Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/10/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=72" name="M" cdDocumento="72">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=72" name="M" cdDocumento="72">
+	        			Recurso Especial não admitido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DECIS&Atilde;O Tratam os autos em apre&ccedil;o de Recursos Especial e Extraordin&aacute;rio tombados sob o n.&ordm; 0801507-44.2014.8.02.0000, interposto pelo Minist&eacute;rio P&uacute;blico Estadual, com fulcro nos artigos 105, inciso III, al&iacute;nea a, e 102, inciso III, al&iacute;neas a e d, da Constitui&ccedil;&atilde;o Federal, os quais se insurgem contra Ac&oacute;rd&atilde;o do Tribunal Pleno desta Corte de Justi&ccedil;a. O Minist&eacute;rio P&uacute;blico Estadual, verbera, nas raz&otilde;es do Recurso Especial, que o Ac&oacute;rd&atilde;o objurgado teria violado o artigos 535 incisos I e II, do C&oacute;digo de Processo Civil, e artigos 15, 16, 20, inciso II, al&iacute;nea a e artigo 21, da Lei de Responsabilidade Fiscal e, artigo 1&ordm;, da Lei 12.016/09. Nas raz&otilde;es do Recurso Extraordin&aacute;rio, aduz, suposta viola&ccedil;&atilde;o aos artigos 93, inciso IX, 97, 169, &sect;&sect; 1&ordm; e 3&ordm;, da Constitui&ccedil;&atilde;o Federal. Devidamente intimada, a parte Recorrida apresentou contrarraz&otilde;es aos Recursos Especial e Extraordin&aacute;rio (fls. 210/225 e 226/239) pugnando, primeiramente, pela inadmissibilidade dos recursos, e no m&eacute;rito, pelo improvimento. Em seguida, retornaram os autos conclusos para ju&iacute;zo de admissibilidade. &Eacute;, em s&iacute;ntese, o relat&oacute;rio. Passo a decidir. Cumpre notar, de pronto, o preenchimento dos requisitos gen&eacute;ricos, objetivos e subjetivos de admissibilidade dos presentes Recursos Especial e Extraordin&aacute;rio, porquanto comprovada sua tempestividade, cabimento, regularidade formal, legitimidade das partes, interesse de agir e inexist&ecirc;ncia de fato impeditivo ou extintivo do poder de recorrer. Al&eacute;m disso, nos termos do artigo 511, &sect;1&ordm;, do C&oacute;digo de Processo Civil, o Recorrente est&aacute; isento de preparo. Outrossim, consoante &eacute; cedi&ccedil;o, a interposi&ccedil;&atilde;o dos recursos excepcionais pressup&otilde;e o esgotamento das vias ordin&aacute;rias. Sendo assim, os Recursos Extraordin&aacute;rio e Especial implicam a exist&ecirc;ncia de um julgado contra o qual j&aacute; foram esgotadas as possibilidades de impugna&ccedil;&atilde;o na inst&acirc;ncia ordin&aacute;ria, requisito este que se encontra preenchido no presente caso. DO JU&Iacute;ZO DE ADMISSIBILIDADE DO RECURSO ESPECIAL Seguindo com as exig&ecirc;ncias legais, necess&aacute;rio se faz demonstrar uma das hip&oacute;teses constitucionais de cabimento autorizadoras de seu manejo. No caso, alega o Recorrente que o presente recurso merece ser acolhido porque preenche os requisitos previstos no artigo 105, inciso III, al&iacute;nea a, da Constitui&ccedil;&atilde;o Federal. Passo a analisar. Em suas raz&otilde;es impugnativas, ao sustentar a ocorr&ecirc;ncia de suposta viola&ccedil;&atilde;o ao artigo 535, inciso II, do C&oacute;digo de Processo Civil, o Recorrente afirma que a decis&atilde;o que julgou os Embargos de Declara&ccedil;&atilde;o foi omissa quanto &agrave; efetiva aplica&ccedil;&atilde;o dos artigos 15, 16, 20, inciso II, al&iacute;nea a e artigo 21, da Lei de Responsabilidade Fiscal e, artigo 1&ordm;, da Lei 12.016/09 Entretanto, compulsando-se os autos, constata-se a natureza protelat&oacute;ria do recurso e tal irresigna&ccedil;&atilde;o pugna, na verdade, pela instaura&ccedil;&atilde;o de nova discuss&atilde;o merit&oacute;ria j&aacute; apreciada no Ac&oacute;rd&atilde;o vergastado. Por esta tese, n&atilde;o merece ser admitido o Recurso Especial em espeque. Justifico. A S&uacute;mula n.&deg; 83, do Superior Tribunal de Justi&ccedil;a, assim reza: STJ - S&uacute;mula n.&ordm; 83 N&atilde;o se conhece do recurso especial pela diverg&ecirc;ncia, quando a orienta&ccedil;&atilde;o do Tribunal se firmou no mesmo sentido da decis&atilde;o recorrida. (Grifos aditados) Nessa linha de pensamento, o Tribunal de origem poder&aacute; inadmitir, de plano, o Recurso Especial no qual o Ac&oacute;rd&atilde;o atacado esteja conforme a jurisprud&ecirc;ncia do colendo Superior Tribunal de Justi&ccedil;a. No caso sub examine, em que pesem as raz&otilde;es expostas no bojo do Recurso Especial, estas esbarram na jurisprud&ecirc;ncia consolidada pelo Superior Tribunal de Justi&ccedil;a, a qual &eacute; no sentido de que n&atilde;o h&aacute; ofensa ao artigo 535, da Legisla&ccedil;&atilde;o Processual Civil vigente nos casos em o Tribunal de origem fundamenta satisfatoriamente a sua decis&atilde;o, enfrentando todos os pontos necess&aacute;rios &agrave; resolu&ccedil;&atilde;o da lide, n&atilde;o sendo obrigado a apreciar todas as teses alegadas pela parte. Nesse norte, calha colacionar os julgados do Superior Tribunal de Justi&ccedil;a, in verbis:: AGRAVO REGIMENTAL - AGRAVO EM RECURSO ESPECIAL -APELA&Ccedil;&Atilde;O C&Iacute;VEL - A&Ccedil;&Atilde;O DE OBRIGA&Ccedil;&Atilde;O DE FAZER C/CINDENIZAT&Oacute;RIA - PLANO DE SA&Uacute;DE - HOME CARE -SOLICITA&Ccedil;&Atilde;O DE ALTERA&Ccedil;&Atilde;O DE TITULARIDADE DO PLANO NAS MESMAS CONDI&Ccedil;&Otilde;ES CONTRATUAIS J&Aacute; FIRMADAS DIANTE DA MORTE DO TITULAR - RECUSA NA COBERTURA DE TRATAMENTO - DANO MORAL - OCORR&Ecirc;NCIA QUANTUM -INCONFORMISMODA RECORRENTEAPONTOU DISPOSITIVOS LEGAIS QUE N&Atilde;O CONSTITUEM IMPERATIVOS LEGAIS APTOS A DESCONSTITU&Iacute;REM OS FUNDAMENTOS DO AC&Oacute;RD&Atilde;O RECORRIDO - VIOLA&Ccedil;&Atilde;O AO ARTIGO 535 DO CPC -INEXIST&Ecirc;NCIA - RESTITUI&Ccedil;&Atilde;O EM DOBRO DAS QUANTIAS COBRADAS DO TITULAR DO PLANO J&Aacute; FALECIDO - REEXAME DE PROVAS - CERCEAMENTO DE DEFESA - INCID&Ecirc;NCIA DA S&Uacute;MULA 7/STJ - DECIS&Atilde;O AGRAVADA MANTIDA 1.- N&atilde;o se viabiliza o especial pela indicada ofensa ao art. 535, II, do C&oacute;digo de Processo Civil, pois, embora rejeitados os Embargos de Declara&ccedil;&atilde;o, verifica-se que a mat&eacute;ria em exame foi devidamente enfrentada pelo colegiado de origem, que sobre ela emitiu pronunciamento de forma fundamentada, ainda que em sentido contr&aacute;rio &agrave; pretens&atilde;o da recorrente. A jurisprud&ecirc;ncia desta Casa &eacute; pac&iacute;fica ao proclamar que, se os fundamentos adotados bastam para justificar o conclu&iacute;do na decis&atilde;o, o julgador n&atilde;o est&aacute; obrigado a rebater, um a um, os argumentos utilizados pela parte. 2.- Os artigos 186 e 884 do C&oacute;digo Civil n&atilde;o constituem imperativos legais aptos a desconstitu&iacute;rem os fundamentos declinados no Ac&oacute;rd&atilde;o no que se refere ao inconformismo quanto ao valor arbitrado a t&iacute;tulo de danos morais. 3 [...]. 5.- Agravo Regimental a que se nega provimento. (AgRg no AREsp 354.527/RJ, Rel. Ministro SIDNEI BENETI, TERCEIRA TURMA, julgado em 22/10/2013, DJe 06/11/2013). (Grifos aditados) PROCESSUAL CIVIL E ADMINISTRATIVO. RECURSO ESPECIAL. A&Ccedil;&Atilde;O ORDIN&Aacute;RIA. CIRCULAR DA SUSEP. DISPENSA DE PUBLICA&Ccedil;&Atilde;O DE ATOS DAS SEGURADORAS NA IMPRENSA OFICIAL. PROCESSO EXTINTO, SEM JULGAMENTO DE M&Eacute;RITO. VIOLA&Ccedil;&Atilde;O DO ARTIGO 535 DO CPC N&Atilde;O CONFIGURADA. ARTIGOS 131, 462 E 463 DO CPC N&Atilde;O PREQUESTIONADOS. AUS&Ecirc;NCIA DE INTERESSE JUR&Iacute;DICO DA IMPRENSA OFICIAL E DA ASSOCIA&Ccedil;&Atilde;O QUE A REPRESENTA. 1. N&atilde;o h&aacute; viola&ccedil;&atilde;o do artigo 535, II, do CPC, quando o Tribunal a quo se manifesta de forma fundamentada a respeito de todos os pontos necess&aacute;rios ao deslinde da quest&atilde;o, apenas n&atilde;o adotando a tese das recorrentes. 2. Ressente-se o recurso especial do devido prequestionamento no tocante aos artigos 131, 462 e 463, I e II, do CPC, j&aacute; que sobre tais normas n&atilde;o houve emiss&atilde;o de ju&iacute;zo pelo ac&oacute;rd&atilde;o recorrido, tampouco oposi&ccedil;&atilde;o de embargos declarat&oacute;rios quanto ao ponto, o que atrai a aplica&ccedil;&atilde;o, por analogia da S&uacute;mula 282/STF. Por oportuno, frise-se que os embargos declarat&oacute;rios opostos na origem n&atilde;o objetivaram a integra&ccedil;&atilde;o do julgado quanto a esses dispositivos legais. [...] 7. Recurso especial n&atilde;o provido. (REsp 1204637/RJ, Rel. Ministro BENEDITO GON&Ccedil;ALVES, PRIMEIRA TURMA, julgado em 17/02/2011, DJe 12/04/2011). (Grifos aditados) Nesse &iacute;nterim, diante do exposto e da jurisprud&ecirc;ncia consolidada do Superior Tribunal de Justi&ccedil;a, o pleito recursal deve ser inadmitido nos termos da S&uacute;mula n.&ordm; 83, do STJ. DO JU&Iacute;ZO DE ADMISSIBILIDADE DO RECURSO EXTRAORDIN&Aacute;RIO. Somando-se aos requisites gen&eacute;ricos de admissibilidade, nos termos do art. 102, &sect;3&deg;, da Constitui&ccedil;&atilde;o Federal e art. 327, &sect;1&deg;, do RISTF Regimento Interno do Supremo Tribunal Federal, com a reda&ccedil;&atilde;o dada pela Emenda Regimental n.&ordm; 21/2007, o Recurso Extraordin&aacute;rio possui um requisito peculiar, que &eacute; a preliminar formal de repercuss&atilde;o geral. Observe-se o que disp&otilde;e o texto constitucional, in verbis. Art. 102. Compete ao Supremo Tribunal Federal, precipuamente, a guarda da Constitui&ccedil;&atilde;o, cabendo-lhe: [...] &sect;3&deg; No recurso extraordin&aacute;rio o recorrente dever&aacute; demonstrar a repercuss&atilde;o geral das quest&otilde;es constitucionais discutidas no caso, nos termos da lei, a fim de que o Tribunal examine a admiss&atilde;o do recurso, somente podendo recus&aacute;-lo pela manifesta&ccedil;&atilde;o de dois ter&ccedil;os de seus membros. (Grifos aditados) Nesse norte, claro est&aacute; que &eacute; &ocirc;nus do Recorrente demonstrar que h&aacute; repercuss&atilde;o geral na mat&eacute;ria que pretende discutir em sede de Recurso Extraordin&aacute;rio, sendo necess&aacute;rio indicar que a discuss&atilde;o vai al&eacute;m dos interesses individuais das partes. Nesse sentido, &eacute; o posicionamento do pr&oacute;prio Supremo Tribunal Federal, a saber: PROCESSUAL CIVIL. AGRAVO REGIMENTAL EM RECURSO EXTRAORDIN&Aacute;RIO. DEFICI&Ecirc;NCIA NA FUNDAMENTA&Ccedil;&Atilde;O DA PRELIMINAR DE REPERCUSS&Atilde;O GERAL. &Ocirc;NUS DO RECORRENTE. INSUFICI&Ecirc;NCIA DO RECURSO QUANTO AOS FUNDAMENTOS DO JULGADO. S&Uacute;MULAS 283 E 284 DO STF. AGRAVO REGIMENTAL A QUE SE NEGA PROVIMENTO. (STF - RE: 650918 DF, Segunda Turma, Relator: Min. TEORI ZAVASCKI, Data de Julgamento: 19/08/2014). (Grifos aditados) PROCESSUAL CIVIL E ADMINISTRATIVO. AGRAVO REGIMENTAL NO RECURSO EXTRAORDIN&Aacute;RIO COM AGRAVO. PRELIMINAR DE REPERCUSS&Atilde;O GERAL. FUNDAMENTA&Ccedil;&Atilde;O DEFICIENTE. &Ocirc;NUS DO RECORRENTE. SERVIDOR P&Uacute;BLICO. LEI ESTADUAL 8.369/2006. NATUREZA DE REVIS&Atilde;O GERAL ANUAL DA REMUNERA&Ccedil;&Atilde;O. AN&Aacute;LISE DE LEGISLA&Ccedil;&Atilde;O LOCAL. INVIABILIDADE. S&Uacute;MULA 280/STF. AGRAVO REGIMENTAL A QUE SE NEGA PROVIMENTO. (STF - ARE: 841197 MA, Segunda Turma, Relator: Min. TEORI ZAVASCKI, Data de Julgamento: 18/11/2014). (Grifos aditados) Ocorre que falece de compet&ecirc;ncia do Tribunal de Origem analisar a exist&ecirc;ncia ou n&atilde;o de repercuss&atilde;o geral, sendo o Supremo Tribunal Federal o &uacute;nico &Oacute;rg&atilde;o competente para proferir ju&iacute;zo de valor nesse sentido, raz&atilde;o pela qual passo a analisar os demais requisitos de admissibilidade do presente recurso. Seguindo com as exig&ecirc;ncias legais, exige-se a demonstra&ccedil;&atilde;o da incid&ecirc;ncia de uma das hip&oacute;teses constitucionais de cabimento autorizadoras de seu manejo, no caso, o artigo 102, III, al&iacute;neas a e d, da Constitui&ccedil;&atilde;o Federal da Rep&uacute;blica de 1988. Pois bem. O Recorrente sustenta que o Ac&oacute;rd&atilde;o guerreado teria violado o artigo 93, inciso IX, da Constitui&ccedil;&atilde;o Federal de 1988, alegando a exist&ecirc;ncia de ofensa ao Princ&iacute;pio da Motiva&ccedil;&atilde;o, haja vista que a decis&atilde;o proferida pelo Tribunal a quo teria limitado-se a relatar e dispor sobre o pedido. Todavia, tal tese n&atilde;o merece prosperar, haja vista que o Supremo Tribunal Federal vem reiteradamente decidindo que a jurisdi&ccedil;&atilde;o prestada mediante decis&atilde;o suficientemente fundamentada, n&atilde;o obstante tenha sido contr&aacute;ria &agrave; pretens&atilde;o da parte Recorrente, dispensa a an&aacute;lise detalhada de cada argumento suscitado pelas partes. Nesse sentido, calha colacionar os arestos abaixo ementados: Agravo regimental no recurso extraordin&aacute;rio com agravo. A&ccedil;&atilde;o rescis&oacute;ria. Pressupostos de admissibilidade. Legisla&ccedil;&atilde;o infraconstitucional. Ofensa reflexa. Artigo 93, inciso IX, da CF. Viola&ccedil;&atilde;o. N&atilde;o ocorr&ecirc;ncia. Precedentes. 1. A an&aacute;lise dos pressupostos de admissibilidade da a&ccedil;&atilde;o rescis&oacute;ria &eacute; mat&eacute;ria afeta &agrave; legisla&ccedil;&atilde;o infraconstitucional, cujo exame &eacute; invi&aacute;vel no recurso extraordin&aacute;rio, uma vez que a afronta ao texto constitucional, caso houvesse, se daria de forma indireta ou reflexa. 2. N&atilde;o houve viola&ccedil;&atilde;o do art. 93, inciso IX, da Constitui&ccedil;&atilde;o Federal, haja vista que a jurisdi&ccedil;&atilde;o foi prestada mediante decis&atilde;o suficientemente fundamentada, n&atilde;o obstante tenha sido contr&aacute;ria &agrave; pretens&atilde;o do ora agravante, tendo o Tribunal de origem apresentado suas raz&otilde;es de decidir. 3. Agravo regimental n&atilde;o provido. (ARE 844546 AgR, Relator(a):&nbsp; Min. DIAS TOFFOLI, Segunda Turma, julgado em 09/06/2015, AC&Oacute;RD&Atilde;O ELETR&Ocirc;NICO DJe-128 DIVULG 30-06-2015 PUBLIC 01-07-2015) EMENTA DIREITO PREVIDENCI&Aacute;RIO E PROCESSUAL CIVIL. JULGAMENTO MONOCR&Aacute;TICO DO RECURSO. POSSIBILIDADE. ART. 544, &sect; 4&ordm;, II, DO C&Oacute;DIGO DE PROCESSO CIVIL. NEGATIVA DE PRESTA&Ccedil;&Atilde;O JURISDICIONAL. ARTIGO 93, IX, DA CONSTITUI&Ccedil;&Atilde;O DA REP&Uacute;BLICA. NULIDADE. INOCORR&Ecirc;NCIA. RAZ&Otilde;ES DE DECIDIR EXPLICITADAS PELO &Oacute;RG&Atilde;O JURISDICIONAL. ALEGA&Ccedil;&Atilde;O DE OFENSA AO ART. 5&ordm;, LIV, DA CONSTITUI&Ccedil;&Atilde;O DA REP&Uacute;BLICA. DEBATE DE &Acirc;MBITO INFRACONSTITUCIONAL. EVENTUAL VIOLA&Ccedil;&Atilde;O REFLEXA DA CONSTITUI&Ccedil;&Atilde;O DA REP&Uacute;BLICA N&Atilde;O VIABILIZA O MANEJO DE RECURSO EXTRAORDIN&Aacute;RIO. AC&Oacute;RD&Atilde;O RECORRIDO PUBLICADO EM 14.3.2013. 1. O caso em discuss&atilde;o versa sobre julgamento monocr&aacute;tico do recurso, a atrair as disposi&ccedil;&otilde;es previstas no art. 544, &sect; 4&ordm;, II, do C&oacute;digo de Processo Civil. Precedentes. 2. Inexiste viola&ccedil;&atilde;o do artigo 93, IX, da Constitui&ccedil;&atilde;o Federal. A jurisprud&ecirc;ncia do Supremo Tribunal Federal &eacute; no sentido de que o referido dispositivo constitucional exige a explicita&ccedil;&atilde;o, pelo &oacute;rg&atilde;o jurisdicional, das raz&otilde;es do seu convencimento, dispensando o exame detalhado de cada argumento suscitado pelas partes. 3. O exame da alegada ofensa ao art. 5&ordm;, LIV, da Constitui&ccedil;&atilde;o Federal, observada a estreita moldura com que devolvida a mat&eacute;ria &agrave; aprecia&ccedil;&atilde;o desta Suprema Corte, dependeria de pr&eacute;via an&aacute;lise da legisla&ccedil;&atilde;o infraconstitucional aplicada &agrave; esp&eacute;cie e da reelabora&ccedil;&atilde;o da moldura f&aacute;tica delineada no ac&oacute;rd&atilde;o de origem, o que refoge &agrave; compet&ecirc;ncia jurisdicional extraordin&aacute;ria, prevista no art. 102 da Magna Carta. 4. As raz&otilde;es do agravo regimental n&atilde;o se mostram aptas a infirmar os fundamentos que lastrearam a decis&atilde;o agravada, mormente no que se refere &agrave; aus&ecirc;ncia de ofensa direta e literal a preceito da Constitui&ccedil;&atilde;o da Rep&uacute;blica. 5. Agravo regimental conhecido e n&atilde;o provido. (ARE 887132 AgR, Relator(a):&nbsp; Min. ROSA WEBER, Primeira Turma, julgado em 02/06/2015, PROCESSO ELETR&Ocirc;NICO DJe-114 DIVULG 15-06-2015 PUBLIC 16-06-2015) O Recorrente sustenta, ainda, que o Ac&oacute;rd&atilde;o guerreado teria violado os artigos 97 e 169, &sect;&sect; 1&ordm; e 3&ordm;, da Constitui&ccedil;&atilde;o Federal de 1988. Entretanto, tenho que tal alega&ccedil;&atilde;o n&atilde;o merece prosperar, haja vista que, de um perscrutar necess&aacute;rio dos autos, observo que tais dispositivos legais n&atilde;o foram analisados por esta Corte de Justi&ccedil;a, tratando-se, portanto, de mat&eacute;ria n&atilde;o prequestionada, descumprindo, desta forma, o pressuposto essencial do prequestionamento, ora analisado e fundamentado. Com efeito, extrai-se dos autos que este Tribunal n&atilde;o analisou a mat&eacute;ria sob a &oacute;tica do conte&uacute;do normativo inserto nos dispositivos legais suso mencionados, nem mesmo implicitamente, restando ausente, por conseguinte, o prequestionamento, requisito essencial a um ju&iacute;zo positivo de admissibilidade recursal. Cumpre salientar que o Supremo Tribunal Federal j&aacute; sumulou o entendimento de que &eacute; imprescind&iacute;vel o prequestionamento da mat&eacute;ria discutida para que haja a admissibilidade positiva de Recurso Extraordin&aacute;rio. Segue a dic&ccedil;&atilde;o inserta na S&uacute;mula n.&ordm; 282, do STF, in verbis. STF S&uacute;mula n.&ordm; 282 Admissibilidade Recurso Extraordin&aacute;rio Quest&atilde;o Federal Suscitada. &Eacute; inadmiss&iacute;vel o recurso extraordin&aacute;rio, quando n&atilde;o ventilada, na decis&atilde;o recorrida, a quest&atilde;o federal suscitada. (Grifos aditados) A esse respeito, vejamos recente julgado da Suprema Corte de Justi&ccedil;a: AGRAVO REGIMENTAL EM RECURSO EXTRAORDIN&Aacute;RIO. CIVIL. PREQUESTIONAMENTO. AUS&Ecirc;NCIA. S&Uacute;MULA 282 DO STF. DESCONSIDERACAO DA PERSONALIDADE IURIDICA. REQUISITOS. REAPRECIACAO DE INTERPRETACAO DE NORMAINFRACONSTITUCIONAL.IMPOSSIBILIDADE. OFENSA INDIRETA. MANUTEN&Ccedil;&Atilde;O DOS FUNDAMENTOSINFRACONSTITUCIONAISDOAC&Oacute;RD&Atilde;ORECORRIDO. S&Uacute;MULA 283 DO STF. DEFICI&Ecirc;NCIA NA FUNDAMENTA&Ccedil;&Atilde;O DO APELO EXTREMO. S&Uacute;MULA 284 DO STF. AGRAVO IMPROVIDO. I - Aus&ecirc;ncia de prequestionamento da quest&atilde;o constitucional suscitada. Incid&ecirc;ncia da S&uacute;mula 282 do STF. Ademais, a tardia alega&ccedil;&atilde;o de ofensa ao texto constitucional, apenasdeduzidaemembargosdedeclara&ccedil;&atilde;o,n&atilde;osupreo prequestionamento. Precedentes. II - O ac&oacute;rd&atilde;o recorrido dirimiu a quest&atilde;o com base na interpreta&ccedil;&atilde;o da legisla&ccedil;&atilde;o infraconstitucional aplic&aacute;vel &agrave; esp&eacute;cie. Assim, a afronta &agrave; Constitui&ccedil;&atilde;o, se ocorrente, seria apenas indireta. Incab&iacute;vel, portanto, o recurso extraordin&aacute;rio. Precedentes. III - Com o n&atilde;o conhecimento, pelo Superior Tribunal de Justi&ccedil;a, do agravo de instrumento interposto contra decis&atilde;o que inadmitiu o recurso especial, tornaram-se definitivos os fundamentos infraconstitucionais que amparam o ac&oacute;rd&atilde;o recorrido (S&uacute;mula 283 do STF). Precedentes. IV - A recorrente cingiu-se a sustentar ofensa ao art. 5&ordm;, LXXVIII, da Lei Maior, sem impugnar especificamente os fundamentos do ac&oacute;rd&atilde;o recorrido. Desse modo, ante a deficiente fundamenta&ccedil;&atilde;o do apelo extremo, incide no caso a S&uacute;mula 284 do STF. V - Agravo regimental improvido. (STF - RE: 720524 RJ, Segunda Turma, Relator: Min. RICARDO LEWANDOWSKI, Data de Julgamento: 26/02/2013). (Grifos aditados) Nesse contexto, o presente Recurso Extraordin&aacute;rio n&atilde;o h&aacute; de ser admitido, por esbarrar na S&uacute;mula n.&ordm; 282, do Supremo Tribunal Federal. A par de tais considera&ccedil;&otilde;es, portanto, entendo que os requisitos essenciais dos artigos 102, inciso III, al&iacute;neas a e d, e 105, inciso III, al&iacute;nea a, da Constitui&ccedil;&atilde;o Federal de 1988, n&atilde;o se encontram devidamente preenchidos, raz&atilde;o pela qual tenho por inadmiss&iacute;veis os recursos em espeque. Ante o exposto, inadmito os Recursos Especial e Extraordin&aacute;rio. Transitada em julgado a presente decis&atilde;o, remetam-se os autos ao Ju&iacute;zo de Origem para que sejam adotadas as provid&ecirc;ncias cab&iacute;veis. Publique-se. Intimem-se. Macei&oacute;, 29 de outubro de 2015 Des. Washington Luiz D. Freitas Presidente</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Concluso à Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=70" name="M" cdDocumento="70">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=70" name="M" cdDocumento="70">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CONCLUS&Atilde;O Fa&ccedil;o estes autos conclusos ao Excelent&iacute;ssimo Senhor Desembargador Washington Luiz D. Freitas - Presidente. Macei&oacute;, 20 de julho de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.15.70014660-6
+Tipo da Peti&ccedil;&atilde;o: Contrarraz&otilde;es
+Data: 20/07/2015 13:07
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.15.70014658-4
+Tipo da Peti&ccedil;&atilde;o: Contrarraz&otilde;es
+Data: 20/07/2015 13:05
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=66" name="M" cdDocumento="66">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=66" name="M" cdDocumento="66">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO, que foi disponibilizado no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do Tribunal de Justi&ccedil;a de Alagoas em 03/ 07/ 2015 o despacho de p&aacute;gina 208 e considerado publicado em 06/ 07/ 2015, nos termos do Artigo 4&ordm;, &sect; 3&ordm;, da Lei n&ordm; 11.419/2006. Macei&oacute;, 03 de julho de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios C&iacute;cera Cristina Lima de Ara&uacute;jo Bandeira Analista Judici&aacute;rio</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Publicado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Disponibilizado despacho de p&aacute;gina 208 no DJE de 03/07/2015.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				03/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Despacho
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">&quot;Intime-se a parte Recorrida para apresentar contrarraz&otilde;es...&quot;</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				02/07/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Encaminhado para Secretaria da Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				17/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=62" name="M" cdDocumento="62">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=62" name="M" cdDocumento="62">
+	        			Determinada Requisição de Informações
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DESPACHO Intime-se a parte Recorrida para apresentar contrarraz&otilde;es aos Recursos Especial e Extraordin&aacute;rio, observado o prazo legal, na conformidade do disposto pelo artigo 508 c/c o artigo 542, ambos do C&oacute;digo de Processo Civil. Publique-se. Intime-se. Macei&oacute;, 10 de junho de 2015. ORLANDO ROCHA FILHO Juiz Auxiliar da Presid&ecirc;ncia</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Concluso à Presidência
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=60" name="M" cdDocumento="60">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=60" name="M" cdDocumento="60">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CONCLUS&Atilde;O Fa&ccedil;o estes autos conclusos ao Excelent&iacute;ssimo Senhor Desembargador Washington Luiz D. Freitas - Presidente, em face da interposi&ccedil;&atilde;o de Recurso Especial e Extraordin&aacute;rio. Macei&oacute;, 8 de junho de 2015 Eleonora Paes Cerqueira de Fran&ccedil;a Diretora Adjunta Especial de Assuntos Judici&aacute;rios</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Interposto Recurso Extraordinário
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				08/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Interposto Recurso Especial
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Encaminhado à DAAJUC
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=55" name="M" cdDocumento="55">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=55" name="M" cdDocumento="55">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico para os devidos fins, que houve interposi&ccedil;&atilde;o de Recurso Especial e Extraordin&aacute;rio, protocolados em 28.05.2015, &agrave;s p&aacute;gs. 184-193 e 194-205, em que figura como recorrente o Minist&eacute;rio P&uacute;blico Estadual. Isto posto, nesta data, fa&ccedil;o remessa dos autos em ep&iacute;grafe &agrave; DAAJUC, para os devidos fins, contendo 206 p&aacute;ginas.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Entranhamento de Processo
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Entranhado o processo 0801507-44.2014.8.02.0000/90006 - Recurso Extraordin&aacute;rio C&iacute;vel</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.15.70009972-1
+Tipo da Peti&ccedil;&atilde;o: Recurso Extraordin&aacute;rio C&iacute;vel
+Data: 28/05/2015 10:12
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Entranhamento de Processo
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Entranhado o processo 0801507-44.2014.8.02.0000/90005 - Recurso Especial C&iacute;vel</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/06/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.15.70009971-3
+Tipo da Peti&ccedil;&atilde;o: Recurso Especial C&iacute;vel
+Data: 28/05/2015 10:10
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=49" name="M" cdDocumento="49">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=49" name="M" cdDocumento="49">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">JUNTADA Procedo a juntada, nesta data, da Peti&ccedil;&atilde;o de p&aacute;g. 181, oriunda do Estado de Alagoas, protocolada em 28/05/2015. Macei&oacute;,28 de maio de 2015. Mauricio de Omena Souza Secret&aacute;rio Geral</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Entranhamento de Processo
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Entranhado o processo 0801507-44.2014.8.02.0000/90004 - Peti&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				28/05/2015
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.15.70010077-0
+Tipo da Peti&ccedil;&atilde;o: Peti&ccedil;&atilde;o
+Data: 28/05/2015 11:57
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=45" name="M" cdDocumento="45">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=45" name="M" cdDocumento="45">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico para os devidos fins, que juntei nesta data, os embargos de declara&ccedil;&atilde;o interpostos pela Procuradoria Geral de Justi&ccedil;a.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Protocolo n&ordm; WTRJ.1470009487-7 Embargos de Declara&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incidente Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Seq.: 50 - Embargos de Declara&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Documento
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de certid&atilde;o com o ciente da PGJ nesta data.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de of&iacute;cio n&ordm; 558/2014 com ciente da Assembl&eacute;ia Legislativa do Estado de Alagoas em 30/09/2014.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				01/10/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de of&iacute;cio n&ordm; 559/2014 com ciente da Assembl&eacute;ia Legislativa do Estado de Alagoas em 30/09/2014.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de Of&iacute;cio n&ordm; 557/2014 com ciente da PGE nesta data.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=36" name="M" cdDocumento="36">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=36" name="M" cdDocumento="36">
+	        			Ofício Expedido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Of. n&ordm;. 559/2014 ao Procurador da ALE -  De ordem do Excelent&iacute;ssimo Desembargador Relator, informo a Vossa Excel&ecirc;ncia o inteiro teor do venerando Ac&oacute;rd&atilde;o, &agrave;s fls. 161-170, proferido nos autos da Mandado de Seguran&ccedil;a n&ordm; 0801507-44.2014.8.02.0000, da Comarca de Macei&oacute;/AL, cuja c&oacute;pia segue anexa.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=35" name="M" cdDocumento="35">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=35" name="M" cdDocumento="35">
+	        			Ofício Expedido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Of. n&ordm;. 558/2014 ao Presidente da ALE De ordem do Excelent&iacute;ssimo Desembargador Relator, informo a Vossa Excel&ecirc;ncia o inteiro teor do venerando Ac&oacute;rd&atilde;o, &agrave;s fls. 161-170, proferido nos autos da Mandado de Seguran&ccedil;a n&ordm; 0801507-44.2014.8.02.0000, da Comarca de Macei&oacute;/AL, cuja c&oacute;pia segue anexa.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=34" name="M" cdDocumento="34">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=34" name="M" cdDocumento="34">
+	        			Ofício Expedido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Of. n&ordm;. 557/2014 ao PGE - De ordem do Excelent&iacute;ssimo Desembargador Relator, informo a Vossa Excel&ecirc;ncia o inteiro teor do venerando Ac&oacute;rd&atilde;o, &agrave;s fls. 161-170, proferido nos autos da Mandado de Seguran&ccedil;a n&ordm; 0801507-44.2014.8.02.0000, da Comarca de Macei&oacute;/AL, cuja c&oacute;pia segue anexa.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=33" name="M" cdDocumento="33">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=33" name="M" cdDocumento="33">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico para os devidos fins, que em cumprimento ao Ac&oacute;rd&atilde;o de p&aacute;ginas 161-169, a Procuradoria Geral de Justi&ccedil;a foi intimada via eletr&ocirc;nica nesta data.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=32" name="M" cdDocumento="32">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=32" name="M" cdDocumento="32">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO que no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do Estado de Alagoas de 29/09/2014, Edi&ccedil;&atilde;o 1245, &agrave;s fls. 01-03, foi disponibilizado a conclus&atilde;o do venerando Ac&oacute;rd&atilde;o de p&aacute;ginas 161-170, conferido em 23/09/2014 e em conformidade com o art. 506 inciso III do C&oacute;digo de Processo Civil. c/c o art. 4&ordm; da Lei 11.419. O referido &eacute; verdade, dou f&eacute;.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				25/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=30" name="M" cdDocumento="30">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=30" name="M" cdDocumento="30">
+	        			Concedida a Segurança
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Por maioria de votos, concedeu-se a seguran&ccedil;a impetrada, determinando-se &agrave; autoridade coatora que se abstenha de aplicar nos proventos do ora impetrante o subteto remunerat&oacute;rio estabelecido pela Lei Estadual n&ordm; 7.348/2012, nos termos do voto do Des. Relator. Vencido o Des. Klever R&ecirc;go Loureiro, o qual votou pela denega&ccedil;&atilde;o da ordem, divergindo do Des. Relator. ADMINISTRATIVO E CONSTITUCIONAL. MANDADO DE SEGURAN&Ccedil;A. SERVIDOR P&Uacute;BLICO ESTADUAL INATIVO. TETO REMUNERAT&Oacute;RIO. FIXA&Ccedil;&Atilde;O DE SUBTETO INFERIOR AO TETO CONSTITUCIONAL POR MEIO DE LEI ORDIN&Aacute;RIA. IMPOSSIBILIDADE. ARTIGO 37, INCISO XI, DA CONSTITUI&Ccedil;&Atilde;O FEDERAL. EXIST&Ecirc;NCIA DE ILEGALIDADE NO ATO IMPUGNADO. DIREITO L&Iacute;QUIDO E CERTO VIOLADO. CONCESS&Atilde;O DA SEGURAN&Ccedil;A. MAIORIA DE VOTOS.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				24/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=29" name="M" cdDocumento="29">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=29" name="M" cdDocumento="29">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que o Tribunal Pleno, em Sess&atilde;o Ordin&aacute;ria hoje realizada, julgou os presentes autos, tendo decidido: Por maioria de votos, concedeu-se a seguran&ccedil;a impetrada, determinando-se &agrave; autoridade coatora que se abstenha de aplicar nos proventos do ora impetrante o subteto remunerat&oacute;rio estabelecido pela Lei Estadual n&ordm; 7.348/2012, nos termos do voto do Des. Relator. Vencido o Des. Klever R&ecirc;go Loureiro, o qual votou pela denega&ccedil;&atilde;o da ordem, divergindo do Des. Relator. Tomaram parte no julgamento: Des. Jos&eacute; Carlos Malta Marques - Presidente, Des. Washington Luiz D. Freitas - Relator, Desa. Elisabeth Carvalho Nascimento, Des. Pedro Augusto Mendon&ccedil;a de Ara&uacute;jo, Des. James Magalh&atilde;es de Medeiros, Des. Alcides Gusm&atilde;o da Silva, Des. Tutm&eacute;s Airan de Albuquerque Melo, Des. Klever R&ecirc;go Loureiro, Des. Paulo Barros da Silva Lima, Des. Fernando Tourinho de Omena Souza, Des. F&aacute;bio Jos&eacute; Bittencourt Ara&uacute;jo, Des. Jo&atilde;o Luiz Azevedo Lessa e Des. Domingos de Ara&uacute;jo Lima Neto. Para constar lavro a presente certid&atilde;o.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				23/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo Julgado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Por maioria de votos, concedeu-se a seguran&ccedil;a impetrada, determinando-se &agrave; autoridade coatora que se abstenha de aplicar nos proventos do ora impetrante o subteto remunerat&oacute;rio estabelecido pela Lei Estadual n&ordm; 7.348/2012, nos termos do voto do Des. Relator. Vencido o Des. Klever R&ecirc;go Loureiro, o qual votou pela denega&ccedil;&atilde;o da ordem, divergindo do Des. Relator.
+
+ADMINISTRATIVO E CONSTITUCIONAL. MANDADO DE SEGURAN&Ccedil;A. SERVIDOR P&Uacute;BLICO ESTADUAL INATIVO. TETO REMUNERAT&Oacute;RIO. FIXA&Ccedil;&Atilde;O DE SUBTETO INFERIOR AO TETO CONSTITUCIONAL POR MEIO DE LEI ORDIN&Aacute;RIA. IMPOSSIBILIDADE. ARTIGO 37, INCISO XI, DA CONSTITUI&Ccedil;&Atilde;O FEDERAL. EXIST&Ecirc;NCIA DE ILEGALIDADE NO ATO IMPUGNADO. DIREITO L&Iacute;QUIDO E CERTO VIOLADO. CONCESS&Atilde;O DA SEGURAN&Ccedil;A. MAIORIA DE VOTOS.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				18/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=27" name="M" cdDocumento="27">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=27" name="M" cdDocumento="27">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que, nos termos do Ato Normativo n&ordm; 01/2012, o presente processo foi inclu&iacute;do na pauta de julgamento do dia 23 de novembro 2013, disponibilizado no Di&aacute;rio de Justi&ccedil;a Eletr&ocirc;nico no dia 12 de setembro 2013, tendo sido a mesma afixada no mural informativo jurisdicional desta Corte de Justi&ccedil;a.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=26" name="M" cdDocumento="26">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=26" name="M" cdDocumento="26">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que o julgamento do presente processo foi adiado para a pr&oacute;xima sess&atilde;o a pedido do Des. Relator. Para constar lavro a presente certid&atilde;o.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				09/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Adiado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">O julgamento do presente processo foi adiado para a pr&oacute;xima sess&atilde;o a pedido do Des. Relator. Pr&oacute;xima pauta: 23/09/2014 09:00</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				05/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=23" name="M" cdDocumento="23">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=23" name="M" cdDocumento="23">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que, nos termos do Ato Normativo n&ordm; 01/2012, o presente processo foi inclu&iacute;do na pauta de julgamento do dia 09 de setembro 2013, disponibilizado no Di&aacute;rio de Justi&ccedil;a Eletr&ocirc;nico no dia 03 de setembro 2013, tendo sido a mesma afixada no mural informativo jurisdicional desta Corte de Justi&ccedil;a.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				02/09/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Incluído em pauta
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Para 09/09/2014</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				29/08/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=21" name="M" cdDocumento="21">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=21" name="M" cdDocumento="21">
+	        			Solicitação de dia para Julgamento - Relator
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">D E S P A C H O Estando o processo em ordem, pe&ccedil;o inclus&atilde;o na pauta de julgamento subsequente. Macei&oacute;, 29 de agosto de 2014 Desembargador Washington Luiz Damasceno Freitas Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Concluso ao Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=19" name="M" cdDocumento="19">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=19" name="M" cdDocumento="19">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Junto aos presentes autos a peti&ccedil;&atilde;o da Procuradoria Geral de Justi&ccedil;a de p&aacute;gs. 116/154, e os fa&ccedil;o conclusos nesta data ao Excelent&iacute;ssimo Senhor Des. Washington Luiz D. Freitas - Relator.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Entranhamento de Processo
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Entranhado o processo 0801507-44.2014.8.02.0000/90001 - Parecer</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.14.70004606-6
+Tipo da Peti&ccedil;&atilde;o: Parecer
+Data: 16/06/2014 10:53
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				10/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Documento
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de certid&atilde;o com o ciente da PGJ.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				09/06/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=14" name="M" cdDocumento="14">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=14" name="M" cdDocumento="14">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Certifico que decorreu o prazo sem que a autoridade coatora apresentasse informa&ccedil;&otilde;es requeridas, conforme certid&atilde;o de p&aacute;g. 113, e, em cumprimento a decis&atilde;o de p&aacute;gs. 54/63, a Procuradoria Geral de Justi&ccedil;a foi intimada por via eletr&ocirc;nica nesta data.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				30/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Mandado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de mandado com o ciente da Mesa Diretora da Assembl&eacute;ia Legislativa em 26/05/2014.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Entranhamento de Processo
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Entranhado o processo 0801507-44.2014.8.02.0000/90000 - Peti&ccedil;&atilde;o</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				27/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Petição de
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">N&ordm; Protocolo: WTRJ.14.70004019-0
+Tipo da Peti&ccedil;&atilde;o: Peti&ccedil;&atilde;o
+Data: 27/05/2014 10:40
+</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				21/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Juntada de Ofício
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Juntada de Of&iacute;cio n&ordm; 291/2014 com o ciente da PGE.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Ofício Expedido
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Expedido Of&iacute;cio n&ordm; 291/2014 para a PGE.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Mandado Expedido
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">Expedido Mandado para a Mesa Diretora da Assembl&eacute;ia Legislativa do Estado de Alagoas.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				20/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=7" name="M" cdDocumento="7">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=7" name="M" cdDocumento="7">
+	        			Certidão Emitida
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">CERTIFICO que, no Di&aacute;rio da Justi&ccedil;a Eletr&ocirc;nico do dia 20 de maio de 2014, &agrave; p&aacute;g. 75/79, foi disponibilizado a decis&atilde;o de p&aacute;gs. 54/63.</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				19/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=5" name="M" cdDocumento="5">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=5" name="M" cdDocumento="5">
+	        			Concedida a Medida Liminar
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DECIS&Atilde;O / OF&Iacute;CIO / MANDADO N.&ordm; _______________ Cuidam os autos de Mandado de Seguran&ccedil;a com pedido de liminar n.&ordm; 0801507-44.2014.8.02.0000, impetrado por Ivaldo Buarque Barbosa e outros, meio processual pelo qual se insurgem contra ato da Mesa Diretora da Assembl&eacute;ia Legislativa do Estado de Alagoas. Aduzem os impetrantes, servidores p&uacute;blicos estaduais inativos, integrantes do Quadro de Pessoal da Assembl&eacute;ia Legislativa do Estado de Alagoas, que seus proventos de aposentadoria v&ecirc;m sendo pagos com a incid&ecirc;ncia do redutor constitucional, conforme demonstrativos de pagamentos de p&aacute;gs. 34/38, com base na Lei Estadual n.&ordm; 7.348/2012. Salientam, ainda, que com o advento da Lei Estadual n.&ordm; 7.349/2012, que reajustou os sal&aacute;rios dos deputados estaduais para o valor de R$ 20.042,34 (vinte mil, quarenta e dois reais e trinta e quatro centavos), passou a ser desnecess&aacute;ria a redu&ccedil;&atilde;o dos proventos do servidor/impetrante, por&eacute;m continuou sendo descontado mensalmente o valor supramencionado. Inconformados com o apontado, os impetrantes ajuizaram o presente writ imbu&iacute;dos no escopo prec&iacute;puo de ver corrigida a situa&ccedil;&atilde;o de viola&ccedil;&atilde;o que alegam se encontrar, pleiteando, inclusive em sede de liminar, a n&atilde;o incid&ecirc;ncia do redutor constitucional sobre os seus proventos de aposentadoria, sob pena de multa di&aacute;ria. Menciona, ainda, que est&atilde;o presentes o fumus boni iuris e o periculum in mora, considerando-os requisitos autorizadores para a concess&atilde;o da medida liminar requestada. &Eacute;, em s&iacute;ntese, o relat&oacute;rio. Passo ao exame do pedido concess&atilde;o de decis&atilde;o liminar. Inicialmente, cumpre afastar a decad&ecirc;ncia no caso em comento, tendo em vista a configura&ccedil;&atilde;o da presta&ccedil;&atilde;o de trato sucessivo. Nessa toada, seguem os recentes julgados oriundos do Superior Tribunal de Justi&ccedil;a, in verbis: PROCESSUAL CIVIL E ADMINISTRATIVO. AGRAVO REGIMENTAL. RECURSO ESPECIAL. SERVIDOR P&Uacute;BLICO. TETO REMUNERAT&Oacute;RIO. REDU&Ccedil;&Atilde;O DE PROVENTOS. DECAD&Ecirc;NCIA DO DIREITO DE IMPETRA&Ccedil;&Atilde;O DO MANDADO DE SEGURAN&Ccedil;A. N&Atilde;O OCORR&Ecirc;NCIA. RELA&Ccedil;&Atilde;O DE TRATO SUCESSIVO. PRECEDENTES. AUS&Ecirc;NCIA DE FUNDAMENTOS NOVOS CAPAZES DE INFIRMAR A DECIS&Atilde;O AGRAVADA. Agravo regimental improvido. (AgRg no REsp 1167340/AM, Rel. Ministro SEBASTI&Atilde;O REIS J&Uacute;NIOR, SEXTA TURMA, julgado em 25/06/2013, DJe 01/08/2013) AGRAVO REGIMENTAL NO RECURSO ESPECIAL. PROCESSUAL CIVIL. SERVIDOR P&Uacute;BLICO ESTADUAL. AMAZONAS. REDU&Ccedil;&Atilde;O DOS PROVENTOS POR DECRETO ESTADUAL. RELA&Ccedil;&Atilde;O DE TRATO SUCESSIVO. MANDADO DE SEGURAN&Ccedil;A. DECAD&Ecirc;NCIA. N&Atilde;O OCORR&Ecirc;NCIA. 1. O agravante n&atilde;o trouxe argumentos novos capazes de infirmar os fundamentos que alicer&ccedil;aram a decis&atilde;o agravada, raz&atilde;o que enseja a negativa de provimento ao agravo regimental. 2. Segundo precedentes, &quot;quando houver redu&ccedil;&atilde;o, e n&atilde;o supress&atilde;o do valor de vantagem, fica configurada a presta&ccedil;&atilde;o de trato sucessivo, que se renova m&ecirc;s a m&ecirc;s, pois n&atilde;o equivale &agrave; nega&ccedil;&atilde;o do pr&oacute;prio fundo de direito, n&atilde;o havendo que se falar, portanto, em decad&ecirc;ncia do mandado de seguran&ccedil;a&quot;. (c.f.: AgRg no Ag 1337066/BA, Rel. Ministro CASTRO MEIRA, SEGUNDA TURMA, JULGADO EM 26/10/2010, DJe 10/11/2010). 3. Agravo regimental n&atilde;o provido. (AgRg no REsp 1304852/AM, Rel. Ministro MAURO CAMPBELL MARQUES, SEGUNDA TURMA, julgado em 18/12/2012, DJe 08/02/2013) Confirmada, assim, a tempestividade da impetra&ccedil;&atilde;o da corrente a&ccedil;&atilde;o mandamental, passo a analisar o pedido de concess&atilde;o de medida liminar. Sobreleva notar, desde logo, que a faculdade concedida ao magistrado pelo artigo 7&ordm;, inciso III, da Lei n.&ordm; 12.016/2009, para deferir a liminar em mandado de seguran&ccedil;a, est&aacute; necessariamente vinculada &agrave; presen&ccedil;a simult&acirc;nea de dois requisitos na peti&ccedil;&atilde;o inicial do writ, a saber, a relev&acirc;ncia do fundamento e a possibilidade da manuten&ccedil;&atilde;o do ato impugnado tornar ineficaz a medida judicialmente requerida. Eis o teor do dispositivo legal mencionado, in verbis: Art. 7&ordm; Ao despachar a inicial, o juiz ordenar&aacute;:&nbsp; (...) III que se suspenda o ato que deu motivo ao pedido, quando houver fundamento relevante e do ato impugnado puder resultar a inefic&aacute;cia da medida, caso seja finalmente deferida, sendo facultado exigir do impetrante cau&ccedil;&atilde;o, fian&ccedil;a ou dep&oacute;sito, com o objetivo de assegurar o ressarcimento &agrave; pessoa jur&iacute;dica.&nbsp;(grifos acrescidos) Partindo de uma an&aacute;lise perfunct&oacute;ria, pr&oacute;pria deste instante processual, verifico, cristalinamente, estar presente o primeiro requisito acima elencado, qual seja o da relev&acirc;ncia do fundamento esbo&ccedil;ado na exordial. Explico. In casu, verifica-se que o ponto nodal da quest&atilde;o &eacute; a possibilidade, ou n&atilde;o, de incid&ecirc;ncia do redutor constitucional na remunera&ccedil;&atilde;o dos servidores/impetrantes com base em lei ordin&aacute;ria que definiu subteto para a categoria em tela. A meu sentir, com o advento da Emenda Constitucional n.&ordm; 19/98, n&atilde;o &eacute; admiss&iacute;vel o estabelecimento de teto remunerat&oacute;rio por meio de lei ordin&aacute;ria, o que por si s&oacute; demonstra a ilegalidade do ato impugnado. Visando elucidar o supramencionado, destaco o texto, origin&aacute;rio e altera&ccedil;&otilde;es, do artigo 37, XI, da Constitui&ccedil;&atilde;o Federal: XI -&nbsp;a lei fixar&aacute; o limite m&aacute;ximo e a rela&ccedil;&atilde;o de valores entre a maior e a menor remunera&ccedil;&atilde;o dos servidores p&uacute;blicos, observados, como limites m&aacute;ximos e no &acirc;mbito dos respectivos poderes, os valores percebidos como remunera&ccedil;&atilde;o, em esp&eacute;cie, a qualquer t&iacute;tulo, por membros do Congresso Nacional, Ministros de Estado e Ministros do Supremo Tribunal Federal e seus correspondentes nos Estados, no Distrito Federal e nos Territ&oacute;rios, e, nos Munic&iacute;pios, os valores percebidos como remunera&ccedil;&atilde;o, em esp&eacute;cie, pelo Prefeito;&nbsp; (Texto original) XI - a remunera&ccedil;&atilde;o e o subs&iacute;dio dos ocupantes de cargos, fun&ccedil;&otilde;es e empregos p&uacute;blicos da administra&ccedil;&atilde;o direta, aut&aacute;rquica e fundacional, dos membros de qualquer dos Poderes da Uni&atilde;o, dos Estados, do Distrito Federal e dos Munic&iacute;pios, dos detentores de mandato eletivo e dos demais agentes pol&iacute;ticos e os proventos, pens&otilde;es ou outra esp&eacute;cie remunerat&oacute;ria, percebidos cumulativamente ou n&atilde;o, inclu&iacute;das as vantagens pessoais ou de qualquer outra natureza, n&atilde;o poder&atilde;o exceder o subs&iacute;dio mensal, em esp&eacute;cie, dos Ministros do Supremo Tribunal Federal; (Reda&ccedil;&atilde;o dada pela Emenda Constitucional n&ordm; 19, de 1998)&nbsp; XI - a remunera&ccedil;&atilde;o e o subs&iacute;dio dos ocupantes de cargos, fun&ccedil;&otilde;es e empregos p&uacute;blicos da administra&ccedil;&atilde;o direta, aut&aacute;rquica e fundacional, dos membros de qualquer dos Poderes da Uni&atilde;o, dos Estados, do Distrito Federal e dos Munic&iacute;pios, dos detentores de mandato eletivo e dos demais agentes pol&iacute;ticos e os proventos, pens&otilde;es ou outra esp&eacute;cie remunerat&oacute;ria, percebidos cumulativamente ou n&atilde;o, inclu&iacute;das as vantagens pessoais ou de qualquer outra natureza, n&atilde;o poder&atilde;o exceder o subs&iacute;dio mensal, em esp&eacute;cie, dos Ministros do Supremo Tribunal Federal, aplicando-se como limite, nos Munic&iacute;pios, o subs&iacute;dio do Prefeito, e nos Estados e no Distrito Federal, o subs&iacute;dio mensal do Governador no &acirc;mbito do Poder Executivo, o subs&iacute;dio dos Deputados Estaduais e Distritais no &acirc;mbito do Poder Legislativo e o subs&iacute;dio dos Desembargadores do Tribunal de Justi&ccedil;a, limitado a noventa inteiros e vinte e cinco cent&eacute;simos por cento do subs&iacute;dio mensal, em esp&eacute;cie, dos Ministros do Supremo Tribunal Federal, no &acirc;mbito do Poder Judici&aacute;rio, aplic&aacute;vel este limite aos membros do Minist&eacute;rio P&uacute;blico, aos Procuradores e aos Defensores P&uacute;blicos;&nbsp;(Reda&ccedil;&atilde;o dada pela Emenda Constitucional n&ordm; 41, 19.12.2003) (destaques aditados) Do teor do supratranscrito, verifica-se que o texto original do artigo 37, XI, da Constitui&ccedil;&atilde;o Federal previa a possibilidade de limita&ccedil;&atilde;o remunerat&oacute;ria por meio de lei ordin&aacute;ria. Com o advento da Emenda Constitucional n.&ordm; 19/98, tal possibilidade foi subtra&iacute;da, reservando-se, apenas, ao legislador ordin&aacute;rio estabelecer a rela&ccedil;&atilde;o entre a maior e a menor remunera&ccedil;&atilde;o dos servidores p&uacute;blicos, como preconizado no &sect; 5&ordm; do artigo 39 da Carta Magna. Conforme depreende-se da leitura da atual reda&ccedil;&atilde;o do inciso XI do artigo 37 constitucional, dada pela Emenda Constitucional n.&ordm; 41/03, o legislador constituinte estabeleceu teto e subteto remunerat&oacute;rios ao estremar os proventos de todos os ocupantes de cargos, fun&ccedil;&otilde;es e empregos p&uacute;blicos com base nos subs&iacute;dios dos ministros do STF, e ao aplicar como limite, nos Munic&iacute;pios, o subs&iacute;dio do Prefeito, e nos Estados e no Distrito Federal, o subs&iacute;dio mensal do Governador no &acirc;mbito do Poder Executivo, o subs&iacute;dio dos Deputados Estaduais e Distritais no &acirc;mbito do Poder Legislativo e o subs&iacute;dio dos Desembargadores do Tribunal de Justi&ccedil;a. Destaque-se, tamb&eacute;m, que com o advento do novel texto do referido artigo constitucional persistiu a impossibilidade de cria&ccedil;&atilde;o de limitadores remunerat&oacute;rios por meio de leis ordin&aacute;rias. O tema em espeque, subtetos criados com fulcro no texto original da Constitui&ccedil;&atilde;o ap&oacute;s a promulga&ccedil;&atilde;o da EC n.&ordm; 19/98, teve a repercuss&atilde;o geral reconhecida pelo Supremo Tribunal Federal, quando do exame do RE n.&ordm; 476.894, Relator o Ministro Gilmar Mendes, in verbis: Direito Administrativo. Teto remunerat&oacute;rio. Emenda Constitucional 19/98. Fixa&ccedil;&atilde;o de subtetos locais inferiores ao teto da Constitui&ccedil;&atilde;o Federal. Exist&ecirc;ncia de repercuss&atilde;o geral. (RE 476894 RG, Relator(a): Min. GILMAR MENDES, julgado em 17/06/2010, DJe-200 DIVULG 21-10-2010 PUBLIC 22-10-2010 EMENT VOL-02420-04 PP-00850 ) Ato cont&iacute;nuo, o m&eacute;rito da quest&atilde;o foi enfrentado pelo Plen&aacute;rio daquela Corte, por ocasi&atilde;o do julgamento do RE n.&ordm; 424.053/SP, Relator o Ministro Marco Aur&eacute;lio, ocorrido em 24/06/10, com a seguinte ementa: REMUNERA&Ccedil;&Atilde;O - SERVIDOR DO EXECUTIVO ESTADUAL - TETO - EMENDA CONSTITUCIONAL N&ordm; 19/98 - EFIC&Aacute;CIA PROJETADA NO TEMPO - ARTIGO 37, INCISO XI, DA CONSTITUI&Ccedil;&Atilde;O FEDERAL, NA REDA&Ccedil;&Atilde;O PRIMITIVA - SUBSIST&Ecirc;NCIA DO TETO REVELADO PELA REMUNERA&Ccedil;&Atilde;O DE SECRET&Aacute;RIO DE ESTADO. A efic&aacute;cia do inciso XI do artigo 37 da Constitui&ccedil;&atilde;o Federal, na reda&ccedil;&atilde;o decorrente da Emenda Constitucional n&ordm; 19/98, ficou jungida &agrave; fixa&ccedil;&atilde;o, por lei de iniciativa conjunta do Presidente da Rep&uacute;blica, do Presidente do Supremo, do Presidente da C&acirc;mara e do Presidente do Senado, do subs&iacute;dio, persistindo a vig&ecirc;ncia do texto primitivo da Carta, no que contemplado o teto por Poder, consideradas as esferas federal e estadual. (destaques aditados) Firmou-se, deste modo, o entendimento de que a aplicabilidade do artigo 37, inciso XI, da Constitui&ccedil;&atilde;o Federal, com a reda&ccedil;&atilde;o conferida pela EC n.&ordm; 19/98, estava condicionada &agrave; promulga&ccedil;&atilde;o de lei federal fixando os subs&iacute;dios dos Ministros do Supremo Tribunal Federal, o que s&oacute; veio a ocorrer, efetivamente, com o advento da Lei n.&ordm; 11.143/2005, de 26 de julho de 2005. Portanto, somente podem ser consideradas v&aacute;lidas as leis ordin&aacute;rias que estabelecem subtetos remunerat&oacute;rios editadas antes da promulga&ccedil;&atilde;o da Lei n.&ordm; 11.143/2005, o que n&atilde;o &eacute; o caso em apre&ccedil;o, visto que a lei que limitou a remunera&ccedil;&atilde;o dos servidores da Assembleia Legislativa data do ano de 2012. Nessa linha: CONSTITUCIONAL E ADMINISTRATIVO. TETO REMUNERAT&Oacute;RIO. SERVIDOR P&Uacute;BLICO ESTADUAL. LEI 6.995/90. EMENDA CONSTITUCIONAL 19/98. EFIC&Aacute;CIA CONDICIONADA &Agrave; EDI&Ccedil;&Atilde;O DE LEI FORMAL. SUBSIST&Ecirc;NCIA DO TETO PREVISTO NA LEI ESTADUAL. RECURSO DESPROVIDO. 1. Os subtetos remunerat&oacute;rios criados por leis especiais com fundamento na reda&ccedil;&atilde;o original do art. 37, XI, da CRFB, mant&ecirc;m-se h&iacute;gidos merc&ecirc; do advento da EC 19/98, porquanto a efic&aacute;cia do novel texto constitucional condicionava-se &agrave; edi&ccedil;&atilde;o de lei de iniciativa conjunta dos Presidentes da Rep&uacute;blica, da C&acirc;mara dos Deputados, do Senado Federal e do Supremo Tribunal Federal, conforme previsto no artigo 48, XV, da Constitui&ccedil;&atilde;o (tamb&eacute;m na reda&ccedil;&atilde;o da EC 19/98). 2. A aus&ecirc;ncia da edi&ccedil;&atilde;o da lei almejada restou por determinar vigente o texto constitucional primitivo, raz&atilde;o pela qual o teto institu&iacute;do antes da edi&ccedil;&atilde;o da EC 19 permanece v&aacute;lido, consoante o precedente firmado no RE 417.200, Relator o Ministro Marco Aur&eacute;lio, DJe de 1&ordm;/10/10, verbis: &quot;REMUNERA&Ccedil;&Atilde;O - SERVIDOR DO EXECUTIVO ESTADUAL - TETO - EMENDA CONSTITUCIONAL N&ordm; 19/98 - EFIC&Aacute;CIA PROJETADA NO TEMPO - ARTIGO 37, INCISO XI, DA CONSTITUI&Ccedil;&Atilde;O FEDERAL, NA REDA&Ccedil;&Atilde;O PRIMITIVA - SUBSIST&Ecirc;NCIA DO TETO REVELADO PELA REMUNERA&Ccedil;&Atilde;O DE SECRET&Aacute;RIO DE ESTADO. A efic&aacute;cia do inciso XI do artigo 37 da Constitui&ccedil;&atilde;o Federal, na reda&ccedil;&atilde;o decorrente da Emenda Constitucional n&ordm; 19/98, ficou jungida &agrave; fixa&ccedil;&atilde;o, por lei de iniciativa conjunta do Presidente da Rep&uacute;blica, do Presidente do Supremo, do Presidente da C&acirc;mara e do Presidente do Senado, do subs&iacute;dio, persistindo a vig&ecirc;ncia do texto primitivo da Carta, no que contemplado o teto por Poder, consideradas as esferas federal e estadual&quot;. 3. In casu, a Lei paulista 6.995/90 estabeleceu como limite salarial dos servidores p&uacute;blicos estaduais a remunera&ccedil;&atilde;o percebida pelos secret&aacute;rios de Estado antes do advento da EC 19, portanto, com respaldo no texto constitucional vigente &agrave; &eacute;poca em que editada. 4. Agravo regimental a que se nega provimento.(STF - RE 464031 AgR, Relator(a):&nbsp; Min. LUIZ FUX, Primeira Turma, julgado em 03/05/2011, DJe-094 DIVULG 18-05-2011 PUBLIC 19-05-2011 EMENT VOL-02525-03 PP-00367) (negritei) Esta Corte de Justi&ccedil;a j&aacute; se manifestou acerca do tema em espeque, conforme &eacute; depreendido dos recent&iacute;ssimos julgados que adiante transcrevo: AC&Oacute;RD&Atilde;O MANDADO DE SEGURAN&Ccedil;A. SERVIDORA P&Uacute;BLICA. IMPUGNA&Ccedil;&Atilde;O DE ATO ADMINISTRATIVO QUE FAZ INCIDIR REDUTOR CONSTITUCIONAL&nbsp;SOBRE PROVENTOS DE APOSENTADORIA AP&Oacute;S EDI&Ccedil;&Atilde;O DE LEI QUE AUMENTOU O&nbsp;TETO&nbsp;REMUNERAT&Oacute;RIO DOS DEPUTADOS ESTADUAIS. POSSIBILIDADE DE DISCUSS&Atilde;O SOBRE A&nbsp;CONSTITUCIONALIDADE DE LEI QUE LIMITA O EXERC&Iacute;CIO DE DIREITO SUBJETIVO DO IMPETRANTE DO MANDAMUS. INCONSTITUCIONALIDADE DE LEI ESTADUAL QUE, AP&Oacute;S A EDI&Ccedil;&Atilde;O DA EC N&ordm; 41/03 &Agrave; CONSTITUI&Ccedil;&Atilde;O FEDERAL, ESTABELECEU SUBTETO&nbsp;AOS PROVENTOS DOS SERVIDORES DO LEGISLATIVO ESTADUAL INFERIOR AO SUBS&Iacute;DIO DOS DEPUTADOS ESTADUAIS ART. 37, XI, DA CF. N&Atilde;O H&Aacute; DIREITO ADQUIRIDO A REGIME JUR&Iacute;DICO NEM AOS SERVIDORES P&Uacute;BLICOS, NEM &Agrave; ADMINISTRA&Ccedil;&Atilde;O. MUDAN&Ccedil;A DE REGRAS QUE PODEM BENEFICIAR OU PREJUDICIAR AOS SERVIDORES P&Uacute;BLICOS, DENTRO DOS LIMITES CONSTITUCIONAIS. COMPROVA&Ccedil;&Atilde;O DE RENDIMENTO EXPEDIDO PELA ADMINISTRA&Ccedil;&Atilde;O P&Uacute;BLICA. PRESUN&Ccedil;&Atilde;O DE LEGITIMIDADE DOS ATOS ADMINISTRATIVOS. SEGURAN&Ccedil;A JUR&Iacute;DICA. A LEI DE RESPONSABILIDADE FISCAL N&Atilde;O SERVE COMO &Oacute;BICE AO RECONHECIMENTO DE DIREITO&nbsp;CONSTITUCIONAL&nbsp;E LEGAL ASSEGURADOS AOS SERVIDORES P&Uacute;BLICOS. EXIST&Ecirc;NCIA DE OUTROS MECANISMOS DE CONTROLE DOS GASTOS P&Uacute;BLICOS. DIREITO L&Iacute;QUIDO E CERTO CONFIGURADO. TETO&nbsp;CONSTITUCIONAL&nbsp;DO SUBS&Iacute;DIO DOS DEPUTADOS ESTADUAIS A SER OBSERVADO. A&Ccedil;&Atilde;O&nbsp;CONSTITUCIONAL&nbsp;CONHECIDA E PROVIDA. DECIS&Atilde;O UN&Acirc;NIME. (MS n.&ordm; 0802296-93.2013.8.02.0900, Rela. Desa. Elisabeth Carvalho Nascimento, Tribunal Pleno, Julgado em: 11/03/14) MANDADO DE SEGURAN&Ccedil;A. SERVIDOR P&Uacute;BLICO. SUBTETO REMUNERAT&Oacute;RIO FIXADO EM LEI ESTADUAL ABAIXO DO TETO CONSTITUCIONAL. INCONSTITUCIONALIDADE. ART. 37, XI, CF/88. REDA&Ccedil;&Atilde;O ATUAL DA CONSTITUI&Ccedil;&Atilde;O FEDERAL QUE N&Atilde;O AUTORIZA QUE LEI INFRACONSTITUCIONAL ESTABELE&Ccedil;A &quot;LIMITE FIXO&quot; DE REMUNERA&Ccedil;&Atilde;O DOS SERVIDORES P&Uacute;BLICOS. INCONSTITUCIONALIDADE DO ART. 2&ordm; DA LEI ESTADUAL N.&ordm; 7.348/2012. SEGURAN&Ccedil;A CONCEDIDA, POR MAIORIA DE VOTOS. (MS n.&ordm; 0802212-92.2013.8.02.0900, Rel. Des. F&aacute;bio Jos&eacute; Bittencourt Ara&uacute;jo, Tribunal Pleno, Julgado em: 18/03/14) (destaques aditados) Ademais, fortalecendo ainda mais tal entendimento, a Emenda Constitucional n.&ordm; 47/2005 veio incluir o &sect; 12 ao artigo 37 da Lei Fundamental, ipsis litteris: &sect; 12. Para os fins do disposto no inciso XI do caput deste artigo, fica facultado aos Estados e ao Distrito Federal fixar, em seu &acirc;mbito, mediante emenda &agrave;s respectivas Constitui&ccedil;&otilde;es e Lei Org&acirc;nica, como limite &uacute;nico, o subs&iacute;dio mensal dos Desembargadores do respectivo Tribunal de Justi&ccedil;a, limitado a noventa inteiros e vinte e cinco cent&eacute;simos por cento do subs&iacute;dio mensal dos Ministros do Supremo Tribunal Federal, n&atilde;o se aplicando o disposto neste par&aacute;grafo aos subs&iacute;dios dos Deputados Estaduais e Distritais e dos Vereadores. (destaques aditados) Da r&aacute;pida leitura do texto acima citado, verifica-se que, atualmente, apenas os Estados e o Distrito Federal podem estabelecer subtetos remunerat&oacute;rios, podendo utilizar, exclusivamente, o subs&iacute;dio dos desembargadores como fator limitador, ainda assim somente por meio de emenda &agrave;s respectivas Constitui&ccedil;&otilde;es e Lei Org&acirc;nica, n&atilde;o ficando possibilitada a edi&ccedil;&atilde;o de lei ordin&aacute;ria para tal fim. Destarte, resta cristalinamente evidenciado que o limitador remunerat&oacute;rio a ser considerado &eacute; o valor devido a t&iacute;tulo de remunera&ccedil;&atilde;o mensal ao Deputado Estadual. Dessa forma, em aten&ccedil;&atilde;o aos dispositivos constitucionais supratranscritos e ao princ&iacute;pio constitucional da irredutibilidade de vencimentos, bem como ao do direito adquirido, tenho como indevida a incid&ecirc;ncia do redutor guerreado, tendo em vista que os proventos de aposentadoria dos impetrantes n&atilde;o ultrapassam a remunera&ccedil;&atilde;o percebida pelos deputados estaduais alagoanos. Portanto, demonstra-se a presen&ccedil;a do primeiro requisito autorizador. No tocante ao segundo requisito (possibilidade da manuten&ccedil;&atilde;o do ato impugnado tornar ineficaz a medida judicialmente requerida), considerando tratar-se de verba alimentar, resta evidenciada a necessidade de conceder-se a medida liminar requestada. Quanto &agrave; possibilidade de deferimento liminar no caso em espeque, vejamos o posicionamento do Superior Tribunal de Justi&ccedil;a, in verbis: AGRAVO REGIMENTAL EM RECURSO ESPECIAL. ADMINISTRATIVO. SERVIDOR P&Uacute;BLICO APOSENTADO. SUPRESS&Atilde;O DE PARTE DOS PROVENTOS. REDUTOR CONSTITUCIONAL. ATO REPUTADO ILEGAL. SEGURAN&Ccedil;A CONCEDIDA. EXECU&Ccedil;&Atilde;O PROVIS&Oacute;RIA. POSSIBILIDADE. MERO RESTABELECIMENTO DE VALORES. INEXIST&Ecirc;NCIA DE AUMENTO DE VENCIMENTOS. INTERPRETA&Ccedil;&Atilde;O RESTRITIVA DO ART. 2&ordm;-B DA LEI N&ordm; 9.494/97. 1. A jurisprud&ecirc;ncia desta Corte Superior firmou-se no sentido de que a interpreta&ccedil;&atilde;o da norma inscrita no art. 2&ordm;-B da Lei n&ordm; 9.494/97 deve ser restritiva. Assim, quando se tratar de restabelecimento de valores anteriormente percebidos por servidor p&uacute;blico, &eacute; poss&iacute;vel o cumprimento imediato (execu&ccedil;&atilde;o provis&oacute;ria) da ordem concedida em mandado de seguran&ccedil;a, mesmo que seja em desfavor do ente p&uacute;blico, visto que n&atilde;o h&aacute;, na hip&oacute;tese, real aumento de vencimentos. 2. Agravo regimental a que se nega provimento. (AgRg no AgRg no REsp 1033355/PB, Rel. Ministro MARCO AUR&Eacute;LIO BELLIZZE, QUINTA TURMA, julgado em 05/03/2013, DJe 11/03/2013) (destaquei) Dessa forma, a meu sentir, demonstram-se presentes os requisitos para concess&atilde;o da medida liminar requestada. Ante o exposto, ante a presen&ccedil;a dos requisitos autorizadores, com espeque no artigo 7&ordm;, inciso III, da Lei n.&ordm; 12.016/09, defiro a concess&atilde;o da liminar no mandado de seguran&ccedil;a, no sentido de determinar &agrave; autoridade coatora que se abstenha de aplicar nos proventos dos ora impetrantes o subteto remunerat&oacute;rio estabelecido pela Lei Estadual n.&ordm; 7.348/2012, fixando, ainda, multa di&aacute;ria no valor de R$ 500,00 (quinhentos reais) no caso de descumprimento. Notifique-se, incontinenti, a autoridade apontada como coatora, para que preste as informa&ccedil;&otilde;es que entender necess&aacute;rias, querendo, no prazo de 10 (dez) dias, consoante as disposi&ccedil;&otilde;es do artigo 7&ordm;, inciso I, da Lei Federal n.&ordm; 12.016/09, dando-se-lhes ci&ecirc;ncia do inteiro teor desta decis&atilde;o. D&ecirc;-se ci&ecirc;ncia do feito ao &oacute;rg&atilde;o de representa&ccedil;&atilde;o judicial da pessoa jur&iacute;dica interessada, enviando-lhe c&oacute;pia da inicial sem documentos, para que, querendo, ingresse no feito (art. 7&ordm;, II, lei 12.016/2009). Findo o prazo acima assinalado, encaminhe-se &agrave; Procuradoria Geral de Justi&ccedil;a para que, no prazo de 10 (dez) dias, forne&ccedil;a parecer. Ap&oacute;s, retorne-me os autos conclusos. Utilize-se da presente como of&iacute;cio ou mandado. Publique-se e cumpra-se. Macei&oacute;, 19 de maio de 2014. Desembargador Washington Luiz Damasceno Freitas Relator</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Concluso ao Relator
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+				<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=3" name="M" cdDocumento="3">
+		  			<img src="/cposg5/imagens/doc2.gif" width="16" height="16" border="0"/>
+		  		</a>
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        		<a class="linkMovVincProc" title="Visualizar documento em inteiro teor" href="#?cdDocumento=3" name="M" cdDocumento="3">
+	        			Termo de Distribuição Emitido
+	        		</a>
+	        	
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;"></span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoClaro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo Distribuído por Sorteio
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">nada consta
+&Oacute;rg&atilde;o Julgador: 5 - Tribunal Pleno
+Relator: 36 - Des. Washington Luiz D. Freitas</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+					
+
+
+
+
+
+
+
+
+	
+	
+		
+	
+
+
+<tr class="fundoEscuro" style=""> 
+			<td width="120" style="vertical-align: top">
+				16/05/2014
+			</td>
+		  <td width="20" valign="top" aria-hidden="true">
+		  	
+		  </td>  
+		  <td style="vertical-align: top; padding-bottom: 5px" >
+		    
+		
+	    	
+	        	
+	        	
+					Processo Cadastrado
+	        	
+			
+			
+		  	
+		    
+		    <br/>
+		    <span style="font-style: italic;">DAAJUC</span>
+		    
+		    
+		  </td>
+		</tr>
+
+				
+			</tbody>
+
+		
+		
+	
+</table>
+			  	
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+		  			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Incidentes, ações incidentais, recursos e execuções de sentenças
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+	
+		
+		    <tr class="label" >
+		    	<th width="140" style="text-align:left">
+					Recebido em
+				</th>
+				
+				<th width="*" >Classe</th>
+		    </tr>
+		    <tr class="fundoEscuro" height="2" aria-hidden="true">
+		    	
+				<td></td><td></td>
+			</tr>
+			
+				<tr class="fundoClaro">
+					<td width="140"  style="text-align:left">
+						09/10/2014
+					</td>
+					
+
+
+
+
+
+
+<td width="*">
+	<a href="/cposg5/show.do?processo.codigo=P00001SYI12KW&uuidCaptcha=&processo.foro=900" target="_top">
+		Embargos de Declaração
+		
+			 - 50000
+		
+		
+	</a>
+</td>
+
+				</tr>        
+			
+				<tr class="fundoEscuro">
+					<td width="140"  style="text-align:left">
+						19/11/2015
+					</td>
+					
+
+
+
+
+
+
+<td width="*">
+	<a href="/cposg5/show.do?processo.codigo=P00001SYI12KX&uuidCaptcha=&processo.foro=900" target="_top">
+		Agravo de Instrumento em Recurso Especial
+		
+			 - 50001
+		
+		
+	</a>
+</td>
+
+				</tr>        
+			
+				<tr class="fundoClaro">
+					<td width="140"  style="text-align:left">
+						19/11/2015
+					</td>
+					
+
+
+
+
+
+
+<td width="*">
+	<a href="/cposg5/show.do?processo.codigo=P00001SYI12KY&uuidCaptcha=&processo.foro=900" target="_top">
+		Agravo de Instrumento em Recurso Extraordinário
+		
+			 - 50002
+		
+		
+	</a>
+</td>
+
+				</tr>        
+			
+		
+		
+	
+</table>
+<!--  incidentes -->
+
+
+			  	
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+		  			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Petições diversas
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<!--  Tabela de petições diversas -->
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+	
+		
+			<thead>
+			    <tr class="label" > 
+			      <th width="140"  style="text-align:left">Data</th>
+			      <th width="*" >Tipo</th>
+			    </tr>
+			    <tr class="fundoEscuro" height="2" aria-hidden="true">
+					<td></td>
+					<td></td>
+				</tr>
+			</thead>
+			<tbody>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							27/05/2014
+						</td>
+						<td width="*">
+							Petição<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoEscuro"> 
+						<td width="140"  style="text-align:left">
+							16/06/2014
+						</td>
+						<td width="*">
+							Parecer<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							28/05/2015
+						</td>
+						<td width="*">
+							Recurso Especial Cível<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoEscuro"> 
+						<td width="140"  style="text-align:left">
+							28/05/2015
+						</td>
+						<td width="*">
+							Recurso Extraordinário Cível<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							28/05/2015
+						</td>
+						<td width="*">
+							Petição<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoEscuro"> 
+						<td width="140"  style="text-align:left">
+							20/07/2015
+						</td>
+						<td width="*">
+							Contrarrazões<br/>
+							
+						</td>
+					</tr>
+				
+					<tr class="fundoClaro"> 
+						<td width="140"  style="text-align:left">
+							20/07/2015
+						</td>
+						<td width="*">
+							Contrarrazões<br/>
+							
+						</td>
+					</tr>
+				
+			</tbody>
+		
+		
+	
+</table>
+<!--  Tabela de petições diversas -->
+
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Composição do Julgamento
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+	
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		<tr class="label"> 
+		  <td width="140">Participação</td>
+		  <td >Magistrado</td>
+		</tr>
+		<tr class="fundoEscuro" height="2">
+			<td></td>
+			<td></td>
+		</tr>
+	</table>
+	
+	
+	
+	<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      Relator
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Washington Luiz D. Freitas&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      1º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Desa. Elisabeth Carvalho Nascimento&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      2º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. José Carlos Malta Marques&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      3º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Pedro Augusto Mendonça de Araújo&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      4º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. James Magalhães de Medeiros&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      5º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Alcides Gusmão da Silva&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      6º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Tutmés Airan de Albuquerque Melo&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      7º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Klever Rêgo Loureiro&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      8º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Paulo Barros da Silva Lima&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      9º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Desembargador Fernando Tourinho de Omena Souza&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      10º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Fábio José Bittencourt Araújo&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoEscuro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      11º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. João Luiz Azevedo Lessa&nbsp;
+		    </td>
+		  </tr>
+		
+		  <tr class="fundoClaro itemComposicaoJulgamento"> 
+		    <td valign="top" width="140" class="label" style="padding-bottom: 5px">
+		      12º Julgador
+			</td>
+			<td valign="top" style="padding-bottom: 5px">
+		      Des. Domingos de Araújo Lima Neto&nbsp;
+		    </td>
+		  </tr>
+		
+	</table>
+	
+
+
+			  	
+				
+			  	
+				
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+			
+				
+				
+			  	
+				
+			  	
+				
+			  	
+	  				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="padding-top: 10px;">
+	
+	
+
+
+
+
+
+
+
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr valign="top">
+		<td height="21" valign="top" nowrap background="/cposg5/imagens/spw/fundo_subtitulo.gif"> 
+			
+				
+					<h2 class="subtitle">
+						Julgamentos
+						
+					</h2>
+				
+				
+			
+		</td>
+		<td background="/cposg5/imagens/spw/fundo_subtitulo2.gif" width="90%" aria-hidden="true">
+			<img src="/cposg5/imagens/spw/final_subtitulo.gif" width="16" height="20" tabindex="-1">
+		</td>
+	</tr>
+</table>
+
+</div>
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1">
+  
+  	
+	  <tr class="label"> 
+	    <td align="left" valign="top" width="150" >Data</td>
+		<td align="left" valign="top" width="220" >Situação do julgamento</td>
+		<td align="left" valign="top" width="*" >Decisão</td>
+	  </tr>
+	  <tr class="fundoEscuro" height="2">
+		<td></td>
+		<td></td>
+		<td></td>
+	  </tr>
+  	
+  	
+  
+</table>
+
+
+<table style="margin-left:15px; margin-top:1px;" align="center" width="98%" border="0" cellspacing="0" cellpadding="1"  >
+		
+		  <tr class="fundoClaro"> 
+		    <td valign="top" align="left" valign="top" width="150">
+		      23/09/2014
+			</td>
+			<td align="left" valign="top" width="220"">
+		      Julgado
+		    </td>
+			<td align="left" valign="top" width="*">
+		      Por maioria de votos, concedeu-se a segurança impetrada, determinando-se à autoridade coatora que se abstenha de aplicar nos proventos do ora impetrante o subteto remuneratório estabelecido pela Lei Estadual nº 7.348/2012, nos termos do voto do Des. Relator. Vencido o Des. Klever Rêgo Loureiro, o qual votou pela denegação da ordem, divergindo do Des. Relator.
+
+ADMINISTRATIVO E CONSTITUCIONAL. MANDADO DE SEGURANÇA. SERVIDOR PÚBLICO ESTADUAL INATIVO. TETO REMUNERATÓRIO. FIXAÇÃO DE SUBTETO INFERIOR AO TETO CONSTITUCIONAL POR MEIO DE LEI ORDINÁRIA. IMPOSSIBILIDADE. ARTIGO 37, INCISO XI, DA CONSTITUIÇÃO FEDERAL. EXISTÊNCIA DE ILEGALIDADE NO ATO IMPUGNADO. DIREITO LÍQUIDO E CERTO VIOLADO. CONCESSÃO DA SEGURANÇA. MAIORIA DE VOTOS.
+
+		    </td>
+		  </tr>
+		
+</table>
+
+			  	
+			  	
+			  	
+			  	
+			
+	  	
+	  	<br/>
+	  	<br/>
+	  	
+	
+	
+		
+		
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<table id="" class="secaoBotoesBody" width="100%" style="" cellpadding="2" cellspacing="0" border="0">
+		<tr>
+ 			
+			<td align="center">
+			 
+	<input type="button" name="" value="Voltar para os resultados da pesquisa" onclick="javascript:history.go(-1);" disabled="disabled" onmouseover="B_mOver(this);" onmouseout="B_mOut(this);" class="disabled">
+	
+	
+
+			</td>
+		</tr>
+	</table>
+
+
+ 
+		
+	
+	
+	
+        
+
+
+
+
+
+
+
+
+
+
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+</td>
+</tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="esajTabelaRodape" summary=" ">
+    <tr>
+        <td class="esajCelulaRodapeCentro">
+            Desenvolvido pela Softplan em parceria com o Tribunal de Justiça de Alagoas
+            
+        </td>
+    </tr>
+</table>
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/saj-popup-modal.css" rel="stylesheet" type="text/css">
+<link href="https://www2.tjal.jus.br/esaj/tema/padrao/css/popup-beta.css" rel="stylesheet" type="text/css">
+
+
+
+<script>
+    appEsajLayout = {
+        botaoNovaVersao: 'Nova versão',
+        botaoVersaoAnterior: 'Versão anterior',
+        tituloNovaVersao: 'Nova versão do Portal e-SAJ!',
+        tituloVersaoAnterior: 'Versão anterior',
+        tituloCertificadoDigital: 'Certificado digital',
+        cliente: 'AL',
+
+        emailParaContato: '',
+        utilizarBotaoContato: 'false',
+        contexto: 'https://www2.tjal.jus.br/esaj'
+    };
+    if(window.jQuery) {
+        jQuery.saj = jQuery.saj || {};
+        jQuery.saj.certificado = jQuery.saj.certificado || {};
+        jQuery.saj.certificado.cliente = 'AL';
+        jQuery.saj.certificado.tituloCertificadoDigital = 'Certificado digital';
+        jQuery.saj.certificado.tituloProblemasAoAssinar = 'Falha de comunicação com o dispositivo de assinatura digital';
+        jQuery.saj.certificado.urlConteudoAjudaWebSigner = appEsajLayout.contexto + '/ajudaWebSigner.do';
+        jQuery.saj.certificado.licenca = 'AqYAKi5zYWphZG0udGpzcC5qdXMuYnIsKi5zZWEuc2MuZ292LmJyLCouc29mdHBsYW4uY29tLmJyLCoudGphYy5qdXMuYnIsKi50amFsLmp1cy5iciwqLnRqYW0uanVzLmJyLCoudGpjZS5qdXMuYnIsKi50am1zLmp1cy5iciwqLnRqcHIuanVzLmJyLCoudGpzYy5qdXMuYnIsKi50anNwLmp1cy5ickMAaXA0OjEwLjAuMC4wLzgsaXA0OjEyNy4wLjAuMC84LGlwNDoxNzIuMTYuMC4wLzEyLGlwNDoxOTIuMTY4LjAuMC8xNggAU3RhbmRhcmQAAAABcfpZUu/QD3s2bqedB8v9T7MiMQxcHNu0pUzGzO+7Ta++o+BbAVgPau7lzj6IUFI7RPFkPSnm0ZbCFAVBnKrqinyvE8MwEvmQhFcjlhGK+FfVV5mhVkkxSC3khDEUR8gsAPVvFncyyW2vTU2ODkyGdU0S/g62wHFtSwfGP6OFqlWpZTqbxbEGd1vfe9yHHulTYI7RcsGxaTMD6XgtPlStbOn9DxSYhN3S+4oTtIq7pUR6ETavPqYlXh5hwkxIpTe3Sf4awQucSigQ95sS9g7QpcGyVUVscm0J/rah9YwPCnHShzsttWA9aCmKrNdgFSTTo8TUOmESEP93TH6Z3dss+A==';
+    }
+
+</script>
+<script src="https://www2.tjal.jus.br/esaj/js/app-bundle.js?n=2924815508"></script>
+<script language="javascript" type="text/JavaScript" src="https://websigner.softplan.com.br/Content/js/softplan-websigner-2.5.0.js?n=2b0c4201-19e0-45c1-85b5-cd0b950183bb"></script>
+
+<script language="javascript" type="text/JavaScript" src="https://www2.tjal.jus.br/esaj/js/saj-certificado.js?n=38201218"></script>
+
+
+
+<div id="webSignerNaoInstalado" style="display: none;">
+    <p>Para utilização do certificado digital no Portal e-SAJ é necessário a instalação do plug-in Web Signer. Por favor, realize a instalação antes de continuar.</p>
+    <div class="footer_certificado">
+        <button id="redirecionarParaPaginaInstalacao" class="actionPrincipal spwBotaoDefault">Instalar</button>
+        <button class="fecharModalInstalacao spwBotao">Cancelar</button>
+        <button class="spwBotao" onclick="window.open('https://www2.tjal.jus.br/WebHelp//#id_instalacao_lacuna.htm','_blank')">Ajuda</button>
+    </div>
+</div>
+
+<div id="webSignerNaoSuportado" style="display: none;">
+    <p>O navegador utilizado não é compatível com a tecnologia (Web Signer) necessária para utilização do certificado digital. Por favor, utilize um dos navegadores homologados. Em caso de dúvidas, efetue a validação de requisitos <a href="https://www2.tjal.jus.br/petpg/abrirVerificacaoRequisitosPet.do" target="_blank">aqui</a>.</p>
+    <div class="footer_certificado">
+        <button class="fecharModalInstalacao spwBotaoDefault actionPrincipal">OK</button>
+    </div>
+</div>
+	
+
+
+  
+	
+	
+
+
+
+	
+
+
+	
+	
+	
+	</div>	
+	</body>
+
+</html>
+
+
