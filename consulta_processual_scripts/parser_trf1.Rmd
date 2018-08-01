@@ -1,0 +1,151 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(rvest)
+```
+
+```{r}
+partes <- dir("data-raw/", full.names = T, pattern = "partes")
+mov <- dir("data-raw/", full.names = T, pattern = "mov")
+```
+
+# Parsing Partes
+
+```{r}
+parse_partes <- function(partes){
+  proc <- partes %>% 
+    stringr::str_replace_all("[^0-9]", "") %>% stringr::str_trim()
+  tab <- partes %>% 
+    xml2::read_html() %>% 
+    rvest::html_table(trim = T) %>% 
+    purrr::pluck(1) %>% 
+    magrittr::set_names(., c("tipo", "ent", "oab", "nome", "caract")) %>% 
+    tidyr::nest(.key = "partes")
+  tab %>% 
+    dplyr::mutate(proc = proc,
+                  result = "ok")
+}
+parse_partes <- purrr::possibly(parse_partes, otherwise = dplyr::tibble(result = "error"))
+#partes_tab <- purrr::map_dfr(partes, ~parse_partes(.x))
+```
+
+# Parsing Movimentacao, Informações gerais e outras
+
+```{r}
+# Parsing informacao geral
+parse_info <- function(mov){
+  proc <- mov %>% 
+    stringr::str_replace_all("[^0-9]", "") %>% stringr::str_trim()
+  tab <- mov %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = '//div[@id="aba-processo"]/table') %>% 
+    rvest::html_table(trim = T, fill = T) %>% {
+      if(ncol(.) == 2){
+        magrittr::set_names(., c("key", "val"))
+        }
+      } %>%   
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_trim(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, "\\/", ""),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  val = stringr::str_trim(val),
+                  val = stringr::str_replace_all(val, "\\n|\\t", "")) %>% 
+    tidyr::spread(key, val)
+  tab %>% 
+    dplyr::mutate(proc = proc,
+                  result = "ok")
+}
+parse_info <- purrr::possibly(parse_info, otherwise = dplyr::tibble(result = "error"))
+#info <- purrr::map_dfr(mov, ~parse_info(.x))
+
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Parsing movimentacao
+parse_mov <- function(mov){
+  proc <- mov %>% 
+    stringr::str_replace_all("[^0-9]", "") %>% stringr::str_trim()
+  tab <- mov %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = '//div[@id="aba-movimentacao"]//table') %>% 
+    rvest::html_table(trim = T, fill = T) %>% {
+      if(ncol(.) == 4){
+        magrittr::set_names(., c("data", "cod", "descricao", "complemento"))
+        }
+      } %>% 
+    tidyr::separate(data, into = c("data", "hora"), sep = " ") %>% 
+    tidyr::nest(.key = "movimentacao")
+  tab %>% 
+    dplyr::mutate(proc = proc,
+                  result = "ok")
+}
+parse_mov <- purrr::possibly(parse_mov, otherwise = dplyr::tibble(result = "error"))
+#movimentacao <- purrr::map_dfr(mov, ~parse_mov(.x))
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Parsing distribuicao
+parse_distribuicao <- function(mov){
+  proc <- mov %>% 
+    stringr::str_replace_all("[^0-9]", "") %>% stringr::str_trim()
+  tab <- mov %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = '//div[@id="aba-distribuicao"]//table') %>% 
+    rvest::html_table(trim = T, fill = T) %>% {
+      if(ncol(.) == 3){
+        magrittr::set_names(., c("data", "descricao", "juiz"))
+        }
+      } %>% 
+    tidyr::nest(.key = "distribuicao")
+  tab %>% 
+    dplyr::mutate(proc = proc,
+                  result = "ok")
+}
+parse_distribuicao <- purrr::possibly(parse_distribuicao, otherwise = dplyr::tibble(result = "error"))
+#distribuicao <- purrr::map_dfr(mov, ~parse_distribuicao(.x))
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Parsing Peticoes
+parse_peticoes <- function(mov){
+  proc <- mov %>% 
+    stringr::str_replace_all("[^0-9]", "") %>% stringr::str_trim()
+  tab <- mov %>% 
+    xml2::read_html() %>% 
+    rvest::html_node(xpath = '//div[@id="aba-peticoes"]//table') %>% 
+    rvest::html_table(trim = T, fill = T) %>% {
+      if(ncol(.) == 5){
+        magrittr::set_names(., c("numero", "data_entrada", "data_juntada", "tipo", "complemento"))
+      }
+    } %>% 
+    tidyr::nest(.key = "peticoes")
+  tab %>% 
+    dplyr::mutate(proc = proc,
+                  result = "ok")
+    
+}
+parse_peticoes <- purrr::possibly(parse_peticoes, otherwise = dplyr::tibble(result = "error"))
+#peticoes <- purrr::map_dfr(mov, ~parse_peticoes(.x))
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Parsing all
+trf1_wrapup <- function(mov, partes){
+  partes_tab <- purrr::map_dfr(partes, ~parse_partes(.x)) %>% dplyr::filter(result != "error") %>% dplyr::select(-result)
+  info <- purrr::map_dfr(mov, ~parse_info(.x)) %>% dplyr::filter(result != "error") %>%  dplyr::select(-result)
+  movimentacao <- purrr::map_dfr(mov, ~parse_mov(.x)) %>%dplyr::filter(result != "error") %>% dplyr::select(-result)
+  distribuicao <- purrr::map_dfr(mov, ~parse_distribuicao(.x)) %>% dplyr::filter(result != "error") %>%  dplyr::select(-result)
+  peticoes <- purrr::map_dfr(mov, ~parse_peticoes(.x)) %>% dplyr::filter(result != "error") %>% dplyr::select(-result)
+  
+  tab <- dplyr::left_join(info, partes_tab, by = "proc")  %>% dplyr::filter(!is.na(proc))
+  tab <- dplyr::left_join(tab, movimentacao, by = "proc") %>% dplyr::filter(!is.na(proc))
+  tab <- dplyr::left_join(tab, distribuicao, by = "proc") %>% dplyr::filter(!is.na(proc))
+  tab <- dplyr::left_join(tab, peticoes, by = "proc") %>% dplyr::filter(!is.na(proc))
+  
+  # tab <- tab %>% 
+  #   (file_path_partes = partes,)
+  return(tab)
+}
+trf1_wrapup <- purrr::possibly(trf1_wrapup, otherwise = dplyr::tibble(result = "error"))
+trf1 <- trf1_wrapup(mov, partes)
+```
+
+
+

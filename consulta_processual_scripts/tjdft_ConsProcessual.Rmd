@@ -1,0 +1,124 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(httr)
+library(rvest)
+```
+
+```{r}
+lawsuits <- readr::read_rds("/home/nathan/Documentos/Trabalho/ABJ/all_lawsuits/all_lawsuits.rds")
+
+query <- lawsuits %>% 
+  mutate(tribunal = str_extract(lawsuit_file, ".*\\/"),
+         tribunal = str_replace_all(tribunal, "\\/", "")) %>% 
+  filter(tribunal == "tjdft") %>% 
+  select(cnj) %>% 
+  purrr::as_vector()
+```
+
+```{r}
+primeira_instancia <- function(proc, path){
+  url <- "http://www.tjdft.jus.br/consultas"
+  session <- html_session(url)
+  forms <- session %>% html_form() %>% .[[2]]
+  values <- set_values(forms,`SELECAO` ="1", `CIRC` = "ZZ",`CHAVE`= proc)
+  submit <- submit_form(session, values)
+  url <- submit %>% purrr::pluck('url')
+  
+  proc <- stringr::str_replace_all(proc, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_PRIMEIRA.html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+segunda_instancia <- function(proc, path){
+  url <- "http://www.tjdft.jus.br/consultas"
+  session <- html_session(url)
+  forms <- session %>% html_form() %>% .[[5]]
+  values <- set_values(forms,`SELECAO` ="1",`CHAVE`= proc)
+  submit <- submit_form(session, values)
+  url <- submit %>% purrr::pluck('url')
+  
+  proc <- stringr::str_replace_all(proc, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_SEGUNDA.html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+obter_tjdft <- function(proc, path){
+  primeira_instancia(proc, path)
+  segunda_instancia(proc, path)
+}
+
+path <- "data-raw/"
+purrr::map(query, ~obter_tjdft(.x, path)) #verificar os que faltam
+
+
+files <- dir("data-raw/", full.names = T)
+files <- files %>% stringr::str_replace_all("[^0-9]", "")
+
+query2 <- query[-which(query %in% files)]
+purrr::map(query2 , ~obter_tjdft(.x, path))
+```
+
+
+# Descontinuado
+```{r}
+obter_proc <- function(query, path){
+  url <- "https://cache-internet.tjdft.jus.br/cgi-bin/tjcgi1?NXTPGM=plhtml01&MGWLPN=SERVIDOR1&submit=ok&SELECAO=1&CHAVE=&ORIGEM=INTER"
+
+  query_GET <-list(
+    "NXTPGM" = "plhtml02",
+    "MGWLPN" = "SERVIDOR1",
+    "SELECAO" = "1",
+    "ORIGEM" = "INTER",
+    "COMAND" = "Pesquisar",
+    "CHAVE" = query
+    )
+  
+  proc <- stringr::str_replace_all(query, "[[:punct:]]", "") %>% 
+  stringr::str_c(.,".html")
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  file <- stringr::str_c(path, "/")
+  PathFile <- stringr::str_c(file, proc)
+  httr::GET(url, query = query_GET,
+            httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+path <- "/home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJDFT/lawsuits_tjdft/data-raw/"
+
+purrr::map(query , ~obter_proc(.x, path))
+
+files <- dir("data-raw/", full.names = T) # Nem todos os processos rodaram, mas isso é resultado de processos repetidos
+info_files <- function(file){
+  tab <- file.info(file)
+  tab <- tab %>% 
+    mutate(path = file,
+           path_clean = file %>%  stringr::str_replace_all("[^0-9]", ""))
+  return(tab)
+}
+arq <- purrr::map_dfr(files, ~info_files(.x))
+
+arq %>% 
+  summarise(min = min(size),
+            max = max(size),
+            mean = mean(size),
+            median = median(size))
+```
+

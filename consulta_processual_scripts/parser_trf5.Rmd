@@ -1,0 +1,82 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(rvest)
+```
+
+```{r}
+## Parsing informacao geral
+parse_info <- function(file){
+  file %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//table') %>% 
+  rvest::html_table(fill = T) %>% 
+  purrr::pluck(1) %>% 
+  dplyr::select(1) %>% 
+  magrittr::set_names(c("key"))  %>% 
+  tidyr::separate(key, into = c("key", "val"), sep = ":|\\(") %>% 
+  dplyr::mutate(key = stringr::str_to_lower(key),
+                key = stringr::str_trim(key),
+                key = abjutils::rm_accent(key),
+                key = stringr::str_replace_all(key, "\\/|\\º|\\.", ""),
+                key = stringr::str_replace_all(key, " +", "_"),
+                val = stringr::str_replace_all(val, "\\)", "")) %>% 
+  tidyr::spread(key, val)  
+}
+
+## Parsing second table
+parse_2 <- function(file){
+  file %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//table') %>% 
+  rvest::html_table(fill = T) %>% 
+  purrr::pluck(2) %>% 
+  dplyr::select(1, 2) %>% 
+  magrittr::set_names(., c("key", "val")) %>% 
+  dplyr::mutate(key = stringr::str_to_lower(key),
+                key = stringr::str_trim(key),
+                key = abjutils::rm_accent(key),
+                key = stringr::str_replace_all(key, "\\/|\\º|\\.", ""),
+                key = stringr::str_replace_all(key, " +", "_"),
+                val = stringr::str_replace(val, ":", "")) %>% 
+  tidyr::spread(key, val)
+}
+
+## Parsing third table
+parse_3 <- function(file){
+  file %>% 
+  xml2::read_html() %>% 
+  rvest::html_nodes(xpath = '//table') %>% 
+  rvest::html_table(fill = T) %>% 
+  purrr::pluck(3) %>% 
+  dplyr::select(1, 2) %>% 
+  magrittr::set_names(., c("key", "val")) %>% 
+  dplyr::mutate(key = stringr::str_to_lower(key),
+                key = stringr::str_trim(key),
+                key = abjutils::rm_accent(key),
+                key = stringr::str_replace_all(key, "\\º|\\.", ""),
+                key = stringr::str_replace_all(key, "\\/", "_"),
+                key = stringr::str_replace_all(key, " +", "_"),
+                val = stringr::str_replace(val, ":", "")) %>% 
+  tidyr::nest(.key = "partes")  
+}
+
+## Movimentacao
+parse_movimentacao <- function(file){
+  file %>% 
+    xml2::read_html() %>% 
+    rvest::html_nodes(xpath = '//table') %>% {
+      data <- rvest::html_nodes(., xpath = '//a[contains(@name,"mov")]') %>% rvest::html_text() %>% 
+        stringr::str_replace_all("[E-e]m", "") %>% stringr::str_trim()
+      descricao <- rvest::html_nodes(., xpath = '//td[@width="95%"]') %>% rvest::html_text()
+      dplyr::tibble(data = data, descricao = descricao)
+      } %>% 
+    tidyr::separate(data, into = c("data", "hora"), sep = " ") %>% 
+    tidyr::nest(.key = "movimentacao")  
+}
+```
+

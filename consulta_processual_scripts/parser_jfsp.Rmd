@@ -1,0 +1,182 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(rvest)
+```
+
+Objetivo: Montar um verficador dos arquivos, para depois montar o parser
+
+```{r}
+file <- dir("data-raw/", full.names = T)
+
+obter_info <- function(file){
+  file %>% {
+  path <- .
+  proc <- stringr::str_extract_all(., "[0-9].*$") %>% purrr::pluck(1)
+  fases_arq <- stringr::str_c(., "/fases/fases.html") %>% file.info() %>% dplyr::mutate(tipo = "fases")
+  info_arq <- stringr::str_c(., "/info/info.html") %>% file.info() %>% dplyr::mutate(tipo = "info")
+  partes_arq <- stringr::str_c(., "/partes/partes.html") %>% file.info() %>% dplyr::mutate(tipo = "partes")
+  peticoes_arq <- stringr::str_c(., "/peticoes/peticoes.html") %>% file.info() %>% dplyr::mutate(tipo = "peticoes")
+  
+  dplyr::bind_rows(fases_arq, info_arq, partes_arq, peticoes_arq) %>% mutate(processo = proc, path = path) %>% 
+    select(-isdir, -mtime, -ctime, -atime, -uid, -gid, -uname, -grname, -mode)
+  }   
+}
+
+# file_df <- purrr::map_dfr(file, ~obter_info(.x))
+# 
+# file_df <- file_df %>% 
+#   tidyr::drop_na(size) %>% 
+#   dplyr::mutate(path = stringr::str_c(path, "/", tipo, "/", tipo, ".html"))
+# 
+# file_df
+```
+
+```{r}
+pag_existe <- function(path){
+  node <- path %>% xml2::read_html()
+  
+  verificador <- node %>% rvest::html_node(xpath = '//form[@name="formconsulta"]//legend') %>% rvest::html_text()
+  
+  if(is.na(verificador) == F){
+    r <- FALSE
+  } else{
+    r <- TRUE
+  } 
+  return(r)
+}
+
+# file_df$pag_existe <- NA
+# for(i in 1:nrow(file_df)){
+#   file_df$pag_existe[i] <- file_df$path[i] %>% pag_existe()
+# }
+# 
+# file_df <- file_df %>% 
+#   dplyr::filter(pag_existe == T)
+# 
+# file_df
+```
+
+```{r}
+# Parse fases
+parse_fases <- function(path, proc){
+  node <- path %>% xml2::read_html()
+  tab <- node %>%
+    rvest::html_table(header = T, fill = T) %>%
+    dplyr::last() %>% 
+    dplyr::mutate(proc = proc) %>% 
+    dplyr::group_by(proc) %>% 
+    tidyr::nest(.key = movimentacao) %>% 
+    dplyr::mutate(resultado_fases = "ok")
+  
+  return(tab)
+}
+parse_fases <- purrr::possibly(parse_fases, otherwise = dplyr::tibble(resultado_fases = "error"))
+# -----------------------------------------------------------------------------------------------
+# Parse info
+parse_info <- function(path, proc){
+  node <- path %>% xml2::read_html()
+  tab <- node %>% rvest::html_table(fill = T) %>% 
+    purrr::pluck(2) %>% 
+    magrittr::set_names(c("key", "val")) %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_trim(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, "\\/|\\º|\\.", ""),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  key = stringr::str_replace_all(key, "\\)|\\(", ""),
+                  key = dplyr::case_when(key == "" ~ NA_character_,
+                                         T~key)) %>% 
+    dplyr::filter(!is.na(key)) %>% 
+    group_by(key) %>% 
+    summarise(val = glue::glue_collapse(val, sep = "@@@")) %>% 
+    ungroup() %>% 
+    tidyr::spread(key, val) %>% 
+    dplyr::mutate(resultado_info = "ok",
+                  proc = proc)
+  
+}
+parse_info <- purrr::possibly(parse_info, otherwise = dplyr::tibble(resultado_info = "error"))
+# -----------------------------------------------------------------------------------------------
+# Parse peticoes
+
+parse_peticoes <- function(path, proc){
+  node <- path %>% xml2::read_html()
+  tab <- node %>%
+    rvest::html_table(header = T, fill = T) %>% dplyr::last() %>%
+    dplyr::mutate(Data = lubridate::dmy(Data),
+           proc = proc) %>% 
+    dplyr::group_by(proc) %>% 
+    tidyr::nest(.key = peticoes) %>% 
+    dplyr::mutate(resultado_peticoes = "ok")
+  
+  return(tab)
+}
+parse_peticoes <- purrr::possibly(parse_peticoes, otherwise = dplyr::tibble(resultado_peticoes = "error"))
+# -----------------------------------------------------------------------------------------------
+# Parse partes
+parse_partes <- function(path, proc){
+  node <- path %>% xml2::read_html()
+    tab <- node %>%
+    rvest::html_table( fill = T ) %>% dplyr::last() %>%
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  X1 = ifelse(X1 == "", NA, X1),
+                  X2 = stringr::str_trim(X2),
+                  X2 = ifelse(X2 == "", NA, X2),
+                  X1 = stringr::str_to_lower(X1),
+                  X2 = stringr::str_to_lower(X2)) %>%
+    tidyr::drop_na() %>%
+    magrittr::set_names(c("key", "val")) %>% 
+    tidyr::nest(.key = "partes") %>% 
+      dplyr::mutate(resultado_partes = "ok",
+                    proc = proc)
+    
+    return(tab)
+}
+parse_partes <- purrr::possibly(parse_partes, otherwise = dplyr::tibble(resultado_partes = "error"))
+# -----------------------------------------------------------------------------------------------
+wrapup_jfsp <- function(file){
+  file_df <- purrr::map_dfr(file, ~obter_info(.x))
+
+  file_df <- file_df %>% 
+    tidyr::drop_na(size) %>% 
+    dplyr::mutate(path = stringr::str_c(path, "/", tipo, "/", tipo, ".html"))
+  
+  file_df$pag_existe <- NA
+  for(i in 1:nrow(file_df)){
+    file_df$pag_existe[i] <- file_df$path[i] %>% pag_existe()
+  }
+
+  file_df <- file_df %>% 
+    dplyr::filter(pag_existe == T)
+  
+  fases <- file_df %>% filter(tipo == "fases") %>% select(processo, path)
+  info <- file_df %>% filter(tipo == "info") %>% select(processo, path)
+  partes <- file_df %>% filter(tipo == "partes") %>% select(processo, path)
+  peticoes <- file_df %>% filter(tipo == "peticoes") %>% select(processo, path)
+  
+  all_fases <- purrr::map2_dfr(fases$path, fases$processo, ~parse_fases(.x, .y))
+
+  all_info <-  purrr::map2_dfr(info$path, info$processo, ~parse_info(.x, .y))
+
+  all_peticoes <- purrr::map2_dfr(peticoes$path, peticoes$processo, ~parse_peticoes(.x, .y))
+
+  all_partes <- purrr::map2_dfr(partes$path, partes$processo, ~parse_partes(.x, .y))
+  
+  tab <- dplyr::left_join(all_info, all_fases, by = "proc")
+  tab <- dplyr::left_join(tab, all_peticoes, by = "proc")
+  tab <- dplyr::left_join(tab, all_partes, by = "proc")
+  
+  return(tab)
+}
+```
+
+```{r}
+file <- dir("data-raw/", full.names = T)
+tab <- wrapup_jfsp(file)
+```
+

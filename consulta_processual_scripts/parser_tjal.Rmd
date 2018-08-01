@@ -1,0 +1,423 @@
+---
+title: "Parser TJAL"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+ex0 <- dir("/home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/", pattern = "00000013720128020097_PRIMEIRA", full.names = T)
+ex1 <- dir("/home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/", pattern = "00000015320128020027_PRIMEIRA.html", full.names = T)
+ex2 <- dir("/home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/", pattern = "00000017520118020031_PRIMEIRA.html", full.names = T)
+
+tjal_file_seg <- dir("/home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/", pattern = "SEGUNDA", full.names = T)
+```
+
+```{r}
+info_files <- function(file){
+  tab <- file.info(file)
+  tab <- tab %>% 
+    mutate(path = file,
+           path_clean = file %>%  stringr::str_replace_all("[^0-9]", ""))
+  return(tab)
+}
+
+files_ <- dir("data-raw/", full.names = T)
+arq <- purrr::map_dfr(files_, ~info_files(.x))
+rm(files_)
+arq <- arq %>% 
+  arrange(path_clean, size) %>% 
+  mutate(instancia = str_extract(path, "(PRIMEIRA)|(SEGUNDA)"))
+```
+
+```{r}
+# Funcao para testar se a pagina estava indisponivel
+# O ideal é que caso de "SERVICO INDISPONIVEL" mandemos rodar a funcao para obter o html novamente
+# exemplo: file:///home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/07125128620138020001_SEGUNDA.html
+service_unavailable <- function(node){
+  verificador <- node %>% rvest::html_nodes(xpath = '//body/h1|//td[@id="mensagemRetorno"]/li') %>% rvest::html_text(trim = T)
+  if (purrr::is_empty(verificador)){
+    verificador <- "vazio"
+  }
+  if(verificador == "Service Temporarily Unavailable" | verificador == "Não foi possível executar esta operação. Tente novamente mais tarde."){
+    return("SERVICO INDISPONIVEL")
+  }else{
+    return("SERVICO DISPONIVEL")
+  }
+}
+# Funcao para testar se a pagina recebeu os parametros corretos
+# Neste caso, se o output for "NAO EXISTE INFO", então o processo em questão não esta presente na pagina, logo não precisaremos mandar rodar a funcao para obter o html novamente
+# exemplo: file:///home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/00000013720128020097_SEGUNDA.html
+nao_existe_info <- function(node){
+  verificador <- node %>% rvest::html_nodes(xpath = '//td[@id="mensagemRetorno"]/li') %>% rvest::html_text(trim = T)
+   if (purrr::is_empty(verificador)){
+    verificador <- "vazio"
+  }
+  if(verificador == "Não existem informações disponíveis para os parâmetros informados."){
+    return("NAO EXISTE INFO")
+  }else {
+     return("EXISTE INFO")
+  }
+}
+# Funcao para verificar se a pagina necessita de senha para acessar as informaões do processo
+# Neste caso, se o output for , então não temos acesso ao processo, logo não precisaremos rodar a funcao para obter o html novamente
+# Caso 2: É posssivel existir a tag que procuramos em processos que temos acesso
+# exemplo: file:///home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/00000263820158020067_SEGUNDA.html
+segredo_de_justica <- function(node){
+  verificador <- node %>% rvest::html_nodes(xpath = '//input[@id="senhaProcesso"]') %>% rvest::html_attr('name') %>% 
+    stringr::str_trim()
+   if (purrr::is_empty(verificador)){
+    verificador <- "vazio"
+  }
+  if(verificador == "senhaProcesso"){
+    verificador2 <- node %>%rvest::html_nodes(xpath = '//table[@id="" and @class="secaoFormBody"]')
+    if(purrr::is_empty(verificador2)){
+      return("NAO POSSUI INFOS")
+    } else {
+      return("POSSUI INFO")
+    }
+  }else {
+     return("INCONCLUSIVO")
+  }
+}
+
+# Funcao auxiliar para ser utiliada na ""
+obter_proc_node <- function(proc, link, path){
+    dir.create(path, FALSE, TRUE)
+    path <- normalizePath(path)
+    file <- stringr::str_c(path, "/")
+    PathFile <- stringr::str_c(file, proc)
+    httr::GET(link, httr::config(ssl_verifypeer = FALSE),
+            write_disk(PathFile, overwrite = T))
+}
+
+# Funcao auxiliar para ser utilizada na "link_para_processo"
+# Serve para arrumar o arquivo que sera gerado caso o parametro "baixar" da funcao "link_para_processo" seja TRUE
+cposg_cpopg <- function(proc, link){
+  if (stringr::str_detect(link, "cposg")){
+    proc <- stringr::str_replace_all(proc, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_SEGUNDA.html")
+  } else if(stringr::str_detect(link, "cpopg")){
+    proc <- stringr::str_replace_all(proc, "[[:punct:]]", "") %>% 
+    stringr::str_c(.,"_PRIMEIRA.html")
+  }
+  return(proc)
+}
+
+# Funcao para baixar os dados em paginas cujo padroes sao uma lista de putros processos que possuem como "outros numeros" o processo anteriormente utilizado na primeira reequisição
+# Neste caso, o parametro "baixar", ira fazer o download da pagina html de cada link que aparece na requisicao inicial
+# exemplo: file:///home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJAL/lawsuits_tjal/data-raw/08487784120178020001_SEGUNDA.html
+link_para_processos <- function(node, baixar = FALSE, path = "data-raw/"){
+  links <- node %>% rvest::html_nodes(xpath = '//a[@class="linkProcesso"]') %>% rvest::html_attr('href') %>% 
+  stringr::str_c("http://www2.tjal.jus.br", .)
+  if(links == "http://www2.tjal.jus.br"){
+    frase <- "SEM INFORMACAO SOBRE PROJETOS COM OUTROS NUMEROS"
+    return(frase)
+    break()
+  } else {
+    proc <- node %>% rvest::html_nodes(xpath = '//a[@class="linkProcesso"]') %>% rvest::html_text(trim = T) %>% 
+      abjutils::clean_id()
+    proc <- purrr::map2_chr(proc,links, ~cposg_cpopg(.x, .y))
+    if(baixar == FALSE) {
+      # links <- glue::collapse(links, sep = "@@@")
+      # return(links)
+      return("NAO BAIXOU")
+      } else {
+        purrr::map2(proc, links, ~obter_proc_node(.x, .y, path = path))
+        frase <- "INFORMAÇÕES BAIXADAS"
+        return(frase)
+      }
+    }
+}
+# Funcao para alertar se alguma mensagem de erro eh exibida
+# se SIM, significa que a mensagem de retorno apareceu, mas importante destacar que isso nao significa que o processo esta interiro, pois podem aparecer 
+#files <- "data-raw/00000263820158020067_SEGUNDA.html"
+#node <- files %>% xml2::read_html()
+mensagem_erro <- function(node){
+  verificador <- node %>% rvest::html_nodes(xpath = '//*[@id="mensagemRetorno"]') %>% rvest::html_text(trim = T)
+  if(purrr::is_empty(verificador)){
+    return("PARAMETRO VAZIO")
+  }else{
+    return("PARAMETRO PREENCHIDO")
+  }
+}
+
+#fUNCAO PARA VERIFICAR A EXISTENCIA DE CONTEUDO
+
+conteudo <- function(node){
+  verificador <- node %>% rvest::html_nodes(xpath = '//table[@id="" and @class="secaoFormBody"]') 
+  if(purrr::is_empty(verificador)){
+    return("SEM CONTEUDO")
+  }else{
+    return("COM CONTEUDO")
+  }
+}
+#wrap-up
+tabela_pre_parser <- function(file, baixar = FALSE, path = "data-raw/html/"){
+  node <- file %>% xml2::read_html()
+  # Sys.sleep(1)
+  service_unavailable <- service_unavailable(node)
+  nao_existe_info <- nao_existe_info(node)
+  segredo_de_justica <- segredo_de_justica(node)
+  link_para_processos <- link_para_processos(node, baixar = baixar, path = path)
+  mensagem_de_erro <- mensagem_erro(node)
+  conteudo_ <- conteudo(node)
+  tab <- tibble(service_unavailable = service_unavailable,
+         nao_existe_info = nao_existe_info,
+         segredo_de_justica = segredo_de_justica,
+         link_para_processos = link_para_processos,
+         mensagem_de_erro = mensagem_de_erro,
+         conteudo = conteudo_)
+  return(tab)
+  
+}
+# As funçoes estao funcionando, sendo assim, vamos aplicar na nossa tabela arq
+arq <- arq %>% drop_na(instancia)
+#
+# tabela_pre <- purrr::map_dfr(nodes[c(1:50, 300:350, 400:420)], ~tabela_pre_parser(.x))
+
+# Rodando tudo
+tabela_pre <- purrr::map_dfr(arq$path, ~tabela_pre_parser(file = .x))
+arq <- bind_cols(arq, tabela_pre)
+readr::write_csv(arq, "relacao_arquivos3.csv")
+
+vectors_to_parse <- arq %>% 
+  filter(service_unavailable == "SERVICO DISPONIVEL", nao_existe_info == "EXISTE INFO", segredo_de_justica %in% c("INCONCLUSIVO", "POSSUI INFO"), link_para_processos == "SEM INFORMACAO SOBRE PROJETOS COM OUTROS NUMEROS", conteudo == "COM CONTEUDO") %>% 
+  select(path) %>% purrr::as_vector()
+```
+
+# Primeira instância
+
+```{r}
+primeira <- vectors_to_parse[stringr::str_detect(vectors_to_parse, "PRIMEIRA")]
+```
+
+
+```{r}
+# Informacoes gerais
+parse_info_pri <- function(file){
+  node <- file %>% xml2::read_html()
+  info <-  node %>% 
+    rvest::html_nodes(xpath = '//table[@class="secaoFormBody"]') %>% 
+    rvest::html_table(fill = T) %>% 
+    {if(length(.) >= 2){t <- purrr::pluck(., 2)} else{t <- purrr::pluck(., 1)}} %>% 
+    dplyr::select(1, 2) %>% 
+    magrittr::set_names(c("key", "val")) %>% 
+    dplyr::mutate(key = stringr::str_trim(key)) %>% 
+    tidyr::unite(c("key", "val"), sep = " ") %>% 
+    magrittr::set_names("key") %>% 
+    filter(!stringr::str_detect(key, "NA")) %>% 
+    dplyr::mutate(key = dplyr::case_when(stringr::str_detect(key, "[V-v]ara|[F-f]oro|[C-c]omarca") ~ stringr::str_c("Local:", key),
+                                         T ~ key),
+                  key = dplyr::case_when(stringr::str_detect(key, "Origem|Distribuição") ~ stringr::str_replace_all(key, "Local:", ""),
+                                         T~key)) %>% 
+    tidyr::separate(key, into = c("key", "val"), sep = ":") %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_trim(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, "\\/", ""),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  val = stringr::str_trim(val),
+                  val = stringr::str_replace_all(val, "\\n|\\t", "")) %>% 
+    tidyr::spread(key, val)
+  
+  return(info)
+}
+# ------------------------------------------------------------------------------------------------------------------------------------------
+# Dados da delegacia
+parse_delegacia <- function(file){
+  node <- file %>% xml2::read_html()
+  nam <- node %>% 
+  rvest::html_nodes(xpath = '//tr[@class="label"]') %>% 
+  rvest::html_text(trim = T) %>% 
+  .[stringr::str_detect(., "Distrito policial")] %>% 
+  stringr::str_replace_all("\\t", "") %>% 
+  stringr::str_split(pattern = "\\n") %>% 
+  purrr::pluck(1)
+  
+  tem_delegacia <- node %>% 
+    rvest::html_nodes(xpath = '//tbody[@id="dadosDaDelegacia"]') %>% rvest::html_text()
+  
+  if(is.na(tem_delegacia)|purrr::is_null(tem_delegacia)){
+    tab <- dplyr::tibble(resultado_delegacia = "error") %>% 
+      tidyr::nest(.key = "delegacia")
+    return(tab)
+    } else {
+      obter_delegacia_obs(node)
+    }
+}
+## Funcao para parsear as observações da delegacia
+obter_delegacia_obs <- function(node){
+  delegacia_tab_claro <- node %>% 
+         rvest::html_nodes(xpath = '//tbody[@id="dadosDaDelegacia"]//tr[@class="fundoClaro"]//td')
+  
+  delegacia_tab_escuro <- node %>% 
+        rvest::html_nodes(xpath = '//tbody[@id="dadosDaDelegacia"]//tr[@class="fundoEscuro"]//td')
+  
+  if(purrr::is_empty(delegacia_tab_escuro %>% rvest::html_text())){
+    t0 <- delegacia_tab_claro %>% 
+      rvest::html_text() %>% 
+      dplyr::tibble(val = .) %>% 
+      dplyr::bind_cols(dplyr::tibble(key = as.character(seq(1, nrow(.), 1)))) %>% 
+      tidyr::spread(key, val)
+    
+    purrr::map_dfr(list(t0), ~dplyr::bind_rows(.x)) %>%
+      {if(ncol(.) == length(nam)){magrittr::set_names(., nam)}} %>% 
+      tidyr::nest(.key = "delegacia") 
+    } else {
+    t0 <- delegacia_tab_claro %>% 
+      rvest::html_text() %>% 
+      dplyr::tibble(val = .) %>% 
+      dplyr::bind_cols(dplyr::tibble(key = as.character(seq(1, nrow(.), 1)))) %>% 
+      tidyr::spread(key, val)
+    
+    t1 <- delegacia_tab_escuro %>% 
+      rvest::html_text() %>% 
+      dplyr::tibble(val = .) %>%
+      dplyr::bind_cols(dplyr::tibble(key = as.character(seq(1, nrow(.), 1)))) %>% 
+      tidyr::spread(key, val)
+    
+    purrr::map_dfr(list(t0, t1), ~dplyr::bind_rows(.x)) %>%
+      {if(ncol(.) == length(nam)){magrittr::set_names(., nam)}} %>% 
+      tidyr::nest(.key = "delegacia") 
+  }
+}
+
+parse_delegacia <- purrr::possibly(parse_delegacia, otherwise = tibble(delegacia = list("Sem informação")))
+
+# ------------------------------------------------------------------------------------------------------------------------------------------
+## Partes
+
+parse_partes <- function(file){
+  node <- file %>% xml2::read_html()
+
+  node %>% rvest::html_node(xpath = '//table[@id="tablePartesPrincipais"]') %>% 
+    rvest::html_table() %>% 
+    {if(ncol(.)==2){magrittr::set_names(., c("key", "val"))}} %>% 
+    tidyr::nest(.key = "partes")  
+}
+parse_partes <- purrr::possibly(parse_partes, otherwise = tibble(partes = list("Sem informação")))
+
+# ------------------------------------------------------------------------------------------------------------------------------------------
+## Movimentacao
+parse_movimentacao <- function(file){
+  node <- file %>% xml2::read_html()
+  
+  data <- node %>% 
+    rvest::html_nodes(xpath = '//tbody[@id="tabelaTodasMovimentacoes"]//td[@style="vertical-align: top"]') %>% rvest::html_text(trim = T) %>% 
+    stringr::str_replace_all("\\n|\\t", "")
+  descricao <- node %>% 
+    rvest::html_nodes(xpath = '//tbody[@id="tabelaTodasMovimentacoes"]//td[@style="vertical-align: top; padding-bottom: 5px"]') %>% 
+    rvest::html_text(trim = T)
+  dplyr::tibble(data = data, descricao = descricao) %>% 
+    tidyr::nest(.key = "movimentacao")
+}
+# ------------------------------------------------------------------------------------------------------------------------------------------
+parse_tjal <- function(file){
+  info <- parse_info_pri(file)
+  delegacia <- parse_delegacia(file)
+  movimentacao <- parse_movimentacao(file)
+  partes <- parse_partes(file)
+  dplyr::bind_cols(info, delegacia, movimentacao, partes) %>% 
+    dplyr::mutate(resultado_parser = "ok",
+                  file = file)
+}
+parse_tjal <- purrr::possibly(parse_tjal, otherwise = dplyr::tibble(resultado_parser = "error"))
+# ------------------------------------------------------------------------------------------------------------------------------------------
+tjal_primeira <- purrr::map_dfr(primeira, ~parse_tjal(.x))
+
+# Ainda apresenta error, mas acessou os casos
+```
+
+# SEGUNDA Instancia
+
+```{r}
+segunda <- vectors_to_parse[stringr::str_detect(vectors_to_parse, "SEGUNDA")]
+```
+
+```{r}
+parse_info_seg <- function(file){
+ node <- file %>% xml2::read_html()
+ node %>% 
+    rvest::html_nodes(xpath = '//table[@class="secaoFormBody"]') %>% 
+    rvest::html_table(fill = T) %>% 
+    {if(length(.) >= 2){t <- purrr::pluck(., 2)} else{t <- purrr::pluck(., 1)}} %>% 
+    dplyr::select(1, 2) %>% 
+    magrittr::set_names(c("key", "val")) %>% 
+    dplyr::mutate(key = stringr::str_trim(key)) %>% 
+    tidyr::unite(c("key", "val"), sep = " ") %>% 
+    magrittr::set_names("key") %>% 
+    filter(!stringr::str_detect(key, "NA")) %>% 
+    dplyr::mutate(key = dplyr::case_when(stringr::str_detect(key, "[V-v]ara|[F-f]oro|[C-c]omarca") ~ stringr::str_c("Local:", key),
+                                         T ~ key),
+                  key = dplyr::case_when(stringr::str_detect(key, "Origem|Distribuição") ~ stringr::str_replace_all(key, "Local:", ""),
+                                         T~key)) %>% 
+    tidyr::separate(key, into = c("key", "val"), sep = ":") %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_trim(key),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, "\\/", ""),
+                  key = stringr::str_replace_all(key, " +", "_"),
+                  val = stringr::str_trim(val),
+                  val = stringr::str_replace_all(val, "\\n|\\t", "")) %>% 
+    tidyr::spread(key, val) 
+}
+# ---------------------------------------------------------------------------------------------------------------------------------------
+
+julgamento <- function(file){
+  #print(file)
+  p <- file %>% xml2::read_html() %>%
+    rvest::html_nodes(xpath = '//td/h2[@class="sutitle"]|//tr[@class="fundoClaro"]/td[@align="left"]') %>%
+    rvest::html_text() %>%
+    stringr::str_replace_all("\\n|\\t", "") %>%
+    stringr::str_trim()
+  if(purrr::is_empty(p)){
+    p <- ""
+  }
+  s <- ""
+  n <- ""
+  for(i in 1:length(p)){
+    if(stringr::str_detect(p[i], "[J-j]ulgado") == T){
+      s <- "SIM"
+    } else {
+      n <- "NAO"
+    }
+  }
+
+  if(s == "SIM"){
+    fim <- length(p)
+    inicio <- fim - 2
+    tam <- seq(inicio, fim, 1)
+    decisao <- p[tam]
+    data <- dplyr::tibble(val = decisao, key = c("data_julgamento", "situacao_julgamento", "decisao_julgamento")) %>% 
+      tidyr::spread(key, val)
+  } else{
+    data <- dplyr::tibble(val = c("Sem informacao",
+                                  "Sem informacao",
+                                  "Sem informacao"),
+                                  key = c("data_julgamento", 
+                                          "situacao_julgamento", 
+                                          "decisao_julgamento")) %>% 
+      tidyr::spread(key, val)
+  }
+  return(data)
+}
+
+# ---------------------------------------------------------------------------------------------------------------------------------------
+parse_tjal <- function(file){
+  info <- parse_info_seg(file)
+  delegacia <- parse_delegacia(file)
+  movimentacao <- parse_movimentacao(file)
+  partes <- parse_partes(file)
+  julgamento <- julgamento(file)
+  dplyr::bind_cols(info, delegacia, movimentacao, partes, julgamento) %>% 
+    dplyr::mutate(resultado_parser = "ok",
+                  file = file)
+}
+parse_tjal <- purrr::possibly(parse_tjal, otherwise = dplyr::tibble(resultado_parser = "error"))
+
+tjal_segunda <- purrr::map_dfr(segunda, ~parse_tjal(.x))
+```
+

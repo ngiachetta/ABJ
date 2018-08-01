@@ -1,0 +1,241 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+- Parser dos dados do TJDFT
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(xml2)
+library(httr)
+library(glue)
+file_pri <- dir("data-raw/", pattern = "PRIMEIRA", full.names = T)
+file_seg <- dir("data-raw/", pattern = "SEGUNDA", full.names = T)
+ex1 <- dir("data-raw/", pattern = "00144777320118070001_PRIMEIRA", full.names = T)
+ex2 <- dir("data-raw/", pattern = "00144777320118070001_SEGUNDA", full.names = T)
+```
+
+- Primeira instância
+
+Os dados do `ex1` são bem intuitivos, todas as tags informam qual é a informação; criarei um parser genérico para depois alterar conforme os problemas apareçam
+
+```{r}
+# funcao para obter o link do cache
+# obter_link_pri <- function(file, path = "data-raw-primeira/"){
+#  link <- file %>% readLines() %>% stringr::str_extract_all('(URL).*') %>% stringr::str_replace_all(">", " ") %>% stringr::str_split(" ") %>% unlist() %>% 
+#   .[stringr::str_detect(., "URL")] %>% stringr::str_extract_all("http.*") %>% stringr::str_replace_all('"$', "") 
+#  file_path <- file %>% stringr::str_extract("[0-9].*")
+#  dir.create(path, FALSE, TRUE)
+#  path <- normalizePath(path)
+#  link_d <- stringr::str_c(path, "/", file_path)
+#  httr::GET(link,
+#            httr::config(ssl_verifypeer = FALSE),
+#            write_disk(link_d, overwrite = T))
+# }
+# 
+# obter_link_pri <- purrr::quietly(obter_link_pri)
+# obter_link_pri <- purrr::possibly(obter_link_pri, otherwise = "error")
+# t1 <- purrr::map(file_pri, ~obter_link_pri(.x, "data-raw-primeira/"))
+# link <- obter_link_pri(ex1)$result
+# node <- read_html(link) #nao apagar ou alterar
+# 
+# # Downloads
+# files_primeira <- dir("data-raw-primeira/") %>% stringr::str_replace_all("[^0-9]", "") %>% str_trim()
+# files_data <- dir("data-raw/", pattern = "PRIMEIRA", full.names = F) %>% stringr::str_replace_all("[^0-9]", "") %>% str_trim()
+# 
+# index <- c()
+# for(i in 1:length(files_primeira)){
+#   index[i] <- which(files_data == files_primeira[i])
+# }
+# 
+# sobras <- files_data[-index]
+# sobras <- str_c("data-raw//", sobras, "_PRIMEIRA.html")
+# t2 <- purrr::map(sobras, ~obter_link_pri(.x, "data-raw-primeira/"))
+# 
+# # Verificar se de fato não existem os processos
+# verifica_falha <- function(sobras){
+#   node <- sobras %>% xml2::read_html()
+#   node %>% rvest::html_nodes(xpath = '//font[@size="+1"]') %>% rvest::html_text() %>%str_to_lower() %>% str_detect("nenhum processo encontrado")
+# }
+# falhas <- purrr::map_lgl(sobras, ~verifica_falha(.x))
+# table(falhas) # Todos deram TRUE
+
+
+### Parser PRIMEIRA INSTANCIA
+# Movimentacao
+parse_mov <- function(node){
+  mov <- xml2::xml_find_all(node, '//*[@id="detalhamentoDeProcesso"]//table') %>%
+    rvest::html_table(fill = T) %>% 
+    purrr::pluck(1) %>%  
+    dplyr::mutate(X1 = stringr::str_trim(X1),
+                  verificar_string = ifelse(stringr::str_detect(X1, "Data"), TRUE, FALSE)) %>% 
+    dplyr::filter(verificar_string != TRUE) %>%
+    dplyr::mutate(verificar_string = ifelse(stringr::str_detect(X1, ""), TRUE, FALSE)) %>%
+    dplyr::filter(verificar_string != FALSE) %>%
+    dplyr::select(1,2,3) %>% 
+    magrittr::set_names(c("data", "andamento", "complemento")) %>% 
+    tidyr::separate(data, into = c("data", "hora"), sep = "-")  
+  return(mov)
+}
+
+# Informacoes do processo
+parse_info <- function(node){
+  xml2::xml_find_all(node, '//*[@id="detalhamentoDeProcesso"]//span') %>% {
+  key <- html_attr(., 'id')
+  val <- html_text(.)
+   dplyr::tibble(key = key, val = val)
+  } %>% 
+  dplyr::mutate(detect_hora = ifelse(stringr::str_detect(key, "(dataHoraAndamento)|(descricaoAndamento)"), TRUE, FALSE)) %>% 
+  dplyr::filter(detect_hora != TRUE) %>% 
+  select(-detect_hora) %>% 
+  tidyr::spread(key, val)  
+}
+
+# Obter sentença da primeira instancia
+sentenca_prim_inst <- function(file){
+  sentenca_link <- file %>% xml2::read_html() %>% rvest::html_nodes(xpath = '//a') %>% {
+  a <- rvest::html_attr(.,'href')
+  t <- rvest::html_text(., trim = T)
+  dplyr::tibble(link = a, descr = t) %>% filter(descr == "Consulta Sentença")
+  } %>% select(1) %>% 
+    purrr::as_vector()
+  
+  if(length(sentenca_link) == 0| purrr::is_null(sentenca_link)|is.na(sentenca_link)){
+    tab <- tibble(sentenca = "Sem informação")
+    return(tab)
+  } else {
+    sentenca <- xml2::read_html(sentenca_link) %>% 
+      rvest::html_text(trim = T) #%>% stringr::str_extract_all("(Sentença \\:).*") preocupar-se com a limpeza
+    tab <- tibble(sentenca = sentenca)
+    return(tab)
+  }
+}
+
+wrap_up_tjdft <- function(file){
+  print(file)
+  node <- file %>% xml2::read_html()
+  mov <- parse_mov(node) %>% tidyr::nest(.key = "movimentacao")
+  info <- parse_info(node)
+  sentecas <- sentenca_prim_inst(file)
+  tab <- bind_cols(info, mov) %>% dplyr::mutate(result = "ok")
+  return(tab)
+}
+
+wrap_up_tjdft <- purrr::possibly(wrap_up_tjdft, otherwise = dplyr::tibble(result = "error"))
+# Consulta Advogados das Partes
+# Consulta Sentença
+# Outras partes
+
+files <- dir("data-raw-primeira/", full.names = T)
+tab <- purrr::map_dfr(files, ~wrap_up_tjdft(.x))
+tab %>% bind_cols(tibble(path = files))
+tab %>% count(result) # 75 casos com error
+# data-raw-primeira//00002393620138070015_PRIMEIRA.html deu um erro especifico, logo é preciso adaptá-lo
+# data-raw-primeira//00000394220168070009_PRIMEIRA.html verificar a mensagem de aviso
+
+
+# Verificar se o codigo funciona para segunda instancia
+#tab_2 <- purrr::map_dfr(file_seg[1:1000], ~ wrap_up_tjdft(.x)) # não funciona
+
+### Parser SEGUNDA INSTANCIA
+
+# Na segunda instancia temos alguns casos para verificar
+## Caso 1: file:///home/nathan/Documentos/Trabalho/ABJ/tjs/consulta_processual/TJDFT/lawsuits_tjdft/data-raw//00000031820168070003_SEGUNDA.html
+# O caso 1 é quando faz referencia a outros processos. Neste caso, teremos que criar uma funcao para informar se o html faz referencia a outro processo
+# ou não
+
+ref_outro_proc <- function(file){
+  node <- file %>% xml2::read_html()
+  node %>% rvest::html_node(xpath = '//table[@cellspacing="0"]') %>% rvest::html_text() %>% {
+    if(is.na(.)){
+      t <- dplyr::tibble(file = file, referencia_outros_proc = TRUE)
+      return(t)
+      break()
+      }else{
+        t <- dplyr::tibble(file = file, referencia_outros_proc = FALSE)
+        return(t)
+      }
+  }
+}
+
+wrap_up_seg <- function(file){
+  t <- ref_outro_proc(file)
+  if(t[,2]== TRUE){
+    return(t)
+    break()
+  }else{
+    # continuar todo wrap aqui
+  }
+}
+# Não esquecer do scraper da decisao (Feito para primeira instancia)
+# parse_info_seg <- function(file){
+#   node <- file %>% xml2::read_html()
+#   info <- node %>% rvest::html_node(xpath = '//table') %>% html_table(fill = T) %>% 
+#     magrittr::set_names(c("key", "val")) %>% 
+#     dplyr::mutate(key = stringr::str_to_lower(key),
+#                   key = abjutils::rm_accent(key),
+#                   key = stringr::str_replace(key, ":", ""),
+#                   key = stringr::str_replace_all(key, "\\(s\\)",""),
+#                   key = stringr::str_trim(key),
+#                   key = stringr::str_replace_all(key, " +", "_"),
+#                   val = dplyr::case_when(val == "" ~NA_character_,
+#                                          T~val)) %>% 
+#     dplyr::filter(!(key %in% c("decisao", "notas_taquigraficas", "andamentos", ""))) %>% 
+#     tidyr::drop_na(val) %>% 
+#     group_by(key) %>% 
+#     summarise(val = glue::glue_collapse(val, sep = "@@@")) %>%
+#     ungroup() %>%
+#     tidyr::spread(key, val)  
+#   return(info)
+# }
+
+parse_info_seg(file_seg[2])
+
+
+parse_info_seg <- function(file){
+  node <- file %>% xml2::read_html()
+
+  node %>% xml2::xml_find_all(xpath = '//hidden[@id]') %>% {
+    key <- rvest::html_attr(., 'id')
+    val <- rvest::html_attr(., 'value')
+    dplyr::tibble(key = key, val = val)
+    } %>%
+    dplyr::mutate(detect_hora = ifelse(stringr::str_detect(key, "(dataHoraAndamento)|(descricao_andamento)"), TRUE, FALSE)) %>% 
+    dplyr::filter(detect_hora != TRUE) %>%
+    select(-detect_hora) %>% 
+    dplyr::mutate(val = dplyr::case_when(val == "" ~NA_character_,
+                                         T~val)) %>% 
+    tidyr::spread(key, val)  
+}
+parse_info_seg(file_seg[2])
+
+sentenca_seg_inst <- function(file){
+  sentenca_link <- file %>% xml2::read_html() %>% rvest::html_nodes(xpath = '//a') %>% {
+  a <- rvest::html_attr(.,'href')
+  t <- rvest::html_text(., trim = T)
+  dplyr::tibble(link = a, descr = t) %>% filter(descr == "Decisão") # Função parecida com a de primeira instanvcia
+  } %>% select(1) %>% 
+    purrr::as_vector()
+  
+  if(length(sentenca_link) == 0| purrr::is_null(sentenca_link)|is.na(sentenca_link)){
+    tab <- tibble(sentenca = "Sem informação")
+    return(tab)
+  } else {
+    sentenca <- xml2::read_html(sentenca_link) %>% 
+      rvest::html_text(trim = T) #%>% stringr::str_extract_all("(Sentença \\:).*") preocupar-se com a limpeza
+    tab <- tibble(sentenca = sentenca)
+    return(tab)
+  }
+}
+
+sentenca_seg_inst(file_seg[2])
+```
+
+```{r}
+ex <- dir("data-raw-primeira/", full.names = T)
+parse_info(ex[1] %>% read_html())
+
+eita <- purrr::map_dfr(ex, ~wrap_up_tjdft(.x))
+```

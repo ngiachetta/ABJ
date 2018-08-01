@@ -1,0 +1,54 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(rvest)
+library(httr)
+library(RSelenium)
+library(seleniumPipes)
+
+trf5 <- readr::read_rds("lawsuits_menor.rds")
+trf5 <- trf5 %>% select(cnj) %>% purrr::as_vector() %>% unique()
+```
+
+```{r}
+obter_trf5 <- function(processo, path = "data-raw/"){
+  #start <- wdman::phantomjs(port = 4568L)
+  u0 <- "http://www5.trf5.jus.br/cp/"  
+  
+ # remDr <- seleniumPipes::remoteDr(port = 4568L, browserName = "chrome")
+  remDr <- seleniumPipes::remoteDr(port = 4567L, browserName = "chrome")
+  seleniumPipes::go(remDr, url = u0)
+  
+  remDr %>% seleniumPipes::findElement(using = 'name', value = 'filtro') %>% 
+    seleniumPipes::elementClick() %>% 
+    seleniumPipes::elementSendKeys(processo)
+  
+  remDr %>% seleniumPipes::findElement(using = 'id', value = 'submitConsulta') %>% 
+    seleniumPipes::elementClick()
+  
+  #remDr %>% seleniumPipes::closeWindow()
+
+  h <-remDr %>% seleniumPipes::getWindowHandles()
+  # 
+  remDr %>% seleniumPipes::switchToWindow(h[[2]])
+
+  p1 <- remDr %>% seleniumPipes::getPageSource()
+  
+  dir.create(path, FALSE, TRUE)
+  path<- normalizePath(path)
+  p1 %>% xml2::write_html(file = stringr::str_c(path, "/", abjutils::clean_id(processo), ".html"))
+  # 
+  # p1 <- list(p1)
+  # names(p1) <- processo
+  # 
+  remDr %>% seleniumPipes::deleteSession()
+  Sys.sleep(0.5)
+  
+  return(p1)
+}
+```
+

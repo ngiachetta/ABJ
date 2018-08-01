@@ -1,0 +1,60 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(httr)
+library(rvest)
+library(stringr)
+library(glue)
+```
+
+```{r}
+lawsuits <- readr::read_rds("all_lawsuits/all_lawsuits.rds")
+
+trf1 <- lawsuits %>% 
+  mutate(tribunal = str_extract(lawsuit_file, ".*\\/"),
+         tribunal = str_replace_all(tribunal, "\\/", "")) %>% 
+  filter(tribunal == "trf01") %>% select(cnj) %>% distinct() %>% purrr::as_vector
+
+head(trf1)
+```
+
+```{r}
+obter_trf1_cp <- function(proc, path){
+  # Obtendo o arquivo html
+  url_mov_proc <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+  url_partes <- "https://processual.trf1.jus.br/consultaProcessual/arquivo/partes.php"
+  #proc <- abjutils::build_id(proc)
+  
+  query_mov_proc <- list(
+    "secao"="TRF1",
+    "enviar"="Pesquisar",
+    "pg"=1,
+    "proc"=proc
+    )
+  
+    query_partes <- list(
+    "secao"="TRF1",
+    "origem"="juris",
+    "proc"=proc
+    )
+    
+   dir.create(path, FALSE, TRUE)
+   path <- normalizePath(path)
+   file_mov_proc <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_movEinfoprocesso.html")
+   file_partes <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_partes.html")
+    
+  request_mov_proc <- httr::GET(url_mov_proc, query = query_mov_proc, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_mov_proc, T))
+  request_partes <- httr::GET(url_partes, query = query_partes, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_partes, T))
+  
+  request <- list(movimentacao = request_mov_proc,
+                  partes = request_partes)
+  
+  return(request)
+}
+```
+
+

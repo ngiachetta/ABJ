@@ -1,0 +1,51 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(RSelenium)
+library(seleniumPipes)
+library(tidyverse)
+tjrj <- readr::read_rds("lawsuits_menor.rds")
+tjrj <- tjrj %>% select(cnj) %>% purrr::as_vector() %>% unique()
+```
+
+```{r APARENTEMENT OK}
+mov <- function(remDr){
+  remDr %>% seleniumPipes::findElement(using = 'xpath', value = '//a[@onclick="ListarMovimentos();return false;"]') %>%
+    seleniumPipes::elementClick()
+  remDr %>% seleniumPipes::findElement(using = 'xpath', value = '//img[@title="Listar Todos os Movimentos"]') %>%
+    seleniumPipes::elementClick()
+}
+
+obter_selenium_tjrj <- function(numProcesso, path = "data-raw/"){
+  u0 <- "http://www4.tjrj.jus.br/numeracaoUnica/faces/index.jsp?numProcesso="
+  numProcesso <- abjutils::build_id(numProcesso)
+  u0 <- stringr::str_c(u0, numProcesso)
+
+  remDr <- seleniumPipes::remoteDr(port = 4568L, browserName = "phantomjs")
+  seleniumPipes::go(remDr, url = u0)
+  Sys.sleep(0.3)
+  remDr %>% mov()
+  Sys.sleep(5.5)
+  
+  remDr %>% seleniumPipes::findElement(using = 'xpath', value = '//a[@href="javascript:exibeListaPersonagens();"]') %>%
+    seleniumPipes::elementClick()
+
+  p <- remDr %>% seleniumPipes::getPageSource()
+  dir.create(path, FALSE, TRUE)
+  path <- normalizePath(path)
+  p %>% xml2::write_html(file =  stringr::str_c(path, "/", abjutils::clean_id(numProcesso), ".html"))
+  Sys.sleep(0.2)
+  remDr %>% seleniumPipes::deleteSession()
+  Sys.sleep(1)
+  #p <- list(p)
+  #names(p) <- numProcesso
+  #readr::write_rds(p, stringr::str_c(path, "/", abjutils::clean_id(numProcesso), ".rds"))
+  return(p)
+}
+start <- wdman::phantomjs(port = 4568L)
+obter_tjrj_s <- purrr::possibly(obter_selenium_tjrj, otherwise = list(error = "TRUE"))
+```
+

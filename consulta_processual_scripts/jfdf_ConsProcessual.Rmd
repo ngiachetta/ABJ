@@ -1,0 +1,163 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(httr)
+```
+
+```{r}
+lawsuits <- readr::read_rds("/home/nathan/Documentos/Trabalho/ABJ/all_lawsuits/all_lawsuits.rds")
+
+query <- lawsuits %>% 
+  mutate(tribunal = str_extract(lawsuit_file, ".*\\/"),
+         tribunal = str_replace_all(tribunal, "\\/", "")) %>% 
+  filter(tribunal == "jfdf") %>% 
+  select(cnj) %>% 
+  purrr::as_vector()
+```
+
+```{r}
+obter_jfdf <- function(proc, path){
+  url_mov_proc <- "https://processual.trf1.jus.br/consultaProcessual/processo.php"
+  url_partes <- "https://processual.trf1.jus.br/consultaProcessual/arquivo/partes.php"
+
+  proc <- abjutils::build_id(proc)
+  
+  query_mov_proc <- list(
+    "secao"="DF",
+    "enviar"="Pesquisar",
+    "pg"=1,
+    "proc"=proc
+    )
+  
+    query_partes <- list(
+    "secao"="DF",
+    "origem"="processual",
+    "proc"=abjutils::clean_id(proc)
+    )
+    
+   dir.create(path, FALSE, TRUE)
+   path <- normalizePath(path)
+   file_mov_proc <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_movEinfoprocesso.html")
+   file_partes <- stringr::str_c(path,"/",abjutils::clean_id(proc), "_partes.html")
+    
+  request_mov_proc <- httr::GET(url_mov_proc, query = query_mov_proc, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_mov_proc, T))
+  request_partes <- httr::GET(url_partes, query = query_partes, httr::config(ssl_verifypeer = FALSE), httr::write_disk(file_partes, T))
+  
+  request <- list(movimentacao = request_mov_proc,
+                  partes = request_partes)
+  
+  return(request)
+}
+```
+
+```{r}
+purrr::map(query, ~obter_jfdf(.x, path = "jfs/JFDF/consulta_processual/lawsuits_jfdf/data-raw/"))
+```
+
+# Parser
+
+```{r Desconsiderar este chunk pois o parser foi feito em outro arquivo}
+## Exemplo de processos que nao foram encontrados
+# 00005950420152000000_partes.html
+# 00005950420152000000_movEinfoprocesso.html
+
+## Exemplo de processos que foram encontrados
+# 00007445320164013400_partes.html
+# 00007445320164013400_movEinfoprocesso.html
+
+library(tidyverse)
+library(xml2)
+library(rvest)
+
+f_mov <- dir("data-raw/", full.names = T, pattern = "mov") # Feito
+f_partes <- dir("data-raw/", full.names = T, pattern = "partes") # Falta
+
+node_mov <- f_mov[2] %>% xml2::read_html()
+
+########################################################################
+verif_mov <- function(node){
+  node %>% 
+    rvest::html_node(xpath = '//*[@class="error span-18 last clear"]') %>%
+    rvest::html_text(trim = T) %>% 
+    abjutils::rm_accent() %>% 
+    stringr::str_to_lower() %>% 
+    stringr::str_replace_all("[[:punct:]]", "") %>% 
+    stringr::str_replace_all(" +", "_") %>% {
+      if(is.na(.)|purrr::is_empty(.)){
+        return(FALSE)
+        } else if(. == "processo_nao_foi_encontrado"){
+          return(TRUE)
+        }
+    }  
+  }
+
+parse_info <- function(node){
+    node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-processo"]/table') %>%
+    rvest::html_table() %>% {
+      if(ncol(.) == 2){
+        magrittr::set_names(., c("key", "val"))
+      } else if(ncol(.) == 3){
+        magrittr::set_names(., c("key", "val", "other"))
+      }
+    } %>% 
+    dplyr::mutate(key = stringr::str_to_lower(key),
+                  key = stringr::str_replace_all(key, ":", ""),
+                  key = stringr::str_replace_all(key, "[[:punct:]]", ""),
+                  key = abjutils::rm_accent(key),
+                  key = stringr::str_replace_all(key, " +", "_")) %>% 
+    tidyr::spread(key, val)
+}
+
+parse_mov <- function(node){
+    node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-movimentacao"]/table') %>%
+    rvest::html_table() %>% {
+      if(ncol(.) == 4){
+        magrittr::set_names(., c("data", "cod", "descricao", "complemento"))
+      } else if(ncol(.) == 3){
+        magrittr::set_names(., c("data", "cod", "descricao"))
+      }
+    } %>% 
+    tidyr::separate(data, c("data", "hora"), sep = " ") %>% 
+    tidyr::nest(.key = "movimentacao")
+}
+
+parse_publicacao <- function(node){
+  node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-publicacao"]/table') %>%
+    rvest::html_table() %>% 
+    magrittr::set_names(c("data", "tipo", "texto")) %>% 
+    tidyr::nest(.key = "publicacao")
+}
+
+parse_inteiro_teor <- function(node){
+  t1 <- node %>% 
+    rvest::html_node(xpath = '//div[@id="aba-inteiro-teor"]/table') %>%
+    rvest::html_table() %>% 
+    dplyr::select(1:3) %>% 
+    magrittr::set_names(c("sequencial", "descricao_do_documento", "data_de_inclusao")) %>% 
+    tidyr::separate(data_de_inclusao, c("data", "hora"), sep = " ")
+  t2 <- node %>% 
+    rvest::html_nodes(xpath = '//div[@id="aba-inteiro-teor"]//a') %>% 
+    rvest::html_attr('href') %>% dplyr::tibble(link = .)
+  tab <- dplyr::bind_cols(t1, t2) %>% tidyr::nest(.key = "inteiro_teor")
+  return(tab)
+}
+
+
+if(verif_mov(node_mov) == TRUE){
+  break()
+}else if(verif_mov(node_mov) == FALSE){
+  info <- parse_info(node_mov)
+  mov <- parse_mov(node_mov)
+  inteiro <- parse_inteiro_teor(node_mov) # acessar os links
+  publicacao <- parse_publicacao(node_mov)
+  dplyr::bind_cols(info, mov, inteiro, publicacao)
+}
+```
+
