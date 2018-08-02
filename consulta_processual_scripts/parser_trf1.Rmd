@@ -146,6 +146,3 @@ trf1_wrapup <- function(mov, partes){
 trf1_wrapup <- purrr::possibly(trf1_wrapup, otherwise = dplyr::tibble(result = "error"))
 trf1 <- trf1_wrapup(mov, partes)
 ```
-
-
-
