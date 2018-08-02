@@ -38,15 +38,20 @@ obter_info <- function(file){
 
 ```{r}
 pag_existe <- function(path){
+  print(path)
   node <- path %>% xml2::read_html()
   
-  verificador <- node %>% rvest::html_node(xpath = '//form[@name="formconsulta"]//legend') %>% rvest::html_text()
+  ver <- function(node){
+    rvest::html_node(node, xpath = '//form[@name="formconsulta"]//legend')%>% rvest::html_text()
+  }
+  ver <- purrr::possibly(ver, otherwise = "error")
+  verificador <- node %>% ver() 
   
   if(is.na(verificador) == F){
     r <- FALSE
-  } else{
+  } else {
     r <- TRUE
-  } 
+  }
   return(r)
 }
 
@@ -179,4 +184,3 @@ wrapup_jfsp <- function(file){
 file <- dir("data-raw/", full.names = T)
 tab <- wrapup_jfsp(file)
 ```
-
